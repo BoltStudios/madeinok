@@ -4,7 +4,7 @@
  */
 
 var mongoose = require('mongoose')
-  , listing = require('./models/listing.js')
+  , listingDto = require('./models/listing.js')
 ;
 
 var express = require('express')
@@ -40,7 +40,7 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 
 app.get('/listings', listing.list);
-app.post('/listings/create', listing.create);
+app.all('/listings/create', listing.create);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

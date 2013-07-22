@@ -4,6 +4,11 @@ var Founder = mongoose.Schema.Types.FounderSchema
 
 var fundingStages = 'Bootstrapped|Seed|Series A|Series B|Series C|Series D+'.split('|')
 var totalFundings = '<$100k|$100 - 500k|$500k - 1M|$1M - 5M|$5M - 10M|$10M+'.split('|')
+var annualRevenueTypes = '<$100k|$100 - 500k|$500k - 1M|$1M - 5M|$5M - 10M|$10M - 50M|$50M+'.split('|')
+var companyTypes = 'Technology Company|Agency|Dev Shop|Service Firm|Incubator/Accelerator|VC/Angel Fund|Other'.split('|')
+var productTypes = 'Website|Mobile App|SaaS|PaaS|IaaS|Games'.split('|')
+var primaryCustomerTypes = 'Consumer|Business|Non-Profit|Public Sector|Other'.split('|')
+var industryTypes = 'Media|Retail|E-Commerce|Energy|Healthcare|Games|Consumer|IT|Advertising/Marketing|Finance|Education|Sports|Travel|Business Services|Food|Other'.split('|')
 
 var ListingSchema = new mongoose.Schema({
 	creator: { type: ObjectId, required: true }			// links to a user acct
@@ -26,15 +31,15 @@ var ListingSchema = new mongoose.Schema({
   , teamInOkSize: { type: Number, required: false }
   , incubator: { type: Boolean, required: false }		// ?
   , accelerator: { type: Boolean, required: false }		// ?
-  , fundingStage: { type: String, required: true, enum: fundingStages }		// make type
+  , fundingStage: { type: String, required: true, enum: fundingStages }
   , totalFunding: { type: String, required: true, enum: totalFundings }
-  , annualRevenue: { type: String, required: true }		// make type
+  , annualRevenue: { type: String, required: true, enum: annualRevenueTypes }
   , tractionMilestone: { type: Number, required: false }
 
-  , companyType: { type: String, required: false }		// make type
-  , productType: { type: String, required: false }		// make type
-  , primaryCustomer: { type: String, required: true }	// make type
-  , industry: { type: String, required: true }			// make type
+  , companyType: { type: String, required: false, enum: companyTypes }
+  , productType: { type: String, required: false, enum: productTypes }
+  , primaryCustomer: { type: String, required: true, enum: primaryCustomerTypes }
+  , industry: { type: String, required: true, enum: industryTypes }
 
   , founders: [Founder]
 })
