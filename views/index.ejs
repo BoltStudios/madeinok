@@ -1,9 +1,23 @@
-<!DOCTYPE html>
+<!-- 
+  watch this: http://www.youtube.com/watch?v=WxmcDoAxdoY 
+-->
+<!doctype html>
 <meta charset='utf8'>
 <title><%= title %></title>
 <script type='text/javascript' src='/lib/angular.min.js'></script>
 <script type='text/javascript' src='/lib/angular-cookies.min.js'></script>
+<script type='text/javascript' src='/lib/angular-resource.js'></script>
+
+<script type='text/javascript' src='/javascripts/controllers/listings/ListingCtrl.js'></script>
+<script type='text/javascript' src='/javascripts/controllers/listings/CreateCtrl.js'></script>
+<script type='text/javascript' src='/javascripts/app.js'></script>
+
 <link rel='stylesheet' href='/stylesheets/style.css' />
-<body>
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+<body ng-app='StartupApp'>
 	<h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+
+    <!-- partials load here -->
+    <div ng-view>
+    </div>
