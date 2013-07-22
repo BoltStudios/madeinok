@@ -1,5 +1,6 @@
 <h2>Create a Listing</h2>
-<form name='listingCreationForm'>
-	<input type='text' name='companyName' ng-model='listingCreationForm.companyName' placeholder='Company Name' autocorrect='off' required />
-	<button type='submit' ng-click='create()' class='btn btn-success'>Post</button>
+<form name='listCreate'>
+	<input type='text' name='companyName' ng-model='formData.companyName' placeholder='Company Name' autocorrect='off' required />
+	<br/>
+	<button ng-click='save()' ng-disabled='listCreate.$invalid' class='btn btn-success'>Post</button>
 </form>

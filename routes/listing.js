@@ -10,7 +10,10 @@ module.exports = function(app) {
 	})
 
 	app.post('/api/listings/create', function(req, res) {
-		var newListing = Object.create(req.body)
+		console.log('>>>>>>>> ' + req.body)
+		console.log('>>>>>>>> ' + JSON.stringify(req.body))
+		var newListing = {}
+		newListing = req.body
 		new Listing(newListing).save(function(err, listing, count) {
 			res.redirect('/')
 		})

@@ -6,7 +6,8 @@ module.exports = function(app) {
 	})
 
 	/* This route makes AngularJS play nicely with Express.
-	   Links will still just appear as .../#/viewname in the browser. */
+	   Links will still just appear as .../#/viewname in the browser. 
+	   Have to create one of these for each directory. */
 	app.get('/listings/:viewname', function(req, res) {
 		var viewname = req.params.viewname
 		res.render('listings/' + viewname)
