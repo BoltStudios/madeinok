@@ -17,7 +17,7 @@ app.use(express.session());
 app.use(app.router);
 app.use(require('less-middleware')({ src: __dirname + '/public' }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, '/views')));
+//app.use(express.static(path.join(__dirname, '/views')));
 mongoose.connect('mongodb://localhost/OKStartups');
 
 // development only

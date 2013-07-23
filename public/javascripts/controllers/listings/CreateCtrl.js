@@ -1,10 +1,16 @@
 function CreateCtrl($scope, $location, $http, $routeParams) {
 
 	// Form data
+	// Fields will be stored here as a JSON object
 	$scope.formData = {}
 
-	// Track if the form has been saved
+	// Track if the form has been saved and published
 	$scope.hasBeenSaved = false
+	$scope.hasBeenPublished = false
+
+	// If the form has been saved once already, then we want to edit a form with an ID, 
+	// not create a new one and save it agan, so track the ID of the form being manipulated.
+	$scope.listingId;
 
 	// Page number of the form
 	$scope.currentPage = $routeParams.pageNumber || 1

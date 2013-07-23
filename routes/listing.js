@@ -3,7 +3,7 @@ var Listing = require('../models/listing.js')
 module.exports = function(app) {
 	
 	/* Returns all the listings */
-	app.get('/api/listings/all', function(req, res) {
+	app.get('/api/listings', function(req, res) {
 		Listing.find(function(err, listings) {
 			res.send(listings)
 		})
@@ -21,5 +21,13 @@ module.exports = function(app) {
 
 	app.get('/api/listings/create', function(req, res) {
 		res.redirect('/')
+	})
+
+
+	app.get('/api/listings/:id', function(req, res) {
+		var id = req.params.id || 0
+		Listing.findById(id, function(err, listing) {
+			res.send(listing)
+		})
 	})
 }

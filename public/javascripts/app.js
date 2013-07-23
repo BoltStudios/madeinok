@@ -1,10 +1,39 @@
 var app = angular.module('StartupApp', ['ui.bootstrap', 'ngResource'])
+
+	// Configure routes
 	.config(function($routeProvider, $locationProvider) {
 		$routeProvider
 			.when('/', { controller: ListingCtrl, templateUrl: '/listings/index' })
 			.when('/create', { controller: CreateCtrl, templateUrl: '/listings/create' })
 			.when('/create/:pageNumber', { controller: CreateCtrl, templateUrl: '/listings/create' })
 			.otherwise({ redirectTo: '/' })
+	})
+
+	// Easy way to hook up client/server calls
+	// Going to replace this with a resource once I figure that out
+	.factory('Listing', function($http) {
+		var Listing = function(data) {
+			angular.extend(this, data)
+		}
+
+		// Usage: Listing.get()
+		Listing.get = function(id) {
+			$http.get('/api/listings/' + id).success(function(response) {
+
+			}).error(function(response) {
+
+			})
+		}
+
+		// Usage: x = new Listing() ... x.create()
+		Listing.prototype.create = function() {
+			var listing = this
+			$http.post('/api/listings/create', listing).success(function(response) {
+
+			}).error(function(response) {
+
+			})
+		}
 	})
 
 /* Does not allow users to input any more characters than the 
