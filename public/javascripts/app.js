@@ -1,4 +1,4 @@
-var app = angular.module('StartupApp', ['ngResource'])
+var app = angular.module('StartupApp', ['ui.bootstrap', 'ngResource'])
 	.config(function($routeProvider, $locationProvider) {
 		$routeProvider
 			.when('/', { controller: ListingCtrl, templateUrl: '/listings/index' })

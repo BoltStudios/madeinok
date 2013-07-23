@@ -1,185 +1,262 @@
 <h2>Create a Listing</h2>
 
 <form name='listCreate' class='form-horizontal'>
-<fieldset>
-	<legend>Who Are You?</legend>
 
-	<div class='control-group'>
-		<label class='control-label' for='formData.phoneNumber'>Phone Number</label>
-		<div class='controls'>
-			<input type='tel' name='phoneNumber' ng-model='formData.phoneNumber' placeholder='Phone Number' autocorrect='off' required />
-			
-			<div ng-show='listCreate.phoneNumber.$dirty && listCreate.phoneNumber.$invalid' class='alert alert-error'>
-          		<span ng-show='listCreate.phoneNumber.$error.required'>A phone number is required.</span>
-         		<span ng-show='listCreate.phoneNumber.$error.invalid'>This is not a valid number.</span>
-        	</div>
-		</div>
-	</div>
+	<fieldset>
+		<legend>Who Are You?</legend>
 
-	<div class='control-group'>
-		<label class='control-label' for='formData.companyName'>Company Name</label>
-		<div class='controls'>
-			<input type='text' name='companyName' ng-model='formData.companyName' placeholder='Company Name' autocorrect='off' required />	
-			<div ng-show='listCreate.companyName.$dirty && listCreate.companyName.$invalid' class='alert alert-error'>
-				<span ng-show='listCreate.companyName.$error.required'>A company name is required.</span>
-			</div>		
-		</div>
-	</div>
+		<div class='control-group'>
+			<label class='control-label' for='formData.phoneNumber'>Phone Number</label>
+			<div class='controls'>
+				<input type='tel' name='phoneNumber' ng-model='formData.phoneNumber' placeholder='Phone Number' autocorrect='off' required />
 
-	<div class='control-group'>
-		<label class='control-label' for='formData.address.line1'>Address</label>
-		<div class='controls'>
-			<input type='text' name='address.line1' ng-model='formData.address.line1' placeholder='Address Line 1' autocorrect='off' required /><br/>
-			<input type='text' name='address.line2' ng-model='formData.address.line2' placeholder='Address Line 2' autocorrect='off' /><br/>
-			<input type='text' name='address.city' ng-model='formData.address.city' placeholder='City' required />
-		</div>
-	</div>
-
-	<div class='control-group'>
-		<label class='control-label' for='formData.websiteUrl'>Website</label>
-		<div class='controls'>
-			<input type='url' name='websiteUrl' ng-model='formData.websiteUrl' placeholder='http://' autocorrect='off' required />
-		</div>
-	</div>
-
-	<div class='control-group'>
-		<label class='control-label' for='formData.twitterHandle'>Twitter Handle</label>
-		<div class='controls'>
-			<div class='input-prepend'>
-				<span class='add-on'>@</span>
-				<input type='text' name='twiterHandle' ng-model='formData.twitterHandle' placeholder='yourTwitter' autocorrect='off' />
+				<div ng-show='listCreate.phoneNumber.$dirty && listCreate.phoneNumber.$invalid' class='alert alert-error'>
+	          		<span ng-show='listCreate.phoneNumber.$error.required'>A phone number is required.</span>
+	         		<span ng-show='listCreate.phoneNumber.$error.invalid'>This is not a valid number.</span>
+	        	</div>
 			</div>
-			
 		</div>
-	</div>
 
-	<div class='control-group'>
-		<label class='control-label' for='formData.linkedInUrl'>LinkedIn</label>
-		<div class='controls'>
-			<input type='text' name='linkedInUrl' ng-model='formData.linkedInUrl' placeholder='http://' autocorrect='off' />
-		</div>
-	</div>
-
-	<div class='control-group'>
-		<label class='control-label' for='formData.twitterHandle'>AngelList Username</label>
-		<div class='controls'>
-			<div class='input-prepend'>
-				<span class='add-on'>angel.co/</span>
-				<input type='text' name='angelListUsername' ng-model='formData.angelListUsername' placeholder='yourName' autocorrect='off' />
+		<div class='control-group'>
+			<label class='control-label' for='formData.companyName'>Company Name</label>
+			<div class='controls'>
+				<input type='text' name='companyName' ng-model='formData.companyName' placeholder='Company Name' autocorrect='off' required />	
+				
+				<div ng-show='listCreate.companyName.$dirty && listCreate.companyName.$invalid' class='alert alert-error'>
+					<span ng-show='listCreate.companyName.$error.required'>A company name is required.</span>
+				</div>		
 			</div>
-			
 		</div>
-	</div>
-</fieldset>
+
+		<div class='control-group'>
+			<label class='control-label' for='formData.address.line1'>Address</label>
+			<div class='controls'>
+				<input type='text' name='address.line1' ng-model='formData.address.line1' placeholder='Address Line 1' autocorrect='off' required /><br/>
+				<input type='text' name='address.line2' ng-model='formData.address.line2' placeholder='Address Line 2' autocorrect='off' /><br/>
+				<input type='text' name='address.city' ng-model='formData.address.city' placeholder='City' required />
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='formData.websiteUrl'>Website</label>
+			<div class='controls'>
+				<input type='url' name='websiteUrl' ng-model='formData.websiteUrl' placeholder='http://' autocorrect='off' required />
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='formData.twitterHandle'>Twitter Handle</label>
+			<div class='controls'>
+				<div class='input-prepend'>
+					<span class='add-on'>@</span>
+					<input type='text' name='twiterHandle' ng-model='formData.twitterHandle' placeholder='yourTwitter' autocorrect='off' />
+				</div>
+				
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='formData.linkedInUrl'>LinkedIn</label>
+			<div class='controls'>
+				<input type='text' name='linkedInUrl' ng-model='formData.linkedInUrl' placeholder='http://' autocorrect='off' />
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='formData.twitterHandle'>AngelList Username</label>
+			<div class='controls'>
+				<div class='input-prepend'>
+					<span class='add-on'>angel.co/</span>
+					<input type='text' name='angelListUsername' ng-model='formData.angelListUsername' placeholder='yourName' autocorrect='off' />
+				</div>
+				
+			</div>
+		</div>
+	</fieldset>
 
 
-<fieldset>
-<legend>Company Basics</legend>
+	<fieldset>
+		<legend>Company Basics</legend>
+
+		<div class='control-group'>
+			<label class='control-label' for='formData.changeTheWorld'>How you'll change the world</label>
+			<div class='controls'>
+				<textarea maxlengthlimit='{{ maxBlurbLength }}' rows='5' name='changeTheWorld' ng-model='formData.changeTheWorld' placeholder='{{ maxBlurbLength }} characters'></textarea><br/>
+				<span ng-bind='maxBlurbLength - formData.changeTheWorld.length'></span>
+				<ng-pluralize count='maxBlurbLength - formData.changeTheWorld.length'
+				  when="{'1': 'character', 'other': 'characters'}"></ng-pluralize> remaining
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='formData.somethingAwesome'>Something awesome about you</label>
+			<div class='controls'>
+				<textarea maxlengthlimit='{{ maxBlurbLength }}' rows='5' name='somethingAwesome' ng-model='formData.somethingAwesome' placeholder='{{ maxBlurbLength }} characters'></textarea><br/>
+				<span ng-bind='maxBlurbLength - formData.somethingAwesome.length'></span>
+				<ng-pluralize count='maxBlurbLength - formData.somethingAwesome.length'
+				  when="{'1': 'character', 'other': 'characters'}"></ng-pluralize> remaining
+			</div>
+		</div>
+	</fieldset>
+
+	<fieldset>
+		<legend>Company Stats</legend>
+
+		<div class='control-group'>
+			<label class='control-label' for='formData.foundingYear'>Year Founded</label>
+			<div class='controls'>
+				<input type='number' min='1900' placeholder='19XX' name='foundingYear' ng-model='formData.foundingYear' required ng-minlength='4' ng-maxlength='4'/>
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='formData.companyType'>Company Type</label>
+			<div class='controls'>
+				<select ng-model="companyType" ng-options="c.type for c in companyTypes"></select>
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='formData.productType'>Product Type</label>
+			<div class='controls'>
+				<label class='checkbox' ng-repeat='product in productTypes'>
+					<input type='checkbox' ng-model='product.value'> {{ product.type }}</input>
+				</label>
+
+				<div ng-show='otherProductTypeChecked()' class='alert alert-warning'>
+					<p>Please describe...</p>
+					<input type='text' placeholder='Description' ng-model='productTypesOtherDescription' />
+				</div>
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='formData.industryFocus'>Industry Focus</label>
+			<div class='controls'>
+				<select ng-model='industryFocus' ng-options='f.focus for f in industryFocuses'></select>
+
+				<div ng-show='otherIndustrySelected()' class='alert alert-warning'>
+					<p>Please describe...</p>
+					<input type='text' placeholder='Description' ng-model='industryFocusDescription' />
+				</div>
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='formData.primaryCustomer'>Primary Customer</label>
+			<div class='controls'>
+				<select ng-model='primaryCustomer' ng-options='c.customer for c in primaryCustomers'></select>
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='formData.primaryCustomer'>Last Funding Round Closed</label>
+			<div class='controls'>
+				<select ng-model='fundingRound' ng-options='r.type for r in fundingRounds'></select>
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='formData.annualRevenue'>Annualized Revenue</label>
+			<div class='controls'>
+				<select ng-model='annualRevenue' ng-options='r.amount for r in annualRevenues'></select>
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='formData.incubatorName'>If you took part in an incubator / accelerator, please name it</label>
+			<div class='controls'>
+				<input type='text' name='incubatorName' ng-model='formData.incubatorName' />
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='formData.milestone'>Your latest traction milestone</label>
+			<div class='controls'>
+				<textarea maxlengthlimit='{{ maxBlurbLength }}' rows='5' name='milestone' ng-model='formData.milestone' placeholder='{{ maxBlurbLength }} characters'></textarea><br/>
+				<span ng-bind='maxBlurbLength - formData.milestone.length'></span>
+				<ng-pluralize count='maxBlurbLength - formData.milestone.length'
+				  when="{'1': 'character', 'other': 'characters'}"></ng-pluralize> remaining
+			</div>
+		</div>
+
+	</fieldset>
+
+	<fieldset>
+		<legend>The Team</legend>
+		<div class='control-group'>
+			<label class='control-label' for='formData.fulltimeTeamSize'>Full Time Team</label>
+			<div class='controls'>
+				<input type='number' placeholder='How Many?' name='fulltimeTeamSize' ng-model='formData.fulltimeTeamSize' />
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='formData.fulltimeTeamSizeOk'>Full Time Team in OK</label>
+			<div class='controls'>
+				<input type='number' placeholder='How Many?' name='fulltimeTeamSizeOk' ng-model='formData.fulltimeTeamSizeOk' />
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='formData.totalTeamSize'>Total Team Size</label>
+			<div class='controls'>
+				<input type='number' placeholder='How Many?' name='totalTeamSize' ng-model='formData.totalTeamSize' />
+			</div>
+		</div>
+
+	</fieldset>
+
+
+	<fieldset>
+		<legend>Hiring Information</legend>
+
+		<div class='control-group'>
+			<label class='control-label' for='formData.hiringUrl'>Jobs URL</label>
+			<div class='controls'>
+				<input type='url' name='hiringUrl' ng-model='formData.hiringUrl' placeholder='http://' autocorrect='off' />
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='formData.hiringEmail'>Contact Email</label>
+			<div class='controls'>
+				<input type='email' name='hiringEmail' ng-model='formData.hiringEmail' placeholder='Your Hiring Contact Email' autocorrect='off' />
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='formData.isHiring'>Hiring?</label>
+			<div class='controls'>
+				<label class='radio'>
+					<input type='radio' name='formData.isHiring' value='true'>Yes
+				</label>
+				<label class='radio'>
+					<input type='radio' name='formData.isHiring' value='false'>No
+				</label>
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='formData.isInternshipAvailable'>Internships Available?</label>
+			<div class='controls'>
+				<label class='radio'>
+					<input type='radio' name='formData.isInternshipAvailable' value='true'>Yes
+				</label>
+				<label class='radio'>
+					<input type='radio' name='formData.isInternshipAvailable' value='false'>No
+				</label>
+			</div>
+		</div>
+
+	</fieldset>
 
 	<div class='control-group'>
-		<label class='control-label' for='formData.changeTheWorld'>How you'll change the world</label>
 		<div class='controls'>
-			<textarea maxlengthlimit='250' rows='5' name='changeTheWorld' ng-model='formData.changeTheWorld' placeholder='250 characters'></textarea><br/>
-			<span ng-bind='250 - formData.changeTheWorld.length'></span>
-			<ng-pluralize count='250 - formData.changeTheWorld.length'
-			  when="{'1': 'character', 'other': 'characters'}"></ng-pluralize> remaining
+			<button class='btn btn-info'>Save</button>
+			<button ng-click='submit()' ng-disabled='listCreate.$invalid' class='btn btn-success'>Publish</button>
+			<span class='alert alert-info'>Your changes aren't visible to others until you publish.</span>
 		</div>
 	</div>
 
-	<div class='control-group'>
-		<label class='control-label' for='formData.somethingAwesome'>Something awesome about you</label>
-		<div class='controls'>
-			<textarea maxlengthlimit='250' rows='5' name='somethingAwesome' ng-model='formData.somethingAwesome' placeholder='250 characters'></textarea><br/>
-			<span ng-bind='250 - formData.somethingAwesome.length'></span>
-			<ng-pluralize count='250 - formData.somethingAwesome.length'
-			  when="{'1': 'character', 'other': 'characters'}"></ng-pluralize> remaining
-		</div>
-	</div>
-</fieldset>
-
-<fieldset>
-<legend>Company Stats</legend>
-
-	<div class='control-group'>
-		<label class='control-label' for='formData.foundingYear'>Year Founded</label>
-		<div class='controls'>
-			<input type='number' placeholder='YYYY' name='formDate.foundingYear' ng-model='formDate.foundingYear' required ng-minlength='4' ng-maxlength='4'/>
-		</div>
-	</div>
-
-	<div class='control-group'>
-		<label class='control-label' for='formData.fulltimeTeamSize'>Full Time Team</label>
-		<div class='controls'>
-			<input type='number' placeholder='How Many?' name='formDate.fulltimeTeamSize' ng-model='formDate.fulltimeTeamSize' />
-		</div>
-	</div>
-
-	<div class='control-group'>
-		<label class='control-label' for='formData.fulltimeTeamSizeOk'>Full Time Team in OK</label>
-		<div class='controls'>
-			<input type='number' placeholder='How Many?' name='formDate.fulltimeTeamSizeOk' ng-model='formDate.fulltimeTeamSizeOk' />
-		</div>
-	</div>
-
-	<div class='control-group'>
-		<label class='control-label' for='formData.companyType'>Company Type</label>
-		<div class='controls'>
-			<select ng-model="companyType" ng-options="c.type for c in companyTypes"></select>
-		</div>
-	</div>
-
-</fieldset>
-
-
-<fieldset>
-<legend>Hiring Information</legend>
-
-	<div class='control-group'>
-		<label class='control-label' for='formData.hiringUrl'>Jobs URL</label>
-		<div class='controls'>
-			<input type='url' name='hiringUrl' ng-model='formData.hiringUrl' placeholder='http://' autocorrect='off' />
-		</div>
-	</div>
-
-	<div class='control-group'>
-		<label class='control-label' for='formData.hiringEmail'>Contact Email</label>
-		<div class='controls'>
-			<input type='email' name='hiringEmail' ng-model='formData.hiringEmail' placeholder='Your Hiring Contact Email' autocorrect='off' />
-		</div>
-	</div>
-
-	<div class='control-group'>
-		<label class='control-label' for='formData.isHiring'>Hiring?</label>
-		<div class='controls'>
-			<label class='radio'>
-				<input type='radio' name='formData.isHiring' value='true'>Yes
-			</label>
-			<label class='radio'>
-				<input type='radio' name='formData.isHiring' value='false'>No
-			</label>
-		</div>
-	</div>
-
-	<div class='control-group'>
-		<label class='control-label' for='formData.isInternshipAvailable'>Internships Available?</label>
-		<div class='controls'>
-			<label class='radio'>
-				<input type='radio' name='formData.isInternshipAvailable' value='true'>Yes
-			</label>
-			<label class='radio'>
-				<input type='radio' name='formData.isInternshipAvailable' value='false'>No
-			</label>
-		</div>
-	</div>
-
-</fieldset>
-
-<div class='control-group'>
-	<div class='controls'>
-		<button class='btn btn-info'>Save</button>
-		<button ng-click='submit()' ng-disabled='listCreate.$invalid' class='btn btn-success'>Publish</button>
-		<span class='alert alert-info'>Your changes aren't visible to others until you publish.</span>
-	</div>
-</div>
-</tabset>
 </form>
