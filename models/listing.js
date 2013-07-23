@@ -46,7 +46,13 @@ var industryTypes = 'Media|Retail|E-Commerce|Energy|Healthcare|Games|Consumer|IT
 // })
 
 var ListingSchema = new mongoose.Schema({
-  companyName: { type: String, required: true }
+    companyName: { type: String }
+  , phoneNumber: { type: String }
+  , address: {
+  	    line1: { type: String }
+  	  , line2: { type: String }
+  	  , city: { type: String }
+    }
 })
 
 module.exports = mongoose.model('Listings', ListingSchema)

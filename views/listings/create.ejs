@@ -1,6 +1,156 @@
 <h2>Create a Listing</h2>
-<form name='listCreate'>
-	<input type='text' name='companyName' ng-model='formData.companyName' placeholder='Company Name' autocorrect='off' required />
-	<br/>
-	<button ng-click='save()' ng-disabled='listCreate.$invalid' class='btn btn-success'>Post</button>
+
+<form name='listCreate' class='form-horizontal'>
+<fieldset>
+<legend>Who Are You?</legend>
+
+	<div class='control-group'>
+		<label class='control-label' for='formDate.phoneNumber'>Phone Number</label>
+		<div class='controls'>
+			<input type='tel' name='phoneNumber' ng-model='formData.phoneNumber' placeholder='Phone Number' autocorrect='off' required />
+		</div>
+	</div>
+
+	<div class='control-group'>
+		<label class='control-label' for='formData.companyName'>Company Name</label>
+		<div class='controls'>
+			<input type='text' name='companyName' ng-model='formData.companyName' placeholder='Company Name' autocorrect='off' required />			
+		</div>
+	</div>
+
+	<div class='control-group'>
+		<label class='control-label' for='formData.address.line1'>Address</label>
+		<div class='controls'>
+			<input type='text' name='address.line1' ng-model='formData.address.line1' placeholder='Address Line 1' autocorrect='off' required /><br/>
+			<input type='text' name='address.line2' ng-model='formData.address.line2' placeholder='Address Line 2' autocorrect='off' /><br/>
+			<input type='text' name='address.city' ng-model='formData.address.city' placeholder='City' required />
+		</div>
+	</div>
+
+	<div class='control-group'>
+		<label class='control-label' for='formData.websiteUrl'>Website</label>
+		<div class='controls'>
+			<input type='url' name='websiteUrl' ng-model='formData.websiteUrl' placeholder='http://' autocorrect='off' required />
+		</div>
+	</div>
+
+	<div class='control-group'>
+		<label class='control-label' for='formData.twitterHandle'>Twitter Handle</label>
+		<div class='controls'>
+			<div class='input-prepend'>
+				<span class='add-on'>@</span>
+				<input type='text' name='twiterHandle' ng-model='formData.twitterHandle' placeholder='yourTwitter' autocorrect='off' />
+			</div>
+			
+		</div>
+	</div>
+
+	<div class='control-group'>
+		<label class='control-label' for='formData.linkedInUrl'>LinkedIn</label>
+		<div class='controls'>
+			<input type='text' name='linkedInUrl' ng-model='formData.linkedInUrl' placeholder='http://' autocorrect='off' />
+		</div>
+	</div>
+
+	<div class='control-group'>
+		<label class='control-label' for='formData.twitterHandle'>AngelList Username</label>
+		<div class='controls'>
+			<div class='input-prepend'>
+				<span class='add-on'>angel.co/</span>
+				<input type='text' name='angelListUsername' ng-model='formData.angelListUsername' placeholder='yourName' autocorrect='off' />
+			</div>
+			
+		</div>
+	</div>
+</fieldset>
+
+
+<fieldset>
+<legend>Company Basics</legend>
+
+	<div class='control-group'>
+		<label class='control-label' for='formData.changeTheWorld'>How you'll change the world</label>
+		<div class='controls'>
+			<textarea maxlengthlimit='250' rows='5' name='changeTheWorld' ng-model='formData.changeTheWorld' placeholder='250 characters'></textarea><br/>
+			<span ng-bind='250 - formData.changeTheWorld.length'></span>
+			<ng-pluralize count='250 - formData.changeTheWorld.length'
+			  when="{'1': 'character', 'other': 'characters'}"></ng-pluralize> remaining
+		</div>
+	</div>
+
+	<div class='control-group'>
+		<label class='control-label' for='formData.somethingAwesome'>Something awesome about you</label>
+		<div class='controls'>
+			<textarea maxlengthlimit='250' rows='5' name='somethingAwesome' ng-model='formData.somethingAwesome' placeholder='250 characters'></textarea><br/>
+			<span ng-bind='250 - formData.somethingAwesome.length'></span>
+			<ng-pluralize count='250 - formData.somethingAwesome.length'
+			  when="{'1': 'character', 'other': 'characters'}"></ng-pluralize> remaining
+		</div>
+	</div>
+</fieldset>
+
+<fieldset>
+<legend>Company Stats</legend>
+
+	<div class='control-group'>
+		<label class='control-label' for='formData.foundingYear'>Year Founded</label>
+		<div class='controls'>
+			<input type='number' placeholder='YYYY' name='formDate.foundingYear' ng-model='formDate.foundingYear' required ng-minlength='4' ng-maxlength='4'/>
+		</div>
+	</div>
+
+</fieldset>
+
+
+<fieldset>
+<legend>Hiring Information</legend>
+
+	<div class='control-group'>
+		<label class='control-label' for='formData.hiringUrl'>Jobs URL</label>
+		<div class='controls'>
+			<input type='url' name='hiringUrl' ng-model='formData.hiringUrl' placeholder='http://' autocorrect='off' />
+		</div>
+	</div>
+
+	<div class='control-group'>
+		<label class='control-label' for='formData.hiringEmail'>Contact Email</label>
+		<div class='controls'>
+			<input type='email' name='hiringEmail' ng-model='formData.hiringEmail' placeholder='Your Hiring Contact Email' autocorrect='off' />
+		</div>
+	</div>
+
+	<div class='control-group'>
+		<label class='control-label' for='formData.isHiring'>Hiring?</label>
+		<div class='controls'>
+			<label class='radio'>
+				<input type='radio' name='formData.isHiring' value='true'>Yes
+			</label>
+			<label class='radio'>
+				<input type='radio' name='formData.isHiring' value='false'>No
+			</label>
+		</div>
+	</div>
+
+	<div class='control-group'>
+		<label class='control-label' for='formData.isInternshipAvailable'>Internships Available?</label>
+		<div class='controls'>
+			<label class='radio'>
+				<input type='radio' name='formData.isInternshipAvailable' value='true'>Yes
+			</label>
+			<label class='radio'>
+				<input type='radio' name='formData.isInternshipAvailable' value='false'>No
+			</label>
+		</div>
+	</div>
+
+</fieldset>
+
+<div class='control-group'>
+	<div class='controls'>
+		<button class='btn btn-info'>Save</button>
+		<button ng-click='submit()' ng-disabled='listCreate.$invalid' class='btn btn-success'>Publish</button>
+		<span class='alert alert-info'>Your changes aren't visible to others until you post.</span>
+	</div>
+</div>
+</tabset>
 </form>
