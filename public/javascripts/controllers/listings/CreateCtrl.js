@@ -1,6 +1,18 @@
 function CreateCtrl($scope, $location, $http, $routeParams) {
-	// Don't create the form data here. Do it on the page and save yourself troubles.
+
+	// Form data
 	$scope.formData = {}
+
+	// Track if the form has been saved
+	$scope.hasBeenSaved = false
+
+	// Page number of the form
+	$scope.currentPage = $routeParams.pageNumber || 1
+	$scope.lastPageNumber = 5
+	$scope.currentPage = ~~$scope.currentPage > $scope.lastPageNumber || ~~$scope.currentPage < 1 ? 1 : ~~$scope.currentPage
+
+	// Progress bar
+	$scope.progress = '50%';
 
 	// Max characters for the blurbs
 	$scope.maxBlurbLength = 250
@@ -105,6 +117,12 @@ function CreateCtrl($scope, $location, $http, $routeParams) {
 	$scope.annualRevenue = $scope.annualRevenues[0]
 
 
+	// Founders
+	$scope.founders = [
+		{firstName: '', lastName: '', email: '', title: ''}
+	]
+
+
 	/* Only shows the product type 'other' description if other is selected */
 	$scope.otherProductTypeChecked = function() {
 		return $scope.productTypes[9].value;
@@ -115,6 +133,10 @@ function CreateCtrl($scope, $location, $http, $routeParams) {
 		return $scope.industryFocus.focus == 'Other'
 	}
 
+	$scope.addFounder = function() {
+		$scope.founders.push({firstName: '', lastName: '', emamil: '', title: ''})
+	}
+
 	$scope.submit = function() {
 		console.log('form data is ' + JSON.stringify($scope.formData))
 		$http.post('/api/listings/create', $scope.formData).success(function(response) {
@@ -123,4 +145,20 @@ function CreateCtrl($scope, $location, $http, $routeParams) {
 			console.log('oops!')
 		})
 	}
+
+	$scope.save = function() {
+		console.log($scope.formData)
+		if(!$scope.hasBeenSaved) {
+
+		}
+	}
+
+	$scope.nextPage = function() {
+		$location.path('/create/' + ++$scope.currentPage);
+	}
+
+	$scope.previousPage = function() {
+		$location.path('/create/' + --$scope.currentPage);
+	}
+
 }

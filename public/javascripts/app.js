@@ -3,6 +3,7 @@ var app = angular.module('StartupApp', ['ui.bootstrap', 'ngResource'])
 		$routeProvider
 			.when('/', { controller: ListingCtrl, templateUrl: '/listings/index' })
 			.when('/create', { controller: CreateCtrl, templateUrl: '/listings/create' })
+			.when('/create/:pageNumber', { controller: CreateCtrl, templateUrl: '/listings/create' })
 			.otherwise({ redirectTo: '/' })
 	})
 

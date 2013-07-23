@@ -1,24 +1,33 @@
 <h2>Create a Listing</h2>
 
 <form name='listCreate' class='form-horizontal'>
+<div class="progress">
+  <div class="bar" style="width: {{progress}};">{{progress}} required fields complete</div>
+</div>
 
+
+
+
+
+
+<div ng-show='currentPage == 1'>
 	<fieldset>
-		<legend>Who Are You?</legend>
+		<legend>Who Are You? <small class='pull-right'>{{ currentPage }} of {{  lastPageNumber }}</small></legend>
 
 		<div class='control-group'>
-			<label class='control-label' for='formData.phoneNumber'>Phone Number</label>
+			<label class='control-label' for='phoneNumber'>Phone Number <span class='text-error'>*</span></label>
 			<div class='controls'>
 				<input type='tel' name='phoneNumber' ng-model='formData.phoneNumber' placeholder='Phone Number' autocorrect='off' required />
 
 				<div ng-show='listCreate.phoneNumber.$dirty && listCreate.phoneNumber.$invalid' class='alert alert-error'>
 	          		<span ng-show='listCreate.phoneNumber.$error.required'>A phone number is required.</span>
-	         		<span ng-show='listCreate.phoneNumber.$error.invalid'>This is not a valid number.</span>
+	         		<span ng-show='listCreate.phoneNumber.$error.tel'>This is not a valid number.</span>
 	        	</div>
 			</div>
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='formData.companyName'>Company Name</label>
+			<label class='control-label' for='companyName'>Company Name <span class='text-error'>*</span></label>
 			<div class='controls'>
 				<input type='text' name='companyName' ng-model='formData.companyName' placeholder='Company Name' autocorrect='off' required />	
 				
@@ -29,23 +38,36 @@
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='formData.address.line1'>Address</label>
+			<label class='control-label' for='address.line1'>Address <span class='text-error'>*</span></label>
 			<div class='controls'>
-				<input type='text' name='address.line1' ng-model='formData.address.line1' placeholder='Address Line 1' autocorrect='off' required /><br/>
-				<input type='text' name='address.line2' ng-model='formData.address.line2' placeholder='Address Line 2' autocorrect='off' /><br/>
-				<input type='text' name='address.city' ng-model='formData.address.city' placeholder='City' required />
+				<input type='text' name='address_line1' ng-model='formData.address.line1' placeholder='Address Line 1' autocorrect='off' required class='input-group' /><br/>
+				<input type='text' name='address_line2' ng-model='formData.address.line2' placeholder='Address Line 2 (optional)' autocorrect='off' class='input-group' /><br/>
+				<input type='text' name='address_city' ng-model='formData.address.city' placeholder='City' required class='input-group' />
+
+				<div ng-show='listCreate.address_line1.$dirty && listCreate.address_line1.$invalid' class='alert alert-error'>
+					<span ng-show='listCreate.address_line1.$error.required'>An address is required.</span>
+				</div>
+
+				<div ng-show='listCreate.address_city.$dirty && listCreate.address_city.$invalid' class='alert alert-error'>
+					<span ng-show='listCreate.address_city.$error.required'>A city is required.</span>
+				</div>
 			</div>
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='formData.websiteUrl'>Website</label>
+			<label class='control-label' for='websiteUrl'>Website <span class='text-error'>*</span></label>
 			<div class='controls'>
 				<input type='url' name='websiteUrl' ng-model='formData.websiteUrl' placeholder='http://' autocorrect='off' required />
+
+				<div ng-show='listCreate.websiteUrl.$dirty && listCreate.websiteUrl.$invalid' class='alert alert-error'>
+					<span ng-show='listCreate.websiteUrl.$error.required'>A company website is required.</span>
+					<span ng-show='listCreate.websiteUrl.$error.url'>This is not a valid URL. Try beginning the URL with 'http://'</span>
+				</div>
 			</div>
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='formData.twitterHandle'>Twitter Handle</label>
+			<label class='control-label' for='twitterHandle'>Twitter Handle</label>
 			<div class='controls'>
 				<div class='input-prepend'>
 					<span class='add-on'>@</span>
@@ -56,68 +78,110 @@
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='formData.linkedInUrl'>LinkedIn</label>
+			<label class='control-label' for='linkedInUrl'>LinkedIn</label>
 			<div class='controls'>
-				<input type='text' name='linkedInUrl' ng-model='formData.linkedInUrl' placeholder='http://' autocorrect='off' />
+				<input type='url' name='linkedInUrl' ng-model='formData.linkedInUrl' placeholder='http://' autocorrect='off' />
+
+				<div ng-show='listCreate.linkedInUrl.$dirty && listCreate.linkedInUrl.$invalid' class='alert alert-error'>
+					<span ng-show='listCreate.linkedInUrl.$error.url'>This is not a valid URL. Try beginning the URL with 'http://'</span>
+				</div>
 			</div>
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='formData.twitterHandle'>AngelList Username</label>
+			<label class='control-label' for='twitterHandle'>AngelList Username</label>
 			<div class='controls'>
 				<div class='input-prepend'>
 					<span class='add-on'>angel.co/</span>
-					<input type='text' name='angelListUsername' ng-model='formData.angelListUsername' placeholder='yourName' autocorrect='off' />
+					<input type='text' name='angelListUsername' ng-model='formData.angelListUrl' placeholder='yourName' autocorrect='off' />
 				</div>
 				
 			</div>
 		</div>
-	</fieldset>
-
-
-	<fieldset>
-		<legend>Company Basics</legend>
 
 		<div class='control-group'>
-			<label class='control-label' for='formData.changeTheWorld'>How you'll change the world</label>
 			<div class='controls'>
-				<textarea maxlengthlimit='{{ maxBlurbLength }}' rows='5' name='changeTheWorld' ng-model='formData.changeTheWorld' placeholder='{{ maxBlurbLength }} characters'></textarea><br/>
-				<span ng-bind='maxBlurbLength - formData.changeTheWorld.length'></span>
-				<ng-pluralize count='maxBlurbLength - formData.changeTheWorld.length'
+				<a class='btn btn-primary' ng-click='save()'>Save</a>
+				<a class='btn' ng-click='nextPage()'>Next &rarr;</a>
+			</div>
+		</div>
+	</fieldset>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div ng-show='currentPage == 2'>
+	<fieldset>
+		<legend>Company Basics <small class='pull-right'>{{ currentPage }} of {{  lastPageNumber }}</small></legend>
+
+		<div class='control-group'>
+			<label class='control-label' for='changeTheWorld'>How you'll change the world</label>
+			<div class='controls'>
+				<textarea maxlengthlimit='{{ maxBlurbLength }}' rows='5' name='changeTheWorld' ng-model='changeTheWorld' placeholder='{{ maxBlurbLength }} characters'></textarea><br/>
+				<span ng-bind='maxBlurbLength - changeTheWorld.length'></span>
+				<ng-pluralize count='maxBlurbLength - changeTheWorld.length'
 				  when="{'1': 'character', 'other': 'characters'}"></ng-pluralize> remaining
 			</div>
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='formData.somethingAwesome'>Something awesome about you</label>
+			<label class='control-label' for='somethingAwesome'>Something awesome about you</label>
 			<div class='controls'>
-				<textarea maxlengthlimit='{{ maxBlurbLength }}' rows='5' name='somethingAwesome' ng-model='formData.somethingAwesome' placeholder='{{ maxBlurbLength }} characters'></textarea><br/>
-				<span ng-bind='maxBlurbLength - formData.somethingAwesome.length'></span>
-				<ng-pluralize count='maxBlurbLength - formData.somethingAwesome.length'
+				<textarea maxlengthlimit='{{ maxBlurbLength }}' rows='5' name='somethingAwesome' ng-model='somethingAwesome' placeholder='{{ maxBlurbLength }} characters'></textarea><br/>
+				<span ng-bind='maxBlurbLength - somethingAwesome.length'></span>
+				<ng-pluralize count='maxBlurbLength - somethingAwesome.length'
 				  when="{'1': 'character', 'other': 'characters'}"></ng-pluralize> remaining
 			</div>
 		</div>
-	</fieldset>
-
-	<fieldset>
-		<legend>Company Stats</legend>
 
 		<div class='control-group'>
-			<label class='control-label' for='formData.foundingYear'>Year Founded</label>
+			<div class='controls'>
+				<a class='btn' ng-click='previousPage()'>&larr; Previous</a>
+				<a class='btn btn-primary' ng-click='save()'>Save</a>
+				<a class='btn' ng-click='nextPage()'>Next &rarr;</a>
+			</div>
+		</div>
+
+	</fieldset>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div ng-show='currentPage == 3'>
+	<fieldset>
+		<legend>Company Stats <small class='pull-right'>{{ currentPage }} of {{  lastPageNumber }}</small></legend>
+
+		<div class='control-group'>
+			<label class='control-label' for='foundingYear'>Year Founded</label>
 			<div class='controls'>
 				<input type='number' min='1900' placeholder='19XX' name='foundingYear' ng-model='formData.foundingYear' required ng-minlength='4' ng-maxlength='4'/>
 			</div>
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='formData.companyType'>Company Type</label>
+			<label class='control-label' for='companyType'>Company Type</label>
 			<div class='controls'>
 				<select ng-model="companyType" ng-options="c.type for c in companyTypes"></select>
 			</div>
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='formData.productType'>Product Type</label>
+			<label class='control-label' for='productType'>Product Type</label>
 			<div class='controls'>
 				<label class='checkbox' ng-repeat='product in productTypes'>
 					<input type='checkbox' ng-model='product.value'> {{ product.type }}</input>
@@ -131,7 +195,7 @@
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='formData.industryFocus'>Industry Focus</label>
+			<label class='control-label' for='industryFocus'>Industry Focus</label>
 			<div class='controls'>
 				<select ng-model='industryFocus' ng-options='f.focus for f in industryFocuses'></select>
 
@@ -143,120 +207,169 @@
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='formData.primaryCustomer'>Primary Customer</label>
+			<label class='control-label' for='primaryCustomer'>Primary Customer</label>
 			<div class='controls'>
 				<select ng-model='primaryCustomer' ng-options='c.customer for c in primaryCustomers'></select>
 			</div>
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='formData.primaryCustomer'>Last Funding Round Closed</label>
+			<label class='control-label' for='primaryCustomer'>Last Funding Round Closed</label>
 			<div class='controls'>
 				<select ng-model='fundingRound' ng-options='r.type for r in fundingRounds'></select>
 			</div>
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='formData.annualRevenue'>Annualized Revenue</label>
+			<label class='control-label' for='annualRevenue'>Annualized Revenue</label>
 			<div class='controls'>
 				<select ng-model='annualRevenue' ng-options='r.amount for r in annualRevenues'></select>
 			</div>
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='formData.incubatorName'>If you took part in an incubator / accelerator, please name it</label>
+			<label class='control-label' for='incubatorName'>If you took part in an incubator / accelerator, please name it</label>
 			<div class='controls'>
-				<input type='text' name='incubatorName' ng-model='formData.incubatorName' />
+				<input type='text' name='incubatorName' ng-model='incubatorName' />
 			</div>
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='formData.milestone'>Your latest traction milestone</label>
+			<label class='control-label' for='milestone'>Your latest traction milestone</label>
 			<div class='controls'>
-				<textarea maxlengthlimit='{{ maxBlurbLength }}' rows='5' name='milestone' ng-model='formData.milestone' placeholder='{{ maxBlurbLength }} characters'></textarea><br/>
-				<span ng-bind='maxBlurbLength - formData.milestone.length'></span>
-				<ng-pluralize count='maxBlurbLength - formData.milestone.length'
+				<textarea maxlengthlimit='{{ maxBlurbLength }}' rows='5' name='milestone' ng-model='milestone' placeholder='{{ maxBlurbLength }} characters'></textarea><br/>
+				<span ng-bind='maxBlurbLength - milestone.length'></span>
+				<ng-pluralize count='maxBlurbLength - milestone.length'
 				  when="{'1': 'character', 'other': 'characters'}"></ng-pluralize> remaining
 			</div>
 		</div>
 
-	</fieldset>
+		<div class='control-group'>
+			<div class='controls'>
+				<a class='btn' ng-click='previousPage()'>&larr; Previous</a>
+				<a class='btn btn-primary' ng-click='save()'>Save</a>
+				<a class='btn' ng-click='nextPage()'>Next &rarr;</a>
+			</div>
+		</div>
 
+	</fieldset>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div ng-show='currentPage == 4'>
 	<fieldset>
-		<legend>The Team</legend>
+		<legend>The Team <small class='pull-right'>{{ currentPage }} of {{  lastPageNumber }}</small></legend>
 		<div class='control-group'>
-			<label class='control-label' for='formData.fulltimeTeamSize'>Full Time Team</label>
+			<label class='control-label' for='fulltimeTeamSize'>Full Time Team</label>
 			<div class='controls'>
-				<input type='number' placeholder='How Many?' name='fulltimeTeamSize' ng-model='formData.fulltimeTeamSize' />
+				<input type='number' placeholder='How Many?' name='fulltimeTeamSize' ng-model='fulltimeTeamSize' />
 			</div>
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='formData.fulltimeTeamSizeOk'>Full Time Team in OK</label>
+			<label class='control-label' for='fulltimeTeamSizeOk'>Full Time Team in OK</label>
 			<div class='controls'>
-				<input type='number' placeholder='How Many?' name='fulltimeTeamSizeOk' ng-model='formData.fulltimeTeamSizeOk' />
+				<input type='number' placeholder='How Many?' name='fulltimeTeamSizeOk' ng-model='fulltimeTeamSizeOk' />
 			</div>
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='formData.totalTeamSize'>Total Team Size</label>
+			<label class='control-label' for='totalTeamSize'>Total Team Size</label>
 			<div class='controls'>
-				<input type='number' placeholder='How Many?' name='totalTeamSize' ng-model='formData.totalTeamSize' />
+				<input type='number' placeholder='How Many?' name='totalTeamSize' ng-model='totalTeamSize' />
 			</div>
 		</div>
 
+		<div class='control-group'>
+			<label class='control-label' for='founders'>Founders</label>
+			<div class='controls'>
+				<div ng-repeat='founder in founders'>
+					<input type='text' name='firstName' placeholder='First Name' ng-model='founder.firstName' /><br/>
+					<input type='text' name='lastName' placeholder='Last Name' ng-model='founder.lastName' /><br/>
+					<input type='email' name='email' placeholder='Email' ng-model='founder.email' /><br/>
+					<input type='text' name='title' placeholder='Title/Role' ng-model='founder.title' /><br/><br/>
+				</div>
+				<a ng-click='addFounder()' class='btn btn-primary btn-small'>Add Another</a>
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<div class='controls'>
+				<a class='btn' ng-click='previousPage()'>&larr; Previous</a>
+				<a class='btn btn-primary' ng-click='save()'>Save</a>
+				<a class='btn' ng-click='nextPage()'>Next &rarr;</a>
+			</div>
+		</div>
 	</fieldset>
+</div>
 
 
+
+
+
+
+
+
+
+
+<div ng-show='currentPage == 5'>
 	<fieldset>
-		<legend>Hiring Information</legend>
+		<legend>Hiring Information <small class='pull-right'>{{ currentPage }} of {{  lastPageNumber }}</small></legend>
 
 		<div class='control-group'>
-			<label class='control-label' for='formData.hiringUrl'>Jobs URL</label>
+			<label class='control-label' for='hiringUrl'>Jobs URL</label>
 			<div class='controls'>
-				<input type='url' name='hiringUrl' ng-model='formData.hiringUrl' placeholder='http://' autocorrect='off' />
+				<input type='url' name='hiringUrl' ng-model='hiringUrl' placeholder='http://' autocorrect='off' />
 			</div>
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='formData.hiringEmail'>Contact Email</label>
+			<label class='control-label' for='hiringEmail'>Contact Email</label>
 			<div class='controls'>
-				<input type='email' name='hiringEmail' ng-model='formData.hiringEmail' placeholder='Your Hiring Contact Email' autocorrect='off' />
+				<input type='email' name='hiringEmail' ng-model='hiringEmail' placeholder='Your Hiring Contact Email' autocorrect='off' />
 			</div>
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='formData.isHiring'>Hiring?</label>
+			<label class='control-label' for='isHiring'>Hiring?</label>
 			<div class='controls'>
 				<label class='radio'>
-					<input type='radio' name='formData.isHiring' value='true'>Yes
+					<input type='radio' name='isHiring' value='true'>Yes
 				</label>
 				<label class='radio'>
-					<input type='radio' name='formData.isHiring' value='false'>No
+					<input type='radio' name='isHiring' value='false'>No
 				</label>
 			</div>
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='formData.isInternshipAvailable'>Internships Available?</label>
+			<label class='control-label' for='isInternshipAvailable'>Internships Available?</label>
 			<div class='controls'>
 				<label class='radio'>
-					<input type='radio' name='formData.isInternshipAvailable' value='true'>Yes
+					<input type='radio' name='isInternshipAvailable' value='true'>Yes
 				</label>
 				<label class='radio'>
-					<input type='radio' name='formData.isInternshipAvailable' value='false'>No
+					<input type='radio' name='isInternshipAvailable' value='false'>No
 				</label>
 			</div>
 		</div>
 
+		<div class='control-group'>
+			<div class='controls'>
+				<a class='btn' ng-click='previousPage()'>&larr; Previous</a>
+				<a class='btn btn-primary' ng-click='save()'>Save</a>
+				<a class='btn btn-success' ng-click='submit()' ng-disabled='listCreate.$invalid'>Publish</a>
+			</div>
+		</div>
 	</fieldset>
-
-	<div class='control-group'>
-		<div class='controls'>
-			<button class='btn btn-info'>Save</button>
-			<button ng-click='submit()' ng-disabled='listCreate.$invalid' class='btn btn-success'>Publish</button>
-			<span class='alert alert-info'>Your changes aren't visible to others until you publish.</span>
-		</div>
-	</div>
+</div>
 
 </form>
