@@ -2,19 +2,27 @@
 
 <form name='listCreate' class='form-horizontal'>
 <fieldset>
-<legend>Who Are You?</legend>
+	<legend>Who Are You?</legend>
 
 	<div class='control-group'>
-		<label class='control-label' for='formDate.phoneNumber'>Phone Number</label>
+		<label class='control-label' for='formData.phoneNumber'>Phone Number</label>
 		<div class='controls'>
 			<input type='tel' name='phoneNumber' ng-model='formData.phoneNumber' placeholder='Phone Number' autocorrect='off' required />
+			
+			<div ng-show='listCreate.phoneNumber.$dirty && listCreate.phoneNumber.$invalid' class='alert alert-error'>
+          		<span ng-show='listCreate.phoneNumber.$error.required'>A phone number is required.</span>
+         		<span ng-show='listCreate.phoneNumber.$error.invalid'>This is not a valid number.</span>
+        	</div>
 		</div>
 	</div>
 
 	<div class='control-group'>
 		<label class='control-label' for='formData.companyName'>Company Name</label>
 		<div class='controls'>
-			<input type='text' name='companyName' ng-model='formData.companyName' placeholder='Company Name' autocorrect='off' required />			
+			<input type='text' name='companyName' ng-model='formData.companyName' placeholder='Company Name' autocorrect='off' required />	
+			<div ng-show='listCreate.companyName.$dirty && listCreate.companyName.$invalid' class='alert alert-error'>
+				<span ng-show='listCreate.companyName.$error.required'>A company name is required.</span>
+			</div>		
 		</div>
 	</div>
 
@@ -99,6 +107,27 @@
 		</div>
 	</div>
 
+	<div class='control-group'>
+		<label class='control-label' for='formData.fulltimeTeamSize'>Full Time Team</label>
+		<div class='controls'>
+			<input type='number' placeholder='How Many?' name='formDate.fulltimeTeamSize' ng-model='formDate.fulltimeTeamSize' />
+		</div>
+	</div>
+
+	<div class='control-group'>
+		<label class='control-label' for='formData.fulltimeTeamSizeOk'>Full Time Team in OK</label>
+		<div class='controls'>
+			<input type='number' placeholder='How Many?' name='formDate.fulltimeTeamSizeOk' ng-model='formDate.fulltimeTeamSizeOk' />
+		</div>
+	</div>
+
+	<div class='control-group'>
+		<label class='control-label' for='formData.companyType'>Company Type</label>
+		<div class='controls'>
+			<select ng-model="companyType" ng-options="c.type for c in companyTypes"></select>
+		</div>
+	</div>
+
 </fieldset>
 
 
@@ -149,7 +178,7 @@
 	<div class='controls'>
 		<button class='btn btn-info'>Save</button>
 		<button ng-click='submit()' ng-disabled='listCreate.$invalid' class='btn btn-success'>Publish</button>
-		<span class='alert alert-info'>Your changes aren't visible to others until you post.</span>
+		<span class='alert alert-info'>Your changes aren't visible to others until you publish.</span>
 	</div>
 </div>
 </tabset>
