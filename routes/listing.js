@@ -43,4 +43,15 @@ module.exports = function(app) {
 			})
 		})
 	})
+
+	/* Delete */
+	app.post('/api/listings/delete/:id', function(req, res) {
+		var id = req.params.id || 0
+		Listing.findByIdAndRemove(id, function(err, listing) {
+			if(!err)
+				res.send(listing)
+			else
+				res.send(err)
+		})
+	})
 }

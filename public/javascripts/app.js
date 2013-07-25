@@ -52,8 +52,8 @@ angular.module('listing-service', [])
 			update: function(id, data) {
 				return $http.put('/api/listings/edit/' + id, data)
 			},
-			delete: function(id) {
-				// TODO
+			destroy: function(id) {
+				return $http.post('/api/listings/delete/' + id)
 			}
 		}
 	}])

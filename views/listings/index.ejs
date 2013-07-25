@@ -4,6 +4,8 @@
 	<ul>
 		<li ng-repeat='entry in listings'>
 			<h3>{{ entry.companyName }}</h3>
-			<small><a href='#/edit/{{entry._id}}' ng-click='init(entry._id)'>edit</a> // <a href='#/view/{{entry._id}}'>read</a>
+			<small><a href='#/edit/{{entry._id}}' ng-click='init(entry._id)'>edit</a> // 
+			<a href='#/view/{{entry._id}}'>read</a> // 
+			<button class='btn btn-danger' ng-click='destroy("{{ entry._id }}")'>delete</button>
 	</ul>
 </div>
