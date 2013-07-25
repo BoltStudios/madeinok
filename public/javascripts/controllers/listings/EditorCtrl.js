@@ -13,6 +13,15 @@ function EditorCtrl($scope, $location, $http, $routeParams, AuthenticationServic
 	// not create a new one and save it agan, so track the ID of the form being manipulated.
 	$scope.listingId = '51f148b1529a2d7d63000001'
 
+	// If a listingId is available, the fields should be populated
+	// If the form data has information already, don't hit the DB again
+	if($scope.listingId && Object.keys($scope.formData).length == 0) {
+		console.log(JSON.stringify($scope.formData))
+		$http.get('/api/listings/' + $scope.listingId).success(function(response) {
+			$scope.formData = response
+		})
+	}
+
 	// Page number of the form
 	$scope.currentPage = $routeParams.pageNumber || 1
 	$scope.lastPageNumber = 5
@@ -193,5 +202,4 @@ function EditorCtrl($scope, $location, $http, $routeParams, AuthenticationServic
 	// $scope.testIsLoggedIn = function() {
 	// 	console.log(AuthenticationService.isLoggedIn())
 	// }
-
 }
