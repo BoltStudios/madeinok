@@ -1,4 +1,5 @@
-function CreateCtrl($scope, $location, $http, $routeParams, AuthenticationService) {
+/* The edit and create controllers are going to be very similar, so inherit from this */
+function EditorCtrl($scope, $location, $http, $routeParams, AuthenticationService) {
 
 	// Form data
 	// Fields will be stored here as a JSON object
@@ -143,54 +144,54 @@ function CreateCtrl($scope, $location, $http, $routeParams, AuthenticationServic
 		$scope.founders.push({firstName: '', lastName: '', emamil: '', title: ''})
 	}
 
-	$scope.submit = function() {
-		console.log('form data is ' + JSON.stringify($scope.formData))
-		$http.post('/api/listings/create', $scope.formData).success(function(response) {
-			//$location.path('/')
-		}).error(function(response) {
-			console.log('oops!')
-		})
-	}
+	// $scope.submit = function() {
+	// 	console.log('form data is ' + JSON.stringify($scope.formData))
+	// 	$http.post('/api/listings/create', $scope.formData).success(function(response) {
+	// 		//$location.path('/')
+	// 	}).error(function(response) {
+	// 		console.log('oops!')
+	// 	})
+	// }
 
-	$scope.save = function() {
-		console.log($scope.formData)
-		if(!$scope.listingId) {
-			$http.post('/api/listings/create', $scope.formData)
-			.success(function(response) {
-				$scope.listingId = response._id
-			})
-			.error(function(response) {
+	// $scope.save = function() {
+	// 	console.log($scope.formData)
+	// 	if(!$scope.listingId) {
+	// 		$http.post('/api/listings/create', $scope.formData)
+	// 		.success(function(response) {
+	// 			$scope.listingId = response._id
+	// 		})
+	// 		.error(function(response) {
 
-			})
-		} else {
-			$http.put('/api/listings/edit/' + $scope.listingId, $scope.formData)
-			.success(function(response) {
-				console.log('got a response... ' + JSON.stringify(response))
-			})
-			.error(function(response) {
+	// 		})
+	// 	} else {
+	// 		$http.put('/api/listings/edit/' + $scope.listingId, $scope.formData)
+	// 		.success(function(response) {
+	// 			console.log('got a response... ' + JSON.stringify(response))
+	// 		})
+	// 		.error(function(response) {
 
-			})
-		}
-	}
+	// 		})
+	// 	}
+	// }
 
-	$scope.nextPage = function() {
-		this.save()
-		$location.path('/create/' + ++$scope.currentPage);
-	}
+	// $scope.nextPage = function() {
+	// 	this.save()
+	// 	$location.path('/create/' + ++$scope.currentPage);
+	// }
 
-	$scope.previousPage = function() {
-		this.save()
-		$location.path('/create/' + --$scope.currentPage);
-	}
+	// $scope.previousPage = function() {
+	// 	this.save()
+	// 	$location.path('/create/' + --$scope.currentPage);
+	// }
 
 
-	$scope.testLogIn = function() {
-		var credentials = {username:'hi', password:'haters'}
-		AuthenticationService.logIn(credentials)
-	}
+	// $scope.testLogIn = function() {
+	// 	var credentials = {username:'hi', password:'haters'}
+	// 	AuthenticationService.logIn(credentials)
+	// }
 
-	$scope.testIsLoggedIn = function() {
-		console.log(AuthenticationService.isLoggedIn())
-	}
+	// $scope.testIsLoggedIn = function() {
+	// 	console.log(AuthenticationService.isLoggedIn())
+	// }
 
 }

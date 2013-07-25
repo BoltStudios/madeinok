@@ -1,4 +1,5 @@
 var Listing = require('../models/listing.js')
+  , _ = require('lodash')
 
 module.exports = function(app) {
 	
@@ -9,25 +10,37 @@ module.exports = function(app) {
 		})
 	})
 
-	app.post('/api/listings/create', function(req, res) {
-		console.log('>>>>>>>> ' + req.body)
-		console.log('>>>>>>>> ' + JSON.stringify(req.body))
-		// var newListing = {}
-		// newListing = req.body
-		// new Listing(newListing).save(function(err, listing, count) {
-		// 	res.redirect('/')
-		// })
-	})
-
-	app.get('/api/listings/create', function(req, res) {
-		res.redirect('/')
-	})
-
-
+	/* Return a specific listing */
 	app.get('/api/listings/:id', function(req, res) {
 		var id = req.params.id || 0
 		Listing.findById(id, function(err, listing) {
 			res.send(listing)
+		})
+	})
+
+	/* Create a new listing */
+	app.post('/api/listings/create', function(req, res) {
+		var newListing = {}
+		newListing = req.body
+		new Listing(newListing).save(function(err, listing, count) {
+			res.send(listing)
+		})
+	})
+
+	/* Edit a listing */
+	app.put('/api/listings/edit/:id', function(req, res) {
+		var id = req.params.id || 0
+		var structure = req.body
+		Listing.findById(id, function(err, listing) {
+			_(listing).extend(structure)
+			console.log(listing)
+
+			listing.save(function(err) {
+				 if(!err)
+				 	res.send(listing)
+				 else
+				 	res.send(err)
+			})
 		})
 	})
 }

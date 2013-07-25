@@ -2,7 +2,9 @@ var mongoose = require('mongoose')
   , express = require('express')
   , http = require('http')
   , path = require('path')
-  , app = express();
+  , app = express()
+  , _ = require('lodash')
+;
 
 // all environments
 //app.set('views', __dirname + '/views');

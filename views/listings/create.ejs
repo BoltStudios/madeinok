@@ -6,7 +6,8 @@
 </div>
 
 
-
+<a class='btn' ng-click='testIsLoggedIn()'>Logged in?</a>
+<a class='btn' ng-click='testLogIn()'>Log In</a>
 
 
 
@@ -95,6 +96,10 @@
 			<div class='controls'>
 				<a class='btn btn-primary' ng-click='save()'>Save</a>
 				<a class='btn' ng-click='nextPage()'>Next &rarr;</a>
+
+<!-- 				<div ng-show='listCreate.$dirty' class='alert alert-error'>
+					<strong>Hey!</strong> You have unsaved changes.
+				</div> -->
 			</div>
 		</div>
 	</fieldset>
@@ -161,7 +166,7 @@
 		<div class='control-group'>
 			<label class='control-label' for='foundingYear'>Year Founded</label>
 			<div class='controls'>
-				<input type='number' min='1900' placeholder='19XX' name='foundingYear' ng-model='formData.foundingYear' required ng-minlength='4' ng-maxlength='4'/>
+				<input type='number' min='1900' placeholder='19XX' name='foundingYear' ng-model='formData.foundingYear' ng-maxlength='4'/>
 			</div>
 		</div>
 
