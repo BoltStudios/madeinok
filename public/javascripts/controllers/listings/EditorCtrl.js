@@ -5,20 +5,19 @@ function EditorCtrl($scope, $location, $http, $routeParams, AuthenticationServic
 	// Fields will be stored here as a JSON object
 	$scope.formData = {}
 
-	// Track if the form has been saved and published
-	$scope.hasBeenSaved = false
-	$scope.hasBeenPublished = false
 
 	// If the form has been saved once already, then we want to edit a form with an ID, 
 	// not create a new one and save it agan, so track the ID of the form being manipulated.
-	$scope.listingId = '51f148b1529a2d7d63000001'
+	$scope.listingId = $routeParams.id//'51f148b1529a2d7d63000001'
 
-	// If a listingId is available, the fields should be populated
-	// If the form data has information already, don't hit the DB again
+
+	// If a listingId is available, the fields should be populated (we're editing)
+	// If the form data has information already (creating and saving), don't hit the DB again
 	if($scope.listingId && Object.keys($scope.formData).length == 0) {
-		console.log(JSON.stringify($scope.formData))
 		$http.get('/api/listings/' + $scope.listingId).success(function(response) {
 			$scope.formData = response
+		}).error(function(response) {
+			// TODO
 		})
 	}
 
@@ -153,53 +152,81 @@ function EditorCtrl($scope, $location, $http, $routeParams, AuthenticationServic
 		$scope.founders.push({firstName: '', lastName: '', emamil: '', title: ''})
 	}
 
-	// $scope.submit = function() {
-	// 	console.log('form data is ' + JSON.stringify($scope.formData))
-	// 	$http.post('/api/listings/create', $scope.formData).success(function(response) {
-	// 		//$location.path('/')
-	// 	}).error(function(response) {
-	// 		console.log('oops!')
-	// 	})
-	// }
 
-	// $scope.save = function() {
-	// 	console.log($scope.formData)
-	// 	if(!$scope.listingId) {
-	// 		$http.post('/api/listings/create', $scope.formData)
-	// 		.success(function(response) {
-	// 			$scope.listingId = response._id
-	// 		})
-	// 		.error(function(response) {
-
-	// 		})
-	// 	} else {
-	// 		$http.put('/api/listings/edit/' + $scope.listingId, $scope.formData)
-	// 		.success(function(response) {
-	// 			console.log('got a response... ' + JSON.stringify(response))
-	// 		})
-	// 		.error(function(response) {
-
-	// 		})
-	// 	}
-	// }
-
-	// $scope.nextPage = function() {
-	// 	this.save()
-	// 	$location.path('/create/' + ++$scope.currentPage);
-	// }
-
-	// $scope.previousPage = function() {
-	// 	this.save()
-	// 	$location.path('/create/' + --$scope.currentPage);
-	// }
+	/* Submits the listing, either for editing or creation.
+	 * Assigns the listing's published value to true.
+	*/
+	$scope.submit = function() {
+		$scope.formData.isPublished = true
+		var action = !$scope.listingId ? httpCreate() : httpEdit()
+		
+		action.success(function(response) {
+			$location.path('/')
+		}).error(function(response) {
+			// TODO
+		})
+	}
 
 
-	// $scope.testLogIn = function() {
-	// 	var credentials = {username:'hi', password:'haters'}
-	// 	AuthenticationService.logIn(credentials)
-	// }
+	/* Saves the form data to the database.
+	 * Does not publish the entry (that's submit)
+	*/
+	$scope.save = function() {
+		if(!$scope.listingId) {
+			httpCreate().success(function(response) {
+				$scope.listingId = response._id
+			}).error(function(response) {
+				// TODO
+			})
+		} else {
+			httpEdit().success(function(response) {
 
-	// $scope.testIsLoggedIn = function() {
-	// 	console.log(AuthenticationService.isLoggedIn())
-	// }
+			}).error(function(response) {
+				// TODO
+			})
+		}
+	}
+
+
+	/* Creates a new listing
+	 * 
+	 * Returns a promise.
+	 * It's up to the caller to call success() and error()
+	*/
+	var httpCreate = function() {
+		return $http.post('/api/listings/create', $scope.formData)
+	}
+
+
+	/* Edits a listing
+	 *
+	 * Returns a promise.
+	 * It's up to the caller to call success() and error()
+	*/
+	var httpEdit = function() {
+		return $http.put('/api/listings/edit/' + $scope.listingId, $scope.formData)
+	}
+
+
+	/* Since this controller is only going to be used on an edit or create page,
+	 * I'm making the assumption that the path to those pages will be something containing 
+	 * the words "create" or "edit". This returns one of those strings.
+	 */
+	 var pagePath = function() {
+	 	var path = $location.path().match(/\bcreate/) != null ? '/create/' : ('/edit/' + $scope.listingId + '/')
+	 	return path
+	 }
+
+
+	$scope.nextPage = function() {
+		this.save()
+		$location.path(pagePath() + ++$scope.currentPage);
+	}
+
+
+	$scope.previousPage = function() {
+		this.save()
+		$location.path(pagePath() + --$scope.currentPage);
+	}
+
 }

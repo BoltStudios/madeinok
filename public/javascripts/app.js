@@ -31,7 +31,7 @@ angular.module('authentication-service', [])
 			}
 		}
 	}])
-	
+
 //********************************************************************************
 // end shared services
 //********************************************************************************
@@ -45,9 +45,14 @@ var app = angular.module('StartupApp', ['ui.bootstrap', 'ngResource', 'ngCookies
 		$routeProvider
 			.when('/', { controller: ListingCtrl, templateUrl: '/listings/index' })
 
-			.when('/create', { controller: CreateCtrl, templateUrl: '/listings/create' })	// Regular ol' get
-			.when('/create/:pageNumber', { controller: CreateCtrl, templateUrl: '/listings/create' })	// Navigating pages
-			.when('/create/:pageNumber/:id', { controller: CreateCtrl, templateUrl: '/listings/create' }) // Editing an unpublished listing
+			// Creation process
+			.when('/create', { controller: CreateCtrl, templateUrl: '/listings/create' })
+			.when('/create/:pageNumber', { controller: CreateCtrl, templateUrl: '/listings/create' })
+
+			// Editing
+			.when('/edit/:id', { controller: EditCtrl, templateUrl: '/listings/create/' })
+			.when('/edit/:id/:pageNumber', { controller: EditCtrl, templateUrl: '/listings/create/'})
+
 			.otherwise({ redirectTo: '/' })
 			//$locationProvider.html5Mode(true) /* RIP IE9 */
 	})

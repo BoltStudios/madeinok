@@ -3,7 +3,6 @@ var mongoose = require('mongoose')
   , http = require('http')
   , path = require('path')
   , app = express()
-  , _ = require('lodash')
 ;
 
 // all environments
@@ -19,7 +18,6 @@ app.use(express.session());
 app.use(app.router);
 app.use(require('less-middleware')({ src: __dirname + '/public' }));
 app.use(express.static(path.join(__dirname, 'public')));
-//app.use(express.static(path.join(__dirname, '/views')));
 mongoose.connect('mongodb://localhost/OKStartups');
 
 // development only
