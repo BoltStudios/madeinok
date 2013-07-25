@@ -1,5 +1,5 @@
 /* The edit and create controllers are going to be very similar, so inherit from this */
-function EditorCtrl($scope, $location, $http, $routeParams, AuthenticationService) {
+function EditorCtrl($scope, $location, $http, $routeParams, AuthenticationService, ListingService) {
 
 	// Form data
 	// Fields will be stored here as a JSON object
@@ -14,10 +14,8 @@ function EditorCtrl($scope, $location, $http, $routeParams, AuthenticationServic
 	// If a listingId is available, the fields should be populated (we're editing)
 	// If the form data has information already (creating and saving), don't hit the DB again
 	if($scope.listingId && Object.keys($scope.formData).length == 0) {
-		$http.get('/api/listings/' + $scope.listingId).success(function(response) {
+		ListingService.retrieve($scope.listingId).success(function(response) {
 			$scope.formData = response
-		}).error(function(response) {
-			// TODO
 		})
 	}
 
@@ -188,13 +186,13 @@ function EditorCtrl($scope, $location, $http, $routeParams, AuthenticationServic
 	}
 
 
-	/* Creates a new listing
+	/* Creates a new listing.
 	 * 
 	 * Returns a promise.
 	 * It's up to the caller to call success() and error()
 	*/
 	var httpCreate = function() {
-		return $http.post('/api/listings/create', $scope.formData)
+		return ListingService.create($scope.formData)
 	}
 
 
@@ -204,7 +202,7 @@ function EditorCtrl($scope, $location, $http, $routeParams, AuthenticationServic
 	 * It's up to the caller to call success() and error()
 	*/
 	var httpEdit = function() {
-		return $http.put('/api/listings/edit/' + $scope.listingId, $scope.formData)
+		return ListingService.update($scope.listingId, $scope.formData)
 	}
 
 

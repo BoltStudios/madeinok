@@ -32,26 +32,55 @@ angular.module('authentication-service', [])
 		}
 	}])
 
+
+/* Service to have quick access to the Listings API 
+ * Each function returned from this service only returns a promise.
+ * It is up to the user to handle the success() and error() calllbacks.
+*/
+angular.module('listing-service', [])
+	.service('ListingService', ['$http', function($http) {
+		return {
+			create: function(data) {
+				return $http.post('/api/listings/create/', data)
+			},
+			retrieve: function(id) {
+				if(!id)
+					return $http.get('/api/listings')
+
+				return $http.get('/api/listings/' + id)
+			},
+			update: function(id, data) {
+				return $http.put('/api/listings/edit/' + id, data)
+			},
+			delete: function(id) {
+				// TODO
+			}
+		}
+	}])
+
 //********************************************************************************
 // end shared services
 //********************************************************************************
 
 
 
-var app = angular.module('StartupApp', ['ui.bootstrap', 'ngResource', 'ngCookies', 'authentication-service'])
+var app = angular.module('StartupApp', ['ui.bootstrap', 'ngResource', 'ngCookies', 'authentication-service', 'listing-service'])
 
 	// Configure routes
+	// Check the controllers for paths if you change these.
 	.config(function($routeProvider, $locationProvider) {
 		$routeProvider
 			.when('/', { controller: ListingCtrl, templateUrl: '/listings/index' })
 
 			// Creation process
-			.when('/create', { controller: CreateCtrl, templateUrl: '/listings/create' })
-			.when('/create/:pageNumber', { controller: CreateCtrl, templateUrl: '/listings/create' })
+			.when('/create', { controller: CreateCtrl, templateUrl: '/listings/editor' })
+			.when('/create/:pageNumber', { controller: CreateCtrl, templateUrl: '/listings/editor' })
 
 			// Editing
-			.when('/edit/:id', { controller: EditCtrl, templateUrl: '/listings/create/' })
-			.when('/edit/:id/:pageNumber', { controller: EditCtrl, templateUrl: '/listings/create/'})
+			.when('/edit/:id', { controller: EditCtrl, templateUrl: '/listings/editor' })
+			.when('/edit/:id/:pageNumber', { controller: EditCtrl, templateUrl: '/listings/editor'})
+
+			.when('/view/:id', { controller: ViewCtrl, templateUrl: 'listings/view' })
 
 			.otherwise({ redirectTo: '/' })
 			//$locationProvider.html5Mode(true) /* RIP IE9 */
@@ -63,31 +92,6 @@ var app = angular.module('StartupApp', ['ui.bootstrap', 'ngResource', 'ngCookies
 
 	})
 
-
-	// .factory('AuthenticationService', function($http, $location, $cookies, $cookieStore) {
-	// 	return {
-	// 		logIn: function(credentials) {
-	// 			// send a message to the server. server will set a value for the name
-	// 			$http.post('/login', credentials).success(function(response) {
-
-	// 			}).error(function(response) {
-
-	// 			})
-	// 		},
-
-	// 		logOut: function() {
-	// 			$cookieStore.remove('name')
-	// 			$location.path('/')
-	// 		},
-
-	// 		isLoggedIn: function() {
-	// 			// server sets the name value on the cookie, so see if that's there.
-	// 			// still checking stuff on the server side, so even if someone sees this source, they'll
-	// 			// have to get around that, too.
-	// 			return $cookies.name ? true : false
-	// 		}
-	// 	}
-	// })
 
 	.run(function($rootScope, $location, AuthenticationService) {
 
@@ -106,38 +110,6 @@ var app = angular.module('StartupApp', ['ui.bootstrap', 'ngResource', 'ngCookies
 			//requireLogin(/\bcreate/)
 		})
 	})
-
-	// Easy way to hook up client/server calls
-	// Going to replace this with a resource once I figure that out
-	// Not sure this is the right syntax (it is def. wrong)
-	// the array of stuff prevents minifying screwing everything up
-	// .factory('ListingService', ['$http', function($http) {
-
-	// 	return {
-	// 		var Listing = function(data) {
-	// 			angular.extend(this, data)
-	// 		}
-
-	// 		// Usage: Listing.get()
-	// 		Listing.get = function(id) {
-	// 			$http.get('/api/listings/' + id).success(function(response) {
-
-	// 			}).error(function(response) {
-
-	// 			})
-	// 		}
-
-	// 		// Usage: x = new Listing() ... x.create()
-	// 		Listing.prototype.create = function() {
-	// 			var listing = this
-	// 			$http.post('/api/listings/create', listing).success(function(response) {
-
-	// 			}).error(function(response) {
-
-	// 			})
-	// 		}
-	// 	}
-	// }])
 
 
 /* Does not allow users to input any more characters than the 
