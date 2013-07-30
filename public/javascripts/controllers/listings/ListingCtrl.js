@@ -14,9 +14,8 @@ function ListingCtrl($scope, $http, ListingService) {
 		console.log('deleting')
 		ListingService.destroy(id).success(function(response) {
 			$scope.listings = _.filter($scope.listings, function(el) { return el._id != id})
-			//_($scope.listings).filter(function(listing) { return listing._id != id })
 		}).error(function(response) {
-			console.log('error ' + response)
+			// TODO
 		})
 	}
 }
