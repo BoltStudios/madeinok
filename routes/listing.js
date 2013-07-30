@@ -1,5 +1,6 @@
 var Listing = require('../models/listing.js')
   , _ = require('lodash')
+  , filters = require('./_actionFilters.js')
 
 module.exports = function(app) {
 	
@@ -19,7 +20,7 @@ module.exports = function(app) {
 	})
 
 	/* Create a new listing */
-	app.post('/api/listings', function(req, res) {
+	app.post('/api/listings', filters.isLoggedIn, function(req, res) {
 		var newListing = {}
 		newListing = req.body
 		new Listing(newListing).save(function(err, listing, count) {
@@ -28,7 +29,7 @@ module.exports = function(app) {
 	})
 
 	/* Edit a listing */
-	app.post('/api/listings/:id', function(req, res) {
+	app.post('/api/listings/:id', filters.isLoggedIn, function(req, res) {
 		var id = req.params.id || 0
 		var structure = req.body
 		Listing.findById(id, function(err, listing) {
@@ -44,7 +45,8 @@ module.exports = function(app) {
 		})
 	})
 
-	app.delete('/api/listings/:id', function(req, res) {
+	/* Delete a listing */
+	app.delete('/api/listings/:id', filters.isAdmin, function(req, res) {
 		var id = req.params.id || 0
 		Listing.findByIdAndRemove(id, function(err, listing) {
 			if(!err)

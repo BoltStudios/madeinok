@@ -92,6 +92,25 @@ var app = angular.module('StartupApp', ['ui.bootstrap', 'ngResource', 'ngCookies
 	//https://www.youtube.com/watch?v=hqAyiqUs93c?t=43m50s
 	.config(function($httpProvider) {
 
+		// If the status code is 401, I still want to see the error message.
+		$httpProvider.responseInterceptors.push(function($q, $location) {
+			var success = function(response) {
+				return response
+			}
+			var error = function(response) {
+				// If 401 error occurs, the user is not authorized to perform an action.
+				if(response.status == 401) {
+					console.log(response)
+					return response.data.error
+				}
+				return $q.reject(response)
+			}
+
+			return function(promise) {
+				return promise.then(success, error)
+			}
+
+		})
 	})
 
 	/* This is a Listing resource. By default, a resource has these methods:
