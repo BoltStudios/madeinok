@@ -10,6 +10,7 @@
     "ejs": "*",
     "less-middleware": "*",
     "mongoose": "*",
-    "lodash": "*"
+    "lodash": "*",
+    "bcrypt": "*"
   }
 }
