@@ -19,7 +19,7 @@ module.exports = function(app) {
 	})
 
 	/* Create a new listing */
-	app.post('/api/listings/create', function(req, res) {
+	app.post('/api/listings', function(req, res) {
 		var newListing = {}
 		newListing = req.body
 		new Listing(newListing).save(function(err, listing, count) {
@@ -28,7 +28,7 @@ module.exports = function(app) {
 	})
 
 	/* Edit a listing */
-	app.put('/api/listings/edit/:id', function(req, res) {
+	app.post('/api/listings/:id', function(req, res) {
 		var id = req.params.id || 0
 		var structure = req.body
 		Listing.findById(id, function(err, listing) {
@@ -44,8 +44,7 @@ module.exports = function(app) {
 		})
 	})
 
-	/* Delete */
-	app.post('/api/listings/delete/:id', function(req, res) {
+	app.delete('/api/listings/:id', function(req, res) {
 		var id = req.params.id || 0
 		Listing.findByIdAndRemove(id, function(err, listing) {
 			if(!err)

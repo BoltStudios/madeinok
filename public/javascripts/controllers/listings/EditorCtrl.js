@@ -1,5 +1,5 @@
 /* The edit and create controllers are going to be very similar, so inherit from this */
-function EditorCtrl($scope, $location, $http, $routeParams, AuthenticationService, ListingService) {
+function EditorCtrl($scope, $location, $http, $routeParams, AuthenticationService, Listing) {
 
 	// Form data
 	// Fields will be stored here as a JSON object
@@ -14,9 +14,11 @@ function EditorCtrl($scope, $location, $http, $routeParams, AuthenticationServic
 	// If a listingId is available, the fields should be populated (we're editing)
 	// If the form data has information already (creating and saving), don't hit the DB again
 	if($scope.listingId && Object.keys($scope.formData).length == 0) {
-		ListingService.retrieve($scope.listingId).success(function(response) {
-			$scope.formData = response
-		})
+		var entry = Listing.get({id: $scope.listingId})
+		$scope.formData = entry
+		// ListingService.retrieve($scope.listingId).success(function(response) {
+		// 	$scope.formData = response
+		// })
 	}
 
 	// Page number of the form
@@ -156,13 +158,7 @@ function EditorCtrl($scope, $location, $http, $routeParams, AuthenticationServic
 	*/
 	$scope.submit = function() {
 		$scope.formData.isPublished = true
-		var action = !$scope.listingId ? httpCreate() : httpEdit()
-		
-		action.success(function(response) {
-			$location.path('/')
-		}).error(function(response) {
-			// TODO
-		})
+		$scope.save()
 	}
 
 
@@ -170,39 +166,23 @@ function EditorCtrl($scope, $location, $http, $routeParams, AuthenticationServic
 	 * Does not publish the entry (that's submit)
 	*/
 	$scope.save = function() {
-		if(!$scope.listingId) {
-			httpCreate().success(function(response) {
-				$scope.listingId = response._id
-			}).error(function(response) {
-				// TODO
-			})
-		} else {
-			httpEdit().success(function(response) {
-
-			}).error(function(response) {
-				// TODO
-			})
-		}
+		!$scope.listingId ? httpCreate() : httpEdit()
 	}
 
 
 	/* Creates a new listing.
-	 * 
-	 * Returns a promise.
-	 * It's up to the caller to call success() and error()
 	*/
 	var httpCreate = function() {
-		return ListingService.create($scope.formData)
+		Listing.save({}, $scope.formData, function(response) {
+			$scope.listingId = response._id
+		})
 	}
 
 
 	/* Edits a listing
-	 *
-	 * Returns a promise.
-	 * It's up to the caller to call success() and error()
 	*/
 	var httpEdit = function() {
-		return ListingService.update($scope.listingId, $scope.formData)
+		Listing.save({id: $scope.listingId}, $scope.formData)
 	}
 
 

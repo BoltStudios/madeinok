@@ -33,30 +33,32 @@ angular.module('authentication-service', [])
 	}])
 
 
+/* NOT USED BUT PRESERVED FOR AN EXAMPLE */
 /* Service to have quick access to the Listings API 
  * Each function returned from this service only returns a promise.
  * It is up to the user to handle the success() and error() calllbacks.
 */
-angular.module('listing-service', [])
-	.service('ListingService', ['$http', function($http) {
-		return {
-			create: function(data) {
-				return $http.post('/api/listings/create/', data)
-			},
-			retrieve: function(id) {
-				if(!id)
-					return $http.get('/api/listings')
+// angular.module('listing-service', [])
+// 	.service('ListingService', ['$http', function($http) {
+// 		return {
+// 			create: function(data) {
+// 				return $http.post('/api/listings/create/', data)
+// 			},
+// 			retrieve: function(id) {
+// 				if(!id)
+// 					return $http.get('/api/listings')
 
-				return $http.get('/api/listings/' + id)
-			},
-			update: function(id, data) {
-				return $http.put('/api/listings/edit/' + id, data)
-			},
-			destroy: function(id) {
-				return $http.post('/api/listings/delete/' + id)
-			}
-		}
-	}])
+// 				return $http.get('/api/listings/' + id)
+// 			},
+// 			update: function(id, data) {
+// 				return $http.put('/api/listings/edit/' + id, data)
+// 			},
+// 			destroy: function(id) {
+// 				return $http.post('/api/listings/delete/' + id)
+// 			}
+// 		}
+// 	}])
+
 
 //********************************************************************************
 // end shared services
@@ -64,7 +66,7 @@ angular.module('listing-service', [])
 
 
 
-var app = angular.module('StartupApp', ['ui.bootstrap', 'ngResource', 'ngCookies', 'authentication-service', 'listing-service'])
+var app = angular.module('StartupApp', ['ui.bootstrap', 'ngResource', 'ngCookies', 'authentication-service'])
 
 	// Configure routes
 	// Check the controllers for paths if you change these.
@@ -92,6 +94,20 @@ var app = angular.module('StartupApp', ['ui.bootstrap', 'ngResource', 'ngCookies
 
 	})
 
+	/* This is a Listing resource. By default, a resource has these methods:
+	 * get({id: X}) GET 							-> /api/listings/X
+	 * save({}, newInfo) POST 						-> /api/listings/
+	 * save({id: X}, newInfo) POST (obj.$save())	-> /api/listings/X
+	 * query() get 									-> /api/listings
+	 * remove({id: X}) POST 						-> /api/listings/X
+	 * delete({id: X}) POST 						-> /api/listings/X
+	 * All of this gets based on your base URL, which is supplied to the resource
+	 * The example URL is included above
+	*/
+	.factory('Listing', ['$resource', function($resource) {
+		return $resource('/api/listings/:id', {listingId: '@id'})
+	}])
+
 
 	.run(function($rootScope, $location, AuthenticationService) {
 
@@ -106,6 +122,7 @@ var app = angular.module('StartupApp', ['ui.bootstrap', 'ngResource', 'ngCookies
 		}
 
 		$rootScope.$on('$routeChangeStart', function(event, next, current) {
+			// TODO: put all pages requiring login here
 			// Don't allow create or any create/whatever pages to be accessed without login
 			//requireLogin(/\bcreate/)
 		})
