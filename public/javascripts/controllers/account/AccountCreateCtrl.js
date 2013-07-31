@@ -1,14 +1,12 @@
-function AccountCreateCtrl($scope, $location, $http, $routeParams) {
+function AccountCreateCtrl($scope, $location, $http, $routeParams, User) {
 	$scope.title = 'Create Your Account'
 
 	// Hold all the form information here
 	$scope.formData = {}
 
-	$scope.submit = function() {
-
-	}
-
-	$scope.canSubmit = function() {
-		
+	$scope.register = function() {
+		User.save({}, $scope.formData, function(response) {
+			$location.path('/')
+		})
 	}
 }

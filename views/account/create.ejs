@@ -27,18 +27,20 @@
 			</div>
 		</div>
 
-		<div class='control-group'>
+		<div class='control-group' ng-show='accountCreate.password.$valid'>
 			<label class='control-label' for='passwordConfirmation'>Password Confirmation <span class='text-error'>*</span></label>
 			<div class='controls'>
-				<input type='password' name='passwordConfirmation' ng-model='formData.passwordConfirmation' placeholder='Password' autocorrect='off' required field-match='formData.password'/>
-
-				<div ng-show='accountCreate.passwordConfirmation.$dirty && accountCreate.passwordConfirmation.$invalid' class='alert alert-error'>
-	          		<span ng-show='accountCreate.passwordConfirmation.$error.required'>A password is required.</span>
-	        	</div>
+				<input type='password' name='passwordConfirmation' ng-model='formData.passwordConfirmation' placeholder='Password' autocorrect='off' field-match='formData.password' required/>
 
 	        	<div ng-show='accountCreate.passwordConfirmation.$error.noMatch' class='alert alert-error'>
 	        		<span>Passwords don't match</span>
 	        	</div>
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<div class='controls'>
+				<a class='btn btn-primary' ng-click='register()' ng-disabled='accountCreate.$invalid'>Register</a>
 			</div>
 		</div>
 

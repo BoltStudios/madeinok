@@ -23,9 +23,17 @@ module.exports = function(app) {
 	app.post('/api/users', function(req, res) {
 		var newUser = {}
 		newUser = req.body
-		new User(newUser).save(function(err, user, count) {
+
+		var userObj = new User(newUser)
+		userObj.setPassword(newUser.password)
+
+		userObj.save(function(err, user, count) {
 			res.send(user)
 		})
+
+		// new User(newUser).save(function(err, user, count) {
+		// 	res.send(user)
+		// })
 	})
 
 	/* Edit a user */
