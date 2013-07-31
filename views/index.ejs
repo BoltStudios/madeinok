@@ -12,6 +12,7 @@
 <script type='text/javascript' src='/lib/angular-resource.js'></script>			<!-- to be able to create resources -->
 <script type='text/javascript' src='/lib/lodash.min.js'></script>				<!-- nice array things -->
 
+<!-- Angular Globals -->
 <script type='text/javascript' src='/javascripts/services.js'></script>
 
 
@@ -23,9 +24,16 @@
 <script type='text/javascript' src='/javascripts/controllers/listings/ViewCtrl.js'></script>
 <script type='text/javascript' src='/javascripts/list-app.js'></script>
 
+<!-- Account App -->
+<script type='text/javascript' src='/javascripts/controllers/account/AccountCreateCtrl.js'></script>
+<script type='text/javascript' src='/javascripts/account-app.js'></script>
+
+
 <link rel='stylesheet' href='/stylesheets/style.css' />
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-<body ng-app='StartupApp'>
+
+
+<body>
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-inner">
 	    	<div class="container">
@@ -49,10 +57,22 @@
 		</div>
 	</div>
 
+	<%if(appName == 'ListApp') {%>
     <!-- partials load here -->
     <div class='row-fluid'>
-    	<div class='span12'>
+    	<div class='span12' ng-app='ListApp'>
 		    <div ng-view>
 		    </div>
 		</div>
 	</div>
+	<% } %>
+
+	<%if(appName == 'AccountApp') {%>
+    <!-- partials load here -->
+    <div class='row-fluid'>
+    	<div class='span12' ng-app='AccountApp'>
+		    <div ng-view>
+		    </div>
+		</div>
+	</div>
+	<% } %>

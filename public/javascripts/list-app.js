@@ -1,4 +1,4 @@
-var app = angular.module('StartupApp', ['ui.bootstrap', 'ngResource', 'ngCookies', 'authentication-service'])
+var app = angular.module('ListApp', ['ngResource', 'ngCookies', 'authentication-service'])
 
 	// Configure routes
 	// Check the controllers for paths if you change these.

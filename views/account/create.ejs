@@ -1,0 +1,46 @@
+<h2>{{ title }}</h2>
+
+<form name='accountCreate' class='form-horizontal'>
+	<fieldset>
+		<legend>Your Information</legend>
+
+		<div class='control-group'>
+			<label class='control-label' for='email'>Email <span class='text-error'>*</span></label>
+			<div class='controls'>
+				<input type='email' name='email' ng-model='formData.email' placeholder='Email address' autocorrect='off' required />
+
+				<div ng-show='accountCreate.email.$dirty && accountCreate.email.$invalid' class='alert alert-error'>
+	          		<span ng-show='accountCreate.email.$error.required'>An email address is required.</span>
+	         		<span ng-show='accountCreate.email.$error.email'>This is not a valid email address.</span>
+	        	</div>
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='password'>Password <span class='text-error'>*</span></label>
+			<div class='controls'>
+				<input type='password' name='password' ng-model='formData.password' placeholder='Password' autocorrect='off' required />
+
+				<div ng-show='accountCreate.password.$dirty && accountCreate.password.$invalid' class='alert alert-error'>
+	          		<span ng-show='accountCreate.password.$error.required'>A password is required.</span>
+	        	</div>
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='passwordConfirmation'>Password Confirmation <span class='text-error'>*</span></label>
+			<div class='controls'>
+				<input type='password' name='passwordConfirmation' ng-model='formData.passwordConfirmation' placeholder='Password' autocorrect='off' required field-match='formData.password'/>
+
+				<div ng-show='accountCreate.passwordConfirmation.$dirty && accountCreate.passwordConfirmation.$invalid' class='alert alert-error'>
+	          		<span ng-show='accountCreate.passwordConfirmation.$error.required'>A password is required.</span>
+	        	</div>
+
+	        	<div ng-show='accountCreate.passwordConfirmation.$error.noMatch' class='alert alert-error'>
+	        		<span>Passwords don't match</span>
+	        	</div>
+			</div>
+		</div>
+
+	</fieldset>
+</form>
