@@ -30,10 +30,6 @@ module.exports = function(app) {
 		userObj.save(function(err, user, count) {
 			res.send(user)
 		})
-
-		// new User(newUser).save(function(err, user, count) {
-		// 	res.send(user)
-		// })
 	})
 
 	/* Edit a user */

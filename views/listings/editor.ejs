@@ -9,6 +9,9 @@
 <a class='btn' ng-click='testIsLoggedIn()'>Logged in?</a>
 <a class='btn' ng-click='testLogIn()'>Log In</a>
 
+<div class='alert alert-error' ng-show='flash'>
+	{{ flash }}
+</div>
 
 
 <div ng-show='currentPage == 1'>

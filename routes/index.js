@@ -1,3 +1,5 @@
+var User = require('../models/user.js')
+
 module.exports = function(app) {
 	require('./listing')(app)
 	require('./user')(app)
@@ -12,9 +14,21 @@ module.exports = function(app) {
 
 	app.post('/login', function(req, res) {
 		// should do validation
-		res.cookie('name', 'tdogg69', {signed:true})
+		User.findOne({email: req.body.email}, function(err, user) {
+			if(!user) {
+				res.send(401, {error: 'That email does not exist.'})
+			}
+			else if(user.isCorrectPassword(req.body.password)) {
+				res.cookie('uid', user._id, {signed:true})
+				res.send(200)
+			} else {
+				res.send(401, {error: 'Email/password combination not found.'})
+			}
+		})
+
+		//res.cookie('name', 'tdogg69', {signed:true})
 		// req.signedCookies['name'] to get
-		res.send(200)
+		//res.send(200)
 	})
 
 	/* This route makes AngularJS play nicely with Express.

@@ -13,7 +13,7 @@ UserSchema.methods.setPassword = function(passwordString) {
 }
 
 UserSchema.methods.isCorrectPassword = function(passwordString) {
-	return bcrypt.compareSync(passwordSring, this.password)
+	return bcrypt.compareSync(passwordString, this.password)
 }
 
 module.exports = mongoose.model('Users', UserSchema)

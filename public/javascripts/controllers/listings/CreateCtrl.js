@@ -1,4 +1,4 @@
-function CreateCtrl($scope, $location, $http, $routeParams, $injector) {
+function CreateCtrl($scope, $location, $http, $routeParams, $injector, AuthenticationService) {
 
 	// Get the fields from the editor controller
 	$injector.invoke(EditorCtrl, this, {$scope: $scope})
@@ -8,7 +8,7 @@ function CreateCtrl($scope, $location, $http, $routeParams, $injector) {
 
 
 	$scope.testLogIn = function() {
-		var credentials = {username:'hi', password:'haters'}
+		var credentials = {email:'hi', password:'haters'}
 		AuthenticationService.logIn(credentials)
 	}
 

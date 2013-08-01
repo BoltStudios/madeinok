@@ -1,16 +1,35 @@
+/*
+	Shows a flash message.
+*/
+angular.module('flash-service', [])
+	.service('FlashService', ['$rootScope', function($rootScope) {
+		return {
+			show: function(message) {
+				$rootScope.flash = message
+			},
+
+			clear: function() {
+				$rootScope.flash = ''
+			}
+		}
+	}])
+
 /* Authentication service that will be shared across multiple apps. To include it in the app, 
    add 'authentication-service' to the array of requirements for the app.
 */
-angular.module('authentication-service', [])
-	.service('AuthenticationService', ['$http', '$location', '$cookies', '$cookieStore', 
-		function($http, $location, $cookies, $cookieStore) {
+angular.module('authentication-service', ['flash-service'])
+	.service('AuthenticationService', ['$http', '$location', '$cookies', '$cookieStore', 'FlashService',
+		function($http, $location, $cookies, $cookieStore, FlashService) {
 		return {
 			logIn: function(credentials) {
 				// send a message to the server. server will set a value for the name
+				// TODO: check that the password was ok
 				$http.post('/login', credentials).success(function(response) {
-
+					FlashService.clear()
+					$location.path('/')
 				}).error(function(response) {
-
+					FlashService.show(response.error)
+					console.log('error ' + JSON.stringify(response))
 				})
 			},
 
@@ -25,6 +44,32 @@ angular.module('authentication-service', [])
 				// have to get around that, too.
 				return $cookies.name ? true : false
 			}
+		}
+	}])
+
+
+angular.module('status401-service', [])
+	.service('Status401Service', ['$httpProvider', function($httpProvider) {
+
+		return {
+			handle: $httpProvider.responseInterceptors.push(function($q, $location) {
+				var success = function(response) {
+					return response
+				}
+
+				var error = function(response) {
+					if(response.status == 401) {
+						console.log('401 ' + response)
+						return response.data.error
+					}
+
+					return $q.reject(response)
+				}
+
+				return function(promise) {
+					return promise.then(success, error)
+				}
+			})
 		}
 	}])
 
