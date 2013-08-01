@@ -1,0 +1,11 @@
+<h2>Login</h2>
+
+<div class='alert alert-error' ng-show='flash'>
+	{{ flash }}
+</div>
+
+<form class='form form-inline'>
+	<input type='email' name='email' ng-model='credentials.email' required placeholder='Email' />
+	<input type='password' name='password' ng-model='credentials.password' required placeholder='Password' />
+	<a class='btn btn-primary' ng-click='login()'>Login</a>
+</form>

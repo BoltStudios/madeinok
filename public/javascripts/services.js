@@ -14,7 +14,9 @@ angular.module('flash-service', [])
 		}
 	}])
 
-/* Authentication service that will be shared across multiple apps. To include it in the app, 
+
+/* 
+   Authentication service that will be shared across multiple apps. To include it in the app, 
    add 'authentication-service' to the array of requirements for the app.
 */
 angular.module('authentication-service', ['flash-service'])
@@ -29,7 +31,6 @@ angular.module('authentication-service', ['flash-service'])
 					$location.path('/')
 				}).error(function(response) {
 					FlashService.show(response.error)
-					console.log('error ' + JSON.stringify(response))
 				})
 			},
 
