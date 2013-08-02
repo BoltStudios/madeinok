@@ -1,8 +1,14 @@
-function AccountIndexCtrl($scope, $http, $location, User) {
+function AccountIndexCtrl($scope, $http, $location, User, AuthenticationService) {
 	$scope.title = 'Your Account'
 
-	// TODO
 	// if not logged in, redirect to login
-	// else, show this page
+	if(!AuthenticationService.isLoggedIn())
+		$location.path('/login')
+
+	$scope.logout = function() {
+		AuthenticationService.logOut()
+	}
+
+	// if logged in, hit the DB and get all the listings by this user
 
 }

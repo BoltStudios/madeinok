@@ -19,15 +19,17 @@ angular.module('flash-service', [])
    Authentication service that will be shared across multiple apps. To include it in the app, 
    add 'authentication-service' to the array of requirements for the app.
 */
-angular.module('authentication-service', ['flash-service'])
-	.service('AuthenticationService', ['$http', '$location', '$cookies', '$cookieStore', 'FlashService',
-		function($http, $location, $cookies, $cookieStore, FlashService) {
+angular.module('authentication-service', ['flash-service', 'ngCookies'])
+	.service('AuthenticationService', ['$http', '$location', '$cookieStore', 'FlashService',
+		function($http, $location, $cookieStore, FlashService) {
 		return {
 			logIn: function(credentials) {
-				// send a message to the server. server will set a value for the name
-				// TODO: check that the password was ok
+				// send a message to the server. server will set the cookie
+				// express and angular don't communicate w/ cookies, so set a 
+				// simple cookie here that nobody wants to change.
 				$http.post('/login', credentials).success(function(response) {
 					FlashService.clear()
+					$cookieStore.put('isAuthenticated', true)
 					$location.path('/')
 				}).error(function(response) {
 					FlashService.show(response.error)
@@ -35,15 +37,14 @@ angular.module('authentication-service', ['flash-service'])
 			},
 
 			logOut: function() {
-				$cookieStore.remove('name')
-				$location.path('/')
+				$http.post('/logout').success(function(response) {
+					$cookieStore.remove('isAuthenticated')
+					$location.path('/login')
+				})
 			},
 
 			isLoggedIn: function() {
-				// server sets the name value on the cookie, so see if that's there.
-				// still checking stuff on the server side, so even if someone sees this source, they'll
-				// have to get around that, too.
-				return $cookies.name ? true : false
+				return $cookieStore.get('isAuthenticated') || false
 			}
 		}
 	}])
