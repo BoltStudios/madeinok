@@ -1,3 +1,7 @@
+  ////////////////////////////////////////
+ /////// TRISTIN'S ORIGINAL LESS ////////
+////////////////////////////////////////
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -20,4 +24,163 @@ a {
 .input-group:last-of-type {
 	border-top: 0;
 	border-radius: 0 0 4px 4px !important;
+}
+
+  ////////////////////////////////////////
+ /////// CALE'S MASTER RACE LESS ////////
+////////////////////////////////////////
+
+//load bootstraps
+@import "less/bootstrap/bootstrap-responsive.less";
+
+body {
+
+}
+
+//------home page------//
+////////////////////////
+.event-left, event-right{
+	height: 100%;
+	float: left;
+}
+.event-left{
+	h1,h2,h3,h4,h5,h6{
+		color: @thunderDarkBlue;
+		margin: 5px 0px;
+	}
+	float: left;
+	width: 25%;
+	text-align: center;
+}
+.logo-wrapper{
+	padding-left: 15px;
+	padding-right: 15px;
+	max-height: 100%;
+	max-width: 100%;
+}
+.event-right{
+	h1,h2,h3,h4,h5,h6{
+		margin: 5px 0px;
+	}
+	float: right;
+	width: 75%;
+}
+.events-wrapper{
+	height: 600px;
+	width: 50%;
+	overflow: hidden;
+}
+.event{
+	height: 100px;
+	background-color: @contrastColor;
+	padding: 0px;
+	margin:15px;
+	p{
+		color: @thunderDarkBlue;
+	}
+}
+
+
+
+.about-text{
+	color: @thunderDarkBlue;
+	font-weight: 100;
+	font-size: 36px;
+	line-height: 38px;
+}
+.homepage-top{
+	min-height: 600px;
+
+}
+
+.homepage-tiles{
+	padding: 15px 0;
+	background-color: @contrastColor;
+}
+
+.homepage-bottom{
+	overflow: hidden;
+	background-color: @contrastColor;
+	padding: 15px;
+}
+
+//------page stuff------//
+/////////////////////////
+.page-wrapper{
+	margin-top: @navbarHeight;
+}
+
+.classic-letterpress{
+    text-shadow: 0px 1px 1px #4d4d4d;
+    color: #222;
+}
+
+.center-text{
+	margin-left:auto;
+	margin-right:auto;
+	display: block;
+	text-align: center;
+}
+.image-center-wrapper{
+	text-align: center;
+	width: 100%;
+}
+.center-image{
+	margin-left:auto;
+	margin-right:auto;
+	display: block;
+}
+
+//------blog stuff------//
+/////////////////////////
+.blog-wrapper{
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.create-blog-wrapper{
+	button{
+		margin-bottom: 5px;
+	}
+}
+
+.blog-post{
+	background-color: @grayDark;
+	color: @gray;
+	margin: 0px;
+	position: relative;
+}
+
+.delete-post{
+	position: absolute;
+	right: 0;
+	top: 0;
+	margin-right: 15px;
+	margin-top: 5px;
+	color: @sortaRed;
+	cursor: pointer;
+	&:hover{
+		color: darken(@sortaRed, 15%);
+	}
+}
+
+.blog-header{
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-bottom: 15px;
+}
+
+.blog-body{
+	background-color: @contrastColor;
+	padding: 10px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	margin-left: 15px;
+	margin-right: 15px;
+	color: @bodyBackground;
+}
+
+.preview-wrapper{
+	overflow: hidden;
+	box-shadow: inset 1px @primaryColor;
 }
