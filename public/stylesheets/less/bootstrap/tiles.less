@@ -1,0 +1,173 @@
+//
+// Tiles
+// --------------------------------------------------
+
+
+// Base styles
+// --------------------------------------------------
+
+// Core
+
+@media (min-width: 980px) {
+  .tile{
+    width: 23%;
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+}
+
+@media (min-width: 550px) and (max-width: 979px) {
+  .tile{  
+    width: 48%;
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+}
+
+@media (max-width: 549px) {
+  .tile{  
+    width: 98%;
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+}
+
+.tile {
+  display: inline-block;
+  .ie7-inline-block();
+  margin-top: 5px;
+  margin-bottom: 5px;
+  
+  float: left;
+  border: 0;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  *border: 0; // Remove the border to prevent IE7's black border on input:focus
+  background-color: @btnBackground;
+  .ie7-restore-left-whitespace(); // Give IE7 some love
+  color: @contrastColor;
+  height: 115px;
+  font-size: 40px;
+  text-transform: lowercase;
+
+  // Hover/focus state
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    background-color: lighten(@btnBackground, 15%);
+  }
+
+  // Focus state for keyboard and accessibility
+  &:focus {
+    .tab-focus();
+  }
+
+  &.dark-text{
+    color: @bodyBackground;
+  }
+
+  // Disabled state
+  &.disabled,
+  &[disabled] {
+    cursor: default;
+    background-image: none;
+    .opacity(65);
+    .box-shadow(none);
+  }
+}
+
+// Alternate buttons
+// --------------------------------------------------
+
+// Provide *some* extra contrast for those who can get it
+.tile-primary.active,
+.tile-warning.active,
+.tile-danger.active,
+.tile-success.active,
+.tile-info.active,
+.tile-inverse.active {
+  color: rgba(255,255,255,.75);
+}
+
+// Set the backgrounds
+// -------------------------
+.tile-primary {
+  background-color: @btnPrimaryBackground;
+  &:hover{
+    background-color: darken(@btnPrimaryBackground, 5%);
+  }
+}
+// Warning appears are orange
+.tile-warning {
+  background-color: @btnWarningBackground;
+  //.buttonBackground(@btnWarningBackground, @btnWarningBackgroundHighlight);
+}
+// Danger and error appear as red
+.tile-danger {
+  background-color: @btnDangerBackground;
+  //.buttonBackground(@btnDangerBackground, @btnDangerBackgroundHighlight);
+}
+// Success appears as green
+.tile-success {
+  background-color: @btnSuccessBackground;
+  //.buttonBackground(@btnSuccessBackground, @btnSuccessBackgroundHighlight);
+}
+// Info appears as a neutral blue
+.tile-info {
+  background-color: @btnInfoBackground;
+  //.buttonBackground(@btnInfoBackground, @btnInfoBackgroundHighlight);
+}
+// Inverse appears as dark gray
+.tile-inverse {
+  background-color: @btnInverseBackground;
+  //.buttonBackground(@btnInverseBackground, @btnInverseBackgroundHighlight);
+}
+
+
+// Cross-browser Jank
+// --------------------------------------------------
+
+tile.btn,
+input[type="submit"].tile {
+
+  // Firefox 3.6 only I believe
+  &::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+  }
+
+  // IE7 has some default padding on button controls
+  *padding-top: 3px;
+  *padding-bottom: 3px;
+}
+
+
+// Link buttons
+// --------------------------------------------------
+
+// Make a button look and behave like a link
+.tile-link,
+.tile-link:active,
+.tile-link[disabled] {
+  background-color: transparent;
+  background-image: none;
+  .box-shadow(none);
+}
+.tile-link {
+  border-color: transparent;
+  cursor: pointer;
+  color: @linkColor;
+  .border-radius(0);
+}
+.tile-link:hover,
+.tile-link:focus {
+  color: @linkColorHover;
+  text-decoration: underline;
+  background-color: transparent;
+}
+.tile-link[disabled]:hover,
+.tile-link[disabled]:focus {
+  color: @grayDark;
+  text-decoration: none;
+}

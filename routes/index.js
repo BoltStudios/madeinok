@@ -12,6 +12,22 @@ module.exports = function(app) {
 		res.render('index', { title: 'Express', appName: 'AccountApp'})
 	})
 
+	app.get('/home/:viewname', function(req, res) {
+		res.render('index', {title: 'Express', appName: 'HomeApp'})
+		// var viewname = req.params.viewname
+		// console.log(req.params.viewname);
+		// res.render('home/' + viewname)
+	})
+
+	app.get('/blog/:viewname', function(req, res) {		
+		res.render('index', {title: 'Express', appName: 'BlogApp'})
+		// var viewname = req.params.viewname
+		// console.log(req.params.viewname);
+		// res.render('blog/' + viewname)
+	})
+
+
+
 	app.post('/login', function(req, res) {
 		// should do validation
 		User.findOne({email: req.body.email}, function(err, user) {
