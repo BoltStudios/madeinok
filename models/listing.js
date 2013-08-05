@@ -46,14 +46,15 @@ var industryTypes = 'Media|Retail|E-Commerce|Energy|Healthcare|Games|Consumer|IT
 // })
 
 var ListingSchema = new mongoose.Schema({
-	isPublished: { type: Boolean, default: false }
-  , companyName: { type: String }
-  , phoneNumber: { type: String }
-  , address: {
-  	    line1: { type: String }
-  	  , line2: { type: String }
-  	  , city: { type: String }
-    }
+  creator:         { type: ObjectId }
+, isPublished:   { type: Boolean, default: false }
+, companyName:   { type: String }
+, phoneNumber:   { type: String }
+, address: {
+    line1: { type: String }
+  , line2: { type: String }
+  , city: { type: String }
+}
   , websiteUrl: { type: String }
   , twitterHandle: { type: String }
   , linkedInUrl: { type: String }

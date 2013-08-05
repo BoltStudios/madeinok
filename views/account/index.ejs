@@ -1,3 +1,10 @@
 <h2>{{ title }}</h2>
 
 <a ng-click='logout()' class='btn btn-danger'>Log Off</a>
+<ul>
+	<li ng-repeat='listing in listings'>
+		{{ listing.companyName }}<br/>
+		<a href='/#/view/{{listing._id}}'>View</a> // <a href='/#/edit/{{listing._id}}'>Edit</a>
+		}
+	</li>
+</ul>

@@ -1,8 +1,14 @@
 var User = require('../models/user')
   , _ = require('lodash')
   , filters = require('./_actionFilters.js')
+  , Listing = require('../models/listing')
 
 module.exports = function(app) {
+
+	/* Get the current user logged in */
+	app.get('/api/users/current', filters.isLoggedIn, function(req, res) {
+		res.send(req.signedCookies.user)
+	})
 
 	/* Returns all the users */
 	app.get('/api/users', function(req, res) {
@@ -55,6 +61,19 @@ module.exports = function(app) {
 		User.findByIdAndRemove(id, function(err, user) {
 			if(!err)
 				res.send(user)
+			else
+				res.send(err)
+		})
+	})
+
+
+	/* Get the listings for a user */
+	app.get('/api/users/:id/listings', filters.isLoggedIn, function(req, res) {
+		var id = req.params.id || 0
+		Listing.find({creator: id}, function(err, listings) {
+			if(!err) {
+				res.send(listings)
+			}
 			else
 				res.send(err)
 		})

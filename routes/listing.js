@@ -21,8 +21,9 @@ module.exports = function(app) {
 
 	/* Create a new listing */
 	app.post('/api/listings', filters.isLoggedIn, function(req, res) {
-		var newListing = {}
-		newListing = req.body
+		var newListing = req.body
+		newListing.creator = req.signedCookies.user
+
 		new Listing(newListing).save(function(err, listing, count) {
 			res.send(listing)
 		})
@@ -32,6 +33,8 @@ module.exports = function(app) {
 	app.post('/api/listings/:id', filters.isLoggedIn, function(req, res) {
 		var id = req.params.id || 0
 		var structure = req.body
+		structure.creator = req.signedCookies.user
+
 		Listing.findById(id, function(err, listing) {
 			_(listing).extend(structure)
 			console.log(listing)

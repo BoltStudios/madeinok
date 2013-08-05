@@ -9,6 +9,14 @@ function AccountIndexCtrl($scope, $http, $location, User, AuthenticationService)
 		AuthenticationService.logOut()
 	}
 
+	// initialization
+	$http.get('/api/users/current').success(function(response) {
+		var uid = response
+		$http.get('/api/users/'+uid+'/listings').success(function(response) {
+			$scope.listings = response
+		})
+	})
+
 	// if logged in, hit the DB and get all the listings by this user
 
 }
