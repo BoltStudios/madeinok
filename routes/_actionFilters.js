@@ -4,7 +4,11 @@ module.exports = {
 	isLoggedIn: function(req, res, next) {
 		//if(true)
 		//	res.send(401, {error: 'You must be logged in to do that.'})
-		next()
+
+		if(req.user)
+			next()
+		else
+			res.send(401, {error: 'You must be logged in to do that.'})
 	},
 
 	/* User must be an admin */
