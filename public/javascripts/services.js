@@ -20,7 +20,6 @@ angular.module('user-factory', ['ngResource'])
 		return $resource('/api/listings/:id', {userId: '@id'})
 	}])
 
-
 /*
 	Shows a flash message.
 */

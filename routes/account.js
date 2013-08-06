@@ -87,9 +87,10 @@ module.exports = function(app) {
 		})
 	})
 
-	app.post('/logout', function(req, res) {
+	app.get('/logout', function(req, res) {
 		// req.logOut()
 		//res.clearCookie('user')
+		req.logout()
 		res.send(200)
 	})
 }

@@ -20,58 +20,6 @@ var app = angular.module('ListApp', ['ngResource', 'ngCookies', 'authentication-
 			//$locationProvider.html5Mode(true) /* RIP IE9 */
 	})
 
-	// Interceptor for stuff
-	//https://www.youtube.com/watch?v=hqAyiqUs93c?t=43m50s
-	// .config(function($httpProvider) {
-
-	// 	//If the status code is 401, I still want to see the error message.
-	// 	$httpProvider.responseInterceptors.push(function($q, $location) {
-	// 		var success = function(response) {
-	// 			return response
-	// 		}
-	// 		var error = function(response) {
-	// 			// If 41 error occurs, the user is not authorized to perform an action.
-	// 			if(response.status == 401) {
-	// 				console.log(response)
-	// 				return response.data.error
-	// 			}
-	// 			return $q.reject(response)
-	// 		}
-
-	// 		return function(promise) {
-	// 			return promise.then(success, error)
-	// 		}
-
-	// 	})
-	// })
-
-
-	// .config(function ($httpProvider) {
-
- //  		var logsOutUserOn401 = ['$q', '$location', function ($q, $location) {
- //    		var success = function (response) {
- //      			return response;
- //    		}
-
-	//     	var error = function (response) {
-	//       		if (response.status === 401) {
-	//         		//redirect them back to login page
-	//         		$location.path('/')
-
-	//         		return $q.reject(response)
-	//       		} 
-	//       		else {
-	//         		return $q.reject(response)
-	//       		}
-	//     	}
-
-	//     	return function (promise) {
-	//       		return promise.then(success, error)
-	//     	}
- //  		}]
-
- //  		$httpProvider.responseInterceptors.push(logsOutUserOn401);
-	// })
 
 
 	.run(function($rootScope, $location, AuthenticationService) {
