@@ -7,7 +7,7 @@ module.exports = function(app) {
 
 	/* Get the current user logged in */
 	app.get('/api/users/current', filters.isLoggedIn, function(req, res) {
-		res.send(req.signedCookies.user)
+		res.send(req.user)
 	})
 
 	/* Returns all the users */
@@ -70,7 +70,7 @@ module.exports = function(app) {
 	/* Get the listings for a user */
 	app.get('/api/users/:id/listings', filters.isLoggedIn, function(req, res) {
 		var id = req.params.id || 0
-		Listing.find({creator: id}, function(err, listings) {
+		Listing.find({creatorId: id}, function(err, listings) {
 			if(!err) {
 				res.send(listings)
 			}

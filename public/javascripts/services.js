@@ -1,3 +1,26 @@
+/* Register the companies globally */
+/* This is a Listing resource. By default, a resource has these methods:
+ * get({id: X}) GET 							-> /api/listings/X
+ * save({}, newInfo) POST 						-> /api/listings/
+ * save({id: X}, newInfo) POST (obj.$save())	-> /api/listings/X
+ * query() get 									-> /api/listings
+ * remove({id: X}) POST 						-> /api/listings/X
+ * delete({id: X}) POST 						-> /api/listings/X
+ * All of this gets based on your base URL, which is supplied to the resource
+ * The example URL is included above
+*/
+angular.module('listing-factory', ['ngResource'])
+	.factory('Listing', ['$resource', function($resource) {
+		return $resource('/api/listings/:id', {listingId: '@id'})
+	}])
+
+
+angular.module('user-factory', ['ngResource'])
+	.factory('User', ['$resource', function($resource) {
+		return $resource('/api/listings/:id', {userId: '@id'})
+	}])
+
+
 /*
 	Shows a flash message.
 */
@@ -19,9 +42,9 @@ angular.module('flash-service', [])
    Authentication service that will be shared across multiple apps. To include it in the app, 
    add 'authentication-service' to the array of requirements for the app.
 */
-angular.module('authentication-service', ['flash-service', 'ngCookies'])
-	.service('AuthenticationService', ['$http', '$location', '$cookieStore', 'FlashService',
-		function($http, $location, $cookieStore, FlashService) {
+angular.module('authentication-service', ['flash-service', 'session-service', 'ngCookies'])
+	.service('AuthenticationService', ['$q', '$http', '$location', '$cookieStore', 'FlashService',
+		function($q, $http, $location, $cookieStore, FlashService) {
 		return {
 			logIn: function(credentials) {
 				// send a message to the server. server will set the cookie
@@ -43,9 +66,25 @@ angular.module('authentication-service', ['flash-service', 'ngCookies'])
 				})
 			},
 
-			isLoggedIn: function() {
+			isLoggedIn: function(value) {
+				if(value) {
+					$cookieStore.put('isAuthenticated', value)
+					return value
+				}
+
 				return $cookieStore.get('isAuthenticated') || false
 			}
+		}
+	}])
+
+
+/* Calls AuthenticationService to initially set if a user is logged in. This is unfortunately tightly coupled 
+   with the authentication on the server side (?auth=true)
+*/
+angular.module('session-service', ['authentication-service'])
+	.service('SessionService', ['AuthenticationService', '$routeParams', '$http', function(AuthenticationService, $routeParams, $http) {
+		if($routeParams.auth) {
+			AuthenticationService.isLoggedIn(true)
 		}
 	}])
 

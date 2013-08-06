@@ -6,6 +6,7 @@ module.exports = function(app) {
 	require('./account')(app)
 
 	app.get('/', function(req, res) {
+		console.log('request user ' + JSON.stringify(req.user))
 		res.render('index', { title: 'Express', appName: 'ListApp' })
 	})
 

@@ -22,7 +22,7 @@ module.exports = function(app) {
 	/* Create a new listing */
 	app.post('/api/listings', filters.isLoggedIn, function(req, res) {
 		var newListing = req.body
-		newListing.creator = req.signedCookies.user
+		newListing.creatorId = req.user.guid
 
 		new Listing(newListing).save(function(err, listing, count) {
 			res.send(listing)

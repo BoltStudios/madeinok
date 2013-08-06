@@ -1,20 +1,20 @@
-var app = angular.module('ListApp', ['ngResource', 'ngCookies', 'authentication-service'])
+var app = angular.module('ListApp', ['ngResource', 'ngCookies', 'authentication-service', 'session-service', 'listing-factory'])
 
 	// Configure routes
 	// Check the controllers for paths if you change these.
 	.config(function($routeProvider, $locationProvider) {
 		$routeProvider
-			.when('/', { controller: ListingCtrl, templateUrl: '/listings/index' })
+			.when('/', { controller: ListingIndexCtrl, templateUrl: '/listings/index' })
 
 			// Creation process
-			.when('/create', { controller: CreateCtrl, templateUrl: '/listings/editor' })
-			.when('/create/:pageNumber', { controller: CreateCtrl, templateUrl: '/listings/editor' })
+			.when('/create', { controller: ListingCreateCtrl, templateUrl: '/listings/editor', resolve: SessionMaster.resolve })
+			.when('/create/:pageNumber', { controller: ListingCreateCtrl, templateUrl: '/listings/editor', resolve: SessionMaster.resolve })
 
 			// Editing
-			.when('/edit/:id', { controller: EditCtrl, templateUrl: '/listings/editor' })
-			.when('/edit/:id/:pageNumber', { controller: EditCtrl, templateUrl: '/listings/editor'})
+			.when('/edit/:id', { controller: ListingEditCtrl, templateUrl: '/listings/editor', resolve: SessionMaster.resolve })
+			.when('/edit/:id/:pageNumber', { controller: ListingEditCtrl, templateUrl: '/listings/editor', resolve: SessionMaster.resolve })
 
-			.when('/view/:id', { controller: ViewCtrl, templateUrl: 'listings/view' })
+			.when('/view/:id', { controller: ListingViewCtrl, templateUrl: 'listings/view' })
 
 			.otherwise({ redirectTo: '/' })
 			//$locationProvider.html5Mode(true) /* RIP IE9 */
@@ -45,6 +45,7 @@ var app = angular.module('ListApp', ['ngResource', 'ngCookies', 'authentication-
 	// 	})
 	// })
 
+
 	// .config(function ($httpProvider) {
 
  //  		var logsOutUserOn401 = ['$q', '$location', function ($q, $location) {
@@ -71,20 +72,6 @@ var app = angular.module('ListApp', ['ngResource', 'ngCookies', 'authentication-
 
  //  		$httpProvider.responseInterceptors.push(logsOutUserOn401);
 	// })
-
-	/* This is a Listing resource. By default, a resource has these methods:
-	 * get({id: X}) GET 							-> /api/listings/X
-	 * save({}, newInfo) POST 						-> /api/listings/
-	 * save({id: X}, newInfo) POST (obj.$save())	-> /api/listings/X
-	 * query() get 									-> /api/listings
-	 * remove({id: X}) POST 						-> /api/listings/X
-	 * delete({id: X}) POST 						-> /api/listings/X
-	 * All of this gets based on your base URL, which is supplied to the resource
-	 * The example URL is included above
-	*/
-	.factory('Listing', ['$resource', function($resource) {
-		return $resource('/api/listings/:id', {listingId: '@id'})
-	}])
 
 
 	.run(function($rootScope, $location, AuthenticationService) {

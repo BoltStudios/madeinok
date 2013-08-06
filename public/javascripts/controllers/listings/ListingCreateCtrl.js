@@ -1,7 +1,7 @@
-function CreateCtrl($scope, $location, $http, $routeParams, $injector, AuthenticationService) {
+function ListingCreateCtrl($scope, $location, $http, $routeParams, $injector, AuthenticationService) {
 
 	// Get the fields from the editor controller
-	$injector.invoke(EditorCtrl, this, {$scope: $scope})
+	$injector.invoke(ListingEditorCtrl, this, {$scope: $scope})
 
 	// Title of the page
 	$scope.title = 'Create a Listing'

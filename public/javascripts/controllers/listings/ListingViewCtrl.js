@@ -1,4 +1,4 @@
-function ViewCtrl($scope, $http, $routeParams, Listing) {
+function ListingViewCtrl($scope, $http, $routeParams, Listing) {
 	$scope.title = 'hello'
 	$scope.item = Listing.get({id: $routeParams.id})
 	

@@ -1,17 +1,13 @@
-var app = angular.module('AccountApp', ['ngResource', 'authentication-service'])
+var app = angular.module('AccountApp', ['ngResource', 'authentication-service', 'user-factory'])
 	
 	.config(function($routeProvider, $locationProvider) {
 		$routeProvider
-			.when('/', {controller: AccountIndexCtrl, templateUrl: '/account/index'})
+			.when('/', {controller: AccountIndexCtrl, templateUrl: '/account/index', resolve: SessionMaster.resolve})
 			.when('/login', {controller: AccountSessionCtrl, templateUrl: '/account/login'})
 			.when('/create', {controller: AccountCreateCtrl, templateUrl: '/account/create'})
-
 			.otherwise({ redirectTo: '/' })
 	})
 
-	.factory('User', ['$resource', function($resource) {
-		return $resource('/api/users/:id', {userId: '@id'})
-	}])
 
 	// add field-match='path.to.element.in.scope'
 	// check with ng-show='form.thisField.$error.fieldMatch'
@@ -32,4 +28,10 @@ var app = angular.module('AccountApp', ['ngResource', 'authentication-service'])
 	            })
         	}
     	}
+	})
+
+
+	/* Show and hide elements based on the user's role */
+	.directive('accessLevel', function() {
+
 	})

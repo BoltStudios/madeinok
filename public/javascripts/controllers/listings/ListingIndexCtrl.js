@@ -1,7 +1,6 @@
-function ListingCtrl($scope, $http, Listing) {
+function ListingIndexCtrl($scope, $http, Listing, $routeParams, AuthenticationService, SessionService) {
 	$scope.count = 0
 	$scope.listings = Listing.query()
-
 
 	$scope.hasError = function() {
 		return $scope.listings.length == 1 && $scope.listings[0].error

@@ -46,11 +46,7 @@ var industryTypes = 'Media|Retail|E-Commerce|Energy|Healthcare|Games|Consumer|IT
 // })
 
 var ListingSchema = new mongoose.Schema({
-//  creator:         { type: ObjectId }
-  creator: { 
-  	provider: {type: String },
-  	id: {type: String }
-  }
+	creatorId: {type: ObjectId}
 
 , isPublished:   { type: Boolean, default: false }
 , companyName:   { type: String }

@@ -5,16 +5,44 @@
 var passport = require('passport')
   , twitter = require('passport-twitter').Strategy
   , facebook = require('passport-facebook').Strategy
+  , User = require('../models/user')
 
 module.exports = function(app) {
 
-	// Twitter
+	// access user through req.user
+	passport.serializeUser(function(user, done) {		
+		done(null, {
+		 	id: user['id'],
+		 	provider: user['provider'],
+		 	guid: user['_id']
+		});
+	});
+
+	passport.deserializeUser(function(user, done) {
+		console.log('!!! PASSPORT DESERIALIZE ' + JSON.stringify(user))
+		done(null, user)
+	})
+
+	// Twitter -  just sending provider and id for now
 	passport.use(new twitter({
 		consumerKey: 'rcFo0Fee6JiukSK3vfGZlA',
 		consumerSecret: 'AK3RBfUzKizK7bZDyJ1u6PsKvKXUL0bNjvE0pKlfis',
 		callbackURL: '/auth/twitter/callback',
 	}, function(token, tokenSecret, profile, done) {
-		console.log(profile)
+		var object = {provider: profile.provider, id: profile.id}
+
+		// Find or create a user!
+		User.findOne(object, function(error, user) {
+			if(error) {
+				return done(error)
+			} else if(!user) {
+				new User(object).save(function(error, newUser) {
+					return done(null, newUser)
+				})
+			} else {
+				return done(null, user)
+			}
+		})
 	}))
 
 	// Facebook
@@ -24,12 +52,15 @@ module.exports = function(app) {
 		callbackURL: '/auth/facebook/callback'
 	}, function(accessToken, refreshToken, profile, done) {
 		console.log(profile)
+		var object = {provider: profile.provider, id: profile.id}
+		// set request provider+id
 	}))
 
-	app.get('/auth/twitter', passport.authenticate('twitter'))
+	app.get('/auth/twitter', passport.authenticate('twitter', {session:true}))
 
 	app.get('/auth/twitter/callback', passport.authenticate('twitter',
-		{successRedirect: '/', failureRedirect: '/account'}))
+		{successRedirect: '#/?auth=true', failureRedirect: '/account'}))
+
 
 	app.get('/auth/facebook', passport.authenticate('facebook'))
 	app.get('/auth/facebook/callback', passport.authenticate('facebook', 
@@ -37,6 +68,7 @@ module.exports = function(app) {
 
 
 	app.get('/account', function(req, res) {
+		console.log('req.user is ' + JSON.stringify(req.user))
 		res.render('index', { title: 'Express', appName: 'AccountApp'})
 	})
 
@@ -56,7 +88,8 @@ module.exports = function(app) {
 	})
 
 	app.post('/logout', function(req, res) {
-		res.clearCookie('user')
+		// req.logOut()
+		//res.clearCookie('user')
 		res.send(200)
 	})
 }
