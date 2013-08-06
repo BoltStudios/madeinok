@@ -21,11 +21,11 @@
 <script type='text/javascript' src='/javascripts/services.js'></script>
 
 <!-- Listings App -->
-<script type='text/javascript' src='/javascripts/controllers/listings/EditorCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/listings/ListingCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/listings/CreateCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/listings/EditCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/listings/ViewCtrl.js'></script>
+<script type='text/javascript' src='/javascripts/controllers/listings/ListingEditorCtrl.js'></script>
+<script type='text/javascript' src='/javascripts/controllers/listings/ListingIndexCtrl.js'></script>
+<script type='text/javascript' src='/javascripts/controllers/listings/ListingCreateCtrl.js'></script>
+<script type='text/javascript' src='/javascripts/controllers/listings/ListingEditCtrl.js'></script>
+<script type='text/javascript' src='/javascripts/controllers/listings/ListingViewCtrl.js'></script>
 <script type='text/javascript' src='/javascripts/controllers/listings/app.js'></script>
 
 <!-- Account App -->
@@ -35,15 +35,17 @@
 <script type='text/javascript' src='/javascripts/controllers/account/app.js'></script>
 
 <!-- Blog App -->
-<script type='text/javascript' src='/javascripts/controllers/blog/BlogsCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/blog/CreateCtrl.js'></script>
+<script type='text/javascript' src='/javascripts/controllers/blog/BlogIndexCtrl.js'></script>
+<script type='text/javascript' src='/javascripts/controllers/blog/BlogCreateCtrl.js'></script>
 <script type='text/javascript' src='/javascripts/controllers/blog/app.js'></script> <!-- doesnt exist yet -->
 	<!-- Blog App Required Resources -->
     <script type='text/javascript' src="/javascripts/ckeditor/ckeditor.js"></script>
     <script src="/javascripts/ckeditor/adapters/jquery.js"></script>
 
 <!-- Home App -->
-<script type='text/javascript' src='/javascripts/controllers/home/HomeCtrl.js'></script>
+<script type='text/javascript' src='/javascripts/controllers/home/HomeIndexCtrl.js'></script>
+<script type='text/javascript' src='/javascripts/controllers/home/HomeAboutCtrl.js'></script>
+<script type='text/javascript' src='/javascripts/controllers/home/HomeContactCtrl.js'></script>
 <script type='text/javascript' src='/javascripts/controllers/home/app.js'></script> <!-- doesnt exist yet -->
 
 
@@ -61,7 +63,7 @@
 		    <span class="icon-bar"></span>
 		    <span class="icon-bar"></span>
 	      </button>
-	      <a class="brand" href="/#/home/index">madeinok.co</a>
+	      <a class="brand" href="/#/home/index">/#/home</a>
       	  <div class="nav-collapse in collapse">
 	        <ul class="nav">
 	          <li>
@@ -71,7 +73,7 @@
     			<a href="/#/account/">/#/account</a>
 	          </li>
 	          <li>
-    			<a href="/#/blog/">/#/blog</a>
+    			<a href="/blog/">blog</a>
 	          </li>
 	        </ul>
     	  </div>

@@ -1,4 +1,4 @@
-function HomeCtrl($scope, $location, $http, $routeParams) {
+function HomeIndexCtrl($scope, $location, $http, $routeParams) {
 	//$scope.variableName = "variable value"
 	$scope.title = "Home/Index" // try commenting this out to see what happens on the view.
 	$scope.blurb = "Here at Made In OK, we're developing a crowd sourced and curated web community to help build a central place for Oklahoma innovators, makers, founders and creatives to find local networking events, keep up to date on what's happening in the community, and connect with talent.";

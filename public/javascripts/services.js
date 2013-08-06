@@ -14,7 +14,6 @@ angular.module('flash-service', [])
 		}
 	}])
 
-
 /* 
    Authentication service that will be shared across multiple apps. To include it in the app, 
    add 'authentication-service' to the array of requirements for the app.
@@ -98,6 +97,61 @@ angular.module('status401-service', [])
 // 			},
 // 			destroy: function(id) {
 // 				return $http.post('/api/listings/delete/' + id)
+// 			}
+// 		}
+// 	}])
+
+
+//FAILED EXPERIMENT
+// angular.module('angular-routes', [])
+// 	.service('AngularRoutes', [function() {
+// 		return {
+// 			controllers: function() {
+
+// 					var controllers = {
+// 						accountIndex: AccountIndexCtrl,
+// 						accountLogin: AccountSessionCtrl,
+// 						accountCreate: AccountCreateCtrl,
+
+// 						blogIndex: BlogIndexCtrl,
+// 						blogCreate: BlogCreateCtrl,
+// 						blogEdit: BlogEditCtrl,
+// 						blogView: BlogViewCtrl,
+
+// 						homeIndex: HomeIndexCtrl,
+// 						homeAbout: HomeAboutCtrl,
+// 						homeContact: HomeContactCtrl,
+
+// 						listingIndex: ListingIndexCtrl,
+// 						listingCreate: ListingCreateCtrl,
+// 						listingEdit: ListingEditCtrl,
+// 						listingView: ListingViewCtrl,
+// 						listingEditor: ListingEditorCtrl,
+
+// 					}
+// 				return controllers
+// 			},
+
+// 			views: function() {
+// 					var views = {
+// 						accountIndex: '/account/index',
+// 						accountLogin: '/account/login',
+// 						accountCreate: '/account/create',
+
+// 						blogIndex: '/blog/index',
+// 						blogCreate: '/blog/create',
+// 						blogEdit: '/blog/edit',
+// 						blogView: '/blog/view',
+
+// 						homeIndex: '/home/index',
+// 						homeAbout: '/home/about',
+// 						homeContact: '/home/contact',
+
+// 						listingIndex: '/listing/index',
+// 						listingEditor: '/listing/editor',
+// 						listingView: '/listing/view',
+// 					}
+// 				return views
 // 			}
 // 		}
 // 	}])

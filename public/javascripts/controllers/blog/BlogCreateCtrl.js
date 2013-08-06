@@ -1,4 +1,4 @@
-function CreateCtrl($scope, $location, $http, $routeParams) {
+function BlogCreateCtrl($scope, $location, $http, $routeParams) {
 	// Don't create the form data here. Do it on the page and save yourself troubles.
 	$scope.title = "Blog/Create"
 

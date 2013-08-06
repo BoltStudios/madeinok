@@ -6,21 +6,42 @@
 </style>
 
 <div class="homepage-top">
-	<div class="span6">
-	</div>
-	<div class="events-wrapper">
-		<div ng-repeat="event in events" class="event">
-			<div class="event-left"> 
-				<div class="logo-wrapper">
-					<div class="image-center-wrapper">
-						<img src={{event.imageUrl}}>
+			<div class="wrapper100">
+				<h1> register text </h1>
+			</div>
+
+			<div class="wrapper50">
+				<div ng-repeat="event in events" class="event">
+					<div class="event-left"> 
+						<div class="logo-wrapper">
+							<div class="image-center-wrapper">
+								<img src={{event.imageUrl}}>
+							</div>
+						</div>
+					</div>
+					<div class="event-right">
+						<h4>{{event.title}}</h4>
+						{{event.date}}
+						<p>{{event.description.substring(0,100) + "..."}}</p>
 					</div>
 				</div>
 			</div>
-			<div class="event-right">
-				<h4>{{event.title}}</h4>
-				{{event.date}}
-				<p>{{event.description.substring(0,100) + "..."}}</p>
+
+			<div class="wrapper50">
+				<div ng-repeat="event in events" class="event">
+					<div class="event-left"> 
+						<div class="logo-wrapper">
+							<div class="image-center-wrapper">
+								<img src={{event.imageUrl}}>
+							</div>
+						</div>
+					</div>
+					<div class="event-right">
+						<h4>{{event.title}}</h4>
+						{{event.date}}
+						<p>{{event.description.substring(0,100) + "..."}}</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -44,15 +65,15 @@
 
 
 <div class="homepage-bottom">
-	<div class="span3"> 
+	<div class="wrapper25"> 
 		<div class="image-center-wrapper">
 			<img class="oklahoma-element" src="images/Oklahoma_Element.png" alt="Oklahoma"/>
 		</div>
 	</div>
-	<div class="span6">
+	<div class="wrapper50">
 		<p class="about-text">{{blurb}}</p>
 	</div>
-	<div class="span3 pull-right">
+	<div class="wrapper25">
 		<div class="bolt">
 			BUILT BY BOLT
 		</div>

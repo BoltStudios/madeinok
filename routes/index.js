@@ -3,30 +3,40 @@ var User = require('../models/user.js')
 module.exports = function(app) {
 	require('./listing')(app)
 	require('./user')(app)
+	require('./home')(app)
+	require('./blog')(app)
 
 	app.get('/', function(req, res) {
+		res.render('index', { title: 'Express', appName: 'HomeApp' })
+	})
+
+	//these have to be in app.get('/whatever/',...) format with the slash before and after the route,
+	//otherwise, the angular routes break when using multiple apps.
+	app.get('/listing', function(req, res) { res.redirect('/listing/')})
+	app.get('/listing/', function(req, res) {
 		res.render('index', { title: 'Express', appName: 'ListApp' })
 	})
 
-	app.get('/account', function(req, res) {
+	app.get('/account', function(req, res) { res.redirect('/account/')})
+	app.get('/account/', function(req, res) {
 		res.render('index', { title: 'Express', appName: 'AccountApp'})
 	})
 
-	app.get('/home/:viewname', function(req, res) {
+	app.get('/home', function(req, res) { res.redirect('/home/')})
+	app.get('/home/', function(req, res) {
 		res.render('index', {title: 'Express', appName: 'HomeApp'})
 		// var viewname = req.params.viewname
 		// console.log(req.params.viewname);
 		// res.render('home/' + viewname)
 	})
 
-	app.get('/blog/:viewname', function(req, res) {		
+	app.get('/blog', function(req, res) { res.redirect('/blog/')})
+	app.get('/blog/', function(req, res) {		
 		res.render('index', {title: 'Express', appName: 'BlogApp'})
 		// var viewname = req.params.viewname
 		// console.log(req.params.viewname);
 		// res.render('blog/' + viewname)
 	})
-
-
 
 	app.post('/login', function(req, res) {
 		// should do validation
@@ -60,5 +70,15 @@ module.exports = function(app) {
 	app.get('/account/:viewname', function(req, res) {
 		var viewname = req.params.viewname
 		res.render('account/' + viewname)
+	})
+
+	app.get('/home/:viewname', function(req, res) {
+		var viewname = req.params.viewname
+		res.render('home/' + viewname)
+	})
+
+	app.get('/blog/:viewname', function(req, res) {
+		var viewname = req.params.viewname
+		res.render('blog/' + viewname)
 	})
 }

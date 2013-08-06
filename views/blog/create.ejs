@@ -25,15 +25,15 @@
     <div ng-switch on="rawEditor">
 	    <div ng-switch-when=false>
 	    	<label>Blog Text:</label>
-	    	<textarea ck-editor ng-model="$parent.postBody"/>
+	    	<textarea ck-editor ng-model="$parent.postBody"></textarea>
 		</div>  
 		<div ng-switch-when=true>
 			<label>Blog Text (Raw HTML):</label>
-			<textarea rows=10 class="span12" ng-model="$parent.postBody" placeholder="Tell us something cool..." />
+			<textarea rows=10 class="span12" ng-model="$parent.postBody" placeholder="editor..."></textarea>
 		</div>
 	</div>	
 
-	<div class=preview-wrapper ng-show=postTitle&&postBody>
+	<div class="preview-wrapper" ng-show=postBody&&postTitle>
 		<h4> Preview </h4>
 		<div class="span12 blog-post">
 		  <div class="blog-header">

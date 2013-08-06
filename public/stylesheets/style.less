@@ -2,15 +2,6 @@
  /////// TRISTIN'S ORIGINAL LESS ////////
 ////////////////////////////////////////
 
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
-
 // When inputs should be grouped, make them look like 1 cohesive unit.
 .input-group:first-of-type {
 	border-bottom: 0;
@@ -33,9 +24,6 @@ a {
 //load bootstraps
 @import "less/bootstrap/bootstrap-responsive.less";
 
-body {
-
-}
 
 //------home page------//
 ////////////////////////
@@ -67,14 +55,14 @@ body {
 }
 .events-wrapper{
 	height: 600px;
-	width: 50%;
 	overflow: hidden;
 }
 .event{
 	height: 100px;
 	background-color: @contrastColor;
 	padding: 0px;
-	margin:15px;
+	margin-top: 15px;
+	margin-bottom: 15px;
 	p{
 		color: @thunderDarkBlue;
 	}
@@ -101,7 +89,7 @@ body {
 .homepage-bottom{
 	overflow: hidden;
 	background-color: @contrastColor;
-	padding: 15px;
+	padding: 15px 0;
 }
 
 //------page stuff------//
@@ -122,6 +110,7 @@ body {
 	text-align: center;
 }
 .image-center-wrapper{
+	position:relative;
 	text-align: center;
 	width: 100%;
 }
@@ -129,6 +118,8 @@ body {
 	margin-left:auto;
 	margin-right:auto;
 	display: block;
+	max-height: 100%;
+	max-width: 100%;
 }
 
 //------blog stuff------//

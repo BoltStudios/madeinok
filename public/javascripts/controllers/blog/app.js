@@ -1,31 +1,39 @@
-var controllers = {
-	  index: BlogsCtrl
-  	, create: CreateCtrl
-  	, edit: EditCtrl
-  	, view: ViewCtrl
-}
-
-var views = {
-	  index: "/blog/index"
-	, create: "/blog/create"
-	, edit: "/blog/editor"
-	, view: "/blog/view/"
-}
-
 var app = angular.module('BlogApp', ['ngResource', 'ngCookies', 'authentication-service'])
 	.config(function($routeProvider, $locationProvider) {
 		$routeProvider
-			//index routes
-			.when('/blog', 			{ controller: controllers.index, 	templateUrl: views.index })
-			.when('/blog/index',    { controller: controllers.index, 	templateUrl: views.index })
+			//index routes					
+			.when('/', 				{ controller: BlogIndexCtrl, 	templateUrl: '/blog/index' 	})
+			.when('/blog/index',    { controller: BlogIndexCtrl, 	templateUrl: '/blog/index' 	})
 			//create routes
-			.when('/blog/create', 	{ controller: controllers.create, 	templateUrl: views.create })
-			.when('/blog/new', 		{ controller: controllers.create, 	templateUrl: views.create })
+			.when('/create', 		{ controller: BlogCreateCtrl, 	templateUrl: '/blog/create' })
+			.when('/new', 			{ controller: BlogCreateCtrl, 	templateUrl: '/blog/create' })
 			//edit routes
-			.when('/blog/edit/:id', { controller: controllers.edit, templateUrl: views.edit })
-			//view routes
-			.when('/blog/view/:id', { controller: controllers.view, templateUrl: views.view })
+			//.when('/edit/:id', 		{ controller: BlogEditCtrl, 	templateUrl: '/blog/edit' 	})
+			//view routes	
+			//.when('/view/:id', 		{ controller: BlogViewCtrl, 	templateUrl: '/blog/view' 	})
 			//Fallback
 			.otherwise({ redirectTo: '/' })
 			//$locationProvider.html5Mode(true) /* RIP IE9 */
 	})
+
+app.directive('ckEditor', function () {
+    return {
+        require: '?ngModel',
+        link: function (scope, elm, attr, ngModel) {
+
+            var ck = CKEDITOR.replace(elm[0]);
+
+            if (!ngModel) return;
+
+            ck.on('pasteState', function () {
+                scope.$apply(function () {
+                    ngModel.$setViewValue(ck.getData());
+                });
+            });
+
+            ngModel.$render = function (value) {
+                ck.setData(ngModel.$viewValue);
+            };
+        }
+    };
+});

@@ -4,17 +4,15 @@ var app = angular.module('ListApp', ['ngResource', 'ngCookies', 'authentication-
 	// Check the controllers for paths if you change these.
 	.config(function($routeProvider, $locationProvider) {
 		$routeProvider
-			.when('/', { controller: ListingCtrl, templateUrl: '/listings/index' })
-
 			// Creation process
-			.when('/create', { controller: CreateCtrl, templateUrl: '/listings/editor' })
-			.when('/create/:pageNumber', { controller: CreateCtrl, templateUrl: '/listings/editor' })
+			.when('/listing/create', 			 	{ controller: CreateCtrl, templateUrl: '/listings/editor' 	})
+			.when('/listing/create/:pageNumber', 	{ controller: CreateCtrl, templateUrl: '/listings/editor' 	})
 
 			// Editing
-			.when('/edit/:id', { controller: EditCtrl, templateUrl: '/listings/editor' })
-			.when('/edit/:id/:pageNumber', { controller: EditCtrl, templateUrl: '/listings/editor'})
+			.when('/listing/edit/:id', 				{ controller: EditCtrl,   templateUrl: '/listings/editor' 	})
+			.when('/listing/edit/:id/:pageNumber', 	{ controller: EditCtrl,   templateUrl: '/listings/editor'	})
 
-			.when('/view/:id', { controller: ViewCtrl, templateUrl: 'listings/view' })
+			.when('/listing/view/:id', 				{ controller: ViewCtrl,   templateUrl: 'listings/view' 		})
 
 			.otherwise({ redirectTo: '/' })
 			//$locationProvider.html5Mode(true) /* RIP IE9 */

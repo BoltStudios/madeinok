@@ -1,4 +1,4 @@
-function ListingCtrl($scope, $http, Listing) {
+function ListingIndexCtrl($scope, $http, Listing) {
 	$scope.count = 0
 	$scope.listings = Listing.query()
 

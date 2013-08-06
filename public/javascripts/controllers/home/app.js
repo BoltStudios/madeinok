@@ -1,30 +1,18 @@
-var controllers = {
-	  home: HomeCtrl
-  	, about: AboutCtrl
-  	, contact: ContactCtrl
-}
 
-var views = {
-	  home: "/home/index"
-	, about: "/home/about"
-	, contact: "/home/contact"
-}
 
-var app = angular.module('HomeApp', ['ngResource', 'ngCookies', 'authentication-service'])
+var app = angular.module('HomeApp', ['ngResource', 'ngCookies'])
 	.config(function($routeProvider, $locationProvider) {
 		$routeProvider
-			.when('/', { controller: HomeCtrl, templateUrl: '/listings/index' })
-
-			// Creation process
-			.when('/create', { controller: CreateCtrl, templateUrl: '/listings/editor' })
-			.when('/create/:pageNumber', { controller: CreateCtrl, templateUrl: '/listings/editor' })
-
-			// Editing
-			.when('/edit/:id', { controller: EditCtrl, templateUrl: '/listings/editor' })
-			.when('/edit/:id/:pageNumber', { controller: EditCtrl, templateUrl: '/listings/editor'})
-
-			.when('/view/:id', { controller: ViewCtrl, templateUrl: 'listings/view' })
-
+			//Index routes
+			.when('/', 				{ controller: HomeIndexCtrl, 	templateUrl: '/home/index' 		})
+			.when('/index', 		{ controller: HomeIndexCtrl, 	templateUrl: '/home/index' 		})
+			//About routes
+			.when('/about', 		{ controller: HomeAboutCtrl, 	templateUrl: '/home/about' 		})
+			.when('/home/about', 	{ controller: HomeAboutCtrl, 	templateUrl: '/home/about' 		})
+			//Contact routes
+			.when('/contact', 		{ controller: HomeContactCtrl, 	templateUrl: '/home/contact'	})
+			.when('/home/contact', 	{ controller: HomeContactCtrl, 	templateUrl: '/home/contact'	})
+			//Fallback
 			.otherwise({ redirectTo: '/' })
 			//$locationProvider.html5Mode(true) /* RIP IE9 */
 	})

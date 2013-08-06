@@ -2,10 +2,9 @@ var app = angular.module('AccountApp', ['ngResource', 'authentication-service'])
 	
 	.config(function($routeProvider, $locationProvider) {
 		$routeProvider
-			.when('/', {controller: AccountIndexCtrl, templateUrl: '/account/index'})
-			.when('/login', {controller: AccountSessionCtrl, templateUrl: '/account/login'})
-			.when('/create', {controller: AccountCreateCtrl, templateUrl: '/account/create'})
-
+			.when('/account', 		 { controller: AccountIndexCtrl, 	templateUrl: '/account/index'	})
+			.when('/account/login',  { controller: AccountSessionCtrl, 	templateUrl: '/account/login'	})
+			.when('/account/create', { controller: AccountCreateCtrl, 	templateUrl: '/account/create'	})
 			.otherwise({ redirectTo: '/' })
 	})
 
