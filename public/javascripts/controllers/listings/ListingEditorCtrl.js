@@ -14,8 +14,13 @@ function ListingEditorCtrl($scope, $location, $http, $routeParams, Authenticatio
 	// If a listingId is available, the fields should be populated (we're editing)
 	// If the form data has information already (creating and saving), don't hit the DB again
 	if($scope.listingId && Object.keys($scope.formData).length == 0) {
-		var entry = Listing.get({id: $scope.listingId})
-		$scope.formData = entry
+		var entry = Listing.get({id: $scope.listingId}, function(success) {
+			console.log(JSON.stringify(success))
+			$scope.formData = success
+		}, function(error) {
+
+		})
+		//$scope.formData = entry
 	}
 
 	// Page number of the form

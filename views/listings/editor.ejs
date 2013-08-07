@@ -51,18 +51,6 @@
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='hiringUrl'>Hiring Page / Job Postings URL <span class='text-error'>*</span></label>
-			<div class='controls'>
-				<input type='url' name='hiringUrl' ng-model='formData.hiringUrl' placeholder='http://' autocorrect='off' required />
-
-				<div ng-show='listCreate.hiringUrl.$dirty && listCreate.hiringUrl.$invalid' class='alert alert-error'>
-					<span ng-show='listCreate.hiringUrl.$error.required'>A jobs posting URL is required.</span>
-					<span ng-show='listCreate.hiringUrl.$error.url'>This is not a valid URL. Try beginning the URL with 'http://'</span>
-				</div>
-			</div>
-		</div>
-
-		<div class='control-group'>
 			<label class='control-label' for='address.line1'>Address <span class='text-error'>*</span></label>
 			<div class='controls'>
 				<input type='text' name='address_line1' ng-model='formData.address.line1' placeholder='Address Line 1' autocorrect='off' required class='input-group' /><br/>
@@ -393,16 +381,25 @@
 		<legend>Hiring Information <small class='pull-right'>{{ currentPage }} of {{  lastPageNumber }}</small></legend>
 
 		<div class='control-group'>
-			<label class='control-label' for='hiringUrl'>Jobs URL</label>
+			<label class='control-label' for='hiringUrl'>Hiring Page <span class='text-error'>*</span></label>
 			<div class='controls'>
-				<input type='url' name='hiringUrl' ng-model='hiringUrl' placeholder='http://' autocorrect='off' />
+				<input type='url' name='hiringUrl' ng-model='formData.hiringUrl' placeholder='http://' autocorrect='off' required />
+
+				<div ng-show='listCreate.hiringUrl.$dirty && listCreate.hiringUrl.$invalid' class='alert alert-error'>
+					<span ng-show='listCreate.hiringUrl.$error.required'>A jobs posting URL is required.</span>
+					<span ng-show='listCreate.hiringUrl.$error.url'>This is not a valid URL. Try beginning the URL with 'http://'</span>
+				</div>
 			</div>
 		</div>
 
 		<div class='control-group'>
 			<label class='control-label' for='hiringEmail'>Contact Email</label>
 			<div class='controls'>
-				<input type='email' name='hiringEmail' ng-model='hiringEmail' placeholder='Your Hiring Contact Email' autocorrect='off' />
+				<input type='email' name='hiringEmail' ng-model='formData.hiringEmail' placeholder='Your Hiring Contact Email' autocorrect='off' />
+
+				<div ng-show='listCreate.hiringEmail.$dirty && listCreate.hiringEmail.$invalid' class='alert alert-error'>
+					<span ng-show='listCreate.hiringEmail.$error.email'>This is not a valid email address.'</span>
+				</div>
 			</div>
 		</div>
 
@@ -410,10 +407,10 @@
 			<label class='control-label' for='isHiring'>Hiring?</label>
 			<div class='controls'>
 				<label class='radio'>
-					<input type='radio' name='isHiring' value='true'>Yes
+					<input type='radio' name='isHiring' value='true' ng-model='formData.isHiring' ng-checked='formData.isHiring'>Yes
 				</label>
 				<label class='radio'>
-					<input type='radio' name='isHiring' value='false'>No
+					<input type='radio' name='isHiring' value='false' ng-model='formData.isHiring' ng-checked='!formData.isHiring'>No
 				</label>
 			</div>
 		</div>
@@ -422,10 +419,10 @@
 			<label class='control-label' for='isInternshipAvailable'>Internships Available?</label>
 			<div class='controls'>
 				<label class='radio'>
-					<input type='radio' name='isInternshipAvailable' value='true'>Yes
+					<input type='radio' name='isInternshipAvailable' ng-value='true' ng-model='formData.hasInternships' ng-checked='formData.hasInternships'>Yes
 				</label>
 				<label class='radio'>
-					<input type='radio' name='isInternshipAvailable' value='false'>No
+					<input type='radio' name='isInternshipAvailable' ng-value='false' ng-model='formData.hasInternships' ng-checked='!formData.hasInternships'>No
 				</label>
 			</div>
 		</div>

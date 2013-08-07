@@ -53,7 +53,6 @@ var ListingSchema = new mongoose.Schema({
 
 	companyName: 		{type: String, default: 'Unpublished Entry'},
 	websiteUrl: 		{type: String},
-	hiringUrl:      	{type: String},
 	phoneNumber: 		{type: String},
 	address: 			{line1: {type: String}, line2: {type: String}, city: {type: String}},
 	twitterHandle: 		{type: String},
@@ -79,7 +78,11 @@ var ListingSchema = new mongoose.Schema({
 	totalTeamSize: 		{type: Number},
 	developmentOk: 		{type: Number},
 
-	founders: 			[Founder]
+	founders: 			[Founder],
+	hiringUrl:      	{type: String},
+	hiringEmail: 		{type: String, lowercase: true},
+	isHiring: 			{type: Boolean, default: false},
+	hasInternships: 	{type: Boolean, default: false}
 })
 
 module.exports = mongoose.model('Listings', ListingSchema)
