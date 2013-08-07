@@ -1,5 +1,5 @@
 var User = require('../models/user')
-  , _ = require('lodash')
+  , _ = require('underscore')
   , filters = require('./_actionFilters.js')
   , Listing = require('../models/listing')
 
@@ -11,9 +11,12 @@ module.exports = function(app) {
 	})
 
 	/* Returns all the users */
+	// TODO: don't include guid
 	app.get('/api/users', function(req, res) {
 		User.find(function(err, users) {
-			res.send(users)
+			// couldn't get omit to work, so i had to do this instead
+			var noIds = _.map(users, function(u, key) { return _.pick(u, 'name', 'role') })
+			res.send(noIds)
 		})
 	})
 

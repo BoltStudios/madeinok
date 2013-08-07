@@ -20,8 +20,12 @@
 var mongoose = require('mongoose')
 
 var UserSchema = new mongoose.Schema({
+
+	// got this from the oath
 	provider: {type: String},
 	id: {type: String},
+	name: {type: String},
+
 	email: {type: String},
 	role: {type: String, default: 'user'}
 })

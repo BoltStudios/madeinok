@@ -30,13 +30,14 @@ module.exports = function(app) {
 		callbackURL: '/auth/twitter/callback',
 	}, function(token, tokenSecret, profile, done) {
 		var object = {provider: profile.provider, id: profile.id}
+		var profileObject = {provider: profile.provider, id: profile.id, name: profile.displayName}
 
 		// Find or create a user!
 		User.findOne(object, function(error, user) {
 			if(error) {
 				return done(error)
 			} else if(!user) {
-				new User(object).save(function(error, newUser) {
+				new User(profileObject).save(function(error, newUser) {
 					return done(null, newUser)
 				})
 			} else {

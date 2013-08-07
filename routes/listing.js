@@ -1,5 +1,4 @@
 var Listing = require('../models/listing.js')
-  , _ = require('lodash')
   , filters = require('./_actionFilters.js')
 
 module.exports = function(app) {
