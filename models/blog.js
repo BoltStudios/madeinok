@@ -7,4 +7,4 @@ var BlogSchema = new mongoose.Schema({
 	, date: 	{ type: Date   }
 })
 
-module.exports = mongoose.model('Blog', BlogSchema)
+module.exports = mongoose.model('Blogs', BlogSchema)
