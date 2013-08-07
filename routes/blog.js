@@ -46,7 +46,7 @@ module.exports = function(app) {
 		var newBlog = req.body
 		//newBlog.creator = req.signedCookies.user
 
-		new Blog(newBlog).save(function(err, blog, count) {
+		new Blogs(newBlog).save(function(err, blog, count) {
 			res.send(blog)
 		})
 	})
