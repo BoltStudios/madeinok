@@ -16,9 +16,6 @@ function ListingEditorCtrl($scope, $location, $http, $routeParams, Authenticatio
 	if($scope.listingId && Object.keys($scope.formData).length == 0) {
 		var entry = Listing.get({id: $scope.listingId})
 		$scope.formData = entry
-		// ListingService.retrieve($scope.listingId).success(function(response) {
-		// 	$scope.formData = response
-		// })
 	}
 
 	// Page number of the form
@@ -33,17 +30,8 @@ function ListingEditorCtrl($scope, $location, $http, $routeParams, Authenticatio
 	$scope.maxBlurbLength = 250
 
 	// Company Types
-	$scope.companyTypes = [
-    	{type: 'Technology'}
-      , {type: 'Agency'}
-      , {type: 'Dev Shop'}
-      , {type: 'Service Firm'}
-      , {type: 'Incubator/Accelerator'}
-      , {type: 'VC/Angel Fund'}
-      , {type: 'Other'}
-  	]
-	$scope.companyType = $scope.companyTypes[0]
-
+  	$scope.companyTypes = ['Technology', 'Agency', 'Dev Shop', 'Service Firm', 'Incubator/Accelerator', 'VC/Angel Fund', 'Other']
+  	$scope.formData.companyType = $scope.companyTypes[0]
 
 	// Product types
 	$scope.productTypes = [
@@ -61,26 +49,12 @@ function ListingEditorCtrl($scope, $location, $http, $routeParams, Authenticatio
 	$scope.productTypesOtherDescription = ''
 
 
-	// Industry Focus
-	$scope.industryFocuses = [
-		{focus: 'Energy'}
-	  , {focus: 'Healthcare / Biotech'}
-	  , {focus: 'Retail / E-Commerce'}
-	  , {focus: 'Consumer Web'}
-	  , {focus: 'Gaming'}
-	  , {focus: 'Marketing / Advertising'}	
-	  , {focus: 'IT'}
-	  , {focus: 'Media'}
-	  , {focus: 'Finance'}
-	  , {focus: 'Education'}
-	  , {focus: 'Sports'}
-	  , {focus: 'Travel'}
-	  , {focus: 'Business Services'}
-	  , {focus: 'Food'}  	  
-	  , {focus: 'Other'}
-	]
-	$scope.industryFocus = $scope.industryFocuses[0]
-	$scope.industryFocusOtherDescription = ''
+	// Industry focus
+	$scope.formData.industryFocus = {}
+	$scope.industryFocuses = ['Energy', 'Healthcare/Biotech', 'Retail/E-Commerice', 'Consumer Web', 'Gaming',
+							  'Marketing/Advertising', 'IT', 'Media', 'Finance', 'Education', 'Sports', 'Travel',
+							  'Business Services', 'Food', 'Other']
+	$scope.formData.industryFocus.option = $scope.industryFocuses[0]
 
 
 	// Primary Customers
@@ -145,7 +119,7 @@ function ListingEditorCtrl($scope, $location, $http, $routeParams, Authenticatio
 
 	/* Shows the other description box if other industry type selected */
 	$scope.otherIndustrySelected = function() {
-		return $scope.industryFocus.focus == 'Other'
+		return $scope.formData.industryFocus == 'Other'
 	}
 
 	$scope.addFounder = function() {
@@ -164,28 +138,37 @@ function ListingEditorCtrl($scope, $location, $http, $routeParams, Authenticatio
 
 	/* Saves the form data to the database.
 	 * Does not publish the entry (that's submit)
+	 * 
+	 * This uses a callback because I need to ensure changes occur before going to the next page.
 	*/
-	$scope.save = function() {
+	$scope.save = function(callback) {
 		$scope.info = 'Saving...'
-		!$scope.listingId ? httpCreate() : httpEdit()
+		!$scope.listingId ? httpCreate(callback) : httpEdit(callback)
 		$scope.info = ''
 		$scope.success = 'Saved your changes'
 	}
 
 
 	/* Creates a new listing.
+	 * This is whacky because I have to pass around a callback in order to get things to 
+	 * execute in the right order.
+	 * save() -> Create (wait for a successful save) -> update the ID -> callback()
 	*/
-	var httpCreate = function() {
+	var httpCreate = function(callback) {
 		Listing.save({}, $scope.formData, function(response) {
-			$scope.listingId = response._id
+		}).$then(function(response) {
+			$scope.listingId = response.data._id
+			if(callback) callback()
+		}, function(error) {
 		})
 	}
 
 
 	/* Edits a listing
 	*/
-	var httpEdit = function() {
-		Listing.save({id: $scope.listingId}, $scope.formData)
+	var httpEdit = function(callback) {
+		Listing.save({id: $scope.listingId}, $scope.formData, function(response) {
+		})
 	}
 
 
@@ -193,21 +176,30 @@ function ListingEditorCtrl($scope, $location, $http, $routeParams, Authenticatio
 	 * I'm making the assumption that the path to those pages will be something containing 
 	 * the words "create" or "edit". This returns one of those strings.
 	 */
-	 var pagePath = function() {
-	 	var path = $location.path().match(/\bcreate/) != null ? '/create/' : ('/edit/' + $scope.listingId + '/')
-	 	return path
+	 var pagePath = function(id) {
+	 	function pathBuilder() {
+	 		return $location.path().match(/\bcreate/) != null ? ('/create/' + id + '/') : ('/edit/' + id + '/')
+	 	}
+	 	if(!id)
+	 		id = $scope.listingId
+
+	 	return pathBuilder()
 	 }
 
 
 	$scope.nextPage = function() {
-		this.save()
-		$location.path(pagePath() + ++$scope.currentPage);
+		var increment = function() {
+			$location.path(pagePath() + ++$scope.currentPage)
+		}
+		this.save(increment)
 	}
 
 
 	$scope.previousPage = function() {
-		this.save()
-		$location.path(pagePath() + --$scope.currentPage);
+		var decrement = function() {
+			$location.path(pagePath() + --$scope.currentPage)
+		}
+		this.save(decrement)
 	}
 
 }

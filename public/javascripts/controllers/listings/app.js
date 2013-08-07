@@ -8,6 +8,7 @@ var app = angular.module('ListApp', ['ngResource', 'ngCookies', 'authentication-
 
 			// Creation process
 			.when('/create', { controller: ListingCreateCtrl, templateUrl: '/listings/editor', resolve: SessionMaster.resolve })
+			.when('/create/:id/:pageNumber', {controller: ListingCreateCtrl, templateUrl: '/listings/editor', resolve: SessionMaster.resolve })
 			.when('/create/:pageNumber', { controller: ListingCreateCtrl, templateUrl: '/listings/editor', resolve: SessionMaster.resolve })
 
 			// Editing
@@ -52,7 +53,7 @@ app.directive('maxlengthlimit', function() {
 		link: function(scope, element, attrs, ngModelCtrl) {
 			var maxLength = Number(attrs.maxlengthlimit)
 			function fromUser(text) {
-				if(text.length > maxLength) {
+				if(text && text.length > maxLength) {
 					var transformedInput = text.substring(0, maxLength)
 					ngModelCtrl.$setViewValue(transformedInput);
             		ngModelCtrl.$render();
@@ -61,6 +62,23 @@ app.directive('maxlengthlimit', function() {
 				return text
 			}
 			ngModelCtrl.$parsers.push(fromUser)
+		}
+	}
+})
+
+app.directive('integerInput', function() {
+	return {
+		require: 'ngModel',
+		link: function(scope, element, attrs, ctrl) {
+			function fromUser(text) {
+				var transformedInput = text.replace(/[^0-9]/g, '')
+				if(transformedInput != text) {
+					ctrl.$setViewValue(transformedInput)
+					ctrl.$render()
+				}
+				return transformedInput
+			}
+			ctrl.$parsers.push(fromUser)
 		}
 	}
 })

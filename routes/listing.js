@@ -1,5 +1,6 @@
 var Listing = require('../models/listing.js')
   , filters = require('./_actionFilters.js')
+  , _ = require('underscore')
 
 module.exports = function(app) {
 	

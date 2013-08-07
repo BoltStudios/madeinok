@@ -25,7 +25,19 @@
 
 <div ng-show='currentPage == 1'>
 	<fieldset>
-		<legend>Company Basics <small class='pull-right'>{{ currentPage }} of {{  lastPageNumber }}</small></legend>
+		<legend>Who Are You? <small class='pull-right'>{{ currentPage }} of {{  lastPageNumber }}</small></legend>
+
+		<div class='control-group'>
+			<label class='control-label' for='phoneNumber'>Phone Number <span class='text-error'>*</span></label>
+			<div class='controls'>
+				<input type='tel' name='phoneNumber' ng-model='formData.phoneNumber' placeholder='Phone Number' autocorrect='off' required />
+
+				<div ng-show='listCreate.phoneNumber.$dirty && listCreate.phoneNumber.$invalid' class='alert alert-error'>
+	          		<span ng-show='listCreate.phoneNumber.$error.required'>A phone number is required.</span>
+	         		<span ng-show='listCreate.phoneNumber.$error.tel'>This is not a valid number.</span>
+	        	</div>
+			</div>
+		</div>
 
 		<div class='control-group'>
 			<label class='control-label' for='companyName'>Company Name <span class='text-error'>*</span></label>
@@ -35,30 +47,6 @@
 				<div ng-show='listCreate.companyName.$dirty && listCreate.companyName.$invalid' class='alert alert-error'>
 					<span ng-show='listCreate.companyName.$error.required'>A company name is required.</span>
 				</div>		
-			</div>
-		</div>
-
-		<div class='control-group'>
-			<label class='control-label' for='websiteUrl'>Website <span class='text-error'>*</span></label>
-			<div class='controls'>
-				<input type='url' name='websiteUrl' ng-model='formData.websiteUrl' placeholder='http://' autocorrect='off' required />
-
-				<div ng-show='listCreate.websiteUrl.$dirty && listCreate.websiteUrl.$invalid' class='alert alert-error'>
-					<span ng-show='listCreate.websiteUrl.$error.required'>A company website is required.</span>
-					<span ng-show='listCreate.websiteUrl.$error.url'>This is not a valid URL. Try beginning the URL with 'http://'</span>
-				</div>
-			</div>
-		</div>
-
-		<div class='control-group'>
-			<label class='control-label' for='hiringUrl'>Hiring Page / Job Postings URL <span class='text-error'>*</span></label>
-			<div class='controls'>
-				<input type='url' name='hiringUrl' ng-model='formData.hiringUrl' placeholder='http://' autocorrect='off' required />
-
-				<div ng-show='listCreate.hiringUrl.$dirty && listCreate.hiringUrl.$invalid' class='alert alert-error'>
-					<span ng-show='listCreate.hiringUrl.$error.required'>A jobs posting URL is required.</span>
-					<span ng-show='listCreate.hiringUrl.$error.url'>This is not a valid URL. Try beginning the URL with 'http://'</span>
-				</div>
 			</div>
 		</div>
 
@@ -75,6 +63,18 @@
 
 				<div ng-show='listCreate.address_city.$dirty && listCreate.address_city.$invalid' class='alert alert-error'>
 					<span ng-show='listCreate.address_city.$error.required'>A city is required.</span>
+				</div>
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='websiteUrl'>Website <span class='text-error'>*</span></label>
+			<div class='controls'>
+				<input type='url' name='websiteUrl' ng-model='formData.websiteUrl' placeholder='http://' autocorrect='off' required />
+
+				<div ng-show='listCreate.websiteUrl.$dirty && listCreate.websiteUrl.$invalid' class='alert alert-error'>
+					<span ng-show='listCreate.websiteUrl.$error.required'>A company website is required.</span>
+					<span ng-show='listCreate.websiteUrl.$error.url'>This is not a valid URL. Try beginning the URL with 'http://'</span>
 				</div>
 			</div>
 		</div>
@@ -132,34 +132,19 @@
 		<legend>Company Basics <small class='pull-right'>{{ currentPage }} of {{  lastPageNumber }}</small></legend>
 
 		<div class='control-group'>
-			<label class='control-label' for='phrase'>Describe your company in one phrase <span class='text-error'>*</span></label>
+			<label class='control-label' for='changeTheWorld'>How you'll change the world</label>
 			<div class='controls'>
-				<input type='text' name='phrase' ng-model='formData.phrase' required />
-
-				<div ng-show='listCreate.phrase.$dirty && listCreate.phrase.$invalid' class='alert alert-error'>
-					<span ng-show='listCreate.phrase.$error.required'>This is required.</span>
-				</div>
-			</div>
-		</div>
-
-		<div class='control-group'>
-			<label class='control-label' for='changeTheWorld'>How you'll change the world <span class='text-error'>*</span></label>
-			<div class='controls'>
-				<textarea maxlengthlimit='{{ maxBlurbLength }}' rows='5' name='changeTheWorld' ng-model='formData.changeTheWorld' placeholder='{{ maxBlurbLength }} characters' required></textarea><br/>
+				<textarea maxlengthlimit='{{ maxBlurbLength }}' rows='5' name='changeTheWorld' ng-model='changeTheWorld' placeholder='{{ maxBlurbLength }} characters'></textarea><br/>
 				<span ng-bind='maxBlurbLength - changeTheWorld.length'></span>
 				<ng-pluralize count='maxBlurbLength - changeTheWorld.length'
 				  when="{'1': 'character', 'other': 'characters'}"></ng-pluralize> remaining
-
-				<div ng-show='listCreate.changeTheWorld.$dirty && listCreate.changeTheWorld.$invalid' class='alert alert-error'>
-					<span ng-show='listCreate.changeTheWorld.$error.required'>This is required.</span>
-				</div>
 			</div>
 		</div>
 
 		<div class='control-group'>
 			<label class='control-label' for='somethingAwesome'>Something awesome about you</label>
 			<div class='controls'>
-				<textarea maxlengthlimit='{{ maxBlurbLength }}' rows='5' name='somethingAwesome' ng-model='formData.somethingAwesome' placeholder='{{ maxBlurbLength }} characters'></textarea><br/>
+				<textarea maxlengthlimit='{{ maxBlurbLength }}' rows='5' name='somethingAwesome' ng-model='somethingAwesome' placeholder='{{ maxBlurbLength }} characters'></textarea><br/>
 				<span ng-bind='maxBlurbLength - somethingAwesome.length'></span>
 				<ng-pluralize count='maxBlurbLength - somethingAwesome.length'
 				  when="{'1': 'character', 'other': 'characters'}"></ng-pluralize> remaining
@@ -191,24 +176,16 @@
 		<legend>Company Stats <small class='pull-right'>{{ currentPage }} of {{  lastPageNumber }}</small></legend>
 
 		<div class='control-group'>
-			<label class='control-label' for='foundingYear'>Year Founded <span class='text-error'>*</span></label>
+			<label class='control-label' for='foundingYear'>Year Founded</label>
 			<div class='controls'>
-				<input type='number' min='1800' placeholder='YYYY' name='foundingYear' ng-model='formData.foundingYear' ng-pattern='/\b\d{4}\b/' required />
-
-				<div ng-show='listCreate.foundingYear.$dirty && listCreate.foundingYear.$invalid' class='alert alert-error'>
-					<span ng-show='listCreate.foundingYear.$error.number'>That's not even a number.</span>
-					<span ng-show='listCreate.foundingYear.$error.required'>This is required.</span>
-					<span ng-show='listCreate.foundingYear.$error.min'>Enter a believable year.</span>
-					<span ng-show='listCreate.foundingYear.$error.pattern'>Year should be in YYYY format.</span>
-				</div>
-
+				<input type='number' min='1900' placeholder='19XX' name='foundingYear' ng-model='formData.foundingYear' ng-maxlength='4'/>
 			</div>
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='companyType'>Company Type <span class='text-error'>*</span></label>
+			<label class='control-label' for='companyType'>Company Type</label>
 			<div class='controls'>
-				<select name='companyType' ng-model='formData.companyType' ng-options='type for type in companyTypes' required></select>
+				<select ng-model="companyType" ng-options="c.type for c in companyTypes"></select>
 			</div>
 		</div>
 
@@ -221,19 +198,19 @@
 
 				<div ng-show='otherProductTypeChecked()' class='alert alert-warning'>
 					<p>Please describe...</p>
-					<input type='text' placeholder='Description' ng-model='formData.productTypesOtherDescription' />
+					<input type='text' placeholder='Description' ng-model='productTypesOtherDescription' />
 				</div>
 			</div>
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='industryFocus'>Industry Focus <span class='text-error'>*</span></label>
+			<label class='control-label' for='industryFocus'>Industry Focus</label>
 			<div class='controls'>
-				<select ng-model='formData.industryFocus.option' ng-options='type for type in industryFocuses'></select>
+				<select ng-model='industryFocus' ng-options='f.focus for f in industryFocuses'></select>
 
-				<div ng-show='otherIndustrySelected()' class='alert alert-info'>
+				<div ng-show='otherIndustrySelected()' class='alert alert-warning'>
 					<p>Please describe...</p>
-					<input type='text' placeholder='Description' ng-model='formData.industryFocus.description' />
+					<input type='text' placeholder='Description' ng-model='industryFocusDescription' />
 				</div>
 			</div>
 		</div>

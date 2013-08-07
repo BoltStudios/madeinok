@@ -29,7 +29,7 @@ module.exports = function(app) {
 	})
 
 	/* Create a new user */
-	app.post('/api/users', function(req, res) {
+	app.post('/api/users', filters.isLoggedIn, function(req, res) {
 		var newUser = {}
 		newUser = req.body
 
