@@ -1,9 +1,10 @@
-var app = angular.module('ListApp', ['ngResource', 'ngCookies', 'authentication-service'])
+var app = angular.module('ListApp', ['ngResource', 'ngCookies', 'authentication-service', 'session-service', 'listing-factory'])
 
 	// Configure routes
 	// Check the controllers for paths if you change these.
 	.config(function($routeProvider, $locationProvider) {
 		$routeProvider
+<<<<<<< HEAD
 			// Creation process
 			.when('/listing/create', 			 	{ controller: CreateCtrl, templateUrl: '/listings/editor' 	})
 			.when('/listing/create/:pageNumber', 	{ controller: CreateCtrl, templateUrl: '/listings/editor' 	})
@@ -13,76 +14,24 @@ var app = angular.module('ListApp', ['ngResource', 'ngCookies', 'authentication-
 			.when('/listing/edit/:id/:pageNumber', 	{ controller: EditCtrl,   templateUrl: '/listings/editor'	})
 
 			.when('/listing/view/:id', 				{ controller: ViewCtrl,   templateUrl: 'listings/view' 		})
+=======
+			.when('/', { controller: ListingIndexCtrl, templateUrl: '/listings/index' })
+
+			// Creation process
+			.when('/create', { controller: ListingCreateCtrl, templateUrl: '/listings/editor', resolve: SessionMaster.resolve })
+			.when('/create/:pageNumber', { controller: ListingCreateCtrl, templateUrl: '/listings/editor', resolve: SessionMaster.resolve })
+
+			// Editing
+			.when('/edit/:id', { controller: ListingEditCtrl, templateUrl: '/listings/editor', resolve: SessionMaster.resolve })
+			.when('/edit/:id/:pageNumber', { controller: ListingEditCtrl, templateUrl: '/listings/editor', resolve: SessionMaster.resolve })
+
+			.when('/view/:id', { controller: ListingViewCtrl, templateUrl: 'listings/view' })
+>>>>>>> f8372283994c805b2a99ba32cc36b4c505c8a6df
 
 			.otherwise({ redirectTo: '/' })
 			//$locationProvider.html5Mode(true) /* RIP IE9 */
 	})
 
-	// Interceptor for stuff
-	//https://www.youtube.com/watch?v=hqAyiqUs93c?t=43m50s
-	// .config(function($httpProvider) {
-
-	// 	//If the status code is 401, I still want to see the error message.
-	// 	$httpProvider.responseInterceptors.push(function($q, $location) {
-	// 		var success = function(response) {
-	// 			return response
-	// 		}
-	// 		var error = function(response) {
-	// 			// If 41 error occurs, the user is not authorized to perform an action.
-	// 			if(response.status == 401) {
-	// 				console.log(response)
-	// 				return response.data.error
-	// 			}
-	// 			return $q.reject(response)
-	// 		}
-
-	// 		return function(promise) {
-	// 			return promise.then(success, error)
-	// 		}
-
-	// 	})
-	// })
-
-	// .config(function ($httpProvider) {
-
- //  		var logsOutUserOn401 = ['$q', '$location', function ($q, $location) {
- //    		var success = function (response) {
- //      			return response;
- //    		}
-
-	//     	var error = function (response) {
-	//       		if (response.status === 401) {
-	//         		//redirect them back to login page
-	//         		$location.path('/')
-
-	//         		return $q.reject(response)
-	//       		} 
-	//       		else {
-	//         		return $q.reject(response)
-	//       		}
-	//     	}
-
-	//     	return function (promise) {
-	//       		return promise.then(success, error)
-	//     	}
- //  		}]
-
- //  		$httpProvider.responseInterceptors.push(logsOutUserOn401);
-	// })
-
-	/* This is a Listing resource. By default, a resource has these methods:
-	 * get({id: X}) GET 							-> /api/listings/X
-	 * save({}, newInfo) POST 						-> /api/listings/
-	 * save({id: X}, newInfo) POST (obj.$save())	-> /api/listings/X
-	 * query() get 									-> /api/listings
-	 * remove({id: X}) POST 						-> /api/listings/X
-	 * delete({id: X}) POST 						-> /api/listings/X
-	 * All of this gets based on your base URL, which is supplied to the resource
-	 * The example URL is included above
-	*/
-	.factory('Listing', ['$resource', function($resource) {
-		return $resource('/api/listings/:id', {listingId: '@id'})
-	}])
 
 
 	.run(function($rootScope, $location, AuthenticationService) {

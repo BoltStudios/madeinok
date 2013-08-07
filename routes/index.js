@@ -3,6 +3,7 @@ var User = require('../models/user.js')
 module.exports = function(app) {
 	require('./listing')(app)
 	require('./user')(app)
+<<<<<<< HEAD
 	require('./home')(app)
 	require('./blog')(app)
 
@@ -57,6 +58,15 @@ module.exports = function(app) {
 		res.clearCookie('user')
 		res.send(200)
 	})
+=======
+	require('./account')(app)
+
+	app.get('/', function(req, res) {
+		console.log('request user ' + JSON.stringify(req.user))
+		res.render('index', { title: 'Express', appName: 'ListApp' })
+	})
+
+>>>>>>> f8372283994c805b2a99ba32cc36b4c505c8a6df
 
 	/* This route makes AngularJS play nicely with Express.
 	   Links will still just appear as .../#/viewname in the browser. 

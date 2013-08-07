@@ -1,5 +1,5 @@
 var User = require('../models/user')
-  , _ = require('lodash')
+  , _ = require('underscore')
   , filters = require('./_actionFilters.js')
   , Listing = require('../models/listing')
 
@@ -7,13 +7,16 @@ module.exports = function(app) {
 
 	/* Get the current user logged in */
 	app.get('/api/users/current', filters.isLoggedIn, function(req, res) {
-		res.send(req.signedCookies.user)
+		res.send(req.user)
 	})
 
 	/* Returns all the users */
+	// TODO: don't include guid
 	app.get('/api/users', function(req, res) {
 		User.find(function(err, users) {
-			res.send(users)
+			// couldn't get omit to work, so i had to do this instead
+			var noIds = _.map(users, function(u, key) { return _.pick(u, 'name', 'role') })
+			res.send(noIds)
 		})
 	})
 
@@ -70,7 +73,7 @@ module.exports = function(app) {
 	/* Get the listings for a user */
 	app.get('/api/users/:id/listings', filters.isLoggedIn, function(req, res) {
 		var id = req.params.id || 0
-		Listing.find({creator: id}, function(err, listings) {
+		Listing.find({creatorId: id}, function(err, listings) {
 			if(!err) {
 				res.send(listings)
 			}

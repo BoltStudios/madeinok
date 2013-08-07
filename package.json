@@ -10,7 +10,7 @@
     "ejs": "*",
     "less-middleware": "*",
     "mongoose": "*",
-    "lodash": "*",
+    "underscore": "*",
     "bcrypt": "*"
   }
 }

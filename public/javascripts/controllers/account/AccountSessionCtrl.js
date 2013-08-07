@@ -2,8 +2,8 @@ function AccountSessionCtrl($scope, $http, $location, FlashService, Authenticati
 
 	$scope.credentials = {}
 
-	if(AuthenticationService.isLoggedIn())
-		$location.path('/')
+	// if(AuthenticationService.isLoggedIn())
+	// 	$location.path('/')
 
 	$scope.login = function() {
 		AuthenticationService.logIn($scope.credentials)

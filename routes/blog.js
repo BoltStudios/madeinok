@@ -1,25 +1,3 @@
-/* 
-	There is a goddamned error when posting to this from angular...
-
-	{"error":
-		{
-			"message":"Blogisnotdefined",
-			"stack":"ReferenceError:
-------->		Blogisnotdefined\n          <-------- (I think this is the problem, and I think it lives at .../okstartups/routes/blog.js:49)
-				at/Users/calekennedy/Projects/okstartups/routes/blog.js:49:7\n
-				atcallbacks(/Users/calekennedy/Projects/okstartups/node_modules/express/lib/router/index.js:161:37)\n
-				atmodule.exports.isLoggedIn(/Users/calekennedy/Projects/okstartups/routes/_actionFilters.js:7:3)\n
-				atcallbacks(/Users/calekennedy/Projects/okstartups/node_modules/express/lib/router/index.js:161:37)\n
-				atparam(/Users/calekennedy/Projects/okstartups/node_modules/express/lib/router/index.js:135:11)\n
-				atpass(/Users/calekennedy/Projects/okstartups/node_modules/express/lib/router/index.js:142:5)\n
-				atRouter._dispatch(/Users/calekennedy/Projects/okstartups/node_modules/express/lib/router/index.js:170:5)\n
-				atObject.router(/Users/calekennedy/Projects/okstartups/node_modules/express/lib/router/index.js:33:10)\n
-				atnext(/Users/calekennedy/Projects/okstartups/node_modules/express/node_modules/connect/lib/proto.js:190:15)\n
-				atnext(/Users/calekennedy/Projects/okstartups/node_modules/express/node_modules/connect/lib/middleware/session.js:312:9)"
-		}
-	}
-*/
-
 var Blogs = require('../models/blog.js')
   , _ = require('lodash')
   , filters = require('./_actionFilters.js')

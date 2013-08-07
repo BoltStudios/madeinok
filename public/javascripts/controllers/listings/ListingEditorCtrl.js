@@ -1,5 +1,5 @@
 /* The edit and create controllers are going to be very similar, so inherit from this */
-function EditorCtrl($scope, $location, $http, $routeParams, AuthenticationService, Listing) {
+function ListingEditorCtrl($scope, $location, $http, $routeParams, AuthenticationService, Listing) {
 
 	// Form data
 	// Fields will be stored here as a JSON object
@@ -166,7 +166,10 @@ function EditorCtrl($scope, $location, $http, $routeParams, AuthenticationServic
 	 * Does not publish the entry (that's submit)
 	*/
 	$scope.save = function() {
+		$scope.info = 'Saving...'
 		!$scope.listingId ? httpCreate() : httpEdit()
+		$scope.info = ''
+		$scope.success = 'Saved your changes'
 	}
 
 
