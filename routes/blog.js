@@ -1,5 +1,5 @@
 var Blogs = require('../models/blog.js')
-  , _ = require('lodash')
+  , _ = require('underscore')
   , filters = require('./_actionFilters.js')
 
 module.exports = function(app) {
@@ -20,6 +20,7 @@ module.exports = function(app) {
 	})
 
 	/* Create a new listing */
+	//need to be admin
 	app.post('/api/blogs', filters.isLoggedIn, function(req, res) {
 		var newBlog = req.body
 		//newBlog.creator = req.signedCookies.user
@@ -30,6 +31,7 @@ module.exports = function(app) {
 	})
 
 	/* Edit a listing */
+	//need to be admin
 	app.post('/api/blogs/:id', filters.isLoggedIn, function(req, res) {
 		var id = req.params.id || 0
 		var structure = req.body
@@ -49,7 +51,8 @@ module.exports = function(app) {
 	})
 
 	/* Delete a listing */
-	app.delete('/api/blogs/:id', filters.isAdmin, function(req, res) {
+	//need to be admin
+	app.delete('/api/blogs/:id', filters.isLoggedIn, function(req, res) {
 		var id = req.params.id || 0
 		Blogs.findByIdAndRemove(id, function(err, listing) {
 			if(!err)

@@ -2,15 +2,15 @@ var app = angular.module('BlogApp', ['ngResource', 'ngCookies', 'authentication-
 	.config(function($routeProvider, $locationProvider) {
 		$routeProvider
 			//index routes					
-			.when('/', 				{ controller: BlogIndexCtrl, 	templateUrl: '/blog/index' 	})
-			.when('/blog/index',    { controller: BlogIndexCtrl, 	templateUrl: '/blog/index' 	})
+			.when('/', { controller: BlogIndexCtrl, templateUrl: '/blog/index', resolve: SessionMaster.resolve })
+			.when('/blog/index', { controller: BlogIndexCtrl, templateUrl: '/blog/index', resolve: SessionMaster.resolve })
 			//create routes
-			.when('/create', 		{ controller: BlogCreateCtrl, 	templateUrl: '/blog/editor' })
-			.when('/new', 			{ controller: BlogCreateCtrl, 	templateUrl: '/blog/create' })
+			.when('/create', { controller: BlogCreateCtrl, templateUrl: '/blog/editor', resolve: SessionMaster.resolve })
+			.when('/new', { controller: BlogCreateCtrl, templateUrl: '/blog/editor', resolve: SessionMaster.resolve })
 			//edit routes
-			//.when('/edit/:id', 		{ controller: BlogEditCtrl, 	templateUrl: '/blog/edit' 	})
+			.when('/edit/:id', { controller: BlogEditCtrl, templateUrl: '/blog/editor', resolve: SessionMaster.resolve })
 			//view routes	
-			//.when('/view/:id', 		{ controller: BlogViewCtrl, 	templateUrl: '/blog/view' 	})
+			.when('/view/:id', { controller: BlogViewCtrl, templateUrl: '/blog/view', resolve: SessionMaster.resolve })
 			//Fallback
 			.otherwise({ redirectTo: '/' })
 			//$locationProvider.html5Mode(true) /* RIP IE9 */
