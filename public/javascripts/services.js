@@ -101,6 +101,27 @@ angular.module('status401-service', [])
 // 		}
 // 	}])
 
+angular.module('blog-service', [])
+	.service('BlogService', ['$http', function($http) {
+		return {
+			create: function(data) {
+				return $http.post('/api/blogs/create/', data)
+			},
+			retrieve: function(id) {
+				if(!id)
+					return $http.get('/api/blogs')
+
+				return $http.get('/api/blogs/' + id)
+			},
+			update: function(id, data) {
+				return $http.put('/api/blogs/edit/' + id, data)
+			},
+			destroy: function(id) {
+				return $http.post('/api/blogs/delete/' + id)
+			}
+		}
+	}])
+
 
 //FAILED EXPERIMENT
 // angular.module('angular-routes', [])

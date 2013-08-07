@@ -5,7 +5,7 @@ var app = angular.module('BlogApp', ['ngResource', 'ngCookies', 'authentication-
 			.when('/', 				{ controller: BlogIndexCtrl, 	templateUrl: '/blog/index' 	})
 			.when('/blog/index',    { controller: BlogIndexCtrl, 	templateUrl: '/blog/index' 	})
 			//create routes
-			.when('/create', 		{ controller: BlogCreateCtrl, 	templateUrl: '/blog/create' })
+			.when('/create', 		{ controller: BlogCreateCtrl, 	templateUrl: '/blog/editor' })
 			.when('/new', 			{ controller: BlogCreateCtrl, 	templateUrl: '/blog/create' })
 			//edit routes
 			//.when('/edit/:id', 		{ controller: BlogEditCtrl, 	templateUrl: '/blog/edit' 	})
@@ -15,6 +15,20 @@ var app = angular.module('BlogApp', ['ngResource', 'ngCookies', 'authentication-
 			.otherwise({ redirectTo: '/' })
 			//$locationProvider.html5Mode(true) /* RIP IE9 */
 	})
+
+	/* This is a Blog resource. By default, a resource has these methods:
+	 * get({id: X}) GET 							-> /api/listings/X
+	 * save({}, newInfo) POST 						-> /api/listings/
+	 * save({id: X}, newInfo) POST (obj.$save())	-> /api/listings/X
+	 * query() get 									-> /api/listings
+	 * remove({id: X}) POST 						-> /api/listings/X
+	 * delete({id: X}) POST 						-> /api/listings/X
+	 * All of this gets based on your base URL, which is supplied to the resource
+	 * The example URL is included above
+	*/
+	.factory('Blog', ['$resource', function($resource) {
+		return $resource('/api/blogs/:id', {blogId: '@id'})
+	}])
 
 app.directive('ckEditor', function () {
     return {
