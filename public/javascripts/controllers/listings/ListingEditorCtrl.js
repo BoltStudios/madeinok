@@ -55,60 +55,32 @@ function ListingEditorCtrl($scope, $location, $http, $routeParams, Authenticatio
 							  'Marketing/Advertising', 'IT', 'Media', 'Finance', 'Education', 'Sports', 'Travel',
 							  'Business Services', 'Food', 'Other']
 	$scope.formData.industryFocus.option = $scope.industryFocuses[0]
+	$scope.formData.industryFocus.description = ''
 
 
 	// Primary Customers
-	$scope.primaryCustomers = [
-		{customer: 'Consumer'}
-	  , {customer: 'Business'}
-	  , {customer: 'Non-Profit'}
-	  , {customer: 'Public Sector'}
-	  , {customer: 'Other'}
-	]
-	$scope.primaryCustomer = $scope.primaryCustomers[0]
+	$scope.primaryCustomers = ['Consumer', 'Business', 'Non-Profit', 'Public Sector', 'Other']
+	$scope.formData.primaryCustomer = $scope.primaryCustomers[0]
 
 
 	// Last funding round closed
-	$scope.fundingRounds = [
-		{type: 'Funding / Bootstrapped'}
-	  , {type: 'Seed'}
-	  , {type: 'Series A'}
-	  , {type: 'Series B'}
-	  , {type: 'Series C'}
-	  , {type: 'Series D+'}
-	]
-	$scope.fundingRound = $scope.fundingRounds[0]
+	$scope.fundingRounds = ['None/Bootstrapped', 'Seed', 'Series A', 'Series B', 'Series C', 'Series D+']
+	$scope.formData.fundingRound = $scope.fundingRounds[0]
 
 
 	// Total raised to date
-	$scope.totalRaisedValues = [
-		{amount: '$0'}
-	  , {amount: '<$100k'}
-	  , {amount: '$100k - $499k'}
-	  , {amount: '$500k - $999k'}
-	  , {amount: '$1M - $5M'}
-	  , {amount: '$5M - $10M'}
-	  , {amount: '$10M+'}
-	]
-	$scope.totalRaised = $scope.totalRaisedValues[0]
+	$scope.totalRaisedValues = ['', '$0', '<$100k', '$100k - $499k', '$500k - $999k', '$1M - $5M', '$5M - $10M', '$10M+']
+	$scope.formData.totalRaised = $scope.totalRaisedValues[0]
 
 
 	// Annualized revenue
-	$scope.annualRevenues = [
-		{amount: 'Pre-revenue'}
-	  , {amount: '<$100k'}
-	  , {amount: '$100k - $499k'}
-	  , {amount: '$500k - $999k'}
-	  , {amount: '$1M - $5M'}
-	  , {amount: '$5M - $10M'}
-	  , {amount: '$10M+'}
-	]
-	$scope.annualRevenue = $scope.annualRevenues[0]
+	$scope.annualRevenues = ['', 'Pre-revenue', '<$100k', '$100k - $499k', '$500k - $999k', '$1M - $5M', '$5M - $10M', '$10M+']
+	$scope.formData.annualRevenue = $scope.annualRevenues[0]
 
 
 	// Founders
-	$scope.founders = [
-		{firstName: '', lastName: '', email: '', title: ''}
+	$scope.formData.founders = [
+		{name: '', email: '', title: ''}
 	]
 
 
@@ -123,7 +95,7 @@ function ListingEditorCtrl($scope, $location, $http, $routeParams, Authenticatio
 	}
 
 	$scope.addFounder = function() {
-		$scope.founders.push({firstName: '', lastName: '', emamil: '', title: ''})
+		$scope.formData.founders.push({name: '', email: '', title: ''})
 	}
 
 
@@ -143,6 +115,7 @@ function ListingEditorCtrl($scope, $location, $http, $routeParams, Authenticatio
 	*/
 	$scope.save = function(callback) {
 		$scope.info = 'Saving...'
+
 		!$scope.listingId ? httpCreate(callback) : httpEdit(callback)
 		$scope.info = ''
 		$scope.success = 'Saved your changes'
@@ -168,6 +141,10 @@ function ListingEditorCtrl($scope, $location, $http, $routeParams, Authenticatio
 	*/
 	var httpEdit = function(callback) {
 		Listing.save({id: $scope.listingId}, $scope.formData, function(response) {
+		}).$then(function(response) {
+			if(callback) callback()
+		}, function(error) {
+
 		})
 	}
 
@@ -192,6 +169,7 @@ function ListingEditorCtrl($scope, $location, $http, $routeParams, Authenticatio
 			$location.path(pagePath() + ++$scope.currentPage)
 		}
 		this.save(increment)
+		console.log('current page ' + $scope.currentPage)
 	}
 
 

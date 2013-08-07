@@ -51,7 +51,7 @@ var ListingSchema = new mongoose.Schema({
 	contributorIds: 	[ObjectId],
 	isPublished: 		{type: Boolean, default: false },
 
-	companyName: 		{type: String, default: 'In Progress...'},
+	companyName: 		{type: String, default: 'Unpublished Entry'},
 	websiteUrl: 		{type: String},
 	hiringUrl:      	{type: String},
 	phoneNumber: 		{type: String},
@@ -66,7 +66,20 @@ var ListingSchema = new mongoose.Schema({
 
 	foundingYear: 		{type: Number},
 	companyType: 		{type: String},
-	industryFocus: 		{option: {type: String}, description: {type: String}} 
+	industryFocus: 		{option: {type: String}, description: {type: String}},
+	primaryCustomer: 	{type: String},
+	fundingRound:  		{type: String},
+	totalRaised: 		{type: String},
+	annualRevenue:  	{type: String},
+	incubatorName:  	{type: String},
+	milestone:  		{type: String},
+
+	fulltimeTeamSize:  	{type: Number},
+	fulltimeTeamSizeOk: {type: Number},
+	totalTeamSize: 		{type: Number},
+	developmentOk: 		{type: Number},
+
+	founders: 			[Founder]
 })
 
 module.exports = mongoose.model('Listings', ListingSchema)

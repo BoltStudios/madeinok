@@ -239,37 +239,44 @@
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='primaryCustomer'>Primary Customer</label>
+			<label class='control-label' for='primaryCustomer'>Primary Customer <span class='text-error'>*</span></label>
 			<div class='controls'>
-				<select ng-model='primaryCustomer' ng-options='c.customer for c in primaryCustomers'></select>
+				<select ng-model='formData.primaryCustomer' ng-options='type for type in primaryCustomers' required></select>
 			</div>
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='primaryCustomer'>Last Funding Round Closed</label>
+			<label class='control-label' for='fundingRounds'>Last Funding Round Closed <span class='text-error'>*</span></label>
 			<div class='controls'>
-				<select ng-model='fundingRound' ng-options='r.type for r in fundingRounds'></select>
+				<select ng-model='formData.fundingRound' ng-options='type for type in fundingRounds' required></select>
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='totalRaised'>Total Raised to Date</label>
+			<div class='controls'>
+				<select ng-model='formData.totalRaised' ng-options='type for type in totalRaisedValues'></select>
 			</div>
 		</div>
 
 		<div class='control-group'>
 			<label class='control-label' for='annualRevenue'>Annualized Revenue</label>
 			<div class='controls'>
-				<select ng-model='annualRevenue' ng-options='r.amount for r in annualRevenues'></select>
+				<select ng-model='formData.annualRevenue' ng-options='type for type in annualRevenues' required></select>
 			</div>
 		</div>
 
 		<div class='control-group'>
 			<label class='control-label' for='incubatorName'>If you took part in an incubator / accelerator, please name it</label>
 			<div class='controls'>
-				<input type='text' name='incubatorName' ng-model='incubatorName' />
+				<input type='text' name='incubatorName' ng-model='formData.incubatorName' />
 			</div>
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='milestone'>Your latest traction milestone</label>
+			<label class='control-label' for='milestone'>Your latest traction milestone <span class='text-error'>*</span></label>
 			<div class='controls'>
-				<textarea maxlengthlimit='{{ maxBlurbLength }}' rows='5' name='milestone' ng-model='milestone' placeholder='{{ maxBlurbLength }} characters'></textarea><br/>
+				<textarea maxlengthlimit='{{ maxBlurbLength }}' rows='5' name='milestone' ng-model='formData.milestone' placeholder='{{ maxBlurbLength }} characters' required></textarea><br/>
 				<span ng-bind='maxBlurbLength - milestone.length'></span>
 				<ng-pluralize count='maxBlurbLength - milestone.length'
 				  when="{'1': 'character', 'other': 'characters'}"></ng-pluralize> remaining
@@ -300,34 +307,63 @@
 	<fieldset>
 		<legend>The Team <small class='pull-right'>{{ currentPage }} of {{  lastPageNumber }}</small></legend>
 		<div class='control-group'>
-			<label class='control-label' for='fulltimeTeamSize'>Full Time Team</label>
+			<label class='control-label' for='fulltimeTeamSize'>Full Time Team <span class='text-error'>*</span></label>
 			<div class='controls'>
-				<input type='number' placeholder='How Many?' name='fulltimeTeamSize' ng-model='fulltimeTeamSize' />
+				<input type='number' placeholder='How Many?' name='fulltimeTeamSize' ng-model='formData.fulltimeTeamSize' ng-min='0'required min='0' value='0'/>
+
+				<div ng-show='listCreate.fulltimeTeamSize.$dirty && listCreate.fulltimeTeamSize.$invalid' class='alert alert-error'>
+					<span ng-show='listCreate.fulltimeTeamSize.$error.number'>That's not even a number.</span>
+					<span ng-show='listCreate.fulltimeTeamSize.$error.required'>This is required.</span>
+					<span ng-show='listCreate.fulltimeTeamSize.$error.min'>Don't be ridiculous.</span>
+				</div>
 			</div>
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='fulltimeTeamSizeOk'>Full Time Team in OK</label>
+			<label class='control-label' for='fulltimeTeamSizeOk'>Full Time Team in OK <span class='text-error'>*</span></label>
 			<div class='controls'>
-				<input type='number' placeholder='How Many?' name='fulltimeTeamSizeOk' ng-model='fulltimeTeamSizeOk' />
+				<input type='number' placeholder='How Many?' name='fulltimeTeamSizeOk' ng-model='formData.fulltimeTeamSizeOk' ng-min='0' value='0' required min='0'/>
+
+				<div ng-show='listCreate.fulltimeTeamSizeOk.$dirty && listCreate.fulltimeTeamSizeOk.$invalid' class='alert alert-error'>
+					<span ng-show='listCreate.fulltimeTeamSizeOk.$error.number'>That's not even a number.</span>
+					<span ng-show='listCreate.fulltimeTeamSizeOk.$error.required'>This is required.</span>
+					<span ng-show='listCreate.fulltimeTeamSizeOk.$error.min'>Don't be ridiculous.</span>
+				</div>
 			</div>
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='totalTeamSize'>Total Team Size</label>
+			<label class='control-label' for='totalTeamSize'>Total Team Size <span class='text-error'>*</span></label>
 			<div class='controls'>
-				<input type='number' placeholder='How Many?' name='totalTeamSize' ng-model='totalTeamSize' />
+				<input type='number' placeholder='How Many?' name='totalTeamSize' ng-model='formData.totalTeamSize' required/>
+				<div ng-show='listCreate.totalTeamSize.$dirty && listCreate.totalTeamSize.$invalid' class='alert alert-error'>
+					<span ng-show='listCreate.totalTeamSize.$error.number'>That's not even a number.</span>
+					<span ng-show='listCreate.totalTeamSize.$error.required'>This is required.</span>
+					<span ng-show='listCreate.totalTeamSize.$error.min'>Don't be ridiculous.</span>
+				</div>
 			</div>
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='founders'>Founders</label>
+			<label class='control-label' for='developmentOk'>Percent of Technology Development Occuring in Oklahoma<span class='text-error'>*</span></label>
 			<div class='controls'>
-				<div ng-repeat='founder in founders'>
-					<input type='text' name='firstName' placeholder='First Name' ng-model='founder.firstName' /><br/>
-					<input type='text' name='lastName' placeholder='Last Name' ng-model='founder.lastName' /><br/>
-					<input type='email' name='email' placeholder='Email' ng-model='founder.email' /><br/>
-					<input type='text' name='title' placeholder='Title/Role' ng-model='founder.title' /><br/><br/>
+				<input type='number' placeholder='What percent?' name='developmentOk' ng-model='formData.developmentOk' required/>
+				<div ng-show='listCreate.developmentOk.$dirty && listCreate.developmentOk.$invalid' class='alert alert-error'>
+					<span ng-show='listCreate.developmentOk.$error.number'>That's not even a number.</span>
+					<span ng-show='listCreate.developmentOk.$error.required'>This is required. Do not include a percent sign.</span>
+					<span ng-show='listCreate.developmentOk.$error.min'>Don't be ridiculous.</span>
+				</div>
+			</div>
+		</div>
+
+
+		<div class='control-group'>
+			<label class='control-label' for='founders'>Founders (include yourself)</label>
+			<div class='controls'>
+				<div ng-repeat='founder in formData.founders'>
+					<input type='text' class='input-group' name='founderName' placeholder='Name' ng-model='formData.founders[$index].name'/><br/>
+					<input type='email' class='input-group' name='founderEmail' placeholder='Email' ng-model='formData.founders[$index].email'/><br/>
+					<input type='text' class='input-group' name='founderTitle' placeholder='Title/Role' ng-model='formData.founders[$index].title'/><br/><br/>
 				</div>
 				<a ng-click='addFounder()' class='btn btn-primary btn-small'>Add Another</a>
 			</div>
