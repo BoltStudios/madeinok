@@ -433,6 +433,12 @@
 				<a class='btn btn-primary' ng-click='save()'>Save</a>
 				<a class='btn btn-success' ng-click='submit()' ng-disabled='listCreate.$invalid'>Publish</a>
 			</div>
+
+			<div ng-show='listCreate.$invalid' class='alert alert-warning'>
+				<p>
+				You won't be able to publish until you fill out the form properly.<br/>
+				Check that you've filled out all required fields, and there are no errors on the page.</p>
+			</div>
 		</div>
 	</fieldset>
 </div>
