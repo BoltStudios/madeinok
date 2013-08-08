@@ -204,7 +204,7 @@
 			<label class='control-label' for='productType'>Product Type</label>
 			<div class='controls'>
 				<label class='checkbox' ng-repeat='product in productTypes'>
-					<input type='checkbox' ng-model='product.value'> {{ product.type }}</input>
+					<input type='checkbox' ng-model='product.value'> {{ product.productType }}</input>
 				</label>
 
 				<div ng-show='otherProductTypeChecked()' class='alert alert-warning'>

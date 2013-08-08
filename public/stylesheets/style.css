@@ -16,3 +16,16 @@ a {
   border-top: 0;
   border-radius: 0 0 4px 4px !important;
 }
+.list-item-header:first-of-type {
+  margin-top: 0;
+}
+.list-item-header {
+  margin-top: 1.0em;
+}
+ul > .indented {
+  margin-left: 1.0em;
+}
+.company-phrase {
+  font-size: 0.5em;
+  font-style: italic;
+}

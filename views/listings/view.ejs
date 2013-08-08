@@ -1,5 +1,60 @@
 <div ng-show='item.error' class='alert alert-error'>{{ item.error }}</div>
 
-<h2>{{ item.companyName }}</h2>
+<h2 class='page-header'>
+	{{ item.companyName }}
+	<small ng-show='item.isHiring' class='label label-success'>Hiring</small>
+	<small ng-show='item.hasInternships' class='label label-success'>Internships Available</small><br/>
+	<span ng-show='item.phrase' class='muted company-phrase'>"{{ item.phrase }}"</span>
+</h2>
 
+<fieldset>
+	<ul class='unstyled'>
+		<li ng-show='item.changeTheWorld' class='muted list-item-header'>How {{ item.companyName }} will change the world</li>
+		<li ng-show='item.changeTheWorld' class='indented'><p>{{ item.changeTheWorld }}</p></li>
+
+		<li ng-show='item.somethingAwesome' class='muted list-item-header'>Something awesome about {{ item.companyName }}</li>
+		<li ng-show='item.somethingAwesome' class='indented'><p>{{ item.somethingAwesome }}</p></li>
+	</ul>
+</fieldset>
+
+<fieldset>
+	<legend>{{ item.companyName }}'s stats</legend>
+	<p>
+	Founded in <strong>{{ item.foundingYear }}</strong>, {{ item.companyName }} is a(n) <strong>{{ item.companyType }}</strong> company, focusing in the 
+	<strong ng-show='item.industryFocus && item.industryFocus.option != "Other"'>{{ item.industryFocus.option }}</strong>
+	<strong ng-show='item.industryFocus && item.industryFocus.option == "Other"'>{{ item.industryFocus.description}} </strong> industry.
+	</p>
+</fieldset>
+
+<fieldset>
+	<legend>Contact</legend>
+	<ul class='unstyled'>
+		<li class='muted list-item-header'>On the web</li>
+		<li class='indented' ng-show='item.websiteUrl'><i class='icon-globe'></i> <a href='{{ item.websiteUrl }}' target='_blank'>{{ item.websiteUrl }}</a></li>
+		<li class='indented' ng-show='item.twitterHandle'><i class='icon-twitter'></i> <a href='{{ item.twitterHandle }}' target='_blank'>{{ item.twitterHandle }}</a></li>
+		<li class='indented' ng-show='item.linkedInUrl'><i class='icon-linkedin'></i> <a href='{{ item.linkedInUrl }}' target='_blank'>{{ item.linkedInUrl }}</a></li>
+		<li class='indented' ng-show='item.angellistUrl'><i class='icon-external-link'></i> <a href='{{ item.angellistUrl }}' target='_blank'>{{ item.angellistUrl }}</a></li>
+
+		<li class='muted list-item-header'>In Oklahoma</li>
+		<li class='indented' ng-show='item.address'>
+			<address>
+				<span ng-show='item.companyName'><strong>{{ item.companyName }}</strong></span><br/>
+				<span ng-show='item.address.line1'>{{ item.address.line1 }}<br/></span>
+				<span ng-show='item.address.line2'>{{ item.address.line2 }}<br/></span>
+				<span ng-show='item.address.city'>{{ item.address.city }}</span>
+			</address>
+		</li>
+
+		<li class='muted list-item-header'>For Jobs</li>
+		<li class='indented' ng-show='item.hiringUrl'><i class='icon-globe'></i> <a href='{{ item.hiringUrl }}'>{{ item.hiringUrl }}</a></li>
+		<li class='indented' ng-show='item.hiringEmail'><i class='icon-envelope'></i> {{ item.hiringEmail }}</li>
+	</ul>
+</fieldset>
+
+<fieldset>
+	<legend>Team Information</legend>
+</fieldset>
+
+
+</div>
 <a href='#/'>see all</a>

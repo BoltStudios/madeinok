@@ -15,13 +15,15 @@ function ListingEditorCtrl($scope, $location, $http, $routeParams, Authenticatio
 	// If the form data has information already (creating and saving), don't hit the DB again
 	if($scope.listingId && Object.keys($scope.formData).length == 0) {
 		var entry = Listing.get({id: $scope.listingId}, function(success) {
-			console.log(JSON.stringify(success))
 			$scope.formData = success
+			$scope.loadProductTypes(success)
 		}, function(error) {
 
 		})
 		//$scope.formData = entry
 	}
+
+
 
 	// Page number of the form
 	$scope.currentPage = $routeParams.pageNumber || 1
@@ -40,18 +42,18 @@ function ListingEditorCtrl($scope, $location, $http, $routeParams, Authenticatio
 
 	// Product types
 	$scope.productTypes = [
-		{type: 'Website', value: false}
-	  , {type: 'Mobile App', value: false}
-	  , {type: 'Consumer Website', value: false}
-	  , {type: 'Games', value: false}
-	  , {type: 'Pharmaceutical', value: false}
-	  , {type: 'SaaS / PaaS / IaaS', value: false}
-	  , {type: 'Physical Product', value: false}
-	  , {type: 'Service Offering', value: false}
-	  , {type: 'Medical Device', value: false}
-	  , {type: 'Other', value: false} // check out otherProductTypeChecked if this index changes
+		{productType: 'Website', value: false}
+	  , {productType: 'Mobile App', value: false}
+	  , {productType: 'Consumer Website', value: false}
+	  , {productType: 'Games', value: false}
+	  , {productType: 'Pharmaceutical', value: false}
+	  , {productType: 'SaaS / PaaS / IaaS', value: false}
+	  , {productType: 'Physical Product', value: false}
+	  , {productType: 'Service Offering', value: false}
+	  , {productType: 'Medical Device', value: false}
+	  , {productType: 'Other', value: false} // check out otherProductTypeChecked if this index changes
 	]
-	$scope.productTypesOtherDescription = ''
+	$scope.formData.productTypesOtherDescription = ''
 
 
 	// Industry focus
@@ -121,9 +123,23 @@ function ListingEditorCtrl($scope, $location, $http, $routeParams, Authenticatio
 	$scope.save = function(callback) {
 		$scope.info = 'Saving...'
 
+		console.log($scope.productTypes)
+
 		!$scope.listingId ? httpCreate(callback) : httpEdit(callback)
 		$scope.info = ''
 		$scope.success = 'Saved your changes'
+	}
+
+
+	$scope.saveProductTypes = function() {
+		$scope.formData.productTypes = $scope.productTypes
+
+		// if other not selected, delete description
+	}
+
+
+	$scope.loadProductTypes = function(entry) {
+		_.assign($scope.productTypes, entry.productTypes)
 	}
 
 
@@ -133,6 +149,7 @@ function ListingEditorCtrl($scope, $location, $http, $routeParams, Authenticatio
 	 * save() -> Create (wait for a successful save) -> update the ID -> callback()
 	*/
 	var httpCreate = function(callback) {
+		$scope.saveProductTypes()
 		Listing.save({}, $scope.formData, function(response) {
 		}).$then(function(response) {
 			$scope.listingId = response.data._id

@@ -72,6 +72,8 @@ var ListingSchema = new mongoose.Schema({
 	annualRevenue:  	{type: String},
 	incubatorName:  	{type: String},
 	milestone:  		{type: String},
+	productTypes: 		[{productType: {type: String}, value: {type: Boolean, default: false}}],
+	productTypesOtherDescription: {type:String},
 
 	fulltimeTeamSize:  	{type: Number},
 	fulltimeTeamSizeOk: {type: Number},
