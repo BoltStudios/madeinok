@@ -71,7 +71,22 @@ angular.module('authentication-service', ['flash-service', 'session-service', 'n
 					return value
 				}
 
-				return $cookieStore.get('isAuthenticated') || false
+				else {
+					var deferred = $q.defer()
+					$http.get('/api/users/current').success(function(response) {
+						if(response.guid) {
+							return true
+						} else {
+							return false
+						}
+						deferred.resolve(response)
+					}).error(function(response) {
+						return false
+						deferred.reject(response)
+					})
+				}
+
+				//return $cookieStore.get('isAuthenticated') || false
 			}
 		}
 	}])
