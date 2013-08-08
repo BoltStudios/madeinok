@@ -96,10 +96,6 @@
 			<div class='controls'>
 				<a class='btn btn-primary' ng-click='save()'>Save</a>
 				<a class='btn' ng-click='nextPage()'>Next &rarr;</a>
-
-<!-- 				<div ng-show='listCreate.$dirty' class='alert alert-error'>
-					<strong>Hey!</strong> You have unsaved changes.
-				</div> -->
 			</div>
 		</div>
 	</fieldset>
@@ -250,7 +246,7 @@
 		<div class='control-group'>
 			<label class='control-label' for='annualRevenue'>Annualized Revenue</label>
 			<div class='controls'>
-				<select ng-model='formData.annualRevenue' ng-options='type for type in annualRevenues' required></select>
+				<select ng-model='formData.annualRevenue' ng-options='type for type in annualRevenues'></select>
 			</div>
 		</div>
 

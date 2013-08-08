@@ -124,7 +124,7 @@ function ListingEditorCtrl($scope, $location, $http, $routeParams, Authenticatio
 		$scope.info = 'Saving...'
 
 		console.log($scope.productTypes)
-
+		$scope.saveProductTypes()
 		!$scope.listingId ? httpCreate(callback) : httpEdit(callback)
 		$scope.info = ''
 		$scope.success = 'Saved your changes'
@@ -132,9 +132,10 @@ function ListingEditorCtrl($scope, $location, $http, $routeParams, Authenticatio
 
 
 	$scope.saveProductTypes = function() {
+		if(!$scope.otherProductTypeChecked()) {
+			$scope.formData.productTypesOtherDescription = ''
+		}
 		$scope.formData.productTypes = $scope.productTypes
-
-		// if other not selected, delete description
 	}
 
 

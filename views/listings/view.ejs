@@ -8,22 +8,79 @@
 </h2>
 
 <fieldset>
+	
 	<ul class='unstyled'>
+
+		<li ng-show='item.companyName && item.foundingYear' class='muted list-item-header'>About {{ item.companyName }}</li>
+		<li ng-show='item.companyName && item.foundingYear' class='indented'>
+			<p>
+				<span ng-show='item.foundingYear && item.companyName'>
+					Founded in <strong>{{ item.foundingYear }}</strong>
+					<span ng-show='item.founders'>by 
+						<span ng-repeat='founder in item.founders'>
+							<strong>{{ founder.name }}</strong> <span ng-show='founder.title'>({{founder.title}})</span>{{$last ? '' : $last - 1 ? ' and ' : ', ' }}</span></span>, {{ item.companyName }} 
+
+					is a<span ng-show='isVowel(item.companyType[0])'>n</span> <strong>{{ item.companyType | lowercase}}</strong> company</span><span ng-show='item.industryFocus'>, focusing in the
+					<strong ng-show='item.industryFocus.option != "Other"'>{{ item.industryFocus.option | lowercase}}</strong>
+					<strong ng-show='item.industryFocus.option == "Other"'>{{ item.industryFocus.description | lowercase}} </strong>
+					industry.
+				</span>
+				<span ng-show='!item.industryFocus'>.</span>
+
+				<span ng-show='item.companyName && item.productTypes'>
+					{{ item.companyName }} makes 
+					<span ng-repeat='product in item.productTypes'>
+						<span ng-show='product.value && product.productType'>
+							<strong>
+							{{ product.productType | lowercase }}
+							<span ng-show='product.productType == "Other"'>({{ item.productTypesOtherDescription | lowercase}})</span>
+							</strong>{{$last ? '' : $last - 1 ? ' and ' : ', '}}
+						</span>
+					</span> products.
+				</span>
+
+				<span ng-show='item.primaryCustomer'>{{item.companyName}}'s primary customer type is <strong>{{item.primaryCustomer | lowercase}}</strong>.</span>
+			</p>
+		</li>
+
 		<li ng-show='item.changeTheWorld' class='muted list-item-header'>How {{ item.companyName }} will change the world</li>
 		<li ng-show='item.changeTheWorld' class='indented'><p>{{ item.changeTheWorld }}</p></li>
 
 		<li ng-show='item.somethingAwesome' class='muted list-item-header'>Something awesome about {{ item.companyName }}</li>
 		<li ng-show='item.somethingAwesome' class='indented'><p>{{ item.somethingAwesome }}</p></li>
 	</ul>
+
+
+
 </fieldset>
 
 <fieldset>
 	<legend>{{ item.companyName }}'s stats</legend>
-	<p>
-	Founded in <strong>{{ item.foundingYear }}</strong>, {{ item.companyName }} is a(n) <strong>{{ item.companyType }}</strong> company, focusing in the 
-	<strong ng-show='item.industryFocus && item.industryFocus.option != "Other"'>{{ item.industryFocus.option }}</strong>
-	<strong ng-show='item.industryFocus && item.industryFocus.option == "Other"'>{{ item.industryFocus.description}} </strong> industry.
-	</p>
+	<dl class='dl-horizontal'>
+		<dt ng-show='item.fundingRound'>Last funding round</dt>
+		<dd ng-show='item.fundingRound'>{{ item.fundingRound }}</dd>
+
+		<dt ng-show='item.totalRaised'>Total raised</dt>
+		<dd ng-show='item.totalRaised'>{{item.totalRaised}}</dd>
+
+		<dt ng-show='item.annualRevenue'>Annualized Revenue</dt>
+		<dd ng-show='item.annualRevenue'>{{item.annualRevenue}}</dd>
+
+		<dt ng-show='item.incubatorName'>Took place in incubator/accelerator</dt>
+		<dd ng-show='item.incubatorName'>{{item.incubatorName}}</dd>
+
+		<dt ng-show='item.milestone'>Last traction milestone</dt>
+		<dd ng-show='item.milestone'>{{item.milestone}}</dd>
+
+		<dt ng-show='item.fulltimeTeamSize'>Fulltime total</dt>
+		<dd ng-show='item.fulltimeTeamSize'>{{item.fulltimeTeamSize}}</dd>
+
+		<dt ng-show='item.fulltimeTeamSizeOk'>Fulltime in OK</dt>
+		<dd ng-show='item.fulltimeTeamSizeOk'>{{item.fulltimeTeamSizeOk}}</dd>
+
+		<dt ng-show='item.developmentOk'>Tech developed in OK</dt>
+		<dd ng-show='item.developmentOk'>{{item.developmentOk}}%</dd>
+	</dl>
 </fieldset>
 
 <fieldset>
@@ -51,10 +108,5 @@
 	</ul>
 </fieldset>
 
-<fieldset>
-	<legend>Team Information</legend>
-</fieldset>
 
-
-</div>
-<a href='#/'>see all</a>
+<a href='#/'>&larr; See all listings</a>
