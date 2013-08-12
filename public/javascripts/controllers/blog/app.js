@@ -2,8 +2,8 @@ var app = angular.module('BlogApp', ['ngResource', 'ngCookies', 'authentication-
 	.config(function($routeProvider, $locationProvider) {
 		$routeProvider
 			//index routes					
-			.when('/', { controller: BlogIndexCtrl, templateUrl: '/blog/index', resolve: SessionMaster.resolve })
-			.when('/blog/index', { controller: BlogIndexCtrl, templateUrl: '/blog/index', resolve: SessionMaster.resolve })
+			.when('/', { controller: BlogIndexCtrl, templateUrl: '/blog/index' })
+			.when('/blog/index', { controller: BlogIndexCtrl, templateUrl: '/blog/index' })
 			//create routes
 			.when('/create', { controller: BlogCreateCtrl, templateUrl: '/blog/editor', resolve: SessionMaster.resolve })
 			.when('/new', { controller: BlogCreateCtrl, templateUrl: '/blog/editor', resolve: SessionMaster.resolve })

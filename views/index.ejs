@@ -13,7 +13,8 @@
 <script type='text/javascript' src='/lib/lodash.min.js'></script>				<!-- nice array things -->
 
 <!-- THESE ARE IMPORTED FROM CALE CODE, CDN FOR PRODUCTION -->
-<!-- <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script> Not using jquery -->
+<!-- we have to include jquery because bootstrap is using it. go figure. -->
+<script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script> 
 <!-- <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js'></script> fast cdn for angular-ui.min.js -->
 
 
@@ -41,11 +42,18 @@
 <script type='text/javascript' src='/javascripts/controllers/blog/BlogCreateCtrl.js'></script>
 <script type='text/javascript' src='/javascripts/controllers/blog/BlogEditCtrl.js'></script>
 <script type='text/javascript' src='/javascripts/controllers/blog/BlogViewCtrl.js'></script>
-
-<script type='text/javascript' src='/javascripts/controllers/blog/app.js'></script> <!-- doesnt exist yet -->
+<script type='text/javascript' src='/javascripts/controllers/blog/app.js'></script>
 	<!-- Blog App Required Resources -->
     <script type='text/javascript' src="/javascripts/ckeditor/ckeditor.js"></script>
     <script src="/javascripts/ckeditor/adapters/jquery.js"></script>
+
+<!-- Event App -->
+<script type='text/javascript' src='/javascripts/controllers/events/EventIndexCtrl.js'></script>
+<script type='text/javascript' src='/javascripts/controllers/events/EventEditorCtrl.js'></script>
+<script type='text/javascript' src='/javascripts/controllers/events/EventCreateCtrl.js'></script>
+<script type='text/javascript' src='/javascripts/controllers/events/EventEditCtrl.js'></script>
+<script type='text/javascript' src='/javascripts/controllers/events/EventViewCtrl.js'></script>
+<script type='text/javascript' src='/javascripts/controllers/events/app.js'></script>
 
 <!-- Home App -->
 <script type='text/javascript' src='/javascripts/controllers/home/HomeIndexCtrl.js'></script>
@@ -78,6 +86,9 @@
     			<a href="/#/account/">/#/account</a>
 	          </li>
 	          <li>
+    			<a href="/event/">events</a>
+	          </li>
+	          <li>
     			<a href="/blog/">blog</a>
 	          </li>
 	        </ul>
@@ -88,63 +99,26 @@
 
     <!-- we put all of the angular views inside of the page-wrapper class -->
     <div class="page-wrapper">
-    	
-		<%if(appName == 'ListApp') {%>
-	    	<div ng-app='ListApp'>
-			    <div ng-view>
-			    	<!-- partials load here -->
-			    </div>
-			</div>
-		<% } %>	
-
-		<%if(appName == 'AccountApp') {%>
-	    	<div ng-app='AccountApp'>
-			    <div ng-view>
-			    	<!-- partials load here -->
-			    </div>
-			</div>
-		<% } %>
-
-		<%if(appName == 'HomeApp') {%>
-	    	<div ng-app='HomeApp'>
-			    <div ng-view>
-			    	<!-- partials load here -->
-			    </div>
-			</div>
-		<% } %>
-
-		<%if(appName == 'BlogApp') {%>
-	    	<div ng-app='BlogApp'>
-			    <div ng-view>
-			    	<!-- partials load here -->
-			    </div>
-			</div>
-		<% } %>
-
-		<!-- this might be able to be written to replace the gazillion if statements above
-		============================
     	<div ng-app="<%= appName %>">
 		    <div ng-view>
 		    </div>
 		</div>
-		============================
-		-->
     </div>
 </body>
 
 <!-- Le bootstrap javascript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<!-- f**k these errors
-<script src="javascripts/bootstrap/bootstrap-transition.js"></script>
-<script src="javascripts/bootstrap/bootstrap-alert.js"></script>
-<script src="javascripts/bootstrap/bootstrap-modal.js"></script>
-<script src="javascripts/bootstrap/bootstrap-dropdown.js"></script>
-<script src="javascripts/bootstrap/bootstrap-scrollspy.js"></script>
-<script src="javascripts/bootstrap/bootstrap-tab.js"></script>
-<script src="javascripts/bootstrap/bootstrap-tooltip.js"></script>
-<script src="javascripts/bootstrap/bootstrap-popover.js"></script>
-<script src="javascripts/bootstrap/bootstrap-button.js"></script>
-<script src="javascripts/bootstrap/bootstrap-collapse.js"></script>
-<script src="javascripts/bootstrap/bootstrap-carousel.js"></script>
-<script src="javascripts/bootstrap/bootstrap-typeahead.js"></script> -->
+<!-- f**k these errors -->
+<script src="/javascripts/bootstrap/bootstrap-transition.js"></script>
+<script src="/javascripts/bootstrap/bootstrap-alert.js"></script>
+<script src="/javascripts/bootstrap/bootstrap-modal.js"></script>
+<script src="/javascripts/bootstrap/bootstrap-dropdown.js"></script>
+<script src="/javascripts/bootstrap/bootstrap-scrollspy.js"></script>
+<script src="/javascripts/bootstrap/bootstrap-tab.js"></script>
+<script src="/javascripts/bootstrap/bootstrap-tooltip.js"></script>
+<script src="/javascripts/bootstrap/bootstrap-popover.js"></script>
+<script src="/javascripts/bootstrap/bootstrap-button.js"></script>
+<script src="/javascripts/bootstrap/bootstrap-collapse.js"></script>
+<script src="/javascripts/bootstrap/bootstrap-carousel.js"></script>
+<script src="/javascripts/bootstrap/bootstrap-typeahead.js"></script>

@@ -26,7 +26,7 @@ app.configure(function () {
 	app.use(require('less-middleware')({ src: __dirname + '/public' }));
 	app.use(express.static(path.join(__dirname, 'public')));
 
-	mongoose.connect('mongodb://localhost/OKStartups');
+	mongoose.connect('mongodb://admin:password@ds037508.mongolab.com:37508/madeinok');
 });
 // development only
 if ('development' == app.get('env')) {
