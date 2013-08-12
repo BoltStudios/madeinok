@@ -6521,3 +6521,6 @@ event-right {
   overflow: hidden;
   box-shadow: inset 1px #007dc3;
 }
+.time-select {
+  width: 75px;
+}

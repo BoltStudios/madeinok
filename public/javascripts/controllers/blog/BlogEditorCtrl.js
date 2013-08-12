@@ -1,4 +1,8 @@
-function BlogEditorCtrl($scope, $location, $http, $routeParams, AuthenticationService, Blog) {
+function BlogEditorCtrl($scope, $location, $http, $routeParams, Blog) {
+
+	$scope.loggedIn = true;
+	$scope.admin = true;
+
 	$scope.formData = {}
 
 	// If the form has been saved once already, then we want to edit a form with an ID, 
@@ -16,7 +20,6 @@ function BlogEditorCtrl($scope, $location, $http, $routeParams, AuthenticationSe
 
 
 	/* how to add functions to the scope */
-
 	// $scope.functionName = function() {
 	// 	return $scope.variableName.value;
 	// }

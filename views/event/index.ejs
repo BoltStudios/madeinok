@@ -1,0 +1,30 @@
+<div class="container">
+
+	<div class="event-wrapper">
+
+		<div ng-switch on=admin class="create-event-wrapper">
+  		  	<button ng-switch-when=true class="btn btn-large btn-success pull-right" onclick='location.href="#/create"'>create a new event</button>
+		  	<h3 ng-switch-when=false class="classic-letterpress" style="text-align: center;" ng-show=title> {{title}} </h1>
+	  	</div>
+
+		<div ng-repeat="event in events" class="event">
+														
+			<div class="event-left"> 
+				<div style="height: 100px">
+					<div class="image-center-wrapper">
+						<img class="center-image" src={{event.imageUrl}}>								
+					</div>
+				</div>
+			</div>
+
+			<div class="event-right">
+				<h4>{{event.title}}</h4>
+				{{event.date}}
+				<p>{{event.description.substring(0,85) + "..."}}</p>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
