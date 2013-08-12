@@ -3,9 +3,17 @@ var mongoose = require('mongoose')
   , http = require('http')
   , path = require('path')
   , passport = require('passport')
+  , bundler = require('bundle-up')
   , app = express()
 ;
 
+bundler(app, path.join(__dirname + '/assets'), {
+	staticRoot: path.join(__dirname + '/public/'),
+	staticUrlRoot: '/',
+	bundle: true,
+	minifyCss: true,
+	minifyJs: true
+})
 
 
 // all environments

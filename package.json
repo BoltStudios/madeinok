@@ -11,6 +11,6 @@
     "less-middleware": "*",
     "mongoose": "*",
     "underscore": "*",
-    "bcrypt": "*"
+    "bundle-up": "*"
   }
 }
