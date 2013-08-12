@@ -1,4 +1,4 @@
-function AccountIndexCtrl($scope, $http, $location, User, AuthenticationService, $cookieStore, SessionService) {
+var AccountIndexCtrl = ['$scope', '$http', '$location', 'SessionService', function($scope, $http, $location, SessionService) {
 	$scope.title = 'Your Account'
 
 	$http.get('/api/users/current').success(function(response) {
@@ -12,22 +12,4 @@ function AccountIndexCtrl($scope, $http, $location, User, AuthenticationService,
 		})
 	})
 
-	// if not logged in, redirect to login
-	// if(!AuthenticationService.isLoggedIn())
-	// 	$location.path('/login')
-
-	$scope.logout = function() {
-		AuthenticationService.logOut()
-	}
-
-	// initialization
-	// $http.get('/api/users/current').success(function(response) {
-	// 	var uid = response
-	// 	$http.get('/api/users/'+uid+'/listings').success(function(response) {
-	// 		$scope.listings = response
-	// 	})
-	// })
-
-	// if logged in, hit the DB and get all the listings by this user
-
-}
+}]

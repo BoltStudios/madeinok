@@ -107,7 +107,7 @@ angular.module('status401-service', [])
 	.service('Status401Service', ['$httpProvider', function($httpProvider) {
 
 		return {
-			handle: $httpProvider.responseInterceptors.push(function($q, $location) {
+			handle: $httpProvider.responseInterceptors.push(['$q', '$location', function($q, $location) {
 				var success = function(response) {
 					return response
 				}
@@ -124,7 +124,7 @@ angular.module('status401-service', [])
 				return function(promise) {
 					return promise.then(success, error)
 				}
-			})
+			}])
 		}
 	}])
 

@@ -1,4 +1,4 @@
-function ListingCreateCtrl($scope, $location, $http, $routeParams, $injector, AuthenticationService) {
+var ListingCreateCtrl = ['$scope', '$location', '$http', '$routeParams', '$injector', 'AuthenticationService', function($scope, $location, $http, $routeParams, $injector, AuthenticationService) {
 
 	// Get the fields from the editor controller
 	$injector.invoke(ListingEditorCtrl, this, {$scope: $scope})
@@ -16,4 +16,4 @@ function ListingCreateCtrl($scope, $location, $http, $routeParams, $injector, Au
 		console.log(AuthenticationService.isLoggedIn())
 	}
 
-}
+}]

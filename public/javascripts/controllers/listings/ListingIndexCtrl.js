@@ -1,4 +1,4 @@
-function ListingIndexCtrl($scope, $http, Listing, $routeParams, AuthenticationService, SessionService) {
+var ListingIndexCtrl = ['$scope', '$http', 'Listing', '$routeParams', function($scope, $http, Listing, $routeParams) {
 	$scope.count = 0
 	$scope.listings = Listing.query()
 
@@ -13,4 +13,4 @@ function ListingIndexCtrl($scope, $http, Listing, $routeParams, AuthenticationSe
 			$scope.listings = _.filter($scope.listings, function(el) { return el._id != id})
 		})
 	}
-}
+}]

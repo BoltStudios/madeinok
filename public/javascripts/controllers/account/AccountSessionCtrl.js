@@ -1,4 +1,4 @@
-function AccountSessionCtrl($scope, $http, $location, FlashService, AuthenticationService) {
+var AccountSessionCtrl = ['$scope', 'FlashService', 'AuthenticationService', function($scope, FlashService, AuthenticationService) {
 
 	$scope.credentials = {}
 
@@ -12,4 +12,4 @@ function AccountSessionCtrl($scope, $http, $location, FlashService, Authenticati
 	$scope.logout = function() {
 		AuthenticationService.logOut()
 	}
-}
+}]

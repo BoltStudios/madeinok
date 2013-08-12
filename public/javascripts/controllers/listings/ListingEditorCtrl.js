@@ -1,5 +1,5 @@
 /* The edit and create controllers are going to be very similar, so inherit from this */
-function ListingEditorCtrl($scope, $location, $http, $routeParams, AuthenticationService, Listing) {
+var ListingEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'AuthenticationService', 'Listing', function($scope, $location, $http, $routeParams, AuthenticationService, Listing) {
 
 	// Form data
 	// Fields will be stored here as a JSON object
@@ -203,4 +203,4 @@ function ListingEditorCtrl($scope, $location, $http, $routeParams, Authenticatio
 		this.save(decrement)
 	}
 
-}
+}]

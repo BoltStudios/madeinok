@@ -1,15 +1,8 @@
-function AccountCreateCtrl($scope, $location, $http, $routeParams, User, AuthenticationService) {
+var AccountCreateCtrl = ['$scope', 'User', 'AuthenticationService', function($scope, User, AuthenticationService) {
 	$scope.title = 'Create Your Account'
 
 	// Hold all the form information here
 	$scope.formData = {}
-
-	// var test = User.get({id:'51fa8500796589012f000001'}, function() {
-
-	// }, function(response) {
-	// 	console.log('... ' + JSON.stringify(response))
-	// })
-	// console.log(test)
 
 	// Create the user, log them in, redirect to account index
 	$scope.register = function() {
@@ -18,4 +11,4 @@ function AccountCreateCtrl($scope, $location, $http, $routeParams, User, Authent
 			AuthenticationService.logIn(credentials)
 		})
 	}
-}
+}]

@@ -8,7 +8,7 @@ var SessionMaster = function() {
 
 /* If a page needs a login, include this in the route's resolve */
 SessionMaster.resolve = {
-	loggedIn: function($q, $http, $location, AuthenticationService) {
+	loggedIn: ['$q', '$http', '$location', 'AuthenticationService', function($q, $http, $location, AuthenticationService) {
 		var deferred = $q.defer()
 		$http.get('/api/users/current').success(function(response) {
 			if(response.guid) {
@@ -23,5 +23,5 @@ SessionMaster.resolve = {
 			location.href = '/account/#/login'
 			deferred.reject(response)
 		})
-	}
+	}]
 }

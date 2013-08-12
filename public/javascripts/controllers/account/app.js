@@ -1,12 +1,12 @@
 var app = angular.module('AccountApp', ['ngResource', 'authentication-service', 'user-factory'])
 	
-	.config(function($routeProvider, $locationProvider) {
+	.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 		$routeProvider
 			.when('/', {controller: AccountIndexCtrl, templateUrl: '/account/index', resolve: SessionMaster.resolve})
 			.when('/login', {controller: AccountSessionCtrl, templateUrl: '/account/login'})
 			.when('/create', {controller: AccountCreateCtrl, templateUrl: '/account/create'})
 			.otherwise({ redirectTo: '/' })
-	})
+	}])
 
 
 	// add field-match='path.to.element.in.scope'

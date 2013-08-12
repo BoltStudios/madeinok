@@ -24,4 +24,15 @@ module.exports = function(app) {
 		var viewname = req.params.viewname
 		res.render('account/' + viewname)
 	})
+
+
+	// ok josh
+	// var getUser = function(req, res, next) {
+	// 	res.data = {user = 0}
+	// }
+
+	// app.get('/something', getUser, function(req, res) {
+	// 	res.data.user
+
+	// })
 }
