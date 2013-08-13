@@ -10,7 +10,6 @@
     "ejs": "*",
     "less-middleware": "*",
     "mongoose": "*",
-    "underscore": "*",
-    "bundle-up": "*"
+    "underscore": "*"
   }
 }
