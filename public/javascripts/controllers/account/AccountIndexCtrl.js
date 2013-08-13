@@ -3,7 +3,7 @@ var AccountIndexCtrl = ['$scope', '$http', '$location', 'SessionService', functi
 
 	$http.get('/api/users/current').success(function(response) {
 		var guid = response ? response.guid : ''
-		  , path = '/api/users/'+guid+'/listings/'
+		  , path = '/api/users/'+guid+'/listings'
 
 		$http.get(path).success(function(response) {
 			var listings = response
@@ -11,5 +11,13 @@ var AccountIndexCtrl = ['$scope', '$http', '$location', 'SessionService', functi
 			console.log($scope.listings)
 		})
 	})
+
+	$scope.viewListing = function(id) {
+		location.href = '/listing/#/view/'+id
+	}
+
+	$scope.editListing = function(id) {
+		location.href = '/listing/#/edit/'+id
+	}
 
 }]

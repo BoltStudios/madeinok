@@ -1,14 +1,22 @@
-<a href='#/create' class='btn btn-success'>Create</a>
-<div>
-	showing {{ count }} entries
+<a href='#/create' class='btn btn-large btn-primary pull-right'>Add Your Startup</a>
+	<h2 class='page-header'>Startup Directory</h2>
 
-	<div>
-		<ul>
-			<li ng-repeat='entry in listings'>
+<!-- 		<ul class='unstyled'>
+			<li ng-repeat='entry in listings' class='listing-entry' ng-click='viewEntry(entry._id)'>
 				<h3>{{ entry.companyName }}</h3>
+				<p class='lead' ng-show='entry.phrase'>{{ entry.phrase }}</p>
+				<p class='see-more'><a href='#/view/{{ entry._id }}'>read more &rarr;</a></p>
 				<small><a href='#/edit/{{entry._id}}'>edit</a> // 
 				<a href='#/view/{{entry._id}}'>read</a> // 
 				<button class='btn btn-danger' ng-click='destroy("{{ entry._id }}")'>delete</button>
-		</ul>
-	</div>
-</div>
+		</ul> -->
+
+
+
+		<div class='row-fluid'>
+			<span ng-repeat='entry in listings' class='listing-entry span6' ng-click='viewEntry(entry._id)'>
+				<h3>{{ entry.companyName }}</h3>
+				<p class='lead' ng-show='entry.phrase'>{{ entry.phrase }}</p>
+				<p class='see-more'><a href='#/view/{{ entry._id }}'>read more &rarr;</a></p>
+			</span>
+		</div>

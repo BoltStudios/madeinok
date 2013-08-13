@@ -1,10 +1,13 @@
+<div class='listing-view'>
+<div>
 <div ng-show='item.error' class='alert alert-error'>{{ item.error }}</div>
 
 <h2 class='page-header'>
-	{{ item.companyName }}
-	<small ng-show='item.isHiring' class='label label-success'>Hiring</small>
-	<small ng-show='item.hasInternships' class='label label-success'>Internships Available</small><br/>
+	{{ item.companyName }}<br/>
 	<span ng-show='item.phrase' class='muted company-phrase'>"{{ item.phrase }}"</span>
+
+	<small ng-show='item.isHiring' class='label label-success pull-right hiring'>Hiring</small>
+	<small ng-show='item.hasInternships' class='label label-success pull-right hiring'>Internships Available</small>
 </h2>
 
 <fieldset>
@@ -107,6 +110,6 @@
 		<li class='indented' ng-show='item.hiringEmail'><i class='icon-envelope'></i> {{ item.hiringEmail }}</li>
 	</ul>
 </fieldset>
-
-
+</div>
+</div>
 <a href='#/'>&larr; See all listings</a>

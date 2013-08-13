@@ -2,6 +2,27 @@
  /////// TRISTIN'S ORIGINAL LESS ////////
 ////////////////////////////////////////
 
+.container-light {
+	background-color: @contrastColor; 
+	color: #000;
+
+	>div {
+		padding: 1.0em;
+	}
+
+	h1,h2,h3 {
+		color: #000;
+	}
+
+	.muted {
+		color: darken(@contrastColor, 50%);
+	}
+}
+
+.hiring {
+	margin: 0 0.3em;
+}
+
 // When inputs should be grouped, make them look like 1 cohesive unit.
 .input-group:first-of-type {
 	border-bottom: 0;
@@ -33,6 +54,21 @@ ul > .indented {
 	font-size: 0.5em;
 	font-style: italic;
 }
+
+.listing-entry {
+	cursor: pointer;
+	margin-bottom: 1.3em; 
+ 
+	h3 { margin: 0; color: @contrastColor; }
+	.lead { margin: 0; color: darken(@contrastColor, 20%); }
+	.see-more { }
+}
+
+.listing-entry:hover {
+	h3 { color: lighten(@contrastColor, 3%); }
+	.lead { color: darken(@contrastColor, 17%); }
+}
+
 
   ////////////////////////////////////////
  /////// CALE'S MASTER RACE LESS ////////

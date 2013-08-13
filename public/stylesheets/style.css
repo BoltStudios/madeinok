@@ -1,3 +1,21 @@
+.container-light {
+  background-color: #f0ead6;
+  color: #000;
+}
+.container-light > div {
+  padding: 1.0em;
+}
+.container-light h1,
+.container-light h2,
+.container-light h3 {
+  color: #000;
+}
+.container-light .muted {
+  color: #927c35;
+}
+.hiring {
+  margin: 0 0.3em;
+}
 .input-group:first-of-type {
   border-bottom: 0;
   border-radius: 4px 4px 0 0 !important;
@@ -21,6 +39,24 @@ ul > .indented {
 .company-phrase {
   font-size: 0.5em;
   font-style: italic;
+}
+.listing-entry {
+  cursor: pointer;
+  margin-bottom: 1.3em;
+}
+.listing-entry h3 {
+  margin: 0;
+  color: #f0ead6;
+}
+.listing-entry .lead {
+  margin: 0;
+  color: #d5c48b;
+}
+.listing-entry:hover h3 {
+  color: #f4f0e1;
+}
+.listing-entry:hover .lead {
+  color: #d9c997;
 }
 /*!
  * Bootstrap v2.3.2

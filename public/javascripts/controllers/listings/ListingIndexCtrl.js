@@ -1,4 +1,4 @@
-var ListingIndexCtrl = ['$scope', '$http', 'Listing', '$routeParams', function($scope, $http, Listing, $routeParams) {
+var ListingIndexCtrl = ['$scope', '$http', '$location', 'Listing', '$routeParams', function($scope, $http, $location, Listing, $routeParams) {
 	$scope.count = 0
 	$scope.listings = Listing.query()
 
@@ -12,5 +12,9 @@ var ListingIndexCtrl = ['$scope', '$http', 'Listing', '$routeParams', function($
 		Listing.delete({id: id}, function(response) {
 			$scope.listings = _.filter($scope.listings, function(el) { return el._id != id})
 		})
+	}
+
+	$scope.viewEntry = function(id) {
+		$location.path('/view/'+id)
 	}
 }]
