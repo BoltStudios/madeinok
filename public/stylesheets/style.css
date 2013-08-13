@@ -3601,7 +3601,7 @@ input[type="submit"].btn.btn-mini {
 }
 .navbar-link:hover,
 .navbar-link:focus {
-  color: #2d2d2d;
+  color: #f05133;
 }
 .navbar .divider-vertical {
   height: 60px;
@@ -3756,10 +3756,10 @@ input[type="submit"].btn.btn-mini {
 .navbar .nav > li > a:focus,
 .navbar .nav > li > a:hover {
   background-color: transparent;
-  color: #2d2d2d;
+  color: #f05133;
   text-decoration: none;
   -webkit-box-shadow: none;
-  text-shadow: 1px 1px #ee3d1b;
+  text-shadow: 0 0 0.2em #002d62, 0 0 0.2em #002d62;
 }
 .navbar .nav > .active > a,
 .navbar .nav > .active > a:hover,
@@ -3862,8 +3862,8 @@ input[type="submit"].btn.btn-mini {
 }
 .navbar .nav li.dropdown > a:hover .caret,
 .navbar .nav li.dropdown > a:focus .caret {
-  border-top-color: #2d2d2d;
-  border-bottom-color: #2d2d2d;
+  border-top-color: #f05133;
+  border-bottom-color: #f05133;
 }
 .navbar .nav li.dropdown.open > .dropdown-toggle,
 .navbar .nav li.dropdown.active > .dropdown-toggle,
@@ -6523,4 +6523,7 @@ event-right {
 }
 .time-select {
   width: 75px;
+}
+.create-event-wrapper button {
+  margin-bottom: 5px;
 }

@@ -1,0 +1,21 @@
+			<div ng-show=admin class="create-blog-wrapper">
+	  		  <button class="btn btn-large btn-primary pull-right" onclick='location.href="#/edit/{{viewData._id}}"'>edit or delete</button>
+		  	</div>
+
+			<div class="event">
+															
+				<div class="event-left"> 
+					<div style="height: 100px">
+						<div class="image-center-wrapper">
+							<img class="center-image" src={{viewData.imageUrl}}>								
+						</div>
+					</div>
+				</div>
+
+				<div class="event-right">
+					<h4 onclick='location.href="#/view/{{event._id}}"'>{{viewData.title}}</h4>
+					{{viewData.date}}
+					<p>{{viewData.description}}</p>
+				</div>
+
+			</div>

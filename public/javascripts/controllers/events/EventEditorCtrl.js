@@ -13,12 +13,33 @@ function EventEditorCtrl($scope, $location, $http, $routeParams, Event) {
 	if($scope.eventId && Object.keys($scope.formData).length == 0) {
 		var entry = Event.get({id: $scope.eventId})
 		$scope.formData = entry
+
+		//We need to turn that date back into something that's editable.
+		//However, for whatever reason $scope.formData.date == undefined AND entry.date == undefined
+		console.log($scope.formData.date); 
+		console.log(entry.date);
+		//Yet, whenever I inspect the window.scope.formData variable date is clearly defined, or if I alert $scope.formData then date is also clearly defined
+		//I think the asynch processing might be causing a data error here.
+		var date1 = $scope.formData.date
+		var date2 = entry.date
+		console.log(date1)
+		console.log(date2)
+		var date = new Date(date)// for whatever reason you have to new up a date from the string. js is dumb
+		//this is also working client side with new Date(window.scope.formData.date);
+		console.log(date)
+		window.date = date
+		$scope.formData.year = date.getFullYear()
+		$scope.formData.month = date.getMonth() + 1
+		$scope.formData.day = date.getDate()
+		$scope.formData.hour = date.getHours()
+		$scope.formData.minutes = date.getMinutes()
 	}
-    
-    $scope.formData.minute = 15
+    else{
+    	$scope.formData.hour = 7
+    	$scope.formData.minute = 15
+	}
     $scope.hours = getHours()
     $scope.minutes = getMinutes()
-
 
     window.scope = $scope
 	/* how to add functions to the scope */

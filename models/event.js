@@ -1,11 +1,11 @@
 var mongoose = require('mongoose')
 
-var BlogSchema = new mongoose.Schema({
+var EventSchema = new mongoose.Schema({
 	  organization: { type: String }
 	, title:   		{ type: String }
 	, description:  { type: String }
-	, imageUrl		{ type: String }
+	, imageUrl:		{ type: String }
 	, date: 		{ type: Date   }
 })
 
-module.exports = mongoose.model('Blogs', BlogSchema)
+module.exports = mongoose.model('Events', EventSchema)

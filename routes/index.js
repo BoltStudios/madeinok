@@ -7,6 +7,7 @@ module.exports = function(app) {
 
 	require('./home')(app)
 	require('./blog')(app)
+	require('./event')(app)
 
 	app.get('/', function(req, res) {
 		res.render('index', { title: 'Express', appName: 'HomeApp' })
@@ -27,9 +28,6 @@ module.exports = function(app) {
 	app.get('/home', function(req, res) { res.redirect('/home/')})
 	app.get('/home/', function(req, res) {
 		res.render('index', {title: 'Express', appName: 'HomeApp'})
-		// var viewname = req.params.viewname
-		// console.log(req.params.viewname);
-		// res.render('home/' + viewname)
 	})
 
 	app.get('/blog', function(req, res) { res.redirect('/blog/')})
