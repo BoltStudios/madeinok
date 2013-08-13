@@ -1,0 +1,24 @@
+<h1 ng-show=title> {{title}} </h1>
+
+<div class="container">
+
+	<div class="blog-wrapper">
+
+		<div ng-show=admin class="create-blog-wrapper">
+  		  <button class="btn btn-large btn-primary pull-right" onclick='location.href="#/create"'>create</button>
+	  	</div>
+
+		<div class="span12 blog-post" ng-repeat="blog in blogs">
+		  <div class="blog-header">
+  		  	<h2>{{blog.title}}</h2>
+		  	<p>{{blog.date}}</p>
+		  	<div ng-show=admin class="delete-post">
+		  		delete
+		  	</div>
+		  </div>
+		  <p class="blog-body">{{blog.body}}</p>
+		</div>
+
+	</div>
+
+</div>

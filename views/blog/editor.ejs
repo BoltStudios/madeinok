@@ -1,0 +1,86 @@
+<h1 ng-show=title> {{title}} </h1>
+
+<form name='blogEditor'>
+
+	<div class="container">
+
+		<div class="alert alert-info" ng-hide=formData.body&&formData.title>
+			<button type="button" class="close" data-dismiss="alert">&times;</button>		
+			<strong>Heads Up!</strong> 
+			Once you enter a title and some text for the body of your blog post, I'll show you a preview.
+		</div>
+
+		<div class="alert" ng-show=formData.body&&formData.title>
+			<button type="button" class="close" data-dismiss="alert">&times;</button>		
+			Below is the exact markup that will appear on the page after you publish your blog post, and the save button.
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='name'>
+				Your Name
+				<span class='text-error'>*</span>
+			</label>
+			<div class='controls'>
+				<input class="span12" type="text" name='name' ng-model='formData.name' autocorrect='off' required />
+				<div ng-show='blogEditor.name.$dirty && blogEditor.userName.$invalid' class='alert alert-error'>
+	          		<span ng-show='blogEditor.name.$error.required'>You must enter your name.</span>
+	        	</div>
+	        	<div>
+	        		{{formData.name}}
+        		</div>
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='title'>
+				Post Title
+				<span class='text-error'>*</span>
+			</label>
+			<div class='controls'>
+				<input class="span12" type="text" name='title' ng-model='formData.title' autocorrect='off' required />
+				<div ng-show='blogEditor.title.$dirty && blogEditor.title.$invalid' class='alert alert-error'>
+	          		<span ng-show='blogEditor.title.$error.required'>You must enter a title.</span>
+	        	</div>
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='body'>
+				Post Body
+				<span class='text-error'>*</span>
+			</label>
+			<div class='controls'>
+				<div ng-show='blogEditor.body.$dirty && blogEditor.body.$invalid' class='alert alert-error'>
+	          		<span ng-show='blogEditor.body.$error.required'>You must enter content for the blog post.</span>
+	        	</div>
+		    	<textarea class="span12" ck-editor name='title' ng-model="formData.body" required></textarea>
+			</div>
+		</div>
+
+		<div class="preview-wrapper" ng-show=formData.body&&formData.title>
+			<h4> This is how it will look once you submit it </h4>
+			<div class="span12 blog-post">
+			  <div class="blog-header">
+			  	<h2>{{formData.title}}</h2>
+			  	<p>{{formData.date.toString()}}</p>
+			  </div>
+			  <p class="blog-body" ng-bind-html-unsafe=formData.body></p>
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<div class='controls'>
+				<a class='btn btn-primary' ng-click='save()'>Save</a>
+			</div>
+		</div>
+
+	</div>
+
+</form>
+
+
+
+
+
+
+

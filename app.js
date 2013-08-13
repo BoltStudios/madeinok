@@ -20,10 +20,12 @@ app.use(express.cookieParser())
 app.use(express.session({secret: 'snoop doggy dogg'}));
 app.use(passport.initialize());
 app.use(passport.session());
+app.enable('strict routing'); //has to go above app.use(app.router); this will prevent domain.com/whatever and domain.com/whatever/ from acting like they are the same. Another solution is to use https://github.com/ericf/express-slash, but I don't care to.
 app.use(app.router);
 app.use(require('less-middleware')({ src: __dirname + '/public' }));
 app.use(express.static(path.join(__dirname, 'public')));
 mongoose.connect('mongodb://localhost/OKStartups');
+
 
 // development only
 if ('development' == app.get('env')) {

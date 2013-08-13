@@ -1,0 +1,49 @@
+<h1 ng-show=title> {{title}} </h1>
+
+<div class="container">
+
+	<div class="alert alert-info" ng-hide=postBody&&postTitle>
+		<button type="button" class="close" data-dismiss="alert">&times;</button>		
+		<strong>Heads Up!</strong> Once you enter a title and some text for the body of your blog post, I'll show you a preview.
+	</div>
+
+	<div class="alert" ng-show=postBody&&postTitle>
+		<button type="button" class="close" data-dismiss="alert">&times;</button>		
+		Below is the exact markup that will appear on the page after you publish your blog post.
+	</div>
+
+	<label>Your Name:</label>
+	<input class="span12" type="text" ng-model="yourName" placeholder="Enter your name here">
+
+	<label>Post Title:</label>
+	<input class="span12" type="text" ng-model="postTitle" placeholder="Enter the title here">
+
+
+    <input class="rawEditor" type="checkbox" ng-model="rawEditor" value="true"> view raw html
+    <br/><br/>
+
+    <div ng-switch on="rawEditor">
+	    <div ng-switch-when=false>
+	    	<label>Blog Text:</label>
+	    	<textarea ck-editor ng-model="$parent.postBody"></textarea>
+		</div>  
+		<div ng-switch-when=true>
+			<label>Blog Text (Raw HTML):</label>
+			<textarea rows=10 class="span12" ng-model="$parent.postBody" placeholder="editor..."></textarea>
+		</div>
+	</div>	
+
+	<div class="preview-wrapper" ng-show=postBody&&postTitle>
+		<h4> Preview </h4>
+		<div class="span12 blog-post">
+		  <div class="blog-header">
+		  	<h2>{{postTitle}}</h2>
+		  	<p>{{postDate}}</p>
+		  </div>
+		  <p class="blog-body" ng-bind-html-unsafe="postBody"></p>
+		</div>
+	</div>
+</div>
+
+
+
