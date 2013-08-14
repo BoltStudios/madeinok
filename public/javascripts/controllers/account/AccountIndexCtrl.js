@@ -1,4 +1,4 @@
-var AccountIndexCtrl = ['$scope', '$http', '$location', function($scope, $http, $location) {
+var AccountIndexCtrl = ['$scope', '$http', '$location', 'AuthenticationService', function($scope, $http, $location, AuthenticationService) {
 	$scope.title = 'Your Account'
 
 	$http.get('/api/users/current').success(function(response) {
@@ -19,6 +19,10 @@ var AccountIndexCtrl = ['$scope', '$http', '$location', function($scope, $http, 
 	$scope.editListing = function(id) {
 		//location.href = '/listing/#/edit/'+id
 		$location.url('/listing/#/edit/'+id)
+	}
+
+	$scope.logout = function() {
+		AuthenticationService.logout()
 	}
 
 }]
