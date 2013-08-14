@@ -81,43 +81,46 @@ ul > .indented {
 //------home page------//
 ////////////////////////
 .event-left, event-right{
+	display: table-cell;
+	float:left;
 	height: 100%;
-	float: left;
 }
 .event-left{
 	h1,h2,h3,h4,h5,h6{
 		color: @thunderDarkBlue;
 		margin: 5px 0px;
 	}
-	backround-color: blue;
-	float: left;
-	width: 25%;
 	text-align: center;
-	min-width: 100px;
-	img{
-		border-radius: 4px 0 0 4px;
-	}
+	vertical-align: middle;
 }
 
 .event-right{
+	padding-left: 5px;
+	padding-right: 5px;
 	h1,h2,h3,h4,h5,h6{
 		margin: 5px 0px;
 	}
-	float: right;
-	max-width: 72%;
 	overflow: hidden;
 }
 .events-wrapper{
 	height: 600px;
 }
 .event{
-	height: 100px;
-	background-color: @bodyBackground;
+	display: table;
+	min-height: 100px;
+	background-color: darken(@bodyBackground, 4%);
 	padding: 0px;
 	margin-top: 5px;
-	border: solid 1px @thunderDarkBlue;
-	border-radius: 4px;
+	border: solid 1px darken(@bodyBackground, 4%);
+	//border-radius: 4px;
 	color: @thunderDarkBlue;
+	&:hover{
+		cursor: pointer;
+		color: @primaryColor;
+		h1,h2,h3,h4,h5,h6{
+			color: @accentColor;
+		}
+	}
 }
 
 .about-text{
