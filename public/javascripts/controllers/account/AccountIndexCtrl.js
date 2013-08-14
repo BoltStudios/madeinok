@@ -12,13 +12,13 @@ var AccountIndexCtrl = ['$scope', '$http', '$location', 'AuthenticationService',
 	})
 
 	$scope.viewListing = function(id) {
-		//location.href = '/listing/#/view/'+id
-		$location.url('/listing/#/view/'+id)
+		location.href = '/listing/#/view/'+id
+		//$location.url('/listing/#/view/'+id)
 	}
 
 	$scope.editListing = function(id) {
-		//location.href = '/listing/#/edit/'+id
-		$location.url('/listing/#/edit/'+id)
+		location.href = '/listing/#/edit/'+id
+		//$location.url('/listing/#/edit/'+id)
 	}
 
 	$scope.logout = function() {

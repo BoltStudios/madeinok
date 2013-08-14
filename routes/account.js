@@ -19,7 +19,6 @@ module.exports = function(app) {
 	});
 
 	passport.deserializeUser(function(user, done) {
-		console.log('!!! PASSPORT DESERIALIZE ' + JSON.stringify(user))
 		done(null, user)
 	})
 
@@ -53,8 +52,22 @@ module.exports = function(app) {
 		callbackURL: '/auth/facebook/callback'
 	}, function(accessToken, refreshToken, profile, done) {
 		console.log(profile)
-		var object = {provider: profile.provider, id: profile.id}
-		// set request provider+id
+		var object = {provider: profile.provider, id: profile.id }
+		var profileObject = {provider: profile.provider, id: profile.id, name: profile.displayName}
+
+		// Find or create a user!
+		User.findOne(object, function(error, user) {
+			if(error) {
+				return done(error)
+			} else if(!user) {
+				new User(profileObject).save(function(error, newUser) {
+					return done(null, newUser)
+				})
+			} else {
+				return done(null, user)
+			}
+		})
+		
 	}))
 
 	app.get('/auth/twitter', passport.authenticate('twitter', {session:true}))
