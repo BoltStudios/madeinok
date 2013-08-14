@@ -46,7 +46,7 @@
   *border: 0; // Remove the border to prevent IE7's black border on input:focus
   background-color: @btnBackground;
   .ie7-restore-left-whitespace(); // Give IE7 some love
-  color: @contrastColor;
+  color: @bodyBackground;
   height: 115px;
   font-size: 40px;
   text-transform: lowercase;
@@ -96,6 +96,12 @@
   background-color: @btnPrimaryBackground;
   &:hover{
     background-color: darken(@btnPrimaryBackground, 5%);
+  }
+}
+.tile-accent {
+  background-color: @accentColor;
+  &:hover{
+    background-color: darken(@accentColor, 5%);
   }
 }
 // Warning appears are orange

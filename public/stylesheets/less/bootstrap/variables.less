@@ -41,12 +41,13 @@
 @ubuntuOrange: 			#dd4814;
 @kermitGreen: 			#61ae24;
 @aubergine: 			#772953;
+// other neat colors: //#db6d8d;//#F84e54;//#e2283d;
 
 //Skullio Colors
 // --------------------------
-@primaryColor: 			@thunderOrange; //@primaryColor:@kermitGreen; // other cool colors: //#db6d8d;//#F84e54;//#e2283d;
-@accentColor: 			@oklahomaFlagBlue;
-@contrastColor: 		@eggShellWhite;
+@primaryColor: 			@oklahomaFlagBlue; //@primaryColor:@kermitGreen; 
+@accentColor: 			@thunderOrange;
+@contrastColor: 		@grayDarker;  //dark theme @eggShellWhite;
 @sortaYellow: 			#ECA918;
 @sortaRed: 				#DF382C;
 @sortaGreen: 			#38B44A;
@@ -54,8 +55,8 @@
 
 // Scaffolding
 // -------------------------
-@bodyBackground:        @grayDarker; //dark theme
-@textColor:             @grayLight;
+@bodyBackground:        @eggShellWhite; //dark theme @grayDarker
+@textColor:             @grayDarker; //dark theme @grayLight;
 
 
 
@@ -77,8 +78,9 @@
 @altFontFamily:         @serifFontFamily;
 
 @headingsFontFamily:    inherit; // empty to use BS default, @baseFontFamily
-@headingsFontWeight:    bold;    // instead of browser default, bold
-@headingsColor:         @primaryColor; // empty to use BS default, @textColor
+@headingsFontWeight:    200;    // instead of browser default, bold
+@headingsColor:         @thunderDarkBlue; // empty to use BS default, @textColor
+@largeHeadingsColor: 	@accentColor;
 
 
 // Component sizing
@@ -111,22 +113,22 @@
 // -------------------------
 @btnBackground:                     @contrastColor;
 @btnBackgroundHighlight:            @contrastColor; //darken(@white, 10%);
-@btnBorder:                         @grayDarker;
+@btnBorder:                         @bodyBackground;
 
 @btnPrimaryBackground:              @primaryColor;
-@btnPrimaryBackgroundHighlight:     @primaryColor;
+@btnPrimaryBackgroundHighlight:     darken(@primaryColor, 5%);
 
 @btnInfoBackground:                 @sortaBlue;
-@btnInfoBackgroundHighlight:        @sortaBlue;
+@btnInfoBackgroundHighlight:        darken(@sortaBlue, 5%);
 
 @btnSuccessBackground:              @sortaGreen;
-@btnSuccessBackgroundHighlight:     @sortaGreen;
+@btnSuccessBackgroundHighlight:     darken(@sortaGreen, 5%);
 
 @btnWarningBackground:              @sortaYellow; 
-@btnWarningBackgroundHighlight:     @sortaYellow;
+@btnWarningBackgroundHighlight:     darken(@sortaYellow, 5%);
 
 @btnDangerBackground:               @sortaRed;
-@btnDangerBackgroundHighlight:      @sortaRed;
+@btnDangerBackgroundHighlight:      darken(@sortaRed, 5%);
 
 @btnInverseBackground:              @grayDark;
 @btnInverseBackgroundHighlight:     @grayDark;
@@ -206,16 +208,16 @@
 @navbarCollapseDesktopWidth:      @navbarCollapseWidth + 1;
 
 @navbarHeight:                    60px;
-@navbarBackgroundHighlight:       @contrastColor;
+@navbarBackgroundHighlight:       @bodyBackground;
 @navbarBackground:                @oklahomaFlagBlue; //darken(@navbarBackgroundHighlight, 5%);
-@navbarBorder:                    darken(@navbarBackground, 12%);
+@navbarBorder:                    lighten(@navbarBackground, 12%);
 
-@navbarText:                      @contrastColor;
-@navbarLinkColor:                 @contrastColor;
-@navbarLinkColorHover:            @primaryColor;
+@navbarText:                      @bodyBackground;
+@navbarLinkColor:                 @bodyBackground;
+@navbarLinkColorHover:            @accentColor;
 @navbarLinkColorActive:           @bodyBackground;
 @navbarLinkBackgroundHover:       transparent;
-@navbarLinkBackgroundActive:      darken(@navbarBackground, 5%);
+@navbarLinkBackgroundActive:      lighten(@navbarBackground, 5%);
 
 @navbarBrandColor:                @navbarLinkColor;
 

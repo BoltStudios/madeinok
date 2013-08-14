@@ -1,0 +1,22 @@
+<h2 class='page-header'>{{ title }}</h2>
+
+<a ng-click='logout()' class='btn btn-danger'>Log Off</a>
+<<<<<<< HEAD
+
+<fieldset>
+<legend>Your Companies</legend>
+<ul class='unstyled'>
+	<li ng-repeat='listing in listings' class='listing-entry'>
+		<h3>{{ listing.companyName }}</h3>
+		<p class='lead'>{{ listing.phrase }}</p>
+		<a ng-click='viewListing(listing._id)' class='btn btn-disabled'>View</a>
+		<a ng-click='editListing(listing._id)' class='btn btn-primary'>Edit</a>
+=======
+<ul>
+	<li ng-repeat='listing in listings'>
+		{{ listing.companyName }}<br/>
+		<a href='/#/view/{{listing._id}}'>View</a> // <a href='/#/edit/{{listing._id}}'>Edit</a>
+>>>>>>> cale
+	</li>
+</ul>
+</fieldset>

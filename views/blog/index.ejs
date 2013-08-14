@@ -1,22 +1,23 @@
-<h1 ng-show=title> {{title}} </h1>
-
 <div class="container">
+
 
 	<div class="blog-wrapper">
 
-		<div ng-show=admin class="create-blog-wrapper">
-  		  <button class="btn btn-large btn-primary pull-right" onclick='location.href="#/create"'>create</button>
+		<div ng-switch on=admin class="create-blog-wrapper">
+  		  	<button ng-switch-when=true class="btn btn-large btn-success pull-right" onclick='location.href="#/create"'>create a new post</button>
+		  	<h3 ng-switch-when=false class="classic-letterpress" style="text-align: center;" ng-show=title> {{title}} </h1>
 	  	</div>
 
-		<div class="span12 blog-post" ng-repeat="blog in blogs">
+		<div class="span12 blog-post" ng-repeat="blog in blogs" onclick='location.href="#/view/{{blog._id}}"'>
+
 		  <div class="blog-header">
-  		  	<h2>{{blog.title}}</h2>
-		  	<p>{{blog.date}}</p>
-		  	<div ng-show=admin class="delete-post">
-		  		delete
-		  	</div>
+  		  	<h2 class="blog-title">	{{blog.title}}	</h2>
+  		  	<h5 class="writer-name">{{blog.name}}	</h5>
+		  	<p 	class="blog-date">	{{blog.date}}	</p>
 		  </div>
-		  <p class="blog-body">{{blog.body}}</p>
+
+		  <p class="blog-body" ng-bind-html-unsafe=blog.body></p>
+
 		</div>
 
 	</div>

@@ -1,45 +1,37 @@
-<style>
-	.homepage-tiles{
-		width: 100%;
-		overflow: hidden;
-	}
-</style>
-
 <div class="homepage-top">
 			<div class="wrapper100">
-				<h1> register text </h1>
+				<div class="alert alert-info" style="margin-bottom:0;">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>Hello!</strong> Thanks for checking out madeinok.co. You should register to stay up to date with the latest goings on in the Oklahoma tech community.
+					<br/>
+					<button type="button" class="btn btn-primary btn-large" onclick="location.href='/account/#/create'">register</button>
+
+				</div>
 			</div>
 
 			<div class="wrapper50">
-				<div ng-repeat="event in events" class="event">
-					<div class="event-left"> 
-						<div class="logo-wrapper">
-							<div class="image-center-wrapper">
-								<img src={{event.imageUrl}}>
-							</div>
-						</div>
-					</div>
-					<div class="event-right">
-						<h4>{{event.title}}</h4>
-						{{event.date}}
-						<p>{{event.description.substring(0,100) + "..."}}</p>
-					</div>
+				<div style="width: 100%;" >
+					featured company goes here, say top 3/5
+				</div>
+				<div style="width: 100%;" >
+					most recent blog posts, somewhere
 				</div>
 			</div>
 
 			<div class="wrapper50">
 				<div ng-repeat="event in events" class="event">
 					<div class="event-left"> 
-						<div class="logo-wrapper">
+						<div style="height: 100px">
 							<div class="image-center-wrapper">
-								<img src={{event.imageUrl}}>
+								<span></span>
+								<img class="center-image" src={{event.imageUrl}}>								
 							</div>
 						</div>
 					</div>
 					<div class="event-right">
 						<h4>{{event.title}}</h4>
 						{{event.date}}
-						<p>{{event.description.substring(0,100) + "..."}}</p>
+						<p>{{event.description.substring(0,85) + "..."}}</p>
 					</div>
 				</div>
 			</div>
@@ -49,16 +41,16 @@
 
 <div class="homepage-tiles">
 	<!-- navigation tiles -->
-	<button class="tile tile-primary" onclick='location.href="/#/listings";'>
+	<button class="tile tile-accent" onclick='location.href="/#/listings";'>
 		Businesses
 	</button>
-	<button class="tile tile-primary" onclick='location.href="/#/people";'>
+	<button class="tile tile-accent" onclick='location.href="/#/people";'>
 		People
 	</button>
-	<button class="tile tile-primary" onclick='location.href="/#/events";'>
+	<button class="tile tile-accent" onclick='location.href="/#/events";'>
 		Events
 	</button>
-	<button class="tile tile-primary" onclick='location.href="/#/blog";'>
+	<button class="tile tile-accent" onclick='location.href="/#/blog";'>
 		Blog
 	</button>
 </div>
@@ -74,11 +66,13 @@
 		<p class="about-text">{{blurb}}</p>
 	</div>
 	<div class="wrapper25">
-		<div class="bolt">
-			BUILT BY BOLT
+		<div class="image-center-wrapper">
+			<p>BROUGHT TO YOU BY</p>
+			<img class="bolt-studios-logo" src="images/BoltStudios.png" alt="Bolt Studios"/>
 		</div>
-		<div class="mtm">
-			SPONSORED BY MTM
+		<div class="image-center-wrapper">
+			<p>THE R&amp;D DIVISION OF</p>
+			<img class="mtm-recognition-logo" src="images/mtmrecognition.png" alt="MTM Recognition"/>
 		</div>
 	</div>
 </div>

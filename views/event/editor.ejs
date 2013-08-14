@@ -1,0 +1,161 @@
+<form name='eventEditor'>
+
+	<div class="container">
+	  	<button ng-show=eventId class="btn btn-danger btn-large pull-right" ng-click=delete()>delete this event</button>
+	  	<a class='btn btn-large btn-primary pull-right' ng-click='save()'>save changes</a>
+	  	<br/>
+	  	<br/>
+	  	<br/>
+
+		<div class="alert alert-info" ng-hide=formData.description&&formData.title&&formData.name>
+			<button type="button" class="close" data-dismiss="alert">&times;</button>		
+			<strong>Heads Up!</strong> 
+			Once you enter some information for the event, I'll show you a preview.
+		</div>
+
+		<div class="alert" ng-show=formData.description&&formData.title&&formData.name>
+			<button type="button" class="close" data-dismiss="alert">&times;</button>		
+			Below is the exact markup that will appear on the page after you publish your event.
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='organization'>
+				Who is hosting this event?
+			</label>
+			<div class='controls'>
+				<input class="span12" type="text" name='organization' ng-model='formData.organization' autocorrect='off' required />
+				<div ng-show='eventEditor.organization.$dirty && eventEditor.organization.$invalid' class='alert alert-error'>
+	          		<span ng-show='eventEditor.organization.$error.required'>You must enter an organization.</span>
+	        	</div>
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='title'>
+				What would you like to title it?
+			</label>
+			<div class='controls'>
+				<input class="span12" type="text" name='title' ng-model='formData.title' autocorrect='off' required />
+				<div ng-show='eventEditor.title.$dirty && eventEditor.title.$invalid' class='alert alert-error'>
+	          		<span ng-show='eventEditor.title.$error.required'>You must enter a title.</span>
+	        	</div>
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='imageUrl'>
+				Enter a square image for the event
+			</label>
+			<div class='controls'>
+				<input class="span12" type="text" name='title' ng-model='formData.imageUrl' autocorrect='off' />
+				<div ng-show='eventEditor.imageUrl.$dirty && eventEditor.imageUrl.$invalid' class='alert alert-error'>
+	          		<span ng-show='eventEditor.imageUrl.$error.required'>You must enter a square imageUrl.</span>
+	        	</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class='control-group span3'>
+				<label class='control-label' for='day'>
+					day
+				</label>
+				<div class='controls'>
+					<input type="text" name='day' ng-model='formData.day' autocorrect='off' required />
+					<div ng-show='eventEditor.day.$dirty && eventEditor.day.$invalid' class='alert alert-error'>
+		          		<span ng-show='eventEditor.day.$error.required'>You must enter a day.</span>
+		        	</div>
+				</div>
+			</div>
+			<div class='control-group span3'>
+				<label class='control-label' for='day'>
+					month
+				</label>
+				<div class='controls'>
+					<input type="text" name='month' ng-model='formData.month' autocorrect='off' required />
+					<div ng-show='eventEditor.month.$dirty && eventEditor.month.$invalid' class='alert alert-error'>
+		          		<span ng-show='eventEditor.month.$error.required'>You must enter a month.</span>
+		        	</div>
+				</div>
+			</div>
+			<div class='control-group span3'>
+				<label class='control-label' for='year'>
+					year
+				</label>
+				<div class='controls'>
+					<input type="text" name='year' ng-model='formData.year' autocorrect='off' required />
+					<div ng-show='eventEditor.year.$dirty && eventEditor.year.$invalid' class='alert alert-error'>
+		          		<span ng-show='eventEditor.year.$error.required'>You must enter a year.</span>
+		        	</div>
+				</div>
+			</div>
+
+			<div class='control-group span1'>
+				<label class='control-label' for='hours'>
+					hours
+				</label>
+				<div class='controls'>
+					<select class="time-select" name="hours" ng-model="formData.hour" ng-options="h for h in hours">
+					</select>
+				</div>
+			</div>
+			<div class='control-group span1'>
+				<label class='control-label' for='minutes'>
+					minutes
+				</label>
+				<div class='controls'>
+					<select class="time-select" name="minutes" ng-model="formData.minute" ng-options="m for m in minutes">
+					</select>
+				</div>
+			</div>
+			<div class='control-group span1'>
+				<label class='control-label' for='ampm'>
+					am/pm
+				</label>
+				<div class='controls'>
+					<select class="time-select" name="ampm" ng-model="formData.ampm" ng-options="t for t in ['AM','PM']">
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='description'>
+				Tell us a little more about the event.
+			</label>
+			<div class='controls'>
+				<textarea class="span12" type="text" name='description' ng-model='formData.description' required></textarea>
+				<div ng-show='eventEditor.description.$dirty&&eventEditor.description.$invalid' class='alert alert-error'>
+	          		<span ng-show='eventEditor.description.$error.required'>You must enter a title.</span>
+	        	</div>
+			</div>
+		</div>
+
+		<div ng-show=formData.description&&formData.title&&formData.organization>
+			<h3> This is how it will look once you submit it </h3>
+			<div class="event">
+				<div class="event-left"> 
+					<div style="height: 100px">
+						<div class="image-center-wrapper">
+							<span></span>
+							<img class="center-image" src={{formData.imageUrl}}>								
+						</div>
+					</div>
+				</div>
+				<div class="event-right">
+					<h4>{{formData.title}}</h4>
+					{{getDate().toString()}}
+					<p>{{formData.description.substring(0,85) + "..."}}</p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</form>
+
+
+
+
+
+
+

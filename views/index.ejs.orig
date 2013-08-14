@@ -99,10 +99,54 @@
 
     <!-- we put all of the angular views inside of the page-wrapper class -->
     <div class="page-wrapper">
+<<<<<<< HEAD
+    	<div class='container'>
+		<%if(appName == 'ListApp') {%>
+	    	<div ng-app='ListApp'>
+			    <div ng-view>
+			    	<!-- partials load here -->
+			    </div>
+			</div>
+		<% } %>	
+
+		<%if(appName == 'AccountApp') {%>
+	    	<div ng-app='AccountApp'>
+			    <div ng-view>
+			    	<!-- partials load here -->
+			    </div>
+			</div>
+		<% } %>
+
+		<%if(appName == 'HomeApp') {%>
+	    	<div ng-app='HomeApp'>
+			    <div ng-view>
+			    	<!-- partials load here -->
+			    </div>
+			</div>
+		<% } %>
+
+		<%if(appName == 'BlogApp') {%>
+	    	<div ng-app='BlogApp'>
+			    <div ng-view>
+			    	<!-- partials load here -->
+			    </div>
+			</div>
+		<% } %>
+
+		<!-- this might be able to be written to replace the gazillion if statements above
+		============================
+=======
+>>>>>>> cale
     	<div ng-app="<%= appName %>">
 		    <div ng-view>
 		    </div>
 		</div>
+<<<<<<< HEAD
+		============================
+		-->
+		</div>
+=======
+>>>>>>> cale
     </div>
 </body>
 

@@ -6,6 +6,7 @@ module.exports = function(app) {
 	require('./account')(app)
 	require('./home')(app)
 	require('./blog')(app)
+	require('./event')(app)
 
 	app.get('/', function(req, res) {
 		res.render('index', { title: 'Express', appName: 'HomeApp' })
@@ -26,17 +27,16 @@ module.exports = function(app) {
 	app.get('/home', function(req, res) { res.redirect('/home/')})
 	app.get('/home/', function(req, res) {
 		res.render('index', {title: 'Express', appName: 'HomeApp'})
-		// var viewname = req.params.viewname
-		// console.log(req.params.viewname);
-		// res.render('home/' + viewname)
 	})
 
 	app.get('/blog', function(req, res) { res.redirect('/blog/')})
 	app.get('/blog/', function(req, res) {		
 		res.render('index', {title: 'Express', appName: 'BlogApp'})
-		// var viewname = req.params.viewname
-		// console.log(req.params.viewname);
-		// res.render('blog/' + viewname)
+	})
+
+	app.get('/event', function(req, res) { res.redirect('/event/')})
+	app.get('/event/', function(req, res) {		
+		res.render('index', {title: 'Express', appName: 'EventApp'})
 	})
 
 	app.post('/login', function(req, res) {
@@ -81,5 +81,10 @@ module.exports = function(app) {
 	app.get('/blog/:viewname', function(req, res) {
 		var viewname = req.params.viewname
 		res.render('blog/' + viewname)
+	})
+
+	app.get('/event/:viewname', function(req, res) {
+		var viewname = req.params.viewname
+		res.render('event/' + viewname)
 	})
 }

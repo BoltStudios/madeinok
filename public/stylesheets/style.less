@@ -71,7 +71,7 @@ ul > .indented {
 
 
   ////////////////////////////////////////
- /////// CALE'S MASTER RACE LESS ////////
+ /////// CALE'S UPGRAYEDDED LESS ////////
 ////////////////////////////////////////
 
 //load bootstraps
@@ -89,57 +89,56 @@ ul > .indented {
 		color: @thunderDarkBlue;
 		margin: 5px 0px;
 	}
+	backround-color: blue;
 	float: left;
 	width: 25%;
 	text-align: center;
+	min-width: 100px;
+	img{
+		border-radius: 4px 0 0 4px;
+	}
 }
-.logo-wrapper{
-	padding-left: 15px;
-	padding-right: 15px;
-	max-height: 100%;
-	max-width: 100%;
-}
+
 .event-right{
 	h1,h2,h3,h4,h5,h6{
 		margin: 5px 0px;
 	}
 	float: right;
-	width: 75%;
+	max-width: 72%;
+	overflow: hidden;
 }
 .events-wrapper{
 	height: 600px;
-	overflow: hidden;
 }
 .event{
 	height: 100px;
-	background-color: @contrastColor;
+	background-color: @bodyBackground;
 	padding: 0px;
-	margin-top: 15px;
-	margin-bottom: 15px;
-	p{
-		color: @thunderDarkBlue;
-	}
+	margin-top: 5px;
+	border: solid 1px @thunderDarkBlue;
+	border-radius: 4px;
+	color: @thunderDarkBlue;
 }
 
-
-
 .about-text{
-	color: @thunderDarkBlue;
+	color: @thunderYellow;
 	font-weight: 100;
 	font-size: 36px;
 	line-height: 38px;
 }
 .homepage-top{
 	min-height: 600px;
-
 }
 
 .homepage-tiles{
+	width: 100%;
 	padding: 15px 0;
-	background-color: @contrastColor;
+	background-color: @bodyBackground;
+	overflow: hidden;
 }
 
 .homepage-bottom{
+	color: white;
 	overflow: hidden;
 	background-color: @contrastColor;
 	padding: 15px 0;
@@ -148,12 +147,16 @@ ul > .indented {
 //------page stuff------//
 /////////////////////////
 .page-wrapper{
-	margin-top: @navbarHeight;
+	font-weight: 200;
+	margin-top: @navbarHeight + 5;
+	@media (max-width: @navbarCollapseWidth) {
+		margin-top: -15px;
+	}
 }
 
 .classic-letterpress{
-    text-shadow: 0px 1px 1px #4d4d4d;
-    color: #222;
+    text-shadow: 0px 1px 1px lighten(@bodyBackground, 75%);
+    color: darken(@bodyBackground, 7%);
 }
 
 .center-text{
@@ -165,11 +168,12 @@ ul > .indented {
 .image-center-wrapper{
 	position:relative;
 	text-align: center;
+	vert-align: middle;
 	width: 100%;
+	height: 100%;
 }
 .center-image{
-	margin-left:auto;
-	margin-right:auto;
+	margin: auto;
 	display: block;
 	max-height: 100%;
 	max-width: 100%;
@@ -189,9 +193,15 @@ ul > .indented {
 }
 
 .blog-post{
-	background-color: @grayDark;
-	color: @gray;
+	background-color: darken(@bodyBackground, 3%);
+	color: @thunderDarkBlue;
 	margin: 0px;
+	border: none 5px;
+	border-bottom-color: @primaryColor;
+	border-bottom-style: solid;
+	border-top-color: @accentColor;
+	border-top-style: solid;
+	margin-bottom: 2px;
 	position: relative;
 }
 
@@ -214,17 +224,45 @@ ul > .indented {
 	margin-bottom: 15px;
 }
 
+.writer-name{
+	font-weight: 200;
+}
+.blog-title{
+	color: @accentColor;
+	font-weight: 200;
+	cursor: pointer;
+	&:hover{
+		color: darken(@accentColor, 15%);
+	}
+}
+.blog-date{
+	font-weight: 200;
+}
+
 .blog-body{
-	background-color: @contrastColor;
+	background-color: @bodyBackground;
 	padding: 10px;
 	border-radius: 5px;
 	margin-bottom: 10px;
 	margin-left: 15px;
 	margin-right: 15px;
-	color: @bodyBackground;
+	color: @gray;
+	font-size: 18px;
+	font-weight: 200;
 }
 
 .preview-wrapper{
 	overflow: hidden;
 	box-shadow: inset 1px @primaryColor;
+}
+
+//------ Event Stuff ------//
+////////////////////////////
+.time-select{
+	width: 75px;
+}
+.create-event-wrapper{
+	button{
+		margin-bottom: 5px;
+	}
 }

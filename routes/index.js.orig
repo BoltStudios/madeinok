@@ -3,17 +3,14 @@ var User = require('../models/user.js')
 module.exports = function(app) {
 	require('./listing')(app)
 	require('./user')(app)
-<<<<<<< HEAD
 	require('./account')(app)
-
-	app.get('/', function(req, res) {
-		console.log('request user ' + JSON.stringify(req.user))
-		res.render('index', { title: 'Express', appName: 'ListApp' })
-	})
-
+<<<<<<< HEAD
 =======
+
+>>>>>>> cale
 	require('./home')(app)
 	require('./blog')(app)
+	require('./event')(app)
 
 	app.get('/', function(req, res) {
 		res.render('index', { title: 'Express', appName: 'HomeApp' })
@@ -23,7 +20,7 @@ module.exports = function(app) {
 	//otherwise, the angular routes break when using multiple apps.
 	app.get('/listing', function(req, res) { res.redirect('/listing/')})
 	app.get('/listing/', function(req, res) {
-		res.render('index', { title: 'Express', appName: 'ListApp' })
+		res.render('index', { title: 'Made in OK - Companies', appName: 'ListApp' })
 	})
 
 	app.get('/account', function(req, res) { res.redirect('/account/')})
@@ -34,17 +31,16 @@ module.exports = function(app) {
 	app.get('/home', function(req, res) { res.redirect('/home/')})
 	app.get('/home/', function(req, res) {
 		res.render('index', {title: 'Express', appName: 'HomeApp'})
-		// var viewname = req.params.viewname
-		// console.log(req.params.viewname);
-		// res.render('home/' + viewname)
 	})
 
 	app.get('/blog', function(req, res) { res.redirect('/blog/')})
 	app.get('/blog/', function(req, res) {		
 		res.render('index', {title: 'Express', appName: 'BlogApp'})
-		// var viewname = req.params.viewname
-		// console.log(req.params.viewname);
-		// res.render('blog/' + viewname)
+	})
+
+	app.get('/event', function(req, res) { res.redirect('/event/')})
+	app.get('/event/', function(req, res) {		
+		res.render('index', {title: 'Express', appName: 'EventApp'})
 	})
 
 	app.post('/login', function(req, res) {
@@ -66,7 +62,6 @@ module.exports = function(app) {
 		res.clearCookie('user')
 		res.send(200)
 	})
->>>>>>> cale
 
 	/* This route makes AngularJS play nicely with Express.
 	   Links will still just appear as .../#/viewname in the browser. 
@@ -82,18 +77,6 @@ module.exports = function(app) {
 		res.render('account/' + viewname)
 	})
 
-<<<<<<< HEAD
-
-	// ok josh
-	// var getUser = function(req, res, next) {
-	// 	res.data = {user = 0}
-	// }
-
-	// app.get('/something', getUser, function(req, res) {
-	// 	res.data.user
-
-	// })
-=======
 	app.get('/home/:viewname', function(req, res) {
 		var viewname = req.params.viewname
 		res.render('home/' + viewname)
@@ -103,5 +86,9 @@ module.exports = function(app) {
 		var viewname = req.params.viewname
 		res.render('blog/' + viewname)
 	})
->>>>>>> cale
+
+	app.get('/event/:viewname', function(req, res) {
+		var viewname = req.params.viewname
+		res.render('event/' + viewname)
+	})
 }
