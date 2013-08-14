@@ -1,17 +1,8 @@
-.container-light {
-  background-color: #2d2d2d;
-  color: #000;
+.page-header {
+  border-bottom-color: #f05133 !important;
 }
-.container-light > div {
-  padding: 1.0em;
-}
-.container-light h1,
-.container-light h2,
-.container-light h3 {
-  color: #000;
-}
-.container-light .muted {
-  color: #000000;
+legend {
+  border-bottom-color: #333 !important;
 }
 .hiring {
   margin: 0 0.3em;
