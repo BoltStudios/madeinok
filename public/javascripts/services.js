@@ -39,6 +39,9 @@ angular.module('flash-service', [])
 /* 
    Authentication service that will be shared across multiple apps. To include it in the app, 
    add 'authentication-service' to the array of requirements for the app.
+
+   TODO: store current user in an object so we don't hit the DB every time
+   This can let us do roles, etc.
 */
 angular.module('authentication-service', ['flash-service', 'session-service', 'ngCookies'])
 	.service('AuthenticationService', ['$q', '$http', '$location', '$cookieStore', 'FlashService',
