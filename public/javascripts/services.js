@@ -65,7 +65,7 @@ angular.module('authentication-service', ['flash-service', 'session-service', 'n
 			},
 
 			isLoggedIn: function(value) {
-				if(value) {
+				if(value == true) {
 					$cookieStore.put('isAuthenticated', value)
 					return value
 				} else if(value == false) {

@@ -1,4 +1,4 @@
-var AccountIndexCtrl = ['$scope', '$http', '$location', function($scope, $http, $location) {
+var AccountIndexCtrl = ['$scope', '$http', '$location', 'AuthenticationService', function($scope, $http, $location, AuthenticationService) {
 	$scope.title = 'Your Account'
 
 	$http.get('/api/users/current').success(function(response) {
@@ -8,16 +8,21 @@ var AccountIndexCtrl = ['$scope', '$http', '$location', function($scope, $http, 
 		$http.get(path).success(function(response) {
 			var listings = response
 			$scope.listings = response
-			console.log($scope.listings)
 		})
 	})
 
 	$scope.viewListing = function(id) {
-		location.href = '/listing/#/view/'+id
+		//location.href = '/listing/#/view/'+id
+		$location.url('/listing/#/view/'+id)
 	}
 
 	$scope.editListing = function(id) {
-		location.href = '/listing/#/edit/'+id
+		//location.href = '/listing/#/edit/'+id
+		$location.url('/listing/#/edit/'+id)
+	}
+
+	$scope.logout = function() {
+		AuthenticationService.logout()
 	}
 
 }]
