@@ -8,16 +8,17 @@ var AccountIndexCtrl = ['$scope', '$http', '$location', function($scope, $http, 
 		$http.get(path).success(function(response) {
 			var listings = response
 			$scope.listings = response
-			console.log($scope.listings)
 		})
 	})
 
 	$scope.viewListing = function(id) {
-		location.href = '/listing/#/view/'+id
+		//location.href = '/listing/#/view/'+id
+		$location.url('/listing/#/view/'+id)
 	}
 
 	$scope.editListing = function(id) {
-		location.href = '/listing/#/edit/'+id
+		//location.href = '/listing/#/edit/'+id
+		$location.url('/listing/#/edit/'+id)
 	}
 
 }]
