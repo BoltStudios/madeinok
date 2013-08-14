@@ -3817,45 +3817,16 @@ input[type="submit"].btn.btn-mini {
   padding: 7px 10px;
   margin-left: 5px;
   margin-right: 5px;
-  color: #ffffff;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #8cb2b9;
-  background-image: -moz-linear-gradient(top, #e9e0c3, #006daa);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e9e0c3), to(#006daa));
-  background-image: -webkit-linear-gradient(top, #e9e0c3, #006daa);
-  background-image: -o-linear-gradient(top, #e9e0c3, #006daa);
-  background-image: linear-gradient(to bottom, #e9e0c3, #006daa);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffe9e0c3', endColorstr='#ff006daa', GradientType=0);
-  border-color: #006daa #006daa #003c5d;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  *background-color: #006daa;
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075);
-  -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075);
+  background-color: #007dc3;
 }
-.navbar .btn-navbar:hover,
-.navbar .btn-navbar:focus,
-.navbar .btn-navbar:active,
-.navbar .btn-navbar.active,
-.navbar .btn-navbar.disabled,
-.navbar .btn-navbar[disabled] {
-  color: #ffffff;
+.navbar .btn-navbar:hover {
   background-color: #006daa;
-  *background-color: #005c90;
-}
-.navbar .btn-navbar:active,
-.navbar .btn-navbar.active {
-  background-color: #004c76 \9;
 }
 .navbar .btn-navbar .icon-bar {
   display: block;
   width: 18px;
-  height: 2px;
-  background-color: #f5f5f5;
+  height: 1px;
+  background-color: #f0ead6;
   -webkit-border-radius: 1px;
   -moz-border-radius: 1px;
   border-radius: 1px;
@@ -3864,7 +3835,7 @@ input[type="submit"].btn.btn-mini {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
 }
 .btn-navbar .icon-bar + .icon-bar {
-  margin-top: 3px;
+  margin-top: 4px;
 }
 .navbar .nav > li > .dropdown-menu:before {
   content: '';
@@ -6396,15 +6367,13 @@ input[type="submit"].tile::-moz-focus-inner {
 }
 .event-left,
 event-right {
-  height: 100%;
+  display: table-cell;
   float: left;
+  height: 100%;
 }
 .event-left {
-  backround-color: blue;
-  float: left;
-  width: 25%;
   text-align: center;
-  min-width: 100px;
+  vertical-align: middle;
 }
 .event-left h1,
 .event-left h2,
@@ -6415,12 +6384,9 @@ event-right {
   color: #002d62;
   margin: 5px 0px;
 }
-.event-left img {
-  border-radius: 4px 0 0 4px;
-}
 .event-right {
-  float: right;
-  max-width: 72%;
+  padding-left: 5px;
+  padding-right: 5px;
   overflow: hidden;
 }
 .event-right h1,
@@ -6435,13 +6401,25 @@ event-right {
   height: 600px;
 }
 .event {
-  height: 100px;
-  background-color: #f0ead6;
+  display: table;
+  min-height: 100px;
+  background-color: #ebe2c7;
   padding: 0px;
   margin-top: 5px;
-  border: solid 1px #002d62;
-  border-radius: 4px;
+  border: solid 1px #ebe2c7;
   color: #002d62;
+}
+.event:hover {
+  cursor: pointer;
+  color: #007dc3;
+}
+.event:hover h1,
+.event:hover h2,
+.event:hover h3,
+.event:hover h4,
+.event:hover h5,
+.event:hover h6 {
+  color: #f05133;
 }
 .about-text {
   color: #fdbb30;

@@ -7,13 +7,13 @@
 	  	<br/>
 	  	<br/>
 
-		<div class="alert alert-info" ng-hide=formData.description&&formData.title&&formData.name>
+		<div class="alert alert-info" ng-hide=formData.description&&formData.title&&formData.organization>
 			<button type="button" class="close" data-dismiss="alert">&times;</button>		
 			<strong>Heads Up!</strong> 
 			Once you enter some information for the event, I'll show you a preview.
 		</div>
 
-		<div class="alert" ng-show=formData.description&&formData.title&&formData.name>
+		<div class="alert" ng-show=formData.description&&formData.title&&formData.organization>
 			<button type="button" class="close" data-dismiss="alert">&times;</button>		
 			Below is the exact markup that will appear on the page after you publish your event.
 		</div>

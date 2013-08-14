@@ -8,7 +8,7 @@
 	  	</div>
 
 	  	<div class="span12">
-			<div ng-repeat="event in events" class="event">
+			<div ng-repeat="event in events" class="event" onclick='location.href="#/view/{{event._id}}"'>
 															
 				<div class="event-left"> 
 					<div style="height: 100px">
@@ -19,7 +19,7 @@
 				</div>
 
 				<div class="event-right">
-					<h4 onclick='location.href="#/view/{{event._id}}"'>{{event.title}}</h4>
+					<h4>{{event.title}}</h4>
 					{{event.date}}
 					<p>{{event.description.substring(0,85) + "..."}}</p>
 				</div>

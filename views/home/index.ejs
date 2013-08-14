@@ -1,37 +1,38 @@
-<div class="homepage-top">
-			<div class="wrapper100">
-				<div class="alert alert-info" style="margin-bottom:0;">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<strong>Hello!</strong> Thanks for checking out madeinok.co. You should register to stay up to date with the latest goings on in the Oklahoma tech community.
-					<br/>
-					<button type="button" class="btn btn-primary btn-large" onclick="location.href='/account/#/create'">register</button>
+<div class="container"
+	<div class="homepage-top">
+				<div class="wrapper100">
+					<div class="alert alert-info" style="margin-bottom:0;">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<strong>Hello!</strong> Thanks for checking out madeinok.co. You should register to stay up to date with the latest goings on in the Oklahoma tech community.
+						<br/>
+						<button type="button" class="btn btn-primary btn-large" onclick="location.href='/account/#/create'">register</button>
 
+					</div>
 				</div>
-			</div>
 
-			<div class="wrapper50">
-				<div style="width: 100%;" >
-					featured company goes here, say top 3/5
+				<div class="wrapper50">
+					<div style="width: 100%;" >
+						featured company goes here, say top 3/5
+					</div>
+					<div style="width: 100%;" >
+						most recent blog posts, somewhere
+					</div>
 				</div>
-				<div style="width: 100%;" >
-					most recent blog posts, somewhere
-				</div>
-			</div>
 
-			<div class="wrapper50">
-				<div ng-repeat="event in events" class="event">
-					<div class="event-left"> 
-						<div style="height: 100px">
+				<div class="wrapper50">
+					<div ng-repeat="event in events" class="event">
+						<div class="event-left"> 
 							<div class="image-center-wrapper">
 								<span></span>
-								<img class="center-image" src={{event.imageUrl}}>								
+								<img class="center-image" src={{event.imageUrl}} style="height: 100px;">								
 							</div>
+
 						</div>
-					</div>
-					<div class="event-right">
-						<h4>{{event.title}}</h4>
-						{{event.date}}
-						<p>{{event.description.substring(0,85) + "..."}}</p>
+						<div class="event-right">
+							<h4>{{event.title}}</h4>
+							{{event.date}}
+							<p>{{event.description.substring(0,85) + "..."}}</p>
+						</div>
 					</div>
 				</div>
 			</div>
