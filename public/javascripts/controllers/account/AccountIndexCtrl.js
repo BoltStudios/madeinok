@@ -22,7 +22,7 @@ var AccountIndexCtrl = ['$scope', '$http', '$location', 'AuthenticationService',
 	}
 
 	$scope.logout = function() {
-		AuthenticationService.logout()
+		AuthenticationService.logOut()
 	}
 
 }]
