@@ -1,5 +1,5 @@
 .container-light {
-  background-color: #f0ead6;
+  background-color: #2d2d2d;
   color: #000;
 }
 .container-light > div {
@@ -11,7 +11,7 @@
   color: #000;
 }
 .container-light .muted {
-  color: #927c35;
+  color: #000000;
 }
 .hiring {
   margin: 0 0.3em;
@@ -46,17 +46,17 @@ ul > .indented {
 }
 .listing-entry h3 {
   margin: 0;
-  color: #f0ead6;
+  color: #2d2d2d;
 }
 .listing-entry .lead {
   margin: 0;
-  color: #d5c48b;
+  color: #000000;
 }
 .listing-entry:hover h3 {
-  color: #f4f0e1;
+  color: #353535;
 }
 .listing-entry:hover .lead {
-  color: #d9c997;
+  color: #020202;
 }
 /*!
  * Bootstrap v2.3.2
