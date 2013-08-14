@@ -15,12 +15,14 @@ SessionMaster.resolve = {
 				AuthenticationService.isLoggedIn(true)
 			} else {
 				AuthenticationService.isLoggedIn(false)
-				location.href = '/account/#/login'
+				//location.href = '/account/#/login'
+				$location.url('/account/#/login')
 			}
 			deferred.resolve(response)
 		}).error(function(response) {
 			AuthenticationService.isLoggedIn(false)
-			location.href = '/account/#/login'
+			//location.href = '/account/#/login'
+			$location.url('/account/#/login')
 			deferred.reject(response)
 		})
 	}]

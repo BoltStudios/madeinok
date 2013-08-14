@@ -65,9 +65,11 @@ angular.module('authentication-service', ['flash-service', 'session-service', 'n
 			},
 
 			isLoggedIn: function(value) {
-				if(value != null || value != undefined) {
+				if(value) {
 					$cookieStore.put('isAuthenticated', value)
 					return value
+				} else if(value == false) {
+					$cookieStore.remove('isAuthenticated')
 				}
 
 				else {

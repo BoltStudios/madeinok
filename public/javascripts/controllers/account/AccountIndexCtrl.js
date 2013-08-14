@@ -1,4 +1,4 @@
-var AccountIndexCtrl = ['$scope', '$http', '$location', 'SessionService', function($scope, $http, $location, SessionService) {
+var AccountIndexCtrl = ['$scope', '$http', '$location', function($scope, $http, $location) {
 	$scope.title = 'Your Account'
 
 	$http.get('/api/users/current').success(function(response) {
