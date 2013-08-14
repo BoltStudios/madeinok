@@ -7,7 +7,7 @@ var mongoose = require('mongoose')
 ;
 
 // all environments
-//app.set('views', __dirname + '/views');
+//app.set('views', __dirname + '/views'); //taken care of in routes 
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
 app.use(express.favicon());
