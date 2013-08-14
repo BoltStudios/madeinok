@@ -1,3 +1,6 @@
+<style>
+	.alert { margin-top: 0.3em; }
+</style>
 <h2 class='page-header'>{{ title }}</h2>
 
 <form name='listCreate' class='form-horizontal'>
@@ -34,11 +37,10 @@
 		<div class='control-group'>
 			<label class='control-label' for='websiteUrl'>Website <span class='text-error'>*</span></label>
 			<div class='controls'>
-				<input type='url' name='websiteUrl' ng-model='formData.websiteUrl' placeholder='http://' autocorrect='off' required />
+				<input type='text' name='websiteUrl' ng-model='formData.websiteUrl' placeholder='http://' autocorrect='off' required />
 
 				<div ng-show='listCreate.websiteUrl.$dirty && listCreate.websiteUrl.$invalid' class='alert alert-error'>
 					<span ng-show='listCreate.websiteUrl.$error.required'>A company website is required.</span>
-					<span ng-show='listCreate.websiteUrl.$error.url'>This is not a valid URL. Try beginning the URL with 'http://'</span>
 				</div>
 			</div>
 		</div>
@@ -70,11 +72,7 @@
 		<div class='control-group'>
 			<label class='control-label' for='linkedInUrl'>LinkedIn</label>
 			<div class='controls'>
-				<input type='url' name='linkedInUrl' ng-model='formData.linkedInUrl' placeholder='http://' autocorrect='off' />
-
-				<div ng-show='listCreate.linkedInUrl.$dirty && listCreate.linkedInUrl.$invalid' class='alert alert-error'>
-					<span ng-show='listCreate.linkedInUrl.$error.url'>This is not a valid URL. Try beginning the URL with 'http://'</span>
-				</div>
+				<input type='text' name='linkedInUrl' ng-model='formData.linkedInUrl' placeholder='http://' autocorrect='off' />
 			</div>
 		</div>
 
@@ -87,8 +85,11 @@
 
 		<div class='control-group'>
 			<div class='controls'>
-				<a class='btn btn-primary' ng-click='save()'>Save</a>
-				<a class='btn' ng-click='nextPage()'>Next &rarr;</a>
+				<button class='btn btn-primary' ng-click='save()'>Save</button>
+				<button class='btn' ng-disabled='listCreate.companyName.$invalid || listCreate.websiteUrl.$invalid || listCreate.address_line1.$invalid || listCreate.address_city.$invalid' ng-click='nextPage()'>Next &rarr;</button>
+				<div ng-show='listCreate.companyName.$invalid || listCreate.websiteUrl.$invalid || listCreate.address_line1.$invalid || listCreate.address_city.$invalid' class='alert alert-warning'>
+					Make sure you've entered your <strong>company name</strong>, <strong>website</strong>, and <strong>address</strong>.
+				</div>
 			</div>
 		</div>
 	</fieldset>
@@ -108,52 +109,81 @@
 	<fieldset>
 		<legend>Company Basics <small class='pull-right'>{{ currentPage }} of {{  lastPageNumber }}</small></legend>
 
-		<div class='control-group'>
-			<label class='control-label' for='phrase'>Describe your company in one phrase <span class='text-error'>*</span></label>
-			<div class='controls'>
-				<input type='text' name='phrase' ng-model='formData.phrase' required />
+		<div class='span6'>
+			<div class='control-group'>
+				<label class='control-label' for='phrase'>Describe your company in one phrase <span class='text-error'>*</span></label>
+				<div class='controls'>
+					What are you developing?<br/>
+					<textarea rows='2' name='developing' ng-model='phrase.developing' required></textarea><br/>
+					<div ng-show='listCreate.developing.$dirty && listCreate.developing.$invalid' class='alert alert-error'>
+						<span ng-show='listCreate.developing.$error.required'>This is required.</span>
+					</div>
 
-				<div ng-show='listCreate.phrase.$dirty && listCreate.phrase.$invalid' class='alert alert-error'>
-					<span ng-show='listCreate.phrase.$error.required'>This is required.</span>
+					Who are you helping?<br/>
+					<textarea rows='2' name='helping' ng-model='phrase.helping' required></textarea><br/>
+					<div ng-show='listCreate.helping.$dirty && listCreate.helping.$invalid' class='alert alert-error'>
+						<span ng-show='listCreate.helping.$error.required'>This is required.</span>
+					</div>
+
+					For what?<br/>
+					<textarea rows='2' name='why' ng-model='phrase.why' required></textarea>
+					<div ng-show='listCreate.why.$dirty && listCreate.why.$invalid' class='alert alert-error'>
+						<span ng-show='listCreate.why.$error.required'>This is required.</span>
+					</div>
+				</div>
+			</div>
+
+			<div class='control-group'>
+				<label class='control-label' for='changeTheWorld'>How you'll change the world <span class='text-error'>*</span></label>
+				<div class='controls'>
+					<textarea maxlengthlimit='{{ maxBlurbLength }}' rows='5' name='changeTheWorld' ng-model='formData.changeTheWorld' placeholder='{{ maxBlurbLength }} characters' required></textarea><br/>
+					<span ng-bind='maxBlurbLength - changeTheWorld.length'></span>
+					<ng-pluralize count='maxBlurbLength - changeTheWorld.length'
+					  when="{'1': 'character', 'other': 'characters'}"></ng-pluralize> remaining
+
+					<div ng-show='listCreate.changeTheWorld.$dirty && listCreate.changeTheWorld.$invalid' class='alert alert-error'>
+						<span ng-show='listCreate.changeTheWorld.$error.required'>This is required.</span>
+					</div>
+				</div>
+			</div>
+
+			<div class='control-group'>
+				<label class='control-label' for='somethingAwesome'>Something awesome about you</label>
+				<div class='controls'>
+					<textarea maxlengthlimit='{{ maxBlurbLength }}' rows='5' name='somethingAwesome' ng-model='formData.somethingAwesome' placeholder='{{ maxBlurbLength }} characters'></textarea><br/>
+					<span ng-bind='maxBlurbLength - somethingAwesome.length'></span>
+					<ng-pluralize count='maxBlurbLength - somethingAwesome.length'
+					  when="{'1': 'character', 'other': 'characters'}"></ng-pluralize> remaining
+				</div>
+			</div>
+
+			<div class='control-group'>
+				<div class='controls'>
+					<button class='btn' ng-click='previousPage()'>&larr; Previous</button>
+					<button class='btn btn-primary' ng-click='save()'>Save</button>
+					<button class='btn' ng-disabled='listCreate.phrase.$invalid || listCreate.changeTheWorld.$invalid' ng-click='nextPage()'>Next &rarr;</button>
+					<div ng-show='listCreate.phrase.$invalid || listCreate.changeTheWorld.$invalid' class='alert alert-warning'>
+					Make sure you tell us how you'll <strong>change the world</strong>.
+					</div>
 				</div>
 			</div>
 		</div>
+		<div class='span6'>
 
-		<div class='control-group'>
-			<label class='control-label' for='changeTheWorld'>How you'll change the world <span class='text-error'>*</span></label>
-			<div class='controls'>
-				<textarea maxlengthlimit='{{ maxBlurbLength }}' rows='5' name='changeTheWorld' ng-model='formData.changeTheWorld' placeholder='{{ maxBlurbLength }} characters' required></textarea><br/>
-				<span ng-bind='maxBlurbLength - changeTheWorld.length'></span>
-				<ng-pluralize count='maxBlurbLength - changeTheWorld.length'
-				  when="{'1': 'character', 'other': 'characters'}"></ng-pluralize> remaining
+			<strong class='alert-info'>Company phrase example:</strong>
+			<div class='alert alert-info'>
+				<abbr title='Company Name' ng-model='previewCompanyName'>Built In OK</abbr>, is developing <abbr title='What are you developing?' >a crowd sourced and curated web community</abbr> to help <abbr title='Who are you helping?'>Oklahoma innovators, makers, founders and creatives</abbr> <abbr title='What are you helping them do?'>have a central place to find local networking events, keep up to date on what's happening in the community, and connect with talent.</abbr>
+			</div>
 
-				<div ng-show='listCreate.changeTheWorld.$dirty && listCreate.changeTheWorld.$invalid' class='alert alert-error'>
-					<span ng-show='listCreate.changeTheWorld.$error.required'>This is required.</span>
+			<span ng-show='phrase.developing'>
+				<strong class='alert-info'>Company phrase preview:</strong>
+				<div class='alert alert-info'>
+					{{ formData.companyName }} <span ng-show='phrase.developing'>is developing {{ phrase.developing }}</span> <span ng-show='phrase.helping'>to help {{ phrase.helping }}</span> <span ng-show='phrase.why'>{{ phrase.why }}.</span>
 				</div>
-			</div>
+			</span>
 		</div>
-
-		<div class='control-group'>
-			<label class='control-label' for='somethingAwesome'>Something awesome about you</label>
-			<div class='controls'>
-				<textarea maxlengthlimit='{{ maxBlurbLength }}' rows='5' name='somethingAwesome' ng-model='formData.somethingAwesome' placeholder='{{ maxBlurbLength }} characters'></textarea><br/>
-				<span ng-bind='maxBlurbLength - somethingAwesome.length'></span>
-				<ng-pluralize count='maxBlurbLength - somethingAwesome.length'
-				  when="{'1': 'character', 'other': 'characters'}"></ng-pluralize> remaining
-			</div>
-		</div>
-
-		<div class='control-group'>
-			<div class='controls'>
-				<a class='btn' ng-click='previousPage()'>&larr; Previous</a>
-				<a class='btn btn-primary' ng-click='save()'>Save</a>
-				<a class='btn' ng-click='nextPage()'>Next &rarr;</a>
-			</div>
-		</div>
-
 	</fieldset>
 </div>
-
 
 
 
@@ -251,9 +281,9 @@
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='milestone'>Your latest traction milestone <span class='text-error'>*</span></label>
+			<label class='control-label' for='milestone'>Your latest traction milestone</label>
 			<div class='controls'>
-				<textarea maxlengthlimit='{{ maxBlurbLength }}' rows='5' name='milestone' ng-model='formData.milestone' placeholder='{{ maxBlurbLength }} characters' required></textarea><br/>
+				<textarea maxlengthlimit='{{ maxBlurbLength }}' rows='5' name='milestone' ng-model='formData.milestone' placeholder='{{ maxBlurbLength }} characters'></textarea><br/>
 				<span ng-bind='maxBlurbLength - milestone.length'></span>
 				<ng-pluralize count='maxBlurbLength - milestone.length'
 				  when="{'1': 'character', 'other': 'characters'}"></ng-pluralize> remaining
@@ -262,9 +292,13 @@
 
 		<div class='control-group'>
 			<div class='controls'>
-				<a class='btn' ng-click='previousPage()'>&larr; Previous</a>
-				<a class='btn btn-primary' ng-click='save()'>Save</a>
-				<a class='btn' ng-click='nextPage()'>Next &rarr;</a>
+				<button class='btn' ng-click='previousPage()'>&larr; Previous</button>
+				<button class='btn btn-primary' ng-click='save()'>Save</button>
+				<button class='btn' ng-disabled='listCreate.foundingYear.$invalid' ng-click='nextPage()'>Next &rarr;</button>
+
+				<div ng-show='listCreate.foundingYear.$invalid' class='alert alert-warning'>
+				You have to enter the <strong>year</strong> you were founded to continue.
+				</div>
 			</div>
 		</div>
 
@@ -284,42 +318,18 @@
 	<fieldset>
 		<legend>The Team <small class='pull-right'>{{ currentPage }} of {{  lastPageNumber }}</small></legend>
 		<div class='control-group'>
-			<label class='control-label' for='fulltimeTeamSize'>Full Time Team <span class='text-error'>*</span></label>
+			<label class='control-label' for='teamsize'>Team Size <span class='text-error'>*</span></label>
 			<div class='controls'>
-				<input type='number' placeholder='How Many?' name='fulltimeTeamSize' ng-model='formData.fulltimeTeamSize' ng-min='0'required min='0' value='0'/>
+				<input type='number' placeholder='How Many?' name='teamsize' ng-model='formData.teamSize' ng-min='0'required min='0' value='0'/>
 
-				<div ng-show='listCreate.fulltimeTeamSize.$dirty && listCreate.fulltimeTeamSize.$invalid' class='alert alert-error'>
-					<span ng-show='listCreate.fulltimeTeamSize.$error.number'>That's not even a number.</span>
-					<span ng-show='listCreate.fulltimeTeamSize.$error.required'>This is required.</span>
-					<span ng-show='listCreate.fulltimeTeamSize.$error.min'>Don't be ridiculous.</span>
+				<div ng-show='listCreate.teamsize.$dirty && listCreate.teamsize.$invalid' class='alert alert-error'>
+					<span ng-show='listCreate.teamsize.$error.number'>That's not even a number.</span>
+					<span ng-show='listCreate.teamsize.$error.required'>This is required.</span>
+					<span ng-show='listCreate.teamsize.$error.min'>Don't be ridiculous.</span>
 				</div>
 			</div>
 		</div>
 
-		<div class='control-group'>
-			<label class='control-label' for='fulltimeTeamSizeOk'>Full Time Team in OK <span class='text-error'>*</span></label>
-			<div class='controls'>
-				<input type='number' placeholder='How Many?' name='fulltimeTeamSizeOk' ng-model='formData.fulltimeTeamSizeOk' ng-min='0' value='0' required min='0'/>
-
-				<div ng-show='listCreate.fulltimeTeamSizeOk.$dirty && listCreate.fulltimeTeamSizeOk.$invalid' class='alert alert-error'>
-					<span ng-show='listCreate.fulltimeTeamSizeOk.$error.number'>That's not even a number.</span>
-					<span ng-show='listCreate.fulltimeTeamSizeOk.$error.required'>This is required.</span>
-					<span ng-show='listCreate.fulltimeTeamSizeOk.$error.min'>Don't be ridiculous.</span>
-				</div>
-			</div>
-		</div>
-
-		<div class='control-group'>
-			<label class='control-label' for='totalTeamSize'>Total Team Size <span class='text-error'>*</span></label>
-			<div class='controls'>
-				<input type='number' placeholder='How Many?' name='totalTeamSize' ng-model='formData.totalTeamSize' required/>
-				<div ng-show='listCreate.totalTeamSize.$dirty && listCreate.totalTeamSize.$invalid' class='alert alert-error'>
-					<span ng-show='listCreate.totalTeamSize.$error.number'>That's not even a number.</span>
-					<span ng-show='listCreate.totalTeamSize.$error.required'>This is required.</span>
-					<span ng-show='listCreate.totalTeamSize.$error.min'>Don't be ridiculous.</span>
-				</div>
-			</div>
-		</div>
 
 		<div class='control-group'>
 			<label class='control-label' for='developmentOk'>Percent of Technology Development Occuring in Oklahoma<span class='text-error'>*</span></label>
@@ -348,9 +358,13 @@
 
 		<div class='control-group'>
 			<div class='controls'>
-				<a class='btn' ng-click='previousPage()'>&larr; Previous</a>
-				<a class='btn btn-primary' ng-click='save()'>Save</a>
-				<a class='btn' ng-click='nextPage()'>Next &rarr;</a>
+				<button class='btn' ng-click='previousPage()'>&larr; Previous</button>
+				<button class='btn btn-primary' ng-click='save()'>Save</button>
+				<button class='btn' ng-disabled='listCreate.teamsize.$invalid || listCreate.developmentOk.$invalid' ng-click='nextPage()'>Next &rarr;</button>
+
+				<div ng-show='listCreate.teamsize.$invalid || listCreate.developmentOk.$invalid' class='alert alert-warning'>
+				Make sure you filled out the <strong>team size</strong> and <strong>development percent</strong>.
+				</div>
 			</div>
 		</div>
 	</fieldset>
@@ -370,14 +384,9 @@
 		<legend>Hiring Information <small class='pull-right'>{{ currentPage }} of {{  lastPageNumber }}</small></legend>
 
 		<div class='control-group'>
-			<label class='control-label' for='hiringUrl'>Hiring Page <span class='text-error'>*</span></label>
+			<label class='control-label' for='hiringUrl'>Hiring Page</label>
 			<div class='controls'>
-				<input type='url' name='hiringUrl' ng-model='formData.hiringUrl' placeholder='http://' autocorrect='off' required />
-
-				<div ng-show='listCreate.hiringUrl.$dirty && listCreate.hiringUrl.$invalid' class='alert alert-error'>
-					<span ng-show='listCreate.hiringUrl.$error.required'>A jobs posting URL is required.</span>
-					<span ng-show='listCreate.hiringUrl.$error.url'>This is not a valid URL. Try beginning the URL with 'http://'</span>
-				</div>
+				<input type='url' name='hiringUrl' ng-model='formData.hiringUrl' placeholder='http://' autocorrect='off' />
 			</div>
 		</div>
 
@@ -418,9 +427,11 @@
 
 		<div class='control-group'>
 			<div class='controls'>
-				<a class='btn' ng-click='previousPage()'>&larr; Previous</a>
-				<a class='btn btn-primary' ng-click='save()'>Save</a>
-				<a class='btn btn-success' ng-click='submit()' ng-disabled='listCreate.$invalid'>Publish</a>
+				<button class='btn' ng-click='previousPage()'>&larr; Previous</button>
+				<button class='btn btn-primary' ng-click='save()'>Save</button>
+				<span ng-show='!formData.isPublished'>
+				<button class='btn btn-success' ng-click='submit()' ng-disabled='listCreate.$invalid'>Publish</button>
+				</span>
 			</div>
 
 			<div ng-show='listCreate.$invalid' class='alert alert-warning'>

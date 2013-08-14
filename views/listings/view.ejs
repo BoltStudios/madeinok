@@ -4,7 +4,7 @@
 
 <h2 class='page-header'>
 	{{ item.companyName }}<br/>
-	<span ng-show='item.phrase' class='muted company-phrase'>"{{ item.phrase }}"</span>
+	<span ng-show='item.phrase' class='muted company-phrase'>{{item.companyName}} is developing {{ item.phrase.developing }} to help {{item.phrase.helping}} {{item.phrase.why}}</span>
 
 	<small ng-show='item.isHiring' class='label label-success pull-right hiring'>Hiring</small>
 	<small ng-show='item.hasInternships' class='label label-success pull-right hiring'>Internships Available</small>
@@ -18,11 +18,7 @@
 		<li ng-show='item.companyName && item.foundingYear' class='indented'>
 			<p>
 				<span ng-show='item.foundingYear && item.companyName'>
-					Founded in <strong>{{ item.foundingYear }}</strong>
-					<span ng-show='item.founders'>by 
-						<span ng-repeat='founder in item.founders'>
-							<strong>{{ founder.name }}</strong> <span ng-show='founder.title'>({{founder.title}})</span>{{$last ? '' : $last - 1 ? ' and ' : ', ' }}</span></span>, {{ item.companyName }} 
-
+					Founded in <strong>{{ item.foundingYear }}</strong><span ng-show='item.founders && item.founders[0].name'>by <span ng-repeat='founder in item.founders'><strong>{{ founder.name }}</strong> <span ng-show='founder.title'>({{founder.title}})</span>{{$last ? '' : $last - 1 ? ' and ' : ', ' }}</span></span>, {{ item.companyName }} 
 					is a<span ng-show='isVowel(item.companyType[0])'>n</span> <strong>{{ item.companyType | lowercase}}</strong> company</span><span ng-show='item.industryFocus'>, focusing in the
 					<strong ng-show='item.industryFocus.option != "Other"'>{{ item.industryFocus.option | lowercase}}</strong>
 					<strong ng-show='item.industryFocus.option == "Other"'>{{ item.industryFocus.description | lowercase}} </strong>

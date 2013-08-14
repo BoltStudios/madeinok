@@ -59,7 +59,7 @@ var ListingSchema = new mongoose.Schema({
 	linkedInUrl: 		{type: String},
 	angellistUrl: 		{type: String},
 
-	phrase:   	    	{type: String},
+	phrase:   	    	{developing:{type:String}, helping:{type:String}, why:{type:String}},
 	changeTheWorld: 	{type: String}, 
 	somethingAwesome: 	{type: String},
 
@@ -75,9 +75,7 @@ var ListingSchema = new mongoose.Schema({
 	productTypes: 		[{productType: {type: String}, value: {type: Boolean, default: false}}],
 	productTypesOtherDescription: {type:String},
 
-	fulltimeTeamSize:  	{type: Number},
-	fulltimeTeamSizeOk: {type: Number},
-	totalTeamSize: 		{type: Number},
+	teamSize:  	        {type: Number},
 	developmentOk: 		{type: Number},
 
 	founders: 			[Founder],

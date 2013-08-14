@@ -4,6 +4,9 @@ var ListingEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Authen
 	// Form data
 	// Fields will be stored here as a JSON object
 	$scope.formData = {}
+	$scope.phrase = {}
+	$scope.formData.isHiring = false;
+	$scope.formData.hasInternships = false;
 
 
 	// If the form has been saved once already, then we want to edit a form with an ID, 
@@ -13,14 +16,14 @@ var ListingEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Authen
 
 	// If a listingId is available, the fields should be populated (we're editing)
 	// If the form data has information already (creating and saving), don't hit the DB again
-	if($scope.listingId && Object.keys($scope.formData).length == 0) {
+	if($scope.listingId && Object.keys($scope.formData).length != 0) {
 		var entry = Listing.get({id: $scope.listingId}, function(success) {
 			$scope.formData = success
 			$scope.loadProductTypes(success)
+			$scope.loadPhrase(success)
 		}, function(error) {
 
 		})
-		//$scope.formData = entry
 	}
 
 
@@ -123,8 +126,11 @@ var ListingEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Authen
 	$scope.save = function(callback) {
 		$scope.info = 'Saving...'
 
-		console.log($scope.productTypes)
 		$scope.saveProductTypes()
+		$scope.saveUrls()
+		$scope.saveTwitter()
+		$scope.savePhrase()
+
 		!$scope.listingId ? httpCreate(callback) : httpEdit(callback)
 		$scope.info = ''
 		$scope.success = 'Saved your changes'
@@ -139,8 +145,40 @@ var ListingEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Authen
 	}
 
 
+	/* Appends http:// to all the urls */
+	$scope.saveUrls = function() {
+		if($scope.formData.websiteUrl && !$scope.formData.websiteUrl.match('http://'))
+			$scope.formData.websiteUrl = 'http://' + $scope.formData.websiteUrl
+
+		if($scope.formData.linkedInUrl && !$scope.formData.linkedInUrl.match('http://'))
+			$scope.formData.linkedInUrl = 'http://' + $scope.formData.linkedInUrl
+
+		if($scope.formData.angelListUrl && !$scope.formData.angelListUrl.match('http://'))
+			$scope.formData.angelListUrl = 'http://' + $scope.formData.angelListUrl
+
+		if($scope.formData.hiringUrl && !$scope.formData.hiringUrl.match('http://'))
+			$scope.formData.hiringUrl = 'http://' + $scope.formData.hiringUrl
+	}
+
+	$scope.saveTwitter = function() {
+		if($scope.formData.twitterHandle && !$scope.formData.twitterHandle.match('@'))
+			$scope.formData.twitterHandle = '@'+$scope.formData.twitterHandle
+	}
+
+	$scope.savePhrase = function() {
+		$scope.formData.phrase = {}
+		$scope.formData.phrase.developing = $scope.phrase.developing
+		$scope.formData.phrase.helping = $scope.phrase.helping
+		$scope.formData.phrase.why = $scope.phrase.why
+	}
+
+
 	$scope.loadProductTypes = function(entry) {
 		_.assign($scope.productTypes, entry.productTypes)
+	}
+
+	$scope.loadPhrase = function(entry) {
+		_.assign($scope.phrase, entry.phrase)
 	}
 
 
@@ -192,7 +230,6 @@ var ListingEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Authen
 			$location.path(pagePath() + ++$scope.currentPage)
 		}
 		this.save(increment)
-		console.log('current page ' + $scope.currentPage)
 	}
 
 
@@ -201,6 +238,11 @@ var ListingEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Authen
 			$location.path(pagePath() + --$scope.currentPage)
 		}
 		this.save(decrement)
+	}
+
+
+	$scope.highlight = function(otherElement) {
+		console.log(otherElement)
 	}
 
 }]
