@@ -1,8 +1,6 @@
 /* The edit and create controllers are going to be very similar, so inherit from this */
 var ListingEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'AuthenticationService', 'Listing', function($scope, $location, $http, $routeParams, AuthenticationService, Listing) {
 
-	var $jq = jQuery.noConflict()
-
 	// Initialization
 	// ================================================================================
 	// Form data
@@ -39,21 +37,6 @@ var ListingEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Authen
 	// 	}, function(error) {
 	// 	})
 	// }
-
-	// $jq('input[name=imageUrl]').change(function(e) {
-	// 	console.log('change ' + $scope.imageUploadUrl)
-	// 	$jq.ajax({
- //            type: 'post',
- //            url: $scope.imageUploaddUrl,
- //            enctype: 'multipart/form-data',
- //            data: {
- //                file: filename
- //            },
- //            success: function () {
- //                alert("Data Uploaded: ");
- //            }
- //        });
-	// })
 
 
 	// Page number of the form
@@ -275,10 +258,5 @@ var ListingEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Authen
 		}
 		this.save(decrement)
 	}
-
-
-	$scope.uploadFinished = function(e, data) {
-        console.log('We just finished uploading this baby...')
-      }
 
 }]

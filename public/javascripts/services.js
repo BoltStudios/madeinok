@@ -17,7 +17,17 @@ angular.module('listing-factory', ['ngResource'])
 
 angular.module('user-factory', ['ngResource'])
 	.factory('User', ['$resource', function($resource) {
-		return $resource('/api/listings/:id', {userId: '@id'})
+		return $resource('/api/users/:id', {userId: '@id'})
+	}])
+
+angular.module('blog-factory', [])
+	.factory('Blog', ['$resource', function($resource) {
+		return $resource('/api/blogs/:id', {blogId: '@id'})
+	}])
+
+angular.module('event-factory', [])
+	.factory('Event', ['$resource', function($resource) {
+		return $resource('/api/events/:id', {eventId: '@id'})
 	}])
 
 /*
@@ -158,27 +168,6 @@ angular.module('status401-service', [])
 // 			}
 // 		}
 // 	}])
-
-angular.module('blog-service', [])
-	.service('BlogService', ['$http', function($http) {
-		return {
-			create: function(data) {
-				return $http.post('/api/blogs/create/', data)
-			},
-			retrieve: function(id) {
-				if(!id)
-					return $http.get('/api/blogs')
-
-				return $http.get('/api/blogs/' + id)
-			},
-			update: function(id, data) {
-				return $http.put('/api/blogs/edit/' + id, data)
-			},
-			destroy: function(id) {
-				return $http.post('/api/blogs/delete/' + id)
-			}
-		}
-	}])
 
 
 //FAILED EXPERIMENT

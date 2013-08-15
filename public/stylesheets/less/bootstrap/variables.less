@@ -15,7 +15,7 @@
 @gray:                  #555;
 @grayLight:             #999;
 @grayLighter:           #eee;
-@white:                 #fff;
+@white:                 #f5f5f5;
 
 
 // Accent colors
@@ -55,7 +55,7 @@
 
 // Scaffolding
 // -------------------------
-@bodyBackground:        @eggShellWhite; //dark theme @grayDarker
+@bodyBackground:        @white; //dark theme @grayDarker
 @textColor:             @grayDarker; //dark theme @grayLight;
 
 
@@ -68,7 +68,7 @@
 
 // Typography
 // -------------------------
-@sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif;
+@sansFontFamily:        "Open Sans Condensed", Helvetica, Arial, sans-serif;
 @serifFontFamily:       Georgia, "Times New Roman", Times, serif;
 @monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace;
 
@@ -79,7 +79,7 @@
 
 @headingsFontFamily:    inherit; // empty to use BS default, @baseFontFamily
 @headingsFontWeight:    200;    // instead of browser default, bold
-@headingsColor:         @thunderDarkBlue; // empty to use BS default, @textColor
+@headingsColor:         @primaryColor; // empty to use BS default, @textColor
 @largeHeadingsColor: 	@accentColor;
 
 
@@ -209,7 +209,7 @@
 
 @navbarHeight:                    60px;
 @navbarBackgroundHighlight:       @bodyBackground;
-@navbarBackground:                @oklahomaFlagBlue; //darken(@navbarBackgroundHighlight, 5%);
+@navbarBackground:                @contrastColor; //darken(@navbarBackgroundHighlight, 5%);
 @navbarBorder:                    lighten(@navbarBackground, 12%);
 
 @navbarText:                      @bodyBackground;

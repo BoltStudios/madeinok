@@ -3,20 +3,33 @@ var Listing = require('../models/listing.js')
   , _ = require('underscore')
   , fs = require('fs')
 
-var uploadImage = function(req, res, listingId) {
+var uploadImage = function(req, res) {
 	var image = req.files.imageUrl
 	console.log('uploading dat dere image...')
-	Listing.findById(listingId, function(error, listing) {
-		if(!error && listing) {
-			fs.readFile(image.path, function(imageError, data) {
-				var imagePath = __dirname + '/' + listingId + '/' + image.name
-				fs.writeFile(imagePath, data, function(saveError) {
-					if(!saveError)
-						return imagePath
-				})
-			})
-		}
+	
+	fs.readFile(image.path, function(imageError, data) {
+		var date = new Date().getTime()
+		var imagePath = __dirname + '/' + date + '/' + image.name
+		fs.writeFile(imagePath, data, function(saveError) {
+			if(!saveError) {
+				console.log('saved image at ' + imagePath)
+				return imagePath
+			}
+		})
 	})
+
+
+	// Listing.findById(listingId, function(error, listing) {
+	// 	if(!error && listing) {
+	// 		fs.readFile(image.path, function(imageError, data) {
+	// 			var imagePath = __dirname + '/' + listingId + '/' + image.name
+	// 			fs.writeFile(imagePath, data, function(saveError) {
+	// 				if(!saveError)
+	// 					return imagePath
+	// 			})
+	// 		})
+	// 	}
+	// })
 }
 
 module.exports = function(app) {
@@ -108,6 +121,6 @@ module.exports = function(app) {
 
 	app.post('/api/listings/image/', filters.isLoggedIn, function(req, res) {
 		console.log('here i is ')
-		console.log(req.files)
+		uploadImage(req, res)
 	})
 }

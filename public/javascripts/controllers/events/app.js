@@ -1,4 +1,4 @@
-var app = angular.module('EventApp', ['ngResource', 'ngCookies', 'authentication-service'])
+var app = angular.module('EventApp', ['ngResource', 'ngCookies', 'authentication-service', 'event-factory'])
 	.config(function($routeProvider, $locationProvider) {
 		$routeProvider
 			//index routes					
@@ -26,6 +26,3 @@ var app = angular.module('EventApp', ['ngResource', 'ngCookies', 'authentication
 	 * All of this gets based on your base URL, which is supplied to the resource
 	 * The example URL is included above
 	*/
-	.factory('Event', ['$resource', function($resource) {
-		return $resource('/api/events/:id', {eventId: '@id'})
-	}])

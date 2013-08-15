@@ -71,19 +71,15 @@ ul > .indented {
 	display: table-cell;
 	float:left;
 	height: 100%;
+	padding: 5px;
 }
 .event-left{
-	h1,h2,h3,h4,h5,h6{
-		color: @thunderDarkBlue;
-		margin: 5px 0px;
-	}
+	padding-right: 10px;
 	text-align: center;
 	vertical-align: middle;
 }
 
 .event-right{
-	padding-left: 5px;
-	padding-right: 5px;
 	h1,h2,h3,h4,h5,h6{
 		margin: 5px 0px;
 	}
@@ -93,14 +89,18 @@ ul > .indented {
 	height: 600px;
 }
 .event{
+	width: 100%;
 	display: table;
 	min-height: 100px;
-	background-color: darken(@bodyBackground, 4%);
 	padding: 0px;
 	margin-top: 5px;
-	border: solid 1px darken(@bodyBackground, 4%);
+	border: solid 0 darken(@bodyBackground, 5%);
+	border-bottom-width: 1px;
 	//border-radius: 4px;
-	color: @thunderDarkBlue;
+	color: @textColor;
+	h1,h2,h3,h4,h5,h6{
+		color: @primaryColor;
+	}
 	&:hover{
 		cursor: pointer;
 		color: @primaryColor;
@@ -109,12 +109,16 @@ ul > .indented {
 		}
 	}
 }
+.event:last-of-type{
+	border-bottom-width: 0;
+}
 
 .about-text{
 	color: @thunderYellow;
 	font-weight: 100;
 	font-size: 36px;
 	line-height: 38px;
+	padding: 20px;
 }
 .homepage-top{
 	min-height: 600px;
@@ -128,6 +132,7 @@ ul > .indented {
 }
 
 .homepage-bottom{
+	text-align: center;
 	color: white;
 	overflow: hidden;
 	background-color: @contrastColor;
@@ -156,17 +161,22 @@ ul > .indented {
 	text-align: center;
 }
 .image-center-wrapper{
-	position:relative;
-	text-align: center;
-	vert-align: middle;
 	width: 100%;
 	height: 100%;
+	clear: both;
+	position:relative;
 }
 .center-image{
+	height: auto;
+	padding: 0;	
+	width: 50%;
+	overflow: auto;
 	margin: auto;
-	display: block;
-	max-height: 100%;
-	max-width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
 }
 
 //------blog stuff------//
@@ -246,6 +256,60 @@ ul > .indented {
 	box-shadow: inset 1px @primaryColor;
 }
 
+//---- Homepage blog stuff ----//
+////////////////////////////////
+.blog{
+		height: 200px;
+		position: relative;
+	    background-size: cover;
+	    background-repeat: no-repeat;
+	    background-position: center 0;
+	    margin-top: 16px;
+
+	    &:hover{
+	    	cursor: pointer;
+
+	    	.blog-text{
+				background-color: rgba(20, 20, 20, .82);
+			}
+			.blog-title{
+				color: @accentColor;
+			}
+	    }
+
+	    	.featured-blog{
+	}
+	.blog-text{
+		background-color: rgba(20, 20, 20, .8);
+		position: absolute;
+		width: 100%;
+		bottom: 0;
+		left:0 ;
+		height: 40%;
+		text-align: left;
+		margin: 0;
+	}
+	.blog-title{
+		text-align: center;
+		text-transform: lowercase;
+		margin: 0;
+		padding: 5px;
+		line-height: 35px;
+		overflow: hidden;
+		height: 70px;
+		color: @bodyBackground;
+
+	}
+	.blog-preview{
+		overflow: hidden;
+		height: 40px;
+		padding-left: 5px;
+		padding-right: 5px;
+		text-align: center;
+		z-index: 5;
+	}
+}
+
 //------ Event Stuff ------//
 ////////////////////////////
 .time-select{
@@ -255,4 +319,8 @@ ul > .indented {
 	button{
 		margin-bottom: 5px;
 	}
+}
+.event-image{
+	height: 100px;
+	width: 100px;
 }

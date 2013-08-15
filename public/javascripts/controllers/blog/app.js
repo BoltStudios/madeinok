@@ -1,4 +1,4 @@
-var app = angular.module('BlogApp', ['ngResource', 'ngCookies', 'authentication-service'])
+var app = angular.module('BlogApp', ['ngResource', 'ngCookies', 'authentication-service', 'blog-factory'])
 	.config(function($routeProvider, $locationProvider) {
 		$routeProvider
 			//index routes					
@@ -26,9 +26,6 @@ var app = angular.module('BlogApp', ['ngResource', 'ngCookies', 'authentication-
 	 * All of this gets based on your base URL, which is supplied to the resource
 	 * The example URL is included above
 	*/
-	.factory('Blog', ['$resource', function($resource) {
-		return $resource('/api/blogs/:id', {blogId: '@id'})
-	}])
 
 app.directive('ckEditor', function () {
     return {
