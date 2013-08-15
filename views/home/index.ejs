@@ -24,7 +24,7 @@
 						<legend>upcoming events</legend>
 						<div ng-repeat="n in [3] | makeRange" class="event" onclick='location.href="/event/#/view/{{events[n]._id}}"'>
 						<div class="event-left"> 
-							<img class="event-image" src="{{(!events[n].imageUrl || events[n].imageUrl == '') ? '/images/madeinok100x100.png' : events[n].imageUrl}}">								
+							<img class="event-image" src="{{(!events[n].imageUrl || events[n].imageUrl == '') ? '/images/MadeInOK100x100.png' : events[n].imageUrl}}">								
 						</div>
 						<div class="event-right">
 							<h3>{{events[n].title}}</h3>
@@ -44,16 +44,16 @@
 
 <div class="homepage-tiles">
 	<!-- navigation tiles -->
-	<button class="tile tile-accent" onclick='location.href="/#/listings";'>
-		Businesses
+	<button class="tile tile-accent" onclick='location.href="/listing";'>
+		Companies
 	</button>
-	<button class="tile tile-accent" onclick='location.href="/#/people";'>
+	<button class="tile tile-accent" onclick='location.href="/user";'>
 		People
 	</button>
-	<button class="tile tile-accent" onclick='location.href="/#/events";'>
+	<button class="tile tile-accent" onclick='location.href="/event";'>
 		Events
 	</button>
-	<button class="tile tile-accent" onclick='location.href="/#/blog";'>
+	<button class="tile tile-accent" onclick='location.href="/blog";'>
 		Blog
 	</button>
 </div>
