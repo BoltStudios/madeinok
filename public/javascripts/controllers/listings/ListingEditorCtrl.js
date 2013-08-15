@@ -1,8 +1,13 @@
 /* The edit and create controllers are going to be very similar, so inherit from this */
 var ListingEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'AuthenticationService', 'Listing', function($scope, $location, $http, $routeParams, AuthenticationService, Listing) {
 
+	var $jq = jQuery.noConflict()
+
+	// Initialization
+	// ================================================================================
 	// Form data
 	// Fields will be stored here as a JSON object
+	// TODO clean this up
 	$scope.formData = {}
 	$scope.phrase = {}
 	$scope.formData.isHiring = false;
@@ -11,7 +16,7 @@ var ListingEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Authen
 
 	// If the form has been saved once already, then we want to edit a form with an ID, 
 	// not create a new one and save it agan, so track the ID of the form being manipulated.
-	$scope.listingId = $routeParams.id//'51f148b1529a2d7d63000001'
+	$scope.listingId = $routeParams.id
 
 
 	// If a listingId is available, the fields should be populated (we're editing)
@@ -21,20 +26,40 @@ var ListingEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Authen
 			$scope.formData = success
 			$scope.loadProductTypes(success)
 			$scope.loadPhrase(success)
+			$scope.imageUploadUrl = '/api/listings/image/'+$scope.listingId
 		}, function(error) {
 
 		})
-	}
+	} 
+	// If this is the first time we're creating a form, I want to just save it immediately
+	// so there's a listing ID to work with. This saves a lot of headache later.
+	// else if(!$scope.listingId) {
+	// 	Listing.save({}, function(success) {
+	// 		$scope.listingId = success._id;
+	// 	}, function(error) {
+	// 	})
+	// }
 
+	// $jq('input[name=imageUrl]').change(function(e) {
+	// 	console.log('change ' + $scope.imageUploadUrl)
+	// 	$jq.ajax({
+ //            type: 'post',
+ //            url: $scope.imageUploaddUrl,
+ //            enctype: 'multipart/form-data',
+ //            data: {
+ //                file: filename
+ //            },
+ //            success: function () {
+ //                alert("Data Uploaded: ");
+ //            }
+ //        });
+	// })
 
 
 	// Page number of the form
 	$scope.currentPage = $routeParams.pageNumber || 1
 	$scope.lastPageNumber = 5
 	$scope.currentPage = ~~$scope.currentPage > $scope.lastPageNumber || ~~$scope.currentPage < 1 ? 1 : ~~$scope.currentPage
-
-	// Progress bar
-	$scope.progress = '50%';
 
 	// Max characters for the blurbs
 	$scope.maxBlurbLength = 250
@@ -144,6 +169,14 @@ var ListingEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Authen
 		$scope.formData.productTypes = $scope.productTypes
 	}
 
+	$scope.saveImage = function() {
+		$http.post('/api/listings/image/'+ $scope.listingId).success(function(response) {
+			console.log(response)
+		}).error(function(response) {
+			console.log('error ' + response)
+		})
+	}
+
 
 	/* Appends http:// to all the urls */
 	$scope.saveUrls = function() {
@@ -172,6 +205,9 @@ var ListingEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Authen
 		$scope.formData.phrase.why = $scope.phrase.why
 	}
 
+	$scope.uploadImage = function() {
+
+	}
 
 	$scope.loadProductTypes = function(entry) {
 		_.assign($scope.productTypes, entry.productTypes)
@@ -241,8 +277,8 @@ var ListingEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Authen
 	}
 
 
-	$scope.highlight = function(otherElement) {
-		console.log(otherElement)
-	}
+	$scope.uploadFinished = function(e, data) {
+        console.log('We just finished uploading this baby...')
+      }
 
 }]
