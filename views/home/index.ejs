@@ -1,80 +1,39 @@
-<style>
-	.blog{
-		height: 200px;
-		position: relative;
-	    background-size: cover;
-	    background-repeat: no-repeat;
-	    background-position: center 0;
-	    margin-bottom: 9px;
-	}
-	.featured-blog{
-	}
-	.blog-text{
-		background-color: rgba(20, 20, 20, .8);
-		position: absolute;
-		width: 100%;
-		bottom: 0;
-		left:0 ;
-		height: 40%;
-		text-align: left;
-		margin: 0;
-	}
-	.blog:hover .blog-text{
-		background-color: rgba(20, 20, 20, .9);
-	}
-	.blog-title{
-		text-align: center;
-		text-transform: lowercase;
-		margin: 0;
-		padding: 0;
-		line-height: 30px;
 
-	}
-	.blog-preview{
-		overflow: hidden;
-		height: 40px;
-		padding-left: 5px;
-		padding-right: 5px;
-		text-align: center;
-		color: #999;
-	}
-
-</style>
-
-	<div class="homepage-top grid-100 grid-parent">
+	<div class="homepage-top grid-100 grid-container">
 				<div class="grid-60 grid-parent">
 					<div class="grid-100">
 					 	<div class="blog featured-blog" style="background-image: url('{{blogs[0].imageUrl}}');" 
 						onclick='location.href="/blog/#/view/{{blogs[0]._id}}"'>
 							<div class="blog-text">
 								<h3 class="blog-title">{{blogs[0].title}}</h3>
-								<p class="blog-preview" ng-bind-html-unsafe=blogs[0].body></p>
 							</div>		
 						</div>				
 					</div>
-					<div class="grid-50 mobile-grid-50" ng-repeat="n in [1,4] | makeRange">
+					<div class="grid-50 hide-on-mobile" ng-repeat="n in [1,4] | makeRange">
 						<div class="blog" style="background-image: url('{{blogs[0].imageUrl}}');" 
 						onclick='location.href="/blog/#/view/{{blogs[0]._id}}"'>
 							<div class="blog-text">
 								<h3 class="blog-title">{{blogs[0].title}}</h3>
-								<p class="blog-preview" ng-bind-html-unsafe=blogs[0].body></p>
 							</div>	
 						</div>
 					</div>
 				</div>
 
 				<div class="grid-40">
-					<div ng-repeat="event in events" class="event" onclick='location.href="/event/#/view/{{event._id}}"'>
+					<fieldset>
+						<legend>upcoming events</legend>
+						<div ng-repeat="n in [3] | makeRange" class="event" onclick='location.href="/event/#/view/{{events[n]._id}}"'>
 						<div class="event-left"> 
-							<div class="image-center-wrapper">
-								<img class="center-image" src={{event.imageUrl}} style="height: 100px;">								
-							</div>
-
+							<img class="event-image" src="{{(!events[n].imageUrl || events[n].imageUrl == '') ? '/images/madeinok100x100.png' : events[n].imageUrl}}">								
 						</div>
 						<div class="event-right">
-							<h3>{{event.title}}</h3>
-							<h4>{{event.date | date:"MMM dd"}}</h4>
-							<span class="label label-info">{{event.date | date:"h:mm a"}}</span>
+							<h3>{{events[n].title}}</h3>
+							<h4>{{events[n].date | date:"MMM dd"}}</h4>
+							<span class="label label-info">{{events[n].date | date:"h:mm a"}}</span>
+						</div>
+					</fieldset>
+						<div class="business" style="background-image: url('{{businesses[0].imageUrl}}');">
+
 						</div>
 					</div>
 				</div>
@@ -102,22 +61,22 @@
 <!-- 
 	<div class="homepage-tiles grid-100">
 	<div class="grid-25 mobile-grid-50">
-		<button class="tile tile-accent" onclick='location.href="/#/listings";'>
+		<button class="tile tile-accent" onclick='location.href="/listings";'>
 			Businesses
 		</button>
 	</div>
 	<div class="grid-25 mobile-grid-50">
-		<button class="tile tile-accent" onclick='location.href="/#/people";'>
+		<button class="tile tile-accent" onclick='location.href="/people";'>
 			People
 		</button>
 	</div>
 	<div class="grid-25 mobile-grid-50">
-		<button class="tile tile-accent" onclick='location.href="/#/events";'>
+		<button class="tile tile-accent" onclick='location.href="/events";'>
 			Events
 		</button>
 	</div>
 	<div class="grid-25 mobile-grid-50">
-		<button class="tile tile-accent" onclick='location.href="/#/blog";'>
+		<button class="tile tile-accent" onclick='location.href="/blog";'>
 			Blog
 		</button>
 	</div>
@@ -136,12 +95,8 @@
 	</div>
 	<div class="wrapper25">
 		<div class="image-center-wrapper">
-			<p>BROUGHT TO YOU BY</p>
+			<p>SPONSORED BY</p>
 			<img class="bolt-studios-logo" src="/images/BoltStudios.png" alt="Bolt Studios"/>
-		</div>
-		<div class="image-center-wrapper">
-			<p>THE R&amp;D DIVISION OF</p>
-			<img class="mtm-recognition-logo" src="/images/mtmrecognition.png" alt="MTM Recognition"/>
 		</div>
 	</div>
 </div>

@@ -6,6 +6,7 @@ function HomeIndexCtrl($scope, $location, $http, $routeParams, Event, Blog, List
 	$scope.title = "Home/Index" // try commenting this out to see what happens on the view.
 	$scope.blurb = "Here at Made In OK, we're developing a crowd sourced and curated web community to help build a central place for Oklahoma innovators, makers, founders and creatives to find local networking events, keep up to date on what's happening in the community, and connect with talent.";
 	$scope.yourName = "Example Name"
+	$scope.defaultImageUrl = "/images/madeinok100x100.png";
 
 	if(Object.keys($scope.events).length == 0) {
 		var entry = Event.query(function(success) {

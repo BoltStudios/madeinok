@@ -256,6 +256,60 @@ ul > .indented {
 	box-shadow: inset 1px @primaryColor;
 }
 
+//---- Homepage blog stuff ----//
+////////////////////////////////
+.blog{
+		height: 200px;
+		position: relative;
+	    background-size: cover;
+	    background-repeat: no-repeat;
+	    background-position: center 0;
+	    margin-top: 16px;
+
+	    &:hover{
+	    	cursor: pointer;
+
+	    	.blog-text{
+				background-color: rgba(20, 20, 20, .82);
+			}
+			.blog-title{
+				color: @accentColor;
+			}
+	    }
+
+	    	.featured-blog{
+	}
+	.blog-text{
+		background-color: rgba(20, 20, 20, .8);
+		position: absolute;
+		width: 100%;
+		bottom: 0;
+		left:0 ;
+		height: 40%;
+		text-align: left;
+		margin: 0;
+	}
+	.blog-title{
+		text-align: center;
+		text-transform: lowercase;
+		margin: 0;
+		padding: 5px;
+		line-height: 35px;
+		overflow: hidden;
+		height: 70px;
+		color: @bodyBackground;
+
+	}
+	.blog-preview{
+		overflow: hidden;
+		height: 40px;
+		padding-left: 5px;
+		padding-right: 5px;
+		text-align: center;
+		z-index: 5;
+	}
+}
+
 //------ Event Stuff ------//
 ////////////////////////////
 .time-select{
@@ -265,4 +319,8 @@ ul > .indented {
 	button{
 		margin-bottom: 5px;
 	}
+}
+.event-image{
+	height: 100px;
+	width: 100px;
 }

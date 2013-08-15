@@ -58,6 +58,33 @@ ul > .indented {
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 article,
 aside,
 details,
@@ -229,7 +256,7 @@ textarea {
 }
 body {
   margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans Condensed", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 20px;
   color: #2d2d2d;
@@ -920,7 +947,7 @@ input,
 button,
 select,
 textarea {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans Condensed", Helvetica, Arial, sans-serif;
 }
 label {
   display: block;
@@ -3681,7 +3708,7 @@ input[type="submit"].btn.btn-mini {
 .navbar-search .search-query {
   margin-bottom: 0;
   padding: 4px 14px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans Condensed", Helvetica, Arial, sans-serif;
   font-size: 13px;
   font-weight: normal;
   line-height: 1;
@@ -5224,33 +5251,6 @@ input[type="submit"].tile::-moz-focus-inner {
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
-.clearfix {
-  *zoom: 1;
-}
-.clearfix:before,
-.clearfix:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-.clearfix:after {
-  clear: both;
-}
-.hide-text {
-  font: 0/0 a;
-  color: transparent;
-  text-shadow: none;
-  background-color: transparent;
-  border: 0;
-}
-.input-block-level {
-  display: block;
-  width: 100%;
-  min-height: 30px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
 @-ms-viewport {
   width: device-width;
 }
@@ -6573,9 +6573,58 @@ event-right {
   overflow: hidden;
   box-shadow: inset 1px #007dc3;
 }
+.blog {
+  height: 200px;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center 0;
+  margin-top: 16px;
+}
+.blog:hover {
+  cursor: pointer;
+}
+.blog:hover .blog-text {
+  background-color: rgba(20, 20, 20, 0.82);
+}
+.blog:hover .blog-title {
+  color: #f05133;
+}
+.blog .blog-text {
+  background-color: rgba(20, 20, 20, 0.8);
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0 ;
+  height: 40%;
+  text-align: left;
+  margin: 0;
+}
+.blog .blog-title {
+  text-align: center;
+  text-transform: lowercase;
+  margin: 0;
+  padding: 5px;
+  line-height: 35px;
+  overflow: hidden;
+  height: 70px;
+  color: #f5f5f5;
+}
+.blog .blog-preview {
+  overflow: hidden;
+  height: 40px;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: center;
+  z-index: 5;
+}
 .time-select {
   width: 75px;
 }
 .create-event-wrapper button {
   margin-bottom: 5px;
+}
+.event-image {
+  height: 100px;
+  width: 100px;
 }

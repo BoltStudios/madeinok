@@ -5,6 +5,8 @@
 <meta charset='utf8'>
 <title><%= title %></title>
 
+<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+
 <script type='text/javascript' src='/lib/angular.min.js'></script>
 <script type='text/javascript' src='/lib/angular-ui.min.js'></script>			<!-- bootstrappy elements -->
 <script type='text/javascript' src='/lib/angular-ui-tpls.min.js'></script>		<!-- templates for those elements -->
@@ -73,6 +75,9 @@
   .above-navbar img{
     height: 150px;
   }
+  .brand{
+    padding: 0 20px 0 25px!important;
+  }
 </style>
 
 <body>
@@ -85,11 +90,11 @@
 		      <span class="icon-bar"></span>
 		      <span class="icon-bar"></span>
 	      </button>
+        <a class=brand href="/home/">
+          <img src="/images/madeinoklogo.png"/>
+        </a>
     	  <div class="nav-collapse in collapse">
 	        <ul class="nav">
-            <li>
-             <a href="/home/">home</a>
-            </li>
 	          <li>
     			   <a href="/listing/">businesses</a>
 	          </li>
@@ -127,7 +132,6 @@
 <!-- Le bootstrap javascript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<!-- f**k these errors -->
 <script src="/javascripts/bootstrap/bootstrap-transition.js"></script>
 <script src="/javascripts/bootstrap/bootstrap-alert.js"></script>
 <script src="/javascripts/bootstrap/bootstrap-modal.js"></script>
