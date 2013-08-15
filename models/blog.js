@@ -4,6 +4,7 @@ var BlogSchema = new mongoose.Schema({
 	  name: 	{ type: String }
 	, title:   	{ type: String }
 	, body:  	{ type: String }
+	, imageUrl: { type: String }
 	, date: 	{ type: Date   }
 })
 

@@ -1,70 +1,79 @@
 <form name='blogEditor'>
 
-	<div class="container">
-	  	<button ng-show=blogId class="btn btn-danger btn-large pull-right" ng-click=delete()>delete this post</button>
-	  	<a class='btn btn-large btn-primary pull-right' ng-click='save()'>save changes</a>
-	  	<br/>
-	  	<br/>
-	  	<br/>
-		<div class="alert alert-info" ng-hide=formData.body&&formData.title>
-			<button type="button" class="close" data-dismiss="alert">&times;</button>		
-			<strong>Heads Up!</strong> 
-			Once you enter a title and some text for the body of your blog post, I'll show you a preview.
-		</div>
+  	<button ng-show=blogId class="btn btn-danger btn-large pull-right" ng-click=delete()>delete this post</button>
+  	<a class='btn btn-large btn-primary pull-right' ng-click='save()'>save changes</a>
+  	<br/>
+  	<br/>
+  	<br/>
+	<div class="alert alert-info" ng-hide=formData.body&&formData.title>
+		<button type="button" class="close" data-dismiss="alert">&times;</button>		
+		<strong>Heads Up!</strong> 
+		Once you enter a title and some text for the body of your blog post, I'll show you a preview.
+	</div>
 
-		<div class="alert" ng-show=formData.body&&formData.title>
-			<button type="button" class="close" data-dismiss="alert">&times;</button>		
-			Below is the exact markup that will appear on the page after you publish your blog post.
-		</div>
+	<div class="alert" ng-show=formData.body&&formData.title>
+		<button type="button" class="close" data-dismiss="alert">&times;</button>		
+		Below is the exact markup that will appear on the page after you publish your blog post.
+	</div>
 
-		<div class='control-group'>
-			<label class='control-label' for='name'>
-				Who is writing this post?
-			</label>
-			<div class='controls'>
-				<input class="span12" type="text" name='name' ng-model='formData.name' autocorrect='off' required />
-				<div ng-show='blogEditor.name.$dirty && blogEditor.name.$invalid' class='alert alert-error'>
-	          		<span ng-show='blogEditor.name.$error.required'>You must enter your name.</span>
-	        	</div>
-			</div>
-		</div>
-
-		<div class='control-group'>
-			<label class='control-label' for='title'>
-				What would you like to title it?
-			</label>
-			<div class='controls'>
-				<input class="span12" type="text" name='title' ng-model='formData.title' autocorrect='off' required />
-				<div ng-show='blogEditor.title.$dirty && blogEditor.title.$invalid' class='alert alert-error'>
-	          		<span ng-show='blogEditor.title.$error.required'>You must enter a title.</span>
-	        	</div>
-			</div>
-		</div>
-
-		<div class='control-group'>
-			<label class='control-label' for='body'>
-				Use this wysiwyg editor to style the contents (if it doesn't load at first, try refreshing the page).
-			</label>
-			<div ng-show='blogEditor.body.$dirty && blogEditor.body.$invalid' class='alert alert-error'>
-          		<span ng-show='blogEditor.body.$error.required'>You must enter content for the blog post.</span>
+	<div class='control-group'>
+		<label class='control-label' for='name'>
+			Who is writing this post?
+		</label>
+		<div class='controls'>
+			<input class="span12" type="text" name='name' ng-model='formData.name' autocorrect='off' required />
+			<div ng-show='blogEditor.name.$dirty && blogEditor.name.$invalid' class='alert alert-error'>
+          		<span ng-show='blogEditor.name.$error.required'>You must enter your name.</span>
         	</div>
-			<div class='controls'>
-		    	<textarea class="span12" name='title' ng-model="formData.body" ck-editor required></textarea>
-			</div>
 		</div>
+	</div>
 
-		<div class="preview-wrapper" ng-show=formData.body&&formData.title>
-			<h3> This is how it will look once you submit it </h3>
-			<div class="span12 blog-post">
-			  <div class="blog-header">
-	  		  	<h2 class="blog-title">	{{formData.title}}	</h2>
-	  		  	<h5 class="writer-name">{{formData.name}}	</h5>
-			  	<p 	class="blog-date">	{{formData.date.toString()}} </p>
-			  </div>
-			  <p class="blog-body" ng-bind-html-unsafe=formData.body></p>
-		  	</div>
+	<div class='control-group'>
+		<label class='control-label' for='title'>
+			What would you like to title it?
+		</label>
+		<div class='controls'>
+			<input class="span12" type="text" name='title' ng-model='formData.title' autocorrect='off' required />
+			<div ng-show='blogEditor.title.$dirty && blogEditor.title.$invalid' class='alert alert-error'>
+          		<span ng-show='blogEditor.title.$error.required'>You must enter a title.</span>
+        	</div>
 		</div>
+	</div>
 
+	<div class='control-group'>
+		<label class='control-label' for='imageUrl'>
+			What image do you want to use?
+		</label>
+		<div class='controls'>
+			<input class="span12" type="text" name='title' ng-model='formData.imageUrl' autocorrect='off' required />
+			<div ng-show='blogEditor.imageUrl.$dirty && blogEditor.imageUrl.$invalid' class='alert alert-error'>
+          		<span ng-show='blogEditor.imageUrl.$error.required'>You must enter an image.</span>
+        	</div>
+		</div>
+	</div>
+
+	<div class='control-group'>
+		<label class='control-label' for='body'>
+			Use this wysiwyg editor to style the contents (if it doesn't load at first, try refreshing the page).
+		</label>
+		<div ng-show='blogEditor.body.$dirty && blogEditor.body.$invalid' class='alert alert-error'>
+      		<span ng-show='blogEditor.body.$error.required'>You must enter content for the blog post.</span>
+    	</div>
+		<div class='controls'>
+	    	<textarea class="span12" name='title' ng-model="formData.body" ck-editor required></textarea>
+		</div>
+	</div>
+
+	<div class="preview-wrapper" ng-show=formData.body&&formData.title>
+		<h3> This is how it will look once you submit it </h3>
+		<div class="span12 blog-post">
+		  <div class="blog-header">
+  		  	<h2 class="blog-title">	{{formData.title}}	</h2>
+  		  	<h5 class="writer-name">{{formData.name}}	</h5>
+		  	<p 	class="blog-date">	{{formData.date.toString()}} </p>
+		  </div>
+		  <p class="blog-body" ng-bind-html-unsafe=formData.body></p>
+	  	</div>
 	</div>
 
 </form>

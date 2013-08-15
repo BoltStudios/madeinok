@@ -65,20 +65,31 @@
 <link rel='stylesheet' href='/stylesheets/style.css' />
 <link rel='stylesheet' href='/stylesheets/font-awesome.css' />
 <link rel='stylesheet' href='/stylesheets/unsemantic-grid-responsive.css' />
+<style>
+  .above-navbar{
+    background-color: white;
+    color: white;
+  }
+  .above-navbar img{
+    height: 150px;
+  }
+</style>
 
 <body>
 	<!-- navigation -->
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-       	  <button class="btn btn-navbar" type="button" data-toggle="collapse" data-target=".nav-collapse">
+     	  <button class="btn btn-navbar" type="button" data-toggle="collapse" data-target=".nav-collapse">
    		    <span class="icon-bar"></span>
-		    <span class="icon-bar"></span>
-		    <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
 	      </button>
-	      <a class="brand" href="/#/home/index">Greg we need a logo</a>
-      	  <div class="nav-collapse in collapse">
+    	  <div class="nav-collapse in collapse">
 	        <ul class="nav">
+            <li>
+             <a href="/home/">home</a>
+            </li>
 	          <li>
     			   <a href="/listing/">businesses</a>
 	          </li>
@@ -100,8 +111,15 @@
     <!-- we put all of the angular views inside of the page-wrapper class -->
     <div class="page-wrapper">
     	<div ng-app="<%= appName %>">
-		    <div ng-view>
-		    </div>
+      <% if(appName != "HomeApp"){ %>
+        <div class="container">
+          <div ng-view>
+          </div>    
+        </div>    
+      <% } else { %>
+        <div ng-view>
+        </div>  
+      <% } %>
 	    </div>
     </div>
 </body>

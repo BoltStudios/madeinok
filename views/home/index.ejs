@@ -1,44 +1,87 @@
-<div class="container"
-	<div class="homepage-top">
-				<div class="wrapper100">
-					<div class="alert alert-info" style="margin-bottom:0;">
-						<button type="button" class="close" data-dismiss="alert">&times;</button>
-						<strong>Hello!</strong> Thanks for checking out madeinok.co. You should register to stay up to date with the latest goings on in the Oklahoma tech community.
-						<br/>
-						<button type="button" class="btn btn-primary btn-large" onclick="location.href='/account/#/create'">register</button>
+<style>
+	.blog{
+		height: 200px;
+		position: relative;
+	    background-size: cover;
+	    background-repeat: no-repeat;
+	    background-position: center 0;
+	    margin-bottom: 9px;
+	}
+	.featured-blog{
+	}
+	.blog-text{
+		background-color: rgba(20, 20, 20, .8);
+		position: absolute;
+		width: 100%;
+		bottom: 0;
+		left:0 ;
+		height: 40%;
+		text-align: left;
+		margin: 0;
+	}
+	.blog:hover .blog-text{
+		background-color: rgba(20, 20, 20, .9);
+	}
+	.blog-title{
+		text-align: center;
+		text-transform: lowercase;
+		margin: 0;
+		padding: 0;
+		line-height: 30px;
 
+	}
+	.blog-preview{
+		overflow: hidden;
+		height: 40px;
+		padding-left: 5px;
+		padding-right: 5px;
+		text-align: center;
+		color: #999;
+	}
+
+</style>
+
+	<div class="homepage-top grid-100 grid-parent">
+				<div class="grid-60 grid-parent">
+					<div class="grid-100">
+					 	<div class="blog featured-blog" style="background-image: url('{{blogs[0].imageUrl}}');" 
+						onclick='location.href="/blog/#/view/{{blogs[0]._id}}"'>
+							<div class="blog-text">
+								<h3 class="blog-title">{{blogs[0].title}}</h3>
+								<p class="blog-preview" ng-bind-html-unsafe=blogs[0].body></p>
+							</div>		
+						</div>				
+					</div>
+					<div class="grid-50 mobile-grid-50" ng-repeat="n in [1,4] | makeRange">
+						<div class="blog" style="background-image: url('{{blogs[0].imageUrl}}');" 
+						onclick='location.href="/blog/#/view/{{blogs[0]._id}}"'>
+							<div class="blog-text">
+								<h3 class="blog-title">{{blogs[0].title}}</h3>
+								<p class="blog-preview" ng-bind-html-unsafe=blogs[0].body></p>
+							</div>	
+						</div>
 					</div>
 				</div>
 
-				<div class="wrapper50">
-					<div style="width: 100%;" >
-						featured company goes here, say top 3/5
-					</div>
-					<div style="width: 100%;" >
-						most recent blog posts, somewhere
-					</div>
-				</div>
-
-				<div class="wrapper50">
-					<div ng-repeat="event in events" class="event">
+				<div class="grid-40">
+					<div ng-repeat="event in events" class="event" onclick='location.href="/event/#/view/{{event._id}}"'>
 						<div class="event-left"> 
 							<div class="image-center-wrapper">
-								<span></span>
 								<img class="center-image" src={{event.imageUrl}} style="height: 100px;">								
 							</div>
 
 						</div>
 						<div class="event-right">
-							<h4>{{event.title}}</h4>
-							{{event.date}}
-							<p>{{event.description.substring(0,85) + "..."}}</p>
+							<h3>{{event.title}}</h3>
+							<h4>{{event.date | date:"MMM dd"}}</h4>
+							<span class="label label-info">{{event.date | date:"h:mm a"}}</span>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
+
 
 <div class="homepage-tiles">
 	<!-- navigation tiles -->
@@ -56,11 +99,36 @@
 	</button>
 </div>
 
+<!-- 
+	<div class="homepage-tiles grid-100">
+	<div class="grid-25 mobile-grid-50">
+		<button class="tile tile-accent" onclick='location.href="/#/listings";'>
+			Businesses
+		</button>
+	</div>
+	<div class="grid-25 mobile-grid-50">
+		<button class="tile tile-accent" onclick='location.href="/#/people";'>
+			People
+		</button>
+	</div>
+	<div class="grid-25 mobile-grid-50">
+		<button class="tile tile-accent" onclick='location.href="/#/events";'>
+			Events
+		</button>
+	</div>
+	<div class="grid-25 mobile-grid-50">
+		<button class="tile tile-accent" onclick='location.href="/#/blog";'>
+			Blog
+		</button>
+	</div>
+</div>
+-->
+
 
 <div class="homepage-bottom">
 	<div class="wrapper25"> 
 		<div class="image-center-wrapper">
-			<img class="oklahoma-element" src="images/Oklahoma_Element.png" alt="Oklahoma"/>
+			<img class="oklahoma-element" src="/images/Oklahoma_Element.png" alt="Oklahoma"/>
 		</div>
 	</div>
 	<div class="wrapper50">
@@ -69,11 +137,11 @@
 	<div class="wrapper25">
 		<div class="image-center-wrapper">
 			<p>BROUGHT TO YOU BY</p>
-			<img class="bolt-studios-logo" src="images/BoltStudios.png" alt="Bolt Studios"/>
+			<img class="bolt-studios-logo" src="/images/BoltStudios.png" alt="Bolt Studios"/>
 		</div>
 		<div class="image-center-wrapper">
 			<p>THE R&amp;D DIVISION OF</p>
-			<img class="mtm-recognition-logo" src="images/mtmrecognition.png" alt="MTM Recognition"/>
+			<img class="mtm-recognition-logo" src="/images/mtmrecognition.png" alt="MTM Recognition"/>
 		</div>
 	</div>
 </div>
