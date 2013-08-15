@@ -8,9 +8,10 @@ var mongoose = require('mongoose')
 
 // all environments
 //app.set('views', __dirname + '/views'); //taken care of in routes 
+app.use(express.favicon(__dirname + '/public/images/favicon.png')); 
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
-app.use(express.favicon());
+//app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
