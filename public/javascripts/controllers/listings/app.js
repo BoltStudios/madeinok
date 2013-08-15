@@ -57,27 +57,58 @@ var app = angular.module('ListApp', ['ngResource', 'ngCookies', 'authentication-
 		}
 	})
 
-	.directive('fileupload', function() { 
-		return {
-        	restrict: 'A',
-        	scope: { done: '&', progress: '&' },
-		
-			link: function(scope, element, attrs) {
-				var optionsObj = { dataType: 'json' }
-				if (scope.done) { 
-					optionsObj.done = function() {
-						scope.$apply(function() { scope.done({e: e, data: data}) }) 
-					}
-				}
+	.directive('clickHacker', [function() {
+		return function(scope, element, attrs) {
+			var target = '#' + attrs['target']
+			element.bind('click', function() {
+				$(target).click()
+			})
+		}
+	}])
 
-				if (scope.progress) {
-					optionsObj.progress = function(e, data) {
-						scope.$apply(function() { scope.progress({e: e, data: data}) }) 
-					}
-				}
-	          	// the above could easily be done in a loop, to cover
-	          	// all API's that Fileupload provides
-	          	element.fileupload(optionsObj);
-        	}
-        }
-	})
+	.directive('companyUploader', [function() {
+		return function(scope, element, attrs) {
+			var action = attrs['action']
+			  , form = $(element).parents('form')
+
+			element.bind('change', function() {
+				form.attr('action', action)
+				form.ajaxSubmit({
+					type: 'POST',
+					uploadProgress: function(event, position, total, percentComplete) { 
+						
+						scope.$apply(function() {
+							// upload the progress bar during the upload
+							scope.progress = percentComplete;
+						});
+
+					},
+					error: function(event, statusText, responseText, form) { 
+
+						// remove the action attribute from the form
+						form.removeAttr('action');
+
+						/*
+							handle the error ...
+						*/
+
+					},
+					success: function(responseText, statusText, xhr, form) { 
+						filename = responseText.image
+						// var ar = $(el).val().split('\\'), 
+						// 	filename =  ar[ar.length-1];
+
+						// remove the action attribute from the form
+						form.removeAttr('action');
+
+						scope.$apply(function() {
+							scope.formData.imageUrl = filename;
+							console.log('in directive, ' + scope.formData.imageUrl)
+						});
+
+					},
+				});
+			})
+			
+		}
+	}])

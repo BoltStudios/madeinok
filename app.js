@@ -12,7 +12,7 @@ app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
 app.use(express.favicon());
 app.use(express.logger('dev'));
-app.use(express.bodyParser());
+app.use(express.bodyParser({uploadDir:__dirname + '/public/images/uploads'}));
 app.use(express.methodOverride());
 //app.use(express.cookieParser('yolo'));
 app.use(express.cookieParser())
@@ -23,8 +23,8 @@ app.enable('strict routing'); //has to go above app.use(app.router); this will p
 app.use(app.router);
 app.use(require('less-middleware')({ src: __dirname + '/public' }));
 app.use(express.static(path.join(__dirname, 'public')));
-mongoose.connect('mongodb://admin:password@ds037508.mongolab.com:37508/madeinok');
-
+//mongoose.connect('mongodb://admin:password@ds037508.mongolab.com:37508/madeinok');
+mongoose.connect('mongodb://localhost/OKStartups')
 
 // development only
 if ('development' == app.get('env')) {

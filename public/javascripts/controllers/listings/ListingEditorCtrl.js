@@ -133,7 +133,6 @@ var ListingEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Authen
 	*/
 	$scope.save = function(callback) {
 		$scope.info = 'Saving...'
-
 		$scope.saveProductTypes()
 		$scope.saveUrls()
 		$scope.saveTwitter()
@@ -188,8 +187,8 @@ var ListingEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Authen
 		$scope.formData.phrase.why = $scope.phrase.why
 	}
 
-	$scope.uploadImage = function() {
-
+	$scope.uploadImage = function(action) {
+		console.log('uploading image...')
 	}
 
 	$scope.loadProductTypes = function(entry) {

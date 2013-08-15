@@ -2,9 +2,11 @@
 	.alert { margin-top: 0.3em; }
 </style>
 
+<script type='text/javascript' src='/lib/jquery.form.min.js'></script>
+
 <h2 class='page-header'>{{ title }}</h2>
 
-<form name='listCreate' class='form-horizontal'>
+<form name='listCreate' class='form-horizontal' enctype='multipart/form-data'>
 
 <div class='alert alert-error' ng-show='flash'>
 	{{ flash }}
@@ -23,10 +25,11 @@
 	<fieldset>
 		<legend>Company Basics <small class='pull-right'>{{ currentPage }} of {{  lastPageNumber }}</small></legend>
 
+		<div class='grid-50'>
 		<div class='control-group'>
 			<label class='control-label' for='companyName'>Company Name <span class='text-error'>*</span></label>
 			<div class='controls'>
-				<input type='text' name='companyName' ng-model='formData.companyName' placeholder='Company Name' autocorrect='off' required />	
+				<input type='text' name='companyName' ng-model='formData.companyName' placeholder='Company Name' autocorrect='off' required />
 				
 				<div ng-show='listCreate.companyName.$dirty && listCreate.companyName.$invalid' class='alert alert-error'>
 					<span ng-show='listCreate.companyName.$error.required'>A company name is required.</span>
@@ -34,15 +37,16 @@
 			</div>
 		</div>
 
-
 		<div class='control-group'>
-			<label class='control-label' for='websiteUrl'>Website <span class='text-error'>*</span></label>
+			<label class='control-label' for='websiteUrl'>Company Image <span class='text-error'>*</span></label>
 			<div class='controls'>
-				<input type='text' name='websiteUrl' ng-model='formData.websiteUrl' placeholder='http://' autocorrect='off' required />
-
-				<div ng-show='listCreate.websiteUrl.$dirty && listCreate.websiteUrl.$invalid' class='alert alert-error'>
-					<span ng-show='listCreate.websiteUrl.$error.required'>A company website is required.</span>
-				</div>
+				<button type='btn btn-primary' click-hacker target='uploader'>Upload Image</button>
+				<input type='file' company-uploader action='/api/listings/image' name='uploader' id='uploader' style='display:none;' />
+				<input type='hidden' ng-model='formData.imageUrl'/>
+				<span ng-show='progress' class='text text-info'><strong>Progress</strong>: {{ progress }}%</span>
+<!-- 				<div class='progress input-small' ng-show='progress && progress != 0'>
+					<div class="bar" style='width:{{progress}}%;'></div>
+				</div> -->
 			</div>
 		</div>
 
@@ -93,6 +97,11 @@
 				</div>
 			</div>
 		</div>
+		</div>
+
+		<div class='grid-50'>
+			<img ng-show='formData.imageUrl' src='{{formData.imageUrl}}' />
+		</div>
 	</fieldset>
 </div>
 
@@ -110,7 +119,7 @@
 	<fieldset>
 		<legend>Company Basics <small class='pull-right'>{{ currentPage }} of {{  lastPageNumber }}</small></legend>
 
-		<div class='span6'>
+		<div class='grid-50'>
 			<div class='control-group'>
 				<label class='control-label' for='phrase'>Describe your company in one phrase <span class='text-error'>*</span></label>
 				<div class='controls'>
@@ -169,7 +178,8 @@
 				</div>
 			</div>
 		</div>
-		<div class='span6'>
+
+		<div class='grid-50'>
 
 			<strong class='alert-info'>Company phrase example:</strong>
 			<div class='alert alert-info'>
