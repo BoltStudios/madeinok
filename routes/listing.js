@@ -3,13 +3,17 @@ var Listing = require('../models/listing.js')
   , _ = require('underscore')
   , fs = require('fs')
   , path = require('path')
+  , cloudinary = require('cloudinary')
+  , keys = require('../keys')
 
 var uploadImage = function(req, res) {
-	var image = req.files.uploader
-	  , imageUrl = image.path + image.name
+	var image = req.files.uploader	
+	cloudinary.config(GLOBAL.cloudinaryConfig)
 
-	console.log(JSON.stringify(req.files.uploader))
-	res.send(200, {image: image.path, name: image.name})
+	cloudinary.uploader.upload(req.files.uploader.path,
+  		function(result) { 
+  			res.send(200, {image: result.url})
+  		})
 }
 
 module.exports = function(app) {
