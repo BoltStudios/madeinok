@@ -100,7 +100,8 @@ ul > .indented {
 	display: table;
 	min-height: 100px;
 	padding: 0px;
-	margin-top: 5px;
+	padding-top: 7px;
+	padding-bottom: 6px;
 	border: solid 0 darken(@bodyBackground, 5%);
 	border-bottom-width: 1px;
 	//border-radius: 4px;
@@ -128,7 +129,7 @@ ul > .indented {
 	padding: 20px;
 }
 .homepage-top{
-	min-height: 600px;
+	min-height: 710px;
 }
 
 .homepage-tiles{
@@ -330,4 +331,26 @@ ul > .indented {
 .event-image{
 	height: 100px;
 	width: 100px;
+}
+
+//------ Homepage Listing ------//
+/////////////////////////////////
+.listing{
+	position: relative;
+	height: 200px;
+	border: solid 1px @primaryColor;
+	margin-top: 15px;
+	&:hover{
+		cursor: pointer;
+		box-shadow: 0 0 5px @primaryColor;
+	}
+}
+
+.listing-image{
+	margin: auto;
+	position: absolute;
+	top: 0px; bottom: 0px; left: 0px; right: 0px;
+	width: auto;
+  	height: 70%;
+  	max-height: 100%;
 }

@@ -6431,7 +6431,8 @@ event-right {
   display: table;
   min-height: 100px;
   padding: 0px;
-  margin-top: 5px;
+  padding-top: 7px;
+  padding-bottom: 6px;
   border: solid 0 #e8e8e8;
   border-bottom-width: 1px;
   color: #2d2d2d;
@@ -6467,7 +6468,7 @@ event-right {
   padding: 20px;
 }
 .homepage-top {
-  min-height: 600px;
+  min-height: 710px;
 }
 .homepage-tiles {
   width: 100%;
@@ -6638,4 +6639,25 @@ event-right {
 .event-image {
   height: 100px;
   width: 100px;
+}
+.listing {
+  position: relative;
+  height: 200px;
+  border: solid 1px #007dc3;
+  margin-top: 15px;
+}
+.listing:hover {
+  cursor: pointer;
+  box-shadow: 0 0 5px #007dc3;
+}
+.listing-image {
+  margin: auto;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  width: auto;
+  height: 70%;
+  max-height: 100%;
 }
