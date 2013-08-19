@@ -1,4 +1,13 @@
-<form enctype='multipart/form-data' name='imageForm' method='post' action='../api/listings/image'>
-	<input type='file' name='imageUrl' />
-	<button type='submit'>upload</button>
-</form>
+<!-- uploader.html template -->
+<div class="uploader">
+
+	<!-- the real input[type=file] is hidden -->
+	<input type="file" name="uploader"
+		 onchange="angular.element(this).scope().sendFile(this);"/>
+
+	<!-- progress bar -->
+	<div class="progress" ng-show="progress!=0">
+		<div class="bar" style="width:{{progress}}%;"></div>
+	</div>
+
+</div>
