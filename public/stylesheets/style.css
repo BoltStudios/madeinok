@@ -33,11 +33,11 @@ ul > .indented {
 }
 .listing-entry {
   cursor: pointer;
-  margin-bottom: 1.3em;
 }
 .listing-entry h3 {
   margin: 0;
   color: #2d2d2d;
+  margin-top: -1.5em;
 }
 .listing-entry .lead {
   margin: 0;
@@ -48,6 +48,17 @@ ul > .indented {
 }
 .listing-entry:hover .lead {
   color: #020202;
+}
+.business-card {
+  text-align: center;
+}
+.business-card img {
+  max-width: 350px;
+  border: 1px solid #222;
+  margin: 0.8em;
+}
+.business-card-image {
+  border: 1px solid #222;
 }
 /*!
  * Bootstrap v2.3.2

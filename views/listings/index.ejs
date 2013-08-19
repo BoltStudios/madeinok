@@ -1,10 +1,12 @@
 <div class='grid-100'>
-	<a href='#/create' class='btn btn-large btn-primary pull-right'>Add Your Startup</a>
-	<h2 class='page-header'>Startup Directory</h2>
+	<h2 class='page-header'>
+		Startup Directory
+		<a href='#/create' class='btn btn-large btn-primary pull-right'>Add Your Startup</a>
+	</h2>
 </div>
 
 <div ng-repeat='entry in listings' class='listing-entry grid-33' ng-click='viewEntry(entry._id)'>
-	<h3>{{ entry.companyName }}</h3>
-	<p class='muted' ng-show='entry.phrase'>{{item.companyName}} is developing {{ item.phrase.developing }} to help {{item.phrase.helping}} {{item.phrase.why}}</p>
-	<p class='see-more'><a href='#/view/{{ entry._id }}'>read more &rarr;</a></p>
+	<div class='business-card'>
+		<a href='#/view/{{entry._id}}'><img src='{{entry.imageUrl}}' /></a>
+	</div>
 </div>

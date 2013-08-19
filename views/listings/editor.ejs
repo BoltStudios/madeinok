@@ -44,9 +44,11 @@
 				<input type='file' company-uploader action='/api/listings/image' name='uploader' id='uploader' style='display:none;' />
 				<input type='hidden' ng-model='formData.imageUrl'/>
 				<span ng-show='progress' class='text text-info'><strong>Progress</strong>: {{ progress }}%</span>
-<!-- 				<div class='progress input-small' ng-show='progress && progress != 0'>
-					<div class="bar" style='width:{{progress}}%;'></div>
-				</div> -->
+
+				<div class='alert alert-info'>
+					Your image will be resized to <strong>350px wide</strong> by <strong>200px tall</strong>, so choose an 
+					image that matches this aspect ratio (think business card).
+				</div>
 			</div>
 		</div>
 
