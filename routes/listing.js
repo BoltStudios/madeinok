@@ -6,21 +6,16 @@ var Listing = require('../models/listing.js')
   , cloudinary = require('cloudinary')
   , keys = require('../keys')
 
-var uploadImage = function(req, res) {
-	var image = req.files.uploader	
-	cloudinary.config(GLOBAL.cloudinaryConfig)
-
-	cloudinary.uploader.upload(req.files.uploader.path,
-  		function(result) { 
-  			res.send(200, {image: result.url})
-  		})
-}
 
 module.exports = function(app) {
 
 	app.post('/api/listings/image', filters.isLoggedIn, function(req, res) {
-		console.log('IMAGE UPLOAD..... here i is ')
-		uploadImage(req, res)
+		var image = req.files.uploader
+		cloudinary.config(GLOBAL.cloudinaryConfig)
+
+		cloudinary.uploader.upload(req.files.uploader.path, function(result) {
+			res.send(200, {image: result.url})
+		}, {crop: 'limit', width:350, height:200})
 	})
 	
 	/* Returns all the listings */

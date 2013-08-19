@@ -1,5 +1,6 @@
-<h2 class='page-header'>{{ title }}
-<a ng-click='logout()' class='btn btn-danger pull-right'>Log Off</a>
+<h2 class='page-header'>
+	{{ title }}
+	<a ng-click='logout()' class='btn btn-danger pull-right'>Log Off</a>
 </h2>
 
 
@@ -9,8 +10,9 @@
 <ul class='unstyled'>
 	<li ng-repeat='listing in listings' class='listing-entry'>
 		<h3>{{ listing.companyName }}</h3>
-		<a ng-click='viewListing(listing._id)' class='btn btn-disabled'>View</a>
-		<a ng-click='editListing(listing._id)' class='btn btn-primary'>Edit</a>
+		<a href='/listing/#/view/{{listing._id}}' class='btn btn-info'>View</a>
+		<a href='/listing/#/edit/{{listing._id}}' class='btn btn-primary'>Edit</a>
+
 	</li>
 </ul>
 </fieldset>
