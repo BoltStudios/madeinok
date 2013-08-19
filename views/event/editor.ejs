@@ -44,12 +44,12 @@
 
 		<div class='control-group'>
 			<label class='control-label' for='imageUrl'>
-				Enter a square image for the event
+				Enter an image for the event
 			</label>
 			<div class='controls'>
 				<input class="span12" type="text" name='title' ng-model='formData.imageUrl' autocorrect='off' />
 				<div ng-show='eventEditor.imageUrl.$dirty && eventEditor.imageUrl.$invalid' class='alert alert-error'>
-	          		<span ng-show='eventEditor.imageUrl.$error.required'>You must enter a square imageUrl.</span>
+	          		<span ng-show='eventEditor.imageUrl.$error.required'>You must enter a valid imageUrl.</span>
 	        	</div>
 			</div>
 		</div>
@@ -134,17 +134,12 @@
 			<h3> This is how it will look once you submit it </h3>
 			<div class="event">
 				<div class="event-left"> 
-					<div style="height: 100px">
-						<div class="image-center-wrapper">
-							<span></span>
-							<img class="center-image" src={{formData.imageUrl}}>								
-						</div>
-					</div>
+					<img class="event-image" src="{{formData.imageUrl || '/images/MadeInOK100x100.png' }}">								
 				</div>
 				<div class="event-right">
-					<h4>{{formData.title}}</h4>
-					{{getDate().toString()}}
-					<p>{{formData.description.substring(0,85) + "..."}}</p>
+					<h3>{{formData.title}}</h3>
+					<h4>{{formData.date | date:"EEE MMM dd"}}</h4>
+					<span class="label label-info">{{formData.date | date:"h:mm a"}}</span>
 				</div>
 			</div>
 		</div>

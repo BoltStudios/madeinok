@@ -6,6 +6,9 @@
   		  	<button ng-switch-when=true class="btn btn-large btn-success pull-right" onclick='location.href="#/create"'>create a new event</button>
 		  	<h3 ng-switch-when=false class="classic-letterpress" style="text-align: center;" ng-show=title> {{title}} </h1>
 	  	</div>
+	  	<br/>
+	  	<br/>
+	  	<br/>
 
 
 		<fieldset>
@@ -16,7 +19,7 @@
 			</div>
 			<div class="event-right">
 				<h3>{{event.title}}</h3>
-				<h4>{{event.date | date:"MMM dd"}}</h4>
+				<h4>{{event.date | date:"EEE MMM dd"}}</h4>
 				<span class="label label-info">{{event.date | date:"h:mm a"}}</span>
 			</div>
 		</fieldset>

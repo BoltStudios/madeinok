@@ -1,7 +1,7 @@
 <form name='blogEditor'>
 
   	<button ng-show=blogId class="btn btn-danger btn-large pull-right" ng-click=delete()>delete this post</button>
-  	<a class='btn btn-large btn-primary pull-right' ng-click='save()'>save changes</a>
+  	<button class='btn btn-large btn-primary pull-right' ng-disabled="blogEditor.$invalid" ng-click="save()">save changes</button>
   	<br/>
   	<br/>
   	<br/>

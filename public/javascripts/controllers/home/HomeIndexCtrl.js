@@ -9,7 +9,9 @@ function HomeIndexCtrl($scope, $location, $http, $routeParams, Event, Blog, List
 
 	if(Object.keys($scope.events).length == 0) {
 		var entry = Event.query(function(success) {
-			$scope.events = success
+			var events = success
+			removeEarlierDatesFromArray(events, new Date())
+			$scope.events = events
 		}, function(error) {
 			console.log("something went wrong trying to access the events")
 			console.log(error)
@@ -17,6 +19,11 @@ function HomeIndexCtrl($scope, $location, $http, $routeParams, Event, Blog, List
 	}
 	if(Object.keys($scope.blogs).length == 0) {
 		var entry = Blog.query(function(success) {
+			success.sort(function(a,b){
+			  a = new Date(a.date);
+			  b = new Date(b.date);
+			  return a<b?-1:a>b?1:0;
+			})
 			$scope.blogs = success
 		}, function(error) {
 			console.log("something went wrong trying to access the blogs")
@@ -25,14 +32,30 @@ function HomeIndexCtrl($scope, $location, $http, $routeParams, Event, Blog, List
 	}
 	if(Object.keys($scope.listings).length == 0) {
 		var entry = Listing.query(function(success) {
+			success.sort(function(a,b){
+			  a = new Date(a.date);
+			  b = new Date(b.date);
+			  return a<b?-1:a>b?1:0;
+			})
 			$scope.listings = success
-			$scope.listings = [{
-					imageUrl: "http://91af.http.cdn.softlayer.net/8091AF/assets.buzz.am/buzzam/home/Intro_Logo.png",
-					companyName: 	"Buzzam Radio"
-			}]
 		}, function(error) {
 			console.log("something went wrong trying to access the listings")
 			console.log(error)
+		})
+	}
+
+	function removeEarlierDatesFromArray(objectsWithDateProperty, date){
+		var latestDate = new Date(date);
+		for (var i = objectsWithDateProperty.length - 1; i >= 0; i--) {
+			var objectDate = new Date(objectsWithDateProperty[i].date)
+			if( objectDate < latestDate){
+				objectsWithDateProperty.splice(i,1);
+			}
+		}
+		objectsWithDateProperty.sort(function(a,b){
+		  a = new Date(a.date);
+		  b = new Date(b.date);
+		  return a<b?-1:a>b?1:0;
 		})
 	}
 }
