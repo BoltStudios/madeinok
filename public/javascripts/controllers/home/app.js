@@ -1,5 +1,5 @@
 var app = angular.module('HomeApp', ['ngResource', 'ngCookies', 'event-factory', 'blog-factory', 'listing-factory'])
-	.config(function($routeProvider, $locationProvider) {
+	.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 		$routeProvider
 			//Index routes
 			.when('/', 				{ controller: HomeIndexCtrl, 	templateUrl: '/home/index' 		})
@@ -13,7 +13,7 @@ var app = angular.module('HomeApp', ['ngResource', 'ngCookies', 'event-factory',
 			//Fallback
 			.otherwise({ redirectTo: '/' })
 			//$locationProvider.html5Mode(true) /* RIP IE9 */
-	})
+	}])
 
 	app.filter('makeRange', function() {
         return function(input) {
