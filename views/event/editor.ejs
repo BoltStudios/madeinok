@@ -133,13 +133,18 @@
 		<div ng-show=formData.description&&formData.title&&formData.organization>
 			<h3> This is how it will look once you submit it </h3>
 			<div class="event">
-				<div class="event-left"> 
-					<img class="event-image" src="{{formData.imageUrl || '/images/MadeInOK100x100.png' }}">								
+				<div style="float:left;">
+					<div class="event-left"> 
+						<img class="event-image" src="{{formData.imageUrl || '/images/MadeInOK100x100.png' }}">								
+					</div>
+					<div class="event-right">
+						<h3>{{formData.title}}</h3>
+						<h4>{{formData.date | date:"EEE MMM dd"}}</h4>
+						<span class="label label-info">{{formData.date | date:"h:mm a"}}</span>
+					</div>
 				</div>
-				<div class="event-right">
-					<h3>{{formData.title}}</h3>
-					<h4>{{formData.date | date:"EEE MMM dd"}}</h4>
-					<span class="label label-info">{{formData.date | date:"h:mm a"}}</span>
+				<div class="event-description">
+					{{formData.description}}
 				</div>
 			</div>
 		</div>

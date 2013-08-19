@@ -23,7 +23,8 @@ module.exports = function(app) {
 	//need to be admin
 	app.post('/api/events', filters.isLoggedIn, function(req, res) {
 		var newEvent = req.body
-		//mountain oysters: google it.
+		newEvent.creatorId = req.user.guid
+
 		new Events(newEvent).save(function(err, event, count) {
 			res.send(event)
 		})

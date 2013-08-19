@@ -4,6 +4,16 @@ var Blogs = require('../models/blog.js')
 
 module.exports = function(app) {
 
+	/* post and image */
+	app.post('/api/blogs/image', filters.isLoggedIn, function(req, res) {
+		var image = req.files.uploader
+		cloudinary.config(GLOBAL.cloudinaryConfig)
+
+		cloudinary.uploader.upload(req.files.uploader.path, function(result) {
+			res.send(200, {image: result.url})
+		}, {crop: 'limit', width:1200, height:200})
+	})
+
 	/* Returns all the listings */
 	app.get('/api/blogs', function(req, res) {
 		Blogs.find(function(err, blogs) {
@@ -23,7 +33,7 @@ module.exports = function(app) {
 	//need to be admin
 	app.post('/api/blogs', filters.isLoggedIn, function(req, res) {
 		var newBlog = req.body
-		//newBlog.creator = req.signedCookies.user
+		newBlog.creatorId = req.user.guid
 
 		new Blogs(newBlog).save(function(err, blog, count) {
 			res.send(blog)

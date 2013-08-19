@@ -1,0 +1,13 @@
+<!-- uploader.html template -->
+<div class="uploader">
+
+	<!-- the real input[type=file] is hidden -->
+	<input type="file" name="uploader"
+		 onchange="angular.element(this).scope().sendFile(this);"/>
+
+	<!-- progress bar -->
+	<div class="progress" ng-show="progress!=0">
+		<div class="bar" style="width:{{progress}}%;"></div>
+	</div>
+
+</div>

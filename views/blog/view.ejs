@@ -4,12 +4,8 @@
 
 	<div class="blog-wrapper">
 
-		<div ng-show=admin class="create-blog-wrapper">
-  		  <button class="btn btn-large btn-primary pull-right" onclick='location.href="#/edit/{{viewData._id}}"'>edit or delete</button>
-	  	</div>
-
 		<div class="span12 blog-post">
-
+		  <div ng-show="viewData.imageUrl" class="blog-image" style="background-image: url({{viewData.imageUrl}})"></div> 
 		  <div class="blog-header">
   		  	<h2 class="blog-title">{{viewData.title}}</h2>
   		  	<h5 class="writer-name">{{viewData.name}}</h5>

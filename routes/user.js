@@ -2,6 +2,8 @@ var User = require('../models/user')
   , _ = require('underscore')
   , filters = require('./_actionFilters.js')
   , Listing = require('../models/listing')
+  , Event = require('../models/event')
+  , Blog = require('../models/blog')
 
 module.exports = function(app) {
 
@@ -76,6 +78,30 @@ module.exports = function(app) {
 		Listing.find({creatorId: id}, function(err, listings) {
 			if(!err) {
 				res.send(listings)
+			}
+			else
+				res.send(err)
+		})
+	})
+
+	/* Get the events for a user */
+	app.get('/api/users/:id/events', filters.isLoggedIn, function(req, res) {
+		var id = req.params.id || 0
+		Event.find({creatorId: id}, function(err, events) {
+			if(!err) {
+				res.send(events)
+			}
+			else
+				res.send(err)
+		})
+	})
+
+	/* Get the blogs for a user */
+	app.get('/api/users/:id/blogs', filters.isLoggedIn, function(req, res) {
+		var id = req.params.id || 0
+		Blog.find({creatorId: id}, function(err, blogs) {
+			if(!err) {
+				res.send(blogs)
 			}
 			else
 				res.send(err)

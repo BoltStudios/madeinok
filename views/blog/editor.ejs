@@ -1,3 +1,5 @@
+<script type='text/javascript' src='/lib/jquery.form.min.js'></script>
+
 <form name='blogEditor'>
 
   	<button ng-show=blogId class="btn btn-danger btn-large pull-right" ng-click=delete()>delete this post</button>
@@ -40,15 +42,32 @@
 		</div>
 	</div>
 
+<!--
 	<div class='control-group'>
 		<label class='control-label' for='imageUrl'>
-			What image do you want to use?
+			What image do you want to use? (1200x200)
 		</label>
 		<div class='controls'>
 			<input class="span12" type="text" name='title' ng-model='formData.imageUrl' autocorrect='off' required />
 			<div ng-show='blogEditor.imageUrl.$dirty && blogEditor.imageUrl.$invalid' class='alert alert-error'>
           		<span ng-show='blogEditor.imageUrl.$error.required'>You must enter an image.</span>
         	</div>
+		</div>
+	</div>
+-->
+
+	<div class='control-group'>
+		<label class='control-label' for='imageUrl'>Company Image</label>
+		<div class='controls'>
+			<button type='btn btn-primary' click-hacker target='uploader'>Upload Image</button>
+			<input type='file' image-uploader action='/api/blogs/image' name='uploader' id='uploader' style='display:none;' />
+			<input type='hidden' ng-model='formData.imageUrl'/>
+			<span ng-show='progress' class='text text-info'><strong>Progress</strong>: {{ progress }}%</span>
+
+			<div class='alert alert-info'>
+				Your image will be resized to <strong>1200px wide</strong> by <strong>200px tall</strong>, so choose an 
+				image that matches this aspect ratio.
+			</div>
 		</div>
 	</div>
 
@@ -67,6 +86,7 @@
 	<div class="preview-wrapper" ng-show=formData.body&&formData.title>
 		<h3> This is how it will look once you submit it </h3>
 		<div class="span12 blog-post">
+		  <div ng-show="formData.imageUrl" class="blog-image" style="background-image: url('{{formData.imageUrl}}')"></div> 
 		  <div class="blog-header">
   		  	<h2 class="blog-title">	{{formData.title}}	</h2>
   		  	<h5 class="writer-name">{{formData.name}}	</h5>

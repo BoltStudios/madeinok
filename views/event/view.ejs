@@ -1,14 +1,15 @@
-			<div ng-show=admin class="create-event-wrapper">
-	  		  <button class="btn btn-large btn-primary pull-right" onclick='location.href="#/edit/{{viewData._id}}"'>edit or delete</button>
-		  	</div>
-
-			<div class="event">
-				<div class="event-left"> 
-					<img class="event-image" src="{{viewData.imageUrl || '/images/MadeInOK100x100.png'}}">								
-				</div>
-				<div class="event-right">
-					<h3>{{viewData.title}}</h3>
-					<h4>{{viewData.date | date:"EEE MMM dd"}}</h4>
-					<span class="label label-info">{{viewData.date | date:"h:mm a"}}</span>
-				</div>
-			</div>
+<div class="event">
+	<div style="float:left;">
+		<div class="event-left"> 
+			<img class="event-image" src="{{viewData.imageUrl || '/images/MadeInOK100x100.png'}}">								
+		</div>
+		<div class="event-right">
+			<h3>{{viewData.title}}</h3>
+			<h4>{{viewData.date | date:"EEE MMM dd"}}</h4>
+			<span class="label label-info">{{viewData.date | date:"h:mm a"}}</span>
+		</div>
+	</div>
+	<div class="event-description">
+		{{viewData.description}}
+	</div>
+</div>
