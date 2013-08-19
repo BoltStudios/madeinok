@@ -1,5 +1,5 @@
 var app = angular.module('EventApp', ['ngResource', 'ngCookies', 'authentication-service', 'event-factory'])
-	.config(function($routeProvider, $locationProvider) {
+	.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 		$routeProvider
 			//index routes					
 			.when('/', { controller: EventIndexCtrl, templateUrl: '/event/index' })
@@ -14,15 +14,4 @@ var app = angular.module('EventApp', ['ngResource', 'ngCookies', 'authentication
 			//Fallback
 			.otherwise({ redirectTo: '/' })
 			//$locationProvider.html5Mode(true) /* RIP IE9 */
-	})
-
-	/* This is a Blog resource. By default, a resource has these methods:
-	 * get({id: X}) GET 							-> /api/listings/X
-	 * save({}, newInfo) POST 						-> /api/listings/
-	 * save({id: X}, newInfo) POST (obj.$save())	-> /api/listings/X
-	 * query() get 									-> /api/listings
-	 * remove({id: X}) POST 						-> /api/listings/X
-	 * delete({id: X}) POST 						-> /api/listings/X
-	 * All of this gets based on your base URL, which is supplied to the resource
-	 * The example URL is included above
-	*/
+	}])

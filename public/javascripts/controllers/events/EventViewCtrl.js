@@ -1,4 +1,4 @@
-function EventViewCtrl($scope, $location, $http, $routeParams, $injector, Event) {
+var EventViewCtrl = ['$scope', 'Event', function($scope, Event) {
 
 	// view data
 	// Fields will be stored here as a JSON object
@@ -12,10 +12,9 @@ function EventViewCtrl($scope, $location, $http, $routeParams, $injector, Event)
 	// If a eventId is available, the fields should be populated (we're viewing it after all)
 	if($scope.eventId && Object.keys($scope.viewData).length == 0) {
 		var entry = Event.get({id: $scope.eventId})
-		console.log(entry);
 		$scope.viewData = entry
 	}
 
 	// Title of the page
 	$scope.title = $scope.viewData.title
-}
+}]

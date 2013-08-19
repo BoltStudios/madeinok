@@ -1,4 +1,4 @@
-function EventEditorCtrl($scope, $location, $http, $routeParams, Event) {
+var EventEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Event', function($scope, $location, $http, $routeParams, Event) {
 
 	$scope.loggedIn = true;
 	$scope.admin = true;
@@ -111,4 +111,4 @@ function EventEditorCtrl($scope, $location, $http, $routeParams, Event) {
 		$scope.formData.ampm = hours < 12 ? "AM" : "PM" 
 	}
 
- }
+ }]

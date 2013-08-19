@@ -1,4 +1,4 @@
-function BlogEditorCtrl($scope, $location, $http, $routeParams, Blog) {
+var BlogEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Blog', function($scope, $location, $http, $routeParams, Blog) {
 
 	$scope.loggedIn = true;
 	$scope.admin = true;
@@ -59,4 +59,4 @@ function BlogEditorCtrl($scope, $location, $http, $routeParams, Blog) {
 	 	var path = $location.path().match(/\bcreate/) != null ? '/create/' : ('/edit/' + $scope.blogId + '/')
 	 	return path
 	 }
- }
+ }]
