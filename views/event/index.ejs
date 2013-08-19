@@ -7,25 +7,20 @@
 		  	<h3 ng-switch-when=false class="classic-letterpress" style="text-align: center;" ng-show=title> {{title}} </h1>
 	  	</div>
 
-	  	<div class="span12">
-			<div ng-repeat="event in events" class="event" onclick='location.href="#/view/{{event._id}}"'>
-															
-				<div class="event-left"> 
-					<div style="height: 100px">
-						<div class="image-center-wrapper">
-							<img class="center-image" src={{event.imageUrl}}>								
-						</div>
-					</div>
-				</div>
 
-				<div class="event-right">
-					<h4>{{event.title}}</h4>
-					{{event.date}}
-					<p>{{event.description.substring(0,85) + "..."}}</p>
-				</div>
-
+		<fieldset>
+			<legend>upcoming events</legend>
+			<div ng-repeat="event in events" class="event" onclick='location.href="/event/#/view/{{event._id}}"'>
+			<div class="event-left"> 
+				<img class="event-image" src="{{(!event.imageUrl || event.imageUrl == '') ? '/images/MadeInOK100x100.png' : event.imageUrl}}">								
 			</div>
-		</div>
+			<div class="event-right">
+				<h3>{{event.title}}</h3>
+				<h4>{{event.date | date:"MMM dd"}}</h4>
+				<span class="label label-info">{{event.date | date:"h:mm a"}}</span>
+			</div>
+		</fieldset>
+
 	</div>
 
 </div>

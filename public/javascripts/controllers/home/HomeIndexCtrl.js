@@ -26,6 +26,10 @@ function HomeIndexCtrl($scope, $location, $http, $routeParams, Event, Blog, List
 	if(Object.keys($scope.listings).length == 0) {
 		var entry = Listing.query(function(success) {
 			$scope.listings = success
+			$scope.listings = [{
+					imageUrl: "http://91af.http.cdn.softlayer.net/8091AF/assets.buzz.am/buzzam/home/Intro_Logo.png",
+					companyName: 	"Buzzam Radio"
+			}]
 		}, function(error) {
 			console.log("something went wrong trying to access the listings")
 			console.log(error)

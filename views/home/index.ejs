@@ -32,8 +32,8 @@
 							<span class="label label-info">{{events[n].date | date:"h:mm a"}}</span>
 						</div>
 					</fieldset>
-						<div class="business" style="background-image: url('{{businesses[0].imageUrl}}');">
-
+						<div class="listing" onclick='location.href="/listing/#/view/{{listings[0]._id}}"'>
+							<img class="listing-image" src={{listings[0].imageUrl}} alt={{listings[0].companyName}}/>
 						</div>
 					</div>
 				</div>
