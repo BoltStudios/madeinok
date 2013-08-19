@@ -12,6 +12,6 @@
     "mongoose": "*",
     "underscore": "*",
     "cloudinary": "*",
-    "bund-cake": "*"
+    "bund-cake": "0.0.3"
   }
 }
