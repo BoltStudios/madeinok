@@ -1,4 +1,4 @@
-function BlogViewCtrl($scope, $location, $http, $routeParams, $injector, AuthenticationService, Blog) {
+function BlogViewCtrl($scope, $location, $http, $routeParams, $injector, Blog) {
 
 	// view data
 	// Fields will be stored here as a JSON object

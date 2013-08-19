@@ -21,6 +21,7 @@ function EventEditorCtrl($scope, $location, $http, $routeParams, Event) {
     else{
     	$scope.formData.hour = 7
     	$scope.formData.minute = 15
+    	$scope.formData.ampm = "PM"
 	}
     $scope.hours = getHours()
     $scope.minutes = getMinutes()

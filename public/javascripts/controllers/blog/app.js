@@ -10,7 +10,7 @@ var app = angular.module('BlogApp', ['ngResource', 'ngCookies', 'authentication-
 			//edit routes
 			.when('/edit/:id', { controller: BlogEditCtrl, templateUrl: '/blog/editor', resolve: SessionMaster.resolve })
 			//view routes	
-			.when('/view/:id', { controller: BlogViewCtrl, templateUrl: '/blog/view', resolve: SessionMaster.resolve })
+			.when('/view/:id', { controller: BlogViewCtrl, templateUrl: '/blog/view'})
 			//Fallback
 			.otherwise({ redirectTo: '/' })
 			//$locationProvider.html5Mode(true) /* RIP IE9 */

@@ -6,5 +6,4 @@ function EventCreateCtrl($scope, $location, $http, $routeParams, $injector, Even
 	// Title of the page
 	$scope.title = 'Create an Event'
 	$scope.formData.date = new Date()
-	$scope.formData.imageUrl = "../images/default_event.jpg";
 }
