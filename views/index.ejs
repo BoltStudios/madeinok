@@ -8,12 +8,18 @@
 <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 
-<script type='text/javascript' src='/lib/angular.min.js'></script>
-<script type='text/javascript' src='/lib/angular-ui.min.js'></script>			<!-- bootstrappy elements -->
-<script type='text/javascript' src='/lib/angular-ui-tpls.min.js'></script>		<!-- templates for those elements -->
-<script type='text/javascript' src='/lib/angular-cookies.min.js'></script>		<!-- to access cookies -->
-<script type='text/javascript' src='/lib/angular-resource.js'></script>			<!-- to be able to create resources -->
-<script type='text/javascript' src='/lib/lodash.min.js'></script>				<!-- nice array things -->
+
+<%- cake.js(
+  './public/lib/angular.min.js', 
+  './public/lib/angular-cookies.min.js',
+  './public/lib/angular-resource.js',
+  './public/lib/lodash.min.js'
+) %>
+
+<!-- <script type='text/javascript' src='/lib/angular.min.js'></script>
+<script type='text/javascript' src='/lib/angular-cookies.min.js'></script>
+<script type='text/javascript' src='/lib/angular-resource.js'></script>
+<script type='text/javascript' src='/lib/lodash.min.js'></script> -->
 
 <!-- THESE ARE IMPORTED FROM CALE CODE, CDN FOR PRODUCTION -->
 <!-- we have to include jquery because bootstrap is using it. go figure. -->

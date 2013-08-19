@@ -28,4 +28,4 @@ var EventIndexCtrl = ['$scope', '$http', 'Event', function($scope, $http, Event)
 		  return a<b?-1:a>b?1:0;
 		})
 	}
-}
+}]

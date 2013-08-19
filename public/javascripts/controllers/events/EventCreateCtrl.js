@@ -6,4 +6,4 @@ var EventCreateCtrl = ['$scope', '$injector', function($scope, $injector) {
 	// Title of the page
 	$scope.title = 'Create an Event'
 	$scope.formData.date = new Date()
-}
+}]
