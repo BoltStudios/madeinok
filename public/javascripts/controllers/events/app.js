@@ -77,8 +77,8 @@ app.directive('imageUploader', [function() {
 						console.log('in directive, ' + scope.formData.imageUrl)
 					});
 
-				},
-			});
+				}
+			})
 		})
 		
 	}

@@ -6,8 +6,6 @@ var mongoose = require('mongoose')
   , app = express()
 ;
 
-GLOBAL.cake = require('bund-cake')(app)
-
 // all environments
 //app.set('views', __dirname + '/views'); //taken care of in routes 
 app.use(express.favicon(__dirname + '/public/images/favicon.png')); 
@@ -27,6 +25,7 @@ app.use(app.router);
 app.use(require('less-middleware')({ src: __dirname + '/public' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+GLOBAL.cake = require('bund-cake')(app)
 
 // development only
 if ('development' == app.get('env')) {
