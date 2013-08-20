@@ -1,4 +1,4 @@
-function BlogViewCtrl($scope, $location, $http, $routeParams, $injector, Blog) {
+var BlogViewCtrl = ['$scope', 'Blog', function($scope, Blog) {
 
 	// view data
 	// Fields will be stored here as a JSON object
@@ -12,10 +12,9 @@ function BlogViewCtrl($scope, $location, $http, $routeParams, $injector, Blog) {
 	// If a blogId is available, the fields should be populated (we're viewing it after all)
 	if($scope.blogId && Object.keys($scope.viewData).length == 0) {
 		var entry = Blog.get({id: $scope.blogId})
-		console.log(entry);
 		$scope.viewData = entry
 	}
 
 	// Title of the page
 	$scope.title = $scope.viewData.title
-}
+}]
