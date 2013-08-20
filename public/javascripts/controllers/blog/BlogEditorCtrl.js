@@ -17,6 +17,9 @@ function BlogEditorCtrl($scope, $location, $http, $routeParams, Blog) {
 		// 	$scope.formData = response
 		// })
 	}
+	else{
+		$scope.formData.date = new Date()
+	}
 
 
 	/* how to add functions to the scope */

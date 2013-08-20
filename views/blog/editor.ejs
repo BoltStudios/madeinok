@@ -42,32 +42,22 @@
 		</div>
 	</div>
 
-<!--
 	<div class='control-group'>
-		<label class='control-label' for='imageUrl'>
-			What image do you want to use? (1200x200)
-		</label>
-		<div class='controls'>
-			<input class="span12" type="text" name='title' ng-model='formData.imageUrl' autocorrect='off' required />
-			<div ng-show='blogEditor.imageUrl.$dirty && blogEditor.imageUrl.$invalid' class='alert alert-error'>
-          		<span ng-show='blogEditor.imageUrl.$error.required'>You must enter an image.</span>
-        	</div>
+		<label class='control-label' for='imageUrl'>Blog Header Image</label>
+		<div class='alert alert-info'>
+			<button type="button" class="close" data-dismiss="alert">&times;</button>	
+			Your image will be resized to <strong>1200px wide</strong> by <strong>200px tall</strong>, so choose an 
+			image that matches this aspect ratio.
 		</div>
-	</div>
--->
-
-	<div class='control-group'>
-		<label class='control-label' for='imageUrl'>Company Image</label>
 		<div class='controls'>
-			<button type='btn btn-primary' click-hacker target='uploader'>Upload Image</button>
+			<button ng-show="blogEditor.imageUrl.$invalid" class="btn btn-primary btn-large" click-hacker target='uploader'>Upload Image</button>
+			<button ng-show="!blogEditor.imageUrl.$invalid" class="btn btn-primary btn-large" click-hacker target='uploader'>Upload Different Image</button>
 			<input type='file' image-uploader action='/api/blogs/image' name='uploader' id='uploader' style='display:none;' />
-			<input type='hidden' ng-model='formData.imageUrl'/>
+			<input type='hidden' name="imageUrl" ng-model='formData.imageUrl' required/>
 			<span ng-show='progress' class='text text-info'><strong>Progress</strong>: {{ progress }}%</span>
-
-			<div class='alert alert-info'>
-				Your image will be resized to <strong>1200px wide</strong> by <strong>200px tall</strong>, so choose an 
-				image that matches this aspect ratio.
-			</div>
+			<div ng-show='blogEditor.imageUrl.$invalid && !blogEditor.title.$invalid && !blogEditor.name.$invalid && !blogEditor.body.$invalid' class='alert alert-error'>
+          		<span ng-show='blogEditor.imageUrl.$invalid'>You must upload an image for your blog post.</span>
+        	</div>
 		</div>
 	</div>
 
@@ -83,14 +73,16 @@
 		</div>
 	</div>
 
-	<div class="preview-wrapper" ng-show=formData.body&&formData.title>
+	<input type='hidden' name="date" ng-model='formData.date' />
+
+	<div class="preview-wrapper" ng-show=!blogEditor.$invalid>
 		<h3> This is how it will look once you submit it </h3>
 		<div class="span12 blog-post">
 		  <div ng-show="formData.imageUrl" class="blog-image" style="background-image: url('{{formData.imageUrl}}')"></div> 
 		  <div class="blog-header">
   		  	<h2 class="blog-title">	{{formData.title}}	</h2>
   		  	<h5 class="writer-name">{{formData.name}}	</h5>
-		  	<p 	class="blog-date">	{{formData.date.toString()}} </p>
+		  	<p 	class="blog-date">	{{formData.date | date:"d MMMM, yyyy"}} </p>
 		  </div>
 		  <p class="blog-body" ng-bind-html-unsafe=formData.body></p>
 	  	</div>

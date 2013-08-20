@@ -6,5 +6,18 @@ function BlogIndexCtrl($scope, $http, AuthenticationService, Blog) {
 	$scope.loggedIn = true;
 	$scope.admin = true;
 
-	$scope.blogs = Blog.query()
+	$scope.blogs = {}
+	if(Object.keys($scope.blogs).length == 0) {
+		var entry = Blog.query(function(success) {
+			success.sort(function(a,b){
+			  a = new Date(a.date);
+			  b = new Date(b.date);
+			  return a<b?-1:a>b?1:0;
+			})
+			$scope.blogs = success.reverse()
+		}, function(error) {
+			console.log("something went wrong trying to access the blogs")
+			console.log(error)
+		})
+	}
 }

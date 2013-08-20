@@ -9,7 +9,7 @@
 		  <div class="blog-header">
   		  	<h2 class="blog-title">{{viewData.title}}</h2>
   		  	<h5 class="writer-name">{{viewData.name}}</h5>
-		  	<p class="blog-date">{{viewData.date}}</p>
+		  	<p class="blog-date">{{viewData.date | date:"d MMMM, yyyy"}}</p>
 		  </div>
 		  
 		  <p class="blog-body" ng-bind-html-unsafe=viewData.body></p>
