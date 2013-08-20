@@ -15,12 +15,12 @@ SessionMaster.resolve = {
 				AuthenticationService.isLoggedIn(true)
 			} else {
 				AuthenticationService.isLoggedIn(false)
-				$window.location.href = '/account/#/login'
+				$window.location.href = '/account/#/login/?returnUrl=' + $window.location
 			}
 			deferred.resolve(response)
 		}).error(function(response) {
 			AuthenticationService.isLoggedIn(false)
-			$window.location.href = '/account/#/login'
+			$window.location.href = '/account/#/login/?returnUrl=' + $window.location
 			deferred.reject(response)
 		})
 	}]

@@ -9,6 +9,11 @@ var passport = require('passport')
 
 module.exports = function(app) {
 
+	var returnUrl = ""
+	var callbackAppend = function(){
+		return (returnUrl ? "/?returnUrl=" + returnUrl : "")
+	}
+
 	// access user through req.user
 	passport.serializeUser(function(user, done) {		
 		done(null, {
@@ -26,7 +31,7 @@ module.exports = function(app) {
 	passport.use(new twitter({
 		consumerKey: 'rcFo0Fee6JiukSK3vfGZlA',
 		consumerSecret: 'AK3RBfUzKizK7bZDyJ1u6PsKvKXUL0bNjvE0pKlfis',
-		callbackURL: '/auth/twitter/callback',
+		callbackURL: ('/auth/twitter/callback' + callbackAppend() ),
 	}, function(token, tokenSecret, profile, done) {
 		var object = {provider: profile.provider, id: profile.id}
 		var profileObject = {provider: profile.provider, id: profile.id, name: profile.displayName}
@@ -71,9 +76,20 @@ module.exports = function(app) {
 	}))
 
 	app.get('/auth/twitter', passport.authenticate('twitter', {session:true}))
+	app.get('/auth/twitter/', function(req, res){
+		returnUrl = req.query.returnUrl
+		console.log(returnUrl)
+		passport.authenticate('twitter', {session:true})
+	})
 
 	app.get('/auth/twitter/callback', passport.authenticate('twitter',
 		{successRedirect: '#/?auth=true', failureRedirect: '/account'}))
+
+	app.get('/auth/twitter/callback/', function(req, res){
+		returnUrl = req.query.returnUrl
+		passport.authenticate('twitter',
+			{successRedirect: returnUrl, failureRedirect: '/account'})
+	})
 
 
 	app.get('/auth/facebook', passport.authenticate('facebook'))
