@@ -1,6 +1,8 @@
 var Blogs = require('../models/blog.js')
   , _ = require('underscore')
   , filters = require('./_actionFilters.js')
+  //required for uploading pictures
+  , cloudinary = require('cloudinary')
 
 module.exports = function(app) {
 
