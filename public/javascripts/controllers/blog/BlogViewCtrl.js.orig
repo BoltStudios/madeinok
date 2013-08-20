@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 var BlogViewCtrl = ['$scope', 'Blog', function($scope, Blog) {
+=======
+function BlogViewCtrl($scope, $location, $http, $routeParams, $injector, Blog) {
+>>>>>>> master
 
 	// view data
 	// Fields will be stored here as a JSON object

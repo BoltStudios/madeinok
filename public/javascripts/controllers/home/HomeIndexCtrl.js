@@ -1,4 +1,4 @@
-function HomeIndexCtrl($scope, $location, $http, $routeParams, Event, Blog, Listing) {
+var HomeIndexCtrl = ['$scope', '$location', '$http', '$routeParams', 'Event', 'Blog', 'Listing', function($scope, $location, $http, $routeParams, Event, Blog, Listing) {
 	$scope.events = {}
 	$scope.blogs = {}
 	$scope.listings = {}
@@ -58,4 +58,4 @@ function HomeIndexCtrl($scope, $location, $http, $routeParams, Event, Blog, List
 		  return a<b?-1:a>b?1:0;
 		})
 	}
-}
+}]

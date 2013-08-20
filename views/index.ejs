@@ -6,63 +6,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><%= title %></title>
 <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
-<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-
-<script type='text/javascript' src='/lib/angular.min.js'></script>
-<script type='text/javascript' src='/lib/angular-ui.min.js'></script>			<!-- bootstrappy elements -->
-<script type='text/javascript' src='/lib/angular-ui-tpls.min.js'></script>		<!-- templates for those elements -->
-<script type='text/javascript' src='/lib/angular-cookies.min.js'></script>		<!-- to access cookies -->
-<script type='text/javascript' src='/lib/angular-resource.js'></script>			<!-- to be able to create resources -->
-<script type='text/javascript' src='/lib/lodash.min.js'></script>				<!-- nice array things -->
-
-<!-- THESE ARE IMPORTED FROM CALE CODE, CDN FOR PRODUCTION -->
-<!-- we have to include jquery because bootstrap is using it. go figure. -->
-<!-- <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script> 
- --><!-- <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js'></script> fast cdn for angular-ui.min.js -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
 
 
-<!-- Angular Globals -->
-<script type='text/javascript' src='/javascripts/services.js'></script>
-<script type='text/javascript' src='/javascripts/SessionMaster.js'></script>
+<%- cake.js(
+  './public/lib/angular.min.js', 
+  './public/lib/angular-cookies.min.js',
+  './public/lib/angular-resource.js',
+  './public/lib/lodash.min.js',
 
-<!-- Listings App -->
-<script type='text/javascript' src='/javascripts/controllers/listings/ListingEditorCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/listings/ListingIndexCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/listings/ListingCreateCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/listings/ListingEditCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/listings/ListingViewCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/listings/app.js'></script>
+  './public/javascripts/services.js',
+  './public/javascripts/SessionMaster.js',
 
-<!-- Account App -->
-<script type='text/javascript' src='/javascripts/controllers/account/AccountSessionCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/account/AccountIndexCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/account/AccountCreateCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/account/app.js'></script>
+  './public/javascripts/controllers/listings/ListingEditorCtrl.js',
+  './public/javascripts/controllers/listings/ListingIndexCtrl.js',
+  './public/javascripts/controllers/listings/ListingCreateCtrl.js',
+  './public/javascripts/controllers/listings/ListingEditCtrl.js',
+  './public/javascripts/controllers/listings/ListingViewCtrl.js',
+  './public/javascripts/controllers/listings/app.js',
 
-<!-- Blog App -->
-<script type='text/javascript' src='/javascripts/controllers/blog/BlogIndexCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/blog/BlogEditorCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/blog/BlogCreateCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/blog/BlogEditCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/blog/BlogViewCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/blog/app.js'></script>
-	<!-- Blog App Required Resources -->
-    <script type='text/javascript' src="/javascripts/ckeditor/ckeditor.js"></script>
-    <script src="/javascripts/ckeditor/adapters/jquery.js"></script>
+  './public/javascripts/controllers/account/AccountSessionCtrl.js',
+  './public/javascripts/controllers/account/AccountIndexCtrl.js',
+  './public/javascripts/controllers/account/AccountCreateCtrl.js',
+  './public/javascripts/controllers/account/app.js',
 
-<!-- Event App -->
-<script type='text/javascript' src='/javascripts/controllers/events/EventIndexCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/events/EventEditorCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/events/EventCreateCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/events/EventEditCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/events/EventViewCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/events/app.js'></script>
+  './public/javascripts/controllers/blog/BlogIndexCtrl.js',
+  './public/javascripts/controllers/blog/BlogEditorCtrl.js',
+  './public/javascripts/controllers/blog/BlogCreateCtrl.js',
+  './public/javascripts/controllers/blog/BlogEditCtrl.js',
+  './public/javascripts/controllers/blog/BlogViewCtrl.js',
+  './public/javascripts/controllers/blog/app.js',
+  './public/javascripts/ckeditor/ckeditor.js',
+  './public/javascripts/ckeditor/adapters/jquery.js',
 
-<!-- Home App -->
-<script type='text/javascript' src='/javascripts/controllers/home/HomeIndexCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/home/HomeAboutCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/home/HomeContactCtrl.js'></script>
-<script type='text/javascript' src='/javascripts/controllers/home/app.js'></script> <!-- doesnt exist yet -->
+  './public/javascripts/controllers/events/EventIndexCtrl.js',
+  './public/javascripts/controllers/events/EventEditorCtrl.js',
+  './public/javascripts/controllers/events/EventCreateCtrl.js',
+  './public/javascripts/controllers/events/EventEditCtrl.js',
+  './public/javascripts/controllers/events/EventViewCtrl.js',
+  './public/javascripts/controllers/events/app.js',
+
+  './public/javascripts/controllers/home/HomeIndexCtrl.js',
+  './public/javascripts/controllers/home/HomeAboutCtrl.js', 
+  './public/javascripts/controllers/home/HomeContactCtrl.js',
+  './public/javascripts/controllers/home/app.js'
+) %>
 
 
 <link rel='stylesheet' href='/stylesheets/style.css' />

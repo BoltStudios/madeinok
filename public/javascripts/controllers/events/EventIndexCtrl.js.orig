@@ -5,6 +5,10 @@ var EventIndexCtrl = ['$scope', '$http', 'Event', function($scope, $http, Event)
 	$scope.loggedIn = true;
 	$scope.admin = true;
 
+<<<<<<< HEAD
+	$scope.events = Event.query()
+}]
+=======
 	Event.query(function(success) {
 			events = success
 			removeEarlierDatesFromArray(events, new Date())
@@ -28,4 +32,5 @@ var EventIndexCtrl = ['$scope', '$http', 'Event', function($scope, $http, Event)
 		  return a<b?-1:a>b?1:0;
 		})
 	}
-}]
+}
+>>>>>>> master
