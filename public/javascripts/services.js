@@ -101,8 +101,7 @@ angular.module('authentication-service', ['flash-service', 'session-service', 'n
 				}
 
 				//return $cookieStore.get('isAuthenticated') || false
-			}
-		}
+			}		}
 	}])
 
 

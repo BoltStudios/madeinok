@@ -1,8 +1,20 @@
 var Events = require('../models/event.js')
   , _ = require('underscore')
   , filters = require('./_actionFilters.js')
+  //required for uploading pictures
+  , cloudinary = require('cloudinary')
 
 module.exports = function(app) {
+
+	/* post an image */
+	app.post('/api/events/image', filters.isLoggedIn, function(req, res) {
+		var image = req.files.uploader
+		cloudinary.config(GLOBAL.cloudinaryConfig)
+
+		cloudinary.uploader.upload(req.files.uploader.path, function(result) {
+			res.send(200, {image: result.url})
+		}, {crop: 'limit', width:100, height:100})
+	})
 
 	/* Returns all the listings */
 	app.get('/api/events', function(req, res) {
