@@ -1,3 +1,5 @@
+Put this in keys.js (in the same folder as app.js)
+
 GLOBAL.cloudinaryConfig = {
 	cloud_name: '',
 	api_key: '', 
