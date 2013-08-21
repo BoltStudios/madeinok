@@ -30,8 +30,8 @@ GLOBAL.cake = require('bund-cake')(app)
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
-  //mongoose.connect('mongodb://localhost/OKStartups')
-  mongoose.connect('mongodb://heroku_app17523224:8jb1ejmd4rgnljv0if716mqpla@ds041208.mongolab.com:41208/heroku_app17523224')
+  mongoose.connect('mongodb://localhost/OKStartups')
+  //mongoose.connect('mongodb://heroku_app17523224:8jb1ejmd4rgnljv0if716mqpla@ds041208.mongolab.com:41208/heroku_app17523224')
 } else {
 	//mongoose.connect('mongodb://admin:password@ds037508.mongolab.com:37508/madeinok')
 	mongoose.connect('mongodb://heroku_app17523224:8jb1ejmd4rgnljv0if716mqpla@ds041208.mongolab.com:41208/heroku_app17523224')
