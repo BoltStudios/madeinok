@@ -1,3 +1,5 @@
+<script type='text/javascript' src='/lib/jquery.form.min.js'></script>
+
 <form name='eventEditor'>
 
 	<div class="container">
@@ -43,14 +45,18 @@
 		</div>
 
 		<div class='control-group'>
-			<label class='control-label' for='imageUrl'>
-				Enter a square image for the event
-			</label>
+			<label class='control-label' for='imageUrl'>Event Image</label>
+			<div class='alert alert-info'>
+				<button type="button" class="close" data-dismiss="alert">&times;</button>	
+				Your image will be resized to <strong>100px wide</strong> by <strong>100px tall</strong>, so choose an 
+				image that matches this aspect ratio.
+			</div>
 			<div class='controls'>
-				<input class="span12" type="text" name='title' ng-model='formData.imageUrl' autocorrect='off' />
-				<div ng-show='eventEditor.imageUrl.$dirty && eventEditor.imageUrl.$invalid' class='alert alert-error'>
-	          		<span ng-show='eventEditor.imageUrl.$error.required'>You must enter a square imageUrl.</span>
-	        	</div>
+				<button ng-show="!eventEditor.imageUrl.$dirty" class="btn btn-primary btn-large" click-hacker target='uploader'>Upload Image</button>
+				<button ng-show="eventEditor.imageUrl.$dirty" class="btn btn-primary btn-large" click-hacker target='uploader'>Upload Different Image</button>
+				<input type='file' image-uploader action='/api/events/image' name='uploader' id='uploader' style='display:none;' />
+				<input type='hidden' name="imageUrl" ng-model='formData.imageUrl'/>
+				<span ng-show='progress' class='text text-info'><strong>Progress</strong>: {{ progress }}%</span>
 			</div>
 		</div>
 
@@ -133,18 +139,18 @@
 		<div ng-show=formData.description&&formData.title&&formData.organization>
 			<h3> This is how it will look once you submit it </h3>
 			<div class="event">
-				<div class="event-left"> 
-					<div style="height: 100px">
-						<div class="image-center-wrapper">
-							<span></span>
-							<img class="center-image" src={{formData.imageUrl}}>								
-						</div>
+				<div style="float:left;">
+					<div class="event-left"> 
+						<img class="event-image" src="{{formData.imageUrl || '/images/MadeInOK100x100.png' }}">								
+					</div>
+					<div class="event-right">
+						<h3>{{formData.title}}</h3>
+						<h4>{{getDate() | date:"EEE MMM dd"}}</h4>
+						<span class="label label-info">{{getDate() | date:"h:mm a"}}</span>
 					</div>
 				</div>
-				<div class="event-right">
-					<h4>{{formData.title}}</h4>
-					{{getDate().toString()}}
-					<p>{{formData.description.substring(0,85) + "..."}}</p>
+				<div class="event-description">
+					{{formData.description}}
 				</div>
 			</div>
 		</div>

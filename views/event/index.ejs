@@ -1,23 +1,30 @@
 <div class="container">
-
 	<div class="event-wrapper">
 
 		<div ng-switch on=admin class="create-event-wrapper">
   		  	<button ng-switch-when=true class="btn btn-large btn-success pull-right" onclick='location.href="#/create"'>create a new event</button>
 		  	<h3 ng-switch-when=false class="classic-letterpress" style="text-align: center;" ng-show=title> {{title}} </h1>
 	  	</div>
+	  	<br/>
+	  	<br/>
+	  	<br/>
 
 
 		<fieldset>
 			<legend>upcoming events</legend>
 			<div ng-repeat="event in events" class="event" onclick='location.href="/event/#/view/{{event._id}}"'>
-			<div class="event-left"> 
-				<img class="event-image" src="{{(!event.imageUrl || event.imageUrl == '') ? '/images/MadeInOK100x100.png' : event.imageUrl}}">								
+			<div style="float:left;">
+				<div class="event-left"> 
+					<img class="event-image" src="{{(!event.imageUrl || event.imageUrl == '') ? '/images/MadeInOK100x100.png' : event.imageUrl}}">								
+				</div>
+				<div class="event-right">
+					<h3>{{event.title}}</h3>
+					<h4>{{event.date | date:"EEE MMM dd"}}</h4>
+					<span class="label label-info">{{event.date | date:"h:mm a"}}</span>
+				</div>
 			</div>
-			<div class="event-right">
-				<h3>{{event.title}}</h3>
-				<h4>{{event.date | date:"MMM dd"}}</h4>
-				<span class="label label-info">{{event.date | date:"h:mm a"}}</span>
+			<div class="event-description">
+				{{event.description}}
 			</div>
 		</fieldset>
 

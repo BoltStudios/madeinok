@@ -5,7 +5,7 @@
 
 
 
-<fieldset>
+<fieldset ng-show="listings.length > 0">
 <legend>Your Companies</legend>
 <ul class='unstyled'>
 	<li ng-repeat='listing in listings' class='listing-entry'>
@@ -13,6 +13,32 @@
 		<a href='/listing/#/view/{{listing._id}}' class='btn btn-info'>View</a>
 		<a href='/listing/#/edit/{{listing._id}}' class='btn btn-primary'>Edit</a>
 
+	</li>
+</ul>
+</fieldset>
+
+
+
+<fieldset ng-show="events.length > 0">
+<legend>Your Events</legend>
+<ul class='unstyled'>
+	<li ng-repeat='event in events' class='listing-entry'>
+		<h3>{{ event.title }}</h3>
+		<a href='/event/#/view/{{event._id}}' class='btn btn-info'>View</a>
+		<a href='/event/#/edit/{{event._id}}' class='btn btn-primary'>Edit</a>
+	</li>
+</ul>
+</fieldset>
+
+
+
+<fieldset ng-show="blogs.length > 0">
+<legend>Your Blog Posts</legend>
+<ul class='unstyled'>
+	<li ng-repeat='blog in blogs' class='listing-entry'>
+		<h3>{{ blog.title }}</h3>
+		<a href='/blog/#/view/{{blog._id}}' class='btn btn-info'>View</a>
+		<a href='/blog/#/edit/{{blog._id}}' class='btn btn-primary'>Edit</a>
 	</li>
 </ul>
 </fieldset>

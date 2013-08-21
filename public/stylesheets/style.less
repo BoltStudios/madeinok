@@ -120,6 +120,10 @@ ul > .indented {
 .event:last-of-type{
 	border-bottom-width: 0;
 }
+.event-description{
+	float: left;
+	padding: 15px;
+}
 
 .about-text{
 	color: @thunderYellow;
@@ -235,14 +239,6 @@ ul > .indented {
 .writer-name{
 	font-weight: 200;
 }
-.blog-title{
-	color: @accentColor;
-	font-weight: 200;
-	cursor: pointer;
-	&:hover{
-		color: darken(@accentColor, 15%);
-	}
-}
 .blog-date{
 	font-weight: 200;
 }
@@ -258,7 +254,14 @@ ul > .indented {
 	font-size: 18px;
 	font-weight: 200;
 }
-
+.blog-image{
+	width: 100%;
+	height: 200px;
+	position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 0;
+}
 .preview-wrapper{
 	overflow: hidden;
 	box-shadow: inset 1px @primaryColor;
@@ -285,7 +288,13 @@ ul > .indented {
 			}
 	    }
 
-	    	.featured-blog{
+	&.featured-blog{
+
+			h3{
+				font-size: 36px!important;
+				padding: 15px 5px 0 5px;
+			}
+
 	}
 	.blog-text{
 		background-color: rgba(20, 20, 20, .8);
@@ -298,15 +307,19 @@ ul > .indented {
 		margin: 0;
 	}
 	.blog-title{
+		font-weight: 200;
+		cursor: pointer;
 		text-align: center;
 		text-transform: lowercase;
 		margin: 0;
-		padding: 5px;
+		padding: 18px 5px 0 5px;
 		line-height: 35px;
 		overflow: hidden;
 		height: 70px;
 		color: @bodyBackground;
-
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 	.blog-preview{
 		overflow: hidden;

@@ -6459,6 +6459,10 @@ event-right {
 .event:last-of-type {
   border-bottom-width: 0;
 }
+.event-description {
+  float: left;
+  padding: 15px;
+}
 .about-text {
   color: #fdbb30;
   font-weight: 100;
@@ -6558,14 +6562,6 @@ event-right {
 .writer-name {
   font-weight: 200;
 }
-.blog-title {
-  color: #f05133;
-  font-weight: 200;
-  cursor: pointer;
-}
-.blog-title:hover {
-  color: #c82c0f;
-}
 .blog-date {
   font-weight: 200;
 }
@@ -6579,6 +6575,14 @@ event-right {
   color: #555555;
   font-size: 18px;
   font-weight: 200;
+}
+.blog-image {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center 0;
 }
 .preview-wrapper {
   overflow: hidden;
@@ -6601,6 +6605,10 @@ event-right {
 .blog:hover .blog-title {
   color: #f05133;
 }
+.blog.featured-blog h3 {
+  font-size: 36px!important;
+  padding: 15px 5px 0 5px;
+}
 .blog .blog-text {
   background-color: rgba(20, 20, 20, 0.8);
   position: absolute;
@@ -6612,14 +6620,18 @@ event-right {
   margin: 0;
 }
 .blog .blog-title {
+  font-weight: 200;
+  cursor: pointer;
   text-align: center;
   text-transform: lowercase;
   margin: 0;
-  padding: 5px;
+  padding: 18px 5px 0 5px;
   line-height: 35px;
-  overflow: hidden;
   height: 70px;
   color: #f5f5f5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .blog .blog-preview {
   overflow: hidden;

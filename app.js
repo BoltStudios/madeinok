@@ -25,6 +25,7 @@ app.use(app.router);
 app.use(require('less-middleware')({ src: __dirname + '/public' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+GLOBAL.cake = require('bund-cake')(app)
 
 // development only
 if ('development' == app.get('env')) {
