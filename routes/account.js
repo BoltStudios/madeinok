@@ -72,8 +72,14 @@ module.exports = function(app) {
 
 	app.get('/auth/twitter', passport.authenticate('twitter', {session:true}))
 
-	app.get('/auth/twitter/callback', passport.authenticate('twitter',
-		{successRedirect: '#/?auth=true', failureRedirect: '/account'}))
+	// app.get('/auth/twitter/callback', passport.authenticate('twitter',
+	// 	{successRedirect: '#/?auth=true', failureRedirect: '/account'}))
+
+	app.get('/auth/twitter/callback', passport.authenticate('twitter', {failureRedirect: '/account'}),
+		function(req, res) {
+			console.log('set a cookie')
+			res.redirect('/')
+		})
 
 
 	app.get('/auth/facebook', passport.authenticate('facebook'))

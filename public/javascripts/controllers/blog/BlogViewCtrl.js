@@ -1,4 +1,4 @@
-var BlogViewCtrl = ['$scope', 'Blog', function($scope, Blog) {
+var BlogViewCtrl = ['$scope', '$routeParams', 'Blog', function($scope, $routeParams, Blog) {
 
 	// view data
 	// Fields will be stored here as a JSON object
