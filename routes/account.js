@@ -75,22 +75,24 @@ module.exports = function(app) {
 		
 	}))
 
-	app.get('/auth/twitter', passport.authenticate('twitter', {session:true}))
-	app.get('/auth/twitter/', function(req, res){
-		returnUrl = req.query.returnUrl
-		console.log(returnUrl)
-		passport.authenticate('twitter', {session:true})
+	app.get('/auth', function(req,res){
+		var authService = req.query.authService
+		var returnUrl = req.query.returnUrl
+		res.cookie("returnUrl", returnUrl)
+		res.redirect("/auth/"+authService)
 	})
 
-	app.get('/auth/twitter/callback', passport.authenticate('twitter',
-		{successRedirect: '#/?auth=true', failureRedirect: '/account'}))
+	app.get('/auth/twitter', 
+		passport.authenticate('twitter', {session:true}))
 
-	app.get('/auth/twitter/callback/', function(req, res){
-		returnUrl = req.query.returnUrl
-		passport.authenticate('twitter',
-			{successRedirect: returnUrl, failureRedirect: '/account'})
-	})
-
+	app.get('/auth/twitter/callback', 
+		passport.authenticate('twitter',{failureRedirect: '/account'}),
+		function(req,res){
+			var returnUrl = req.cookies.returnUrl
+			console.log(returnUrl)
+			res.redirect(returnUrl)
+		}
+	)
 
 	app.get('/auth/facebook', passport.authenticate('facebook'))
 	app.get('/auth/facebook/callback', passport.authenticate('facebook', 

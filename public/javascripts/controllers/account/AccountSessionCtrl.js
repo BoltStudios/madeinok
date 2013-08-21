@@ -15,11 +15,11 @@ var AccountSessionCtrl = ['$scope', '$routeParams', '$window', 'FlashService', '
 	}
 
 	$scope.twitterAuth = function(){
-		$window.location.href = '/auth/twitter' + ($scope.returnUrl ? "/?returnUrl=" + $scope.returnUrl : "")
+		$window.location.href = '/auth?authService=twitter' + ($scope.returnUrl ? "&returnUrl=" + $scope.returnUrl : "")
 	}
 
 	$scope.facebookAuth = function(){
-		$window.location.href = '/auth/facebook' + ($scope.returnUrl ? "/?returnUrl=" + $scope.returnUrl : "")
+		$window.location.href = '/auth?authService=facebook' + ($scope.returnUrl ? "&returnUrl=" + $scope.returnUrl : "")
 	}
 
 }]
