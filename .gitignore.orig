@@ -13,8 +13,14 @@ logs
 results
 
 npm-debug.log
+<<<<<<< HEAD
 
 #Other useful stuff
 node_modules
 .DS_STORE
+=======
+node_modules
 
+
+# SORRY NERDS
+>>>>>>> a70ed1ff3411ec41a7da615838f545d3eb2fed28

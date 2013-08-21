@@ -6,6 +6,7 @@ var passport = require('passport')
   , twitter = require('passport-twitter').Strategy
   , facebook = require('passport-facebook').Strategy
   , User = require('../models/user')
+  , keys = require('../keys')
 
 module.exports = function(app) {
 
@@ -28,10 +29,11 @@ module.exports = function(app) {
 	})
 
 	// Twitter -  just sending provider and id for now
+	
 	passport.use(new twitter({
-		consumerKey: 'rcFo0Fee6JiukSK3vfGZlA',
-		consumerSecret: 'AK3RBfUzKizK7bZDyJ1u6PsKvKXUL0bNjvE0pKlfis',
-		callbackURL: ('/auth/twitter/callback' + callbackAppend() ),
+		consumerKey: GLOBAL.twitter.consumerKey,
+		consumerSecret: GLOBAL.twitter.consumerSecret,
+		callbackURL: '/auth/twitter/callback' + callbackAppend()
 	}, function(token, tokenSecret, profile, done) {
 		var object = {provider: profile.provider, id: profile.id}
 		var profileObject = {provider: profile.provider, id: profile.id, name: profile.displayName}
@@ -52,11 +54,10 @@ module.exports = function(app) {
 
 	// Facebook
 	passport.use(new facebook({
-		clientID: '411315155655493',
-		clientSecret: '8f0fc227c392111c81da2eb68f5a9f8e',
-		callbackURL: '/auth/facebook/callback'
+		clientID: GLOBAL.facebook.clientID,
+		clientSecret: GLOBAL.facebook.clientSecret,
+		callbackURL: GLOBAL.facebook.callbackURL + callbackAppend()
 	}, function(accessToken, refreshToken, profile, done) {
-		console.log(profile)
 		var object = {provider: profile.provider, id: profile.id }
 		var profileObject = {provider: profile.provider, id: profile.id, name: profile.displayName}
 
@@ -89,7 +90,6 @@ module.exports = function(app) {
 		passport.authenticate('twitter',{failureRedirect: '/account'}),
 		function(req,res){
 			var returnUrl = req.cookies.returnUrl
-			console.log(returnUrl)
 			res.redirect(returnUrl)
 		}
 	)
@@ -100,7 +100,6 @@ module.exports = function(app) {
 
 
 	app.get('/account', function(req, res) {
-		console.log('req.user is ' + JSON.stringify(req.user))
 		res.render('index', { title: 'Express', appName: 'AccountApp'})
 	})
 
@@ -120,8 +119,6 @@ module.exports = function(app) {
 	})
 
 	app.get('/logout', function(req, res) {
-		// req.logOut()
-		//res.clearCookie('user')
 		req.logout()
 		res.send(200)
 	})

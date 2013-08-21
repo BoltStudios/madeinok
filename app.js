@@ -6,8 +6,11 @@ var mongoose = require('mongoose')
   , app = express()
 ;
 
+// We want to keep these keys a secret, so if you pull this down, you'll need your own keys
+// More information is available in the ReadMe
+var keys = require('./keys')
+
 // all environments
-//app.set('views', __dirname + '/views'); //taken care of in routes 
 app.use(express.favicon(__dirname + '/public/images/favicon.png')); 
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
@@ -31,10 +34,8 @@ GLOBAL.cake = require('bund-cake')(app)
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
   mongoose.connect('mongodb://localhost/OKStartups')
-  //mongoose.connect('mongodb://heroku_app17523224:8jb1ejmd4rgnljv0if716mqpla@ds041208.mongolab.com:41208/heroku_app17523224')
 } else {
-	//mongoose.connect('mongodb://admin:password@ds037508.mongolab.com:37508/madeinok')
-	mongoose.connect('mongodb://heroku_app17523224:8jb1ejmd4rgnljv0if716mqpla@ds041208.mongolab.com:41208/heroku_app17523224')
+	mongoose.connect(GLOBAL.mongolab.URI)
 }
 
 // routes
