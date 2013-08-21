@@ -33,7 +33,7 @@ if ('development' == app.get('env')) {
   mongoose.connect('mongodb://localhost/OKStartups')
 } else {
 	//mongoose.connect('mongodb://admin:password@ds037508.mongolab.com:37508/madeinok')
-	mongoose.connect('mongodb://el_duderino:beverage123@ds041208.mongolab.com:41208/heroku_app17523224')
+	mongoose.connect('mongodb://heroku_app17523224:8jb1ejmd4rgnljv0if716mqpla@ds041208.mongolab.com:41208/heroku_app17523224')
 }
 
 // routes
