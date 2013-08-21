@@ -68,33 +68,6 @@ ul > .indented {
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
-.clearfix {
-  *zoom: 1;
-}
-.clearfix:before,
-.clearfix:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-.clearfix:after {
-  clear: both;
-}
-.hide-text {
-  font: 0/0 a;
-  color: transparent;
-  text-shadow: none;
-  background-color: transparent;
-  border: 0;
-}
-.input-block-level {
-  display: block;
-  width: 100%;
-  min-height: 30px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
 article,
 aside,
 details,
@@ -5261,6 +5234,33 @@ input[type="submit"].tile::-moz-focus-inner {
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 @-ms-viewport {
   width: device-width;
 }
@@ -6463,13 +6463,6 @@ event-right {
   float: left;
   padding: 15px;
 }
-.about-text {
-  color: #fdbb30;
-  font-weight: 100;
-  font-size: 36px;
-  line-height: 38px;
-  padding: 20px;
-}
 .homepage-top {
   min-height: 710px;
 }
@@ -6485,6 +6478,18 @@ event-right {
   overflow: hidden;
   background-color: #2d2d2d;
   padding: 15px 0;
+}
+.info-label {
+  text-align: left;
+  color: #fdbb30;
+  margin: 0 5px 0 5px;
+}
+.info-text {
+  font-size: 21px;
+  line-height: 30px;
+  text-align: left;
+  color: #999999;
+  margin: 0 5px 25px 5px;
 }
 .page-wrapper {
   font-weight: 200;

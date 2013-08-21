@@ -46,25 +46,66 @@
 	<button class="tile tile-accent" onclick='location.href="/listing";'>
 		Companies
 	</button>
-	<button class="tile tile-accent" onclick='location.href="/user";'>
-		People
-	</button>
 	<button class="tile tile-accent" onclick='location.href="/event";'>
 		Events
 	</button>
 	<button class="tile tile-accent" onclick='location.href="/blog";'>
 		Blog
 	</button>
+	<button class="tile tile-accent" href="#about">
+		About
+	</button>
 </div>
 
-<div class="homepage-bottom">
+<div name="#about" class="homepage-bottom">
 	<div class="wrapper25"> 
 		<div class="image-center-wrapper">
 			<img class="oklahoma-element" src="/images/Oklahoma_Element.png" alt="Oklahoma"/>
 		</div>
 	</div>
 	<div class="wrapper50">
-		<p class="about-text">{{blurb}}</p>
+		<div class="info-wrapper">
+			<h2 class="info-label">What is MadeInOK?</h2>
+			<p class="info-text">
+				We are a crowd-sourced, crowd-curated web community dedicated to developing 
+				a central place where Oklahoma's innovators, makers, founders and creatives can come together. 
+				We want to help you find local networking events, keep up to date on what's happening in the community, and connect with talent.
+			</p>
+		</div>
+		<div class="info-wrapper">
+			<h2 class="info-label">Why was MadeInOK started?</h2>
+			<p class="info-text">
+				Simply put, there was no centralized community for Oklahoma's self starters. 
+				It was nearly impossible to learn what other people in the state were working on and what events were taking place. 
+				We wanted to build a tool that would centralize this information, help everyone get to know everyone else in the community, and help us plan and find events.
+				It is our hope that this community will grow and bring everyone together.
+			</p>
+		</div>
+		<div class="info-wrapper">
+			<h2 class="info-label">Who runs MadeInOK?</h2>
+			<p class="info-text">
+				I do. You do. We do. We are an open-source cooperative dedicated to growing and improving this community.
+				The entire <a href="http://github.com">source</a> for this website is available on Github and we operate under the <a href="http://www.mozilla.org/MPL/1.1/">MPL license</a>.
+				If you're wondering who funds it, <a href="http://boltstudios.com">Bolt Studios</a> allowed a couple of developers to spend a few weeks initially developing it and they cover the cost of this app, ensuring the community can survive. Why would we do that? We believe in giving back, and it's a way of getting our name out there. 
+			</p>
+		</div>		
+		<div class="info-wrapper">
+			<h2 class="info-label">What's with the design?</h2>
+			<p class="info-text">I know, right? A dark theme would have been awesome... For serious though.</p>
+			<p class="info-text" style="color:#007dc3;">
+					We chose the color blue (#007dc3) from Oklahoma's flag. 
+			</p>
+			<p class="info-text" style="color:#F05133;">
+					We chose the color orange (#F05133) from the Oklahoma City Thunder.
+			</p>
+			<p class="info-text">
+					The logos were inspired by the periodic table because design work is strange.
+					The number 46 was employed to make the logo further resemble an element, and because we were the 46th state to join the union. 
+			</p>
+			<p class="info-text" style="color:#444;">
+						Fun fact: Palladium the actual 46th element was discovered in 1803 by William Hyde Wollaston. It was named after the asteroid Pallas, which was itself named after the epithet of the Greek goddess Athena, acquired by her when she slew Pallas. Athena was the Goddess of civilization, wisdom, inspiration, art, craft, and skill. 
+			</p>
+		</div>
 	</div>
 	<div class="wrapper25">
 		<div class="image-center-wrapper">
@@ -73,6 +114,7 @@
 		</div>
 	</div>
 </div>
+
 
 <script type='text/javascript' src='/lib/jquery.quickfit.js'></script>
 <script>
