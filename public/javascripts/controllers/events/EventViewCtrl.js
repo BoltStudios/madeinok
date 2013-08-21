@@ -1,4 +1,4 @@
-var EventViewCtrl = ['$scope', 'Event', function($scope, Event) {
+var EventViewCtrl = ['$scope', '$routeParams', 'Event', function($scope, $routeParams, Event) {
 
 	// view data
 	// Fields will be stored here as a JSON object
