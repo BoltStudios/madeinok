@@ -55,7 +55,8 @@ module.exports = function(app) {
 	})
 
 	app.post('/logout', function(req, res) {
-		res.clearCookie('user')
+		//res.clearCookie('user')
+		req.logout()
 		res.send(200)
 	})
 

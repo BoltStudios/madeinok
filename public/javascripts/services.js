@@ -71,9 +71,12 @@ angular.module('authentication-service', ['flash-service', 'session-service', 'n
 			},
 
 			logOut: function() {
+				var deferred = $q.defer()
 				$http.post('/logout').success(function(response) {
+					$cookieStore.put('isAuthenticated', false)
 					$cookieStore.remove('isAuthenticated')
 					$location.path('/login')
+					deferred.resolve(response)
 				})
 			},
 

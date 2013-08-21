@@ -9,6 +9,7 @@ module.exports = function(app) {
 
 	/* Get the current user logged in */
 	app.get('/api/users/current', filters.isLoggedIn, function(req, res) {
+		console.log(JSON.stringify(req.user))
 		res.send(req.user)
 	})
 
