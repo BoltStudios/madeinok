@@ -75,6 +75,8 @@ module.exports = function(app) {
 		var authService = req.query.authService
 		var returnUrl = req.query.returnUrl
 		res.cookie("returnUrl", returnUrl)
+		console.log("/auth ---> returnUrl:" + returnUrl)		
+		console.log("/auth ---> authService:" + authService)
 		res.redirect("/auth/"+authService)
 	})
 
@@ -93,7 +95,9 @@ module.exports = function(app) {
 	app.get('/auth/facebook/callback', 
 		passport.authenticate('facebook', {failureRedirect: '/account' }),
 		function(req,res){
+			console.log()
 			var returnUrl = req.cookies.returnUrl
+			console.log("/auth/facebook/callback ---> req.cookies.returnUrl:" + returnUrl)
 			res.redirect(returnUrl)
 		}
 	)
