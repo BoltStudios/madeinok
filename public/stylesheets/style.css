@@ -6380,8 +6380,8 @@ ul > .indented {
   margin-left: 1.0em;
 }
 .company-phrase {
-  font-size: 0.5em;
-  font-style: italic;
+  font-size: 25px;
+  color: #007dc3;
 }
 .listing-entry {
   cursor: pointer;

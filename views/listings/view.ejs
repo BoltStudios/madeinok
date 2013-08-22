@@ -5,53 +5,57 @@
 
 <h2 class='page-header'>
 	{{ item.companyName }}<br/>
-	<span ng-show='item.phrase' class='muted company-phrase'>
-		{{item.companyName}} is developing {{ item.phrase.developing }} to help {{item.phrase.helping}} {{item.phrase.why}}
-	</span>
-
 	<small ng-show='item.isHiring' class='label label-success pull-right hiring'>Hiring</small>
 	<small ng-show='item.hasInternships' class='label label-success pull-right hiring'>Internships Available</small>
 </h2>
 
 <fieldset>
-	
 	<div class='grid-100 grid-parent'>
 		<div class='grid-20'><img class='business-card-image' ng-src='{{item.imageUrl}}'/></div>
 		<ul class='unstyled grid-80'>
 
-			<li ng-show='item.companyName && item.foundingYear' class='muted list-item-header'>About {{ item.companyName }}</li>
-			<li ng-show='item.companyName && item.foundingYear' class='indented'>
-				<p>
-					<span ng-show='item.foundingYear && item.companyName'>
-						Founded in <strong>{{ item.foundingYear }}</strong><span ng-show='item.founders && item.founders[0].name'>by <span ng-repeat='founder in item.founders'><strong>{{ founder.name }}</strong> <span ng-show='founder.title'>({{founder.title}})</span>{{$last ? '' : $last - 1 ? ' and ' : ', ' }}</span></span>, {{ item.companyName }} 
-						is a<span ng-show='isVowel(item.companyType[0])'>n</span> <strong>{{ item.companyType | lowercase}}</strong> company</span><span ng-show='item.industryFocus'>, focusing in the
-						<strong ng-show='item.industryFocus.option != "Other"'>{{ item.industryFocus.option | lowercase}}</strong>
-						<strong ng-show='item.industryFocus.option == "Other"'>{{ item.industryFocus.description | lowercase}} </strong>
-						industry.
-					</span>
-					<span ng-show='!item.industryFocus'>.</span>
-
-					<span ng-show='item.companyName && item.productTypes'>
-						{{ item.companyName }} makes 
+			<li ng-show='item.companyName && item.foundingYear' class='muted list-item-header'>
+			About {{ item.companyName }}
+			</li>
+			<li ng-show='item.phrase' class="company-phrase">
+				{{item.companyName}} is developing {{ item.phrase.developing }} to help {{item.phrase.helping}} {{item.phrase.why}}
+			</li>
+				<dl>
+					<dt ng-show='item.foundingYear && item.companyName'> Founded </dt>
+					<dd ng-show='item.foundingYear && item.companyName'> {{ item.foundingYear }} </dd>
+					<dt ng-show='item.founders && item.founders[0].name'> Founders </dt>
+					<dd ng-show='item.founders && item.founders[0].name'>
+						<span ng-repeat='founder in item.founders'>
+							{{founder.name}}
+							<span ng-show='founder.title'>
+								({{founder.title}})
+							</span>
+							<br/>
+						</span>
+					</dd>
+					<dt ng-show="item.companyType"> Company Type </dt>
+					<dd ng-show="item.companyType"> {{ item.companyType }} </dd>
+					<dt ng-show="item.industryFocus.option"> Focusing On </dt>
+					<dd ng-show="item.industryFocus.option"> {{item.industryFocus.option}} <span ng-show='item.industryFocus.option == "Other"'>{{ (item.industryFocus.description) }}</span></dd>
+					<dt ng-show='item.primaryCustomer'> Market </dt>
+					<dd ng-show='item.primaryCustomer'> {{item.primaryCustomer}} </dt>
+					<dt ng-show="item.productTypes"> Products </dt>
+					<dd ng-show="item.productTypes"> 
 						<span ng-repeat='product in item.productTypes'>
 							<span ng-show='product.value && product.productType'>
-								<strong>
-								{{ product.productType | lowercase }}
-								<span ng-show='product.productType == "Other"'>({{ item.productTypesOtherDescription | lowercase}})</span>
-								</strong>{{$last ? '' : $last - 1 ? ' and ' : ', '}}
+								{{ product.productType }}
+								<span ng-show='product.productType == "Other"'>
+									({{ item.productTypesOtherDescription}})
+								</span>
+								<br/>
 							</span>
-						</span> products.
-					</span>
-
-					<span ng-show='item.primaryCustomer'>{{item.companyName}}'s primary customer type is <strong>{{item.primaryCustomer | lowercase}}</strong>.</span>
-				</p>
-			</li>
-
-			<li ng-show='item.changeTheWorld' class='muted list-item-header'>How {{ item.companyName }} will change the world</li>
-			<li ng-show='item.changeTheWorld' class='indented'><p>{{ item.changeTheWorld }}</p></li>
-
-			<li ng-show='item.somethingAwesome' class='muted list-item-header'>Something awesome about {{ item.companyName }}</li>
-			<li ng-show='item.somethingAwesome' class='indented'><p>{{ item.somethingAwesome }}</p></li>
+						</span> 
+					</dd>
+					<dt ng-show='item.changeTheWorld'>How {{ item.companyName }} will change the world</dt>
+					<dd ng-show='item.changeTheWorld'>{{ item.changeTheWorld }}</dd>
+					<dt ng-show='item.somethingAwesome'>Something awesome about {{ item.companyName }}</dt>
+					<dd ng-show='item.somethingAwesome'>{{ item.somethingAwesome }}</dd>
+				</dl>
 		</ul>
 	</div>
 
@@ -92,7 +96,7 @@
 	<ul class='unstyled'>
 		<li class='muted list-item-header'>On the web</li>
 		<li class='indented' ng-show='item.websiteUrl'><i class='icon-globe'></i> <a href='{{ item.websiteUrl }}' target='_blank'>{{ item.websiteUrl }}</a></li>
-		<li class='indented' ng-show='item.twitterHandle'><i class='icon-twitter'></i> <a href='{{ item.twitterHandle }}' target='_blank'>{{ item.twitterHandle }}</a></li>
+		<li class='indented' ng-show='item.twitterHandle'><i class='icon-twitter'></i> <a href='{{ "http://twitter.com/" + item.twitterHandle }}' target='_blank'>{{ item.twitterHandle }}</a></li>
 		<li class='indented' ng-show='item.linkedInUrl'><i class='icon-linkedin'></i> <a href='{{ item.linkedInUrl }}' target='_blank'>{{ item.linkedInUrl }}</a></li>
 		<li class='indented' ng-show='item.angellistUrl'><i class='icon-external-link'></i> <a href='{{ item.angellistUrl }}' target='_blank'>{{ item.angellistUrl }}</a></li>
 

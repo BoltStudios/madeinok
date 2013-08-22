@@ -50,17 +50,21 @@
 		Events
 	</button>
 	<button class="tile tile-accent" onclick='location.href="/blog";'>
-		Blog
+		News
 	</button>
-	<button class="tile tile-accent" href="#about">
+	<button class="tile tile-accent" ng-click="scrollTo('about')">
 		About
 	</button>
 </div>
 
-<div name="#about" class="homepage-bottom">
+<div id="about" class="homepage-bottom">
 	<div class="wrapper25"> 
 		<div class="image-center-wrapper">
 			<img class="oklahoma-element" src="/images/Oklahoma_Element.png" alt="Oklahoma"/>
+		</div>
+		<div class="image-center-wrapper">
+			<p> sponsored by </p>
+			<img class="bolt-studios" src="/images/BoltStudios.png" alt="Oklahoma"/>
 		</div>
 	</div>
 	<div class="wrapper75">
@@ -84,9 +88,8 @@
 		<div class="info-wrapper">
 			<h2 class="info-label">Who runs MadeInOK?</h2>
 			<p class="info-text">
-				I do. You do. We do. We are an open-source cooperative dedicated to growing and improving this community.
-				The entire <a href="http://github.com">source</a> for this website is available on Github and we operate under the <a href="http://www.mozilla.org/MPL/1.1/">MPL license</a>.
-				If you're wondering who funds it, <a href="http://boltstudios.com">Bolt Studios</a> allowed a couple of developers to spend a few weeks initially developing it and they cover the cost of this app, ensuring the community can survive. Why would we do that? We believe in giving back, and it's a way of getting our name out there. 
+				I do. You do. We all do. We are an open-source cooperative dedicated to growing and improving this community.
+				The entire <a href="https://github.com/BoltStudios/madeinok">source</a> for this website is available on Github and we operate under the <a href="http://www.mozilla.org/MPL/1.1/">MPL license</a>.
 			</p>
 		</div>		
 		<div class="info-wrapper">

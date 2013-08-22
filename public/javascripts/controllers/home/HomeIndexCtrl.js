@@ -1,4 +1,4 @@
-var HomeIndexCtrl = ['$scope', '$location', '$http', '$routeParams', 'Event', 'Blog', 'Listing', function($scope, $location, $http, $routeParams, Event, Blog, Listing) {
+var HomeIndexCtrl = ['$scope', '$location', '$http', '$routeParams', '$anchorScroll', 'Event', 'Blog', 'Listing', function($scope, $location, $http, $routeParams, $anchorScroll, Event, Blog, Listing) {
 	$scope.events = {}
 	$scope.blogs = {}
 	$scope.listings = {}
@@ -57,4 +57,9 @@ var HomeIndexCtrl = ['$scope', '$location', '$http', '$routeParams', 'Event', 'B
 		  return a<b?-1:a>b?1:0;
 		})
 	}
+
+	$scope.scrollTo = function(id) {
+      $location.hash(id);
+      $anchorScroll('slow');
+   }
 }]
