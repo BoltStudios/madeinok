@@ -10,11 +10,6 @@ var passport = require('passport')
 
 module.exports = function(app) {
 
-	var returnUrl = ""
-	var callbackAppend = function(){
-		return (returnUrl ? "/?returnUrl=" + returnUrl : "")
-	}
-
 	// access user through req.user
 	passport.serializeUser(function(user, done) {		
 		done(null, {
@@ -33,7 +28,7 @@ module.exports = function(app) {
 	passport.use(new twitter({
 		consumerKey: GLOBAL.twitter.consumerKey,
 		consumerSecret: GLOBAL.twitter.consumerSecret,
-		callbackURL: '/auth/twitter/callback' + callbackAppend()
+		callbackURL: GLOBAL.twitter.callbackURL
 	}, function(token, tokenSecret, profile, done) {
 		var object = {provider: profile.provider, id: profile.id}
 		var profileObject = {provider: profile.provider, id: profile.id, name: profile.displayName}
@@ -56,7 +51,7 @@ module.exports = function(app) {
 	passport.use(new facebook({
 		clientID: GLOBAL.facebook.clientID,
 		clientSecret: GLOBAL.facebook.clientSecret,
-		callbackURL: GLOBAL.facebook.callbackURL + callbackAppend()
+		callbackURL: GLOBAL.facebook.callbackURL
 	}, function(accessToken, refreshToken, profile, done) {
 		var object = {provider: profile.provider, id: profile.id }
 		var profileObject = {provider: profile.provider, id: profile.id, name: profile.displayName}
@@ -95,8 +90,13 @@ module.exports = function(app) {
 	)
 
 	app.get('/auth/facebook', passport.authenticate('facebook'))
-	app.get('/auth/facebook/callback', passport.authenticate('facebook', 
-		{successRedirect: '/', failureRedirect: '/account' }))
+	app.get('/auth/facebook/callback', 
+		passport.authenticate('facebook', {failureRedirect: '/account' }),
+		function(req,res){
+			var returnUrl = req.cookies.returnUrl
+			res.redirect(returnUrl)
+		}
+	)
 
 
 	app.get('/account', function(req, res) {

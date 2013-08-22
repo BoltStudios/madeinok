@@ -9,34 +9,34 @@ module.exports = function(app) {
 	require('./event')(app)
 
 	app.get('/', function(req, res) {
-		res.render('index', { title: 'Express', appName: 'HomeApp' })
+		res.render('index', { title: 'Made in OK - Home', appName: 'HomeApp' })
 	})
 
 	//these have to be in app.get('/whatever/',...) format with the slash before and after the route,
 	//otherwise, the angular routes break when using multiple apps.
 	app.get('/listing', function(req, res) { res.redirect('/listing/')})
 	app.get('/listing/', function(req, res) {
-		res.render('index', { title: 'Made in OK - Companies', appName: 'ListApp' })
+		res.render('index', { title: 'Made in OK - Company', appName: 'ListApp' })
 	})
 
 	app.get('/account', function(req, res) { res.redirect('/account/')})
 	app.get('/account/', function(req, res) {
-		res.render('index', { title: 'Express', appName: 'AccountApp'})
+		res.render('index', { title: 'Made in OK - Account', appName: 'AccountApp'})
 	})
 
 	app.get('/home', function(req, res) { res.redirect('/home/')})
 	app.get('/home/', function(req, res) {
-		res.render('index', {title: 'Express', appName: 'HomeApp'})
+		res.render('index', {title: 'Made in OK - Home', appName: 'HomeApp'})
 	})
 
 	app.get('/blog', function(req, res) { res.redirect('/blog/')})
 	app.get('/blog/', function(req, res) {		
-		res.render('index', {title: 'Express', appName: 'BlogApp'})
+		res.render('index', {title: 'Made in OK - Blog', appName: 'BlogApp'})
 	})
 
 	app.get('/event', function(req, res) { res.redirect('/event/')})
 	app.get('/event/', function(req, res) {		
-		res.render('index', {title: 'Express', appName: 'EventApp'})
+		res.render('index', {title: 'Made in OK - Event', appName: 'EventApp'})
 	})
 
 	app.post('/login', function(req, res) {

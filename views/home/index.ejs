@@ -1,7 +1,7 @@
 <div class="homepage-top grid-100 grid-container">
 			<div class="grid-60 grid-parent">
 				<div class="grid-100">
-				 	<div class="blog featured-blog" style="background-image: url('{{blogs[0].imageUrl}}');" 
+				 	<div class="blog featured-blog" style="background-image: url('{{blogs[0].imageUrl || '/images/default_blog_image.png'}}');" 
 					onclick='location.href="/blog/#/view/{{blogs[0]._id}}"'>
 						<div class="blog-text">
 							<h3 class="blog-title">{{blogs[0].title}}</h3>
@@ -12,7 +12,7 @@
 					<div class="blog" style="background-image: url('{{blogs[n].imageUrl || '/images/default_blog_image.png'}}');" 
 					onclick='location.href="/blog/#/view/{{blogs[n]._id}}"'>
 						<div class="blog-text">
-							<h3 class="blog-title">{{blogs[n].title}}</h3>
+							<h3 class="blog-title">{{blogs[n].title || "made in ok"}}</h3>
 						</div>	
 					</div>
 				</div>
