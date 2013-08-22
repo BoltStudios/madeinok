@@ -4,15 +4,18 @@ GLOBAL.cloudinaryConfig = {
   	api_secret: '55mwg-8lfpQQZqx9q6zxj66umDY'
 }
 
+/* 
+NEW KEYS 
+========================== */
 GLOBAL.twitter = {
-	consumerKey: 'rcFo0Fee6JiukSK3vfGZlA',
-	consumerSecret: 'AK3RBfUzKizK7bZDyJ1u6PsKvKXUL0bNjvE0pKlfis',
+	consumerKey: '9fT6SqykLZXhOgrJSIgIw',
+	consumerSecret: 'ARGeh9TtDYsb4skQQ1f12ZCcq29uAEl38tsae9dmkQ',
 	callbackURL: '/auth/twitter/callback'
 }
 
 GLOBAL.facebook = {
-	clientID: '411315155655493',
-	clientSecret: '8f0fc227c392111c81da2eb68f5a9f8e',
+	clientID: '463397427101745',
+	clientSecret: 'ea80b891937de48d79e586d10ee4fb5d',
 	callbackURL: '/auth/facebook/callback'
 }
 
