@@ -1,12 +1,16 @@
 <div class='grid-100'>
 	<h2 class='page-header'>
 		Company Directory
-		<a href='#/create' class='btn btn-large btn-primary pull-right'>Add Your Company</a>
+		<a ng-hide="unclaimed" href='#/create' class='btn btn-large btn-primary pull-right'>Add Your Company</a>
 	</h2>
 </div>
 
-<div ng-repeat='entry in listings' class='listing-entry grid-33' ng-click='viewEntry(entry._id)'>
+<div ng-repeat='entry in listings' class='listing-entry grid-33'>
 	<div class='business-card'>
 		<a href='#/view/{{entry._id}}'><img src='{{entry.imageUrl}}' /></a>
+		<button class="btn btn-large btn-success" ng-show='unclaimed' ng-click='claim(entry._id)'>this is my company</button>
+		<!-- live version
+		<button class="btn btn-large btn-success" ng-show='!entry.creatorId && unclaimed' ng-click='claim(entry._id)'>this is my company</button>
+		-->
 	</div>
 </div>

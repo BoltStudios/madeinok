@@ -74,8 +74,12 @@ module.exports = function(app) {
 	app.get('/auth', function(req,res){
 		var authService = req.query.authService
 		var returnUrl = req.query.returnUrl
+		var fragment = req.query.fragment
 		res.cookie("returnUrl", returnUrl)
+		res.cookie("fragment", fragment)
+
 		console.log("/auth ---> returnUrl:" + returnUrl)		
+		console.log("/auth ---> fragment:" + fragment)
 		console.log("/auth ---> authService:" + authService)
 		res.redirect("/auth/"+authService)
 	})
@@ -87,7 +91,10 @@ module.exports = function(app) {
 		passport.authenticate('twitter',{failureRedirect: '/account'}),
 		function(req,res){
 			var returnUrl = req.cookies.returnUrl
-			res.redirect(returnUrl)
+			var fragment = (req.cookies.fragment ? "#" + req.cookies.fragment : "")
+			var fullReturnPath = returnUrl + fragment
+			console.log("return ---> fullReturnPath: " + fullReturnPath)
+			res.redirect(returnUrl + fragment)
 		}
 	)
 
@@ -96,9 +103,11 @@ module.exports = function(app) {
 		passport.authenticate('facebook', {failureRedirect: '/account' }),
 		function(req,res){
 			console.log()
-			var returnUrl = req.cookies.returnUrl
-			console.log("/auth/facebook/callback ---> req.cookies.returnUrl:" + returnUrl)
-			res.redirect(returnUrl)
+			var returnUrl = req.cookies.returnUrl			
+			var fragment = (req.cookies.fragment ? "#" + req.cookies.fragment : "")
+			var fullReturnPath = returnUrl + fragment
+			console.log("return ---> fullReturnPath: " + fullReturnPath)
+			res.redirect(returnUrl + fragment)
 		}
 	)
 

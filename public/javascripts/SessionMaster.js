@@ -15,12 +15,17 @@ SessionMaster.resolve = {
 				AuthenticationService.isLoggedIn(true)
 			} else {
 				AuthenticationService.isLoggedIn(false)
-				$window.location.href = '/account/#/login/?returnUrl=' + $window.location
+				var returnUrl = $window.location.toString().split("#")[0]
+				var fragment = $window.location.toString().split("#")[1]
+				$window.location.href = '/account/#/login/?returnUrl=' + returnUrl + "&fragment=" + fragment
 			}
 			deferred.resolve(response)
 		}).error(function(response) {
 			AuthenticationService.isLoggedIn(false)
-			$window.location.href = '/account/#/login/?returnUrl=' + $window.location
+			var returnUrl = $window.location.toString().split("#")[0]
+			var fragment = $window.location.toString().split("#")[1]
+			$window.location.href = '/account/#/login/?returnUrl=' + returnUrl + "&fragment=" + fragment
+			
 			deferred.reject(response)
 		})
 	}]

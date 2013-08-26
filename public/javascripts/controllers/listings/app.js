@@ -11,6 +11,7 @@ var app = angular.module('ListApp', ['ngResource', 'ngCookies', 'authentication-
 			.when('/edit/:id', { controller: ListingEditCtrl, templateUrl: '/listings/editor', resolve: SessionMaster.resolve })
 			.when('/edit/:id/:pageNumber', { controller: ListingEditCtrl, templateUrl: '/listings/editor', resolve: SessionMaster.resolve })
 			.when('/view/:id', { controller: ListingViewCtrl, templateUrl: '/listings/view' })
+			.when('/claim', {controller: ListingUnclaimedCtrl, templateUrl: '/listings/index', resolve: SessionMaster.resolve})
 			.when('/upload', { templateUrl: '/listings/_uploadImage' })
 			.otherwise({ redirectTo: '/' })
 	}])

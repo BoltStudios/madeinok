@@ -6381,6 +6381,7 @@ ul > .indented {
 }
 .company-phrase {
   font-size: 25px;
+  line-height: 32px;
   color: #007dc3;
 }
 .listing-entry {
