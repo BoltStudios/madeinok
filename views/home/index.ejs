@@ -1,7 +1,7 @@
 <div class="homepage-top grid-100 grid-container">
 			<div class="grid-60 grid-parent">
 				<div class="grid-100">
-				 	<div class="blog featured-blog" style="background-image: url('{{blogs[0].imageUrl}}');" 
+				 	<div class="blog featured-blog" style="background-image: url('{{blogs[0].imageUrl || '/images/default_blog_image.png'}}');" 
 					onclick='location.href="/blog/#/view/{{blogs[0]._id}}"'>
 						<div class="blog-text">
 							<h3 class="blog-title">{{blogs[0].title}}</h3>
@@ -12,7 +12,7 @@
 					<div class="blog" style="background-image: url('{{blogs[n].imageUrl || '/images/default_blog_image.png'}}');" 
 					onclick='location.href="/blog/#/view/{{blogs[n]._id}}"'>
 						<div class="blog-text">
-							<h3 class="blog-title">{{blogs[n].title}}</h3>
+							<h3 class="blog-title">{{blogs[n].title || "made in ok"}}</h3>
 						</div>	
 					</div>
 				</div>
@@ -50,20 +50,24 @@
 		Events
 	</button>
 	<button class="tile tile-accent" onclick='location.href="/blog";'>
-		Blog
+		News
 	</button>
-	<button class="tile tile-accent" href="#about">
+	<button class="tile tile-accent" ng-click="scrollTo('about')">
 		About
 	</button>
 </div>
 
-<div name="#about" class="homepage-bottom">
+<div id="about" class="homepage-bottom">
 	<div class="wrapper25"> 
 		<div class="image-center-wrapper">
 			<img class="oklahoma-element" src="/images/Oklahoma_Element.png" alt="Oklahoma"/>
 		</div>
+		<div class="image-center-wrapper">
+			<p> sponsored by </p>
+			<img class="bolt-studios" src="/images/BoltStudios.png" alt="Oklahoma"/>
+		</div>
 	</div>
-	<div class="wrapper50">
+	<div class="wrapper75">
 		<div class="info-wrapper">
 			<h2 class="info-label">What is MadeInOK?</h2>
 			<p class="info-text">
@@ -84,9 +88,8 @@
 		<div class="info-wrapper">
 			<h2 class="info-label">Who runs MadeInOK?</h2>
 			<p class="info-text">
-				I do. You do. We do. We are an open-source cooperative dedicated to growing and improving this community.
-				The entire <a href="http://github.com">source</a> for this website is available on Github and we operate under the <a href="http://www.mozilla.org/MPL/1.1/">MPL license</a>.
-				If you're wondering who funds it, <a href="http://boltstudios.com">Bolt Studios</a> allowed a couple of developers to spend a few weeks initially developing it and they cover the cost of this app, ensuring the community can survive. Why would we do that? We believe in giving back, and it's a way of getting our name out there. 
+				I do. You do. We all do. We are an open-source cooperative dedicated to growing and improving this community.
+				The entire <a href="https://github.com/BoltStudios/madeinok">source</a> for this website is available on Github and we operate under the <a href="http://www.mozilla.org/MPL/1.1/">MPL license</a>.
 			</p>
 		</div>		
 		<div class="info-wrapper">
@@ -105,12 +108,6 @@
 			<p class="info-text" style="color:#444;">
 						Fun fact: Palladium the actual 46th element was discovered in 1803 by William Hyde Wollaston. It was named after the asteroid Pallas, which was itself named after the epithet of the Greek goddess Athena, acquired by her when she slew Pallas. Athena was the Goddess of civilization, wisdom, inspiration, art, craft, and skill. 
 			</p>
-		</div>
-	</div>
-	<div class="wrapper25">
-		<div class="image-center-wrapper">
-			<p>SPONSORED BY</p>
-			<img class="bolt-studios-logo" src="/images/BoltStudios.png" alt="Bolt Studios"/>
 		</div>
 	</div>
 </div>

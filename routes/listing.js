@@ -9,6 +9,32 @@ var Listing = require('../models/listing.js')
 
 module.exports = function(app) {
 
+	
+	/*
+		During the initial release of the software, we had to perform a data load using
+		existing table date for the companies.
+		Because the table did not have twitterId or facebookId data for each creator, we had
+		to build a process for claiming companies that did not have creators.
+		To accomplish this feat, we had to create a non-standard api call.
+	*/
+	/* Claim a listing */
+	app.post('/api/listings/claim/:id', filters.isLoggedIn, function(req, res) {
+		var id = req.params.id || 0
+
+		Listing.findById(id, function(err, listing) {
+			listing.creatorId = req.user.guid
+			console.log(req.user.guid)
+			listing.save(function(err) {
+				 if(!err){
+				 	console.log(listing.creatorId)
+				 	res.send(listing)
+				 }
+				 else
+				 	res.send(err)
+			})
+		})
+	})
+
 	app.post('/api/listings/image', filters.isLoggedIn, function(req, res) {
 		var image = req.files.uploader
 		cloudinary.config(GLOBAL.cloudinaryConfig)

@@ -1,6 +1,5 @@
-  ////////////////////////////////////////
- /////// TRISTIN'S ORIGINAL LESS ////////
-////////////////////////////////////////
+//load bootstraps
+@import "less/bootstrap/bootstrap-responsive.less";
 
 
 .page-header { border-bottom-color: @accentColor !important; }
@@ -38,8 +37,9 @@ ul > .indented {
 }
 
 .company-phrase {
-	font-size: 0.5em;
-	font-style: italic;
+	font-size: 25px;
+	line-height: 32px;
+	color: @primaryColor;
 }
 
 .listing-entry {
@@ -63,14 +63,6 @@ ul > .indented {
 }
 
 .business-card-image { border: 1px solid #222; }
-
-
-  ////////////////////////////////////////
- /////// CALE'S UPGRAYEDDED LESS ////////
-////////////////////////////////////////
-
-//load bootstraps
-@import "less/bootstrap/bootstrap-responsive.less";
 
 
 //------home page------//
@@ -126,7 +118,7 @@ ul > .indented {
 	padding: 15px;
 }
 .homepage-top{
-	min-height: 710px;
+	min-height: 720px;
 }
 
 .homepage-tiles{
@@ -141,7 +133,10 @@ ul > .indented {
 	color: white;
 	overflow: hidden;
 	background-color: @contrastColor;
-	padding: 15px 0;
+	padding: 50px 0 0 0;
+}
+.oklahoma-element{
+	margin-bottom: 25px;
 }
 
 //------about styles------//

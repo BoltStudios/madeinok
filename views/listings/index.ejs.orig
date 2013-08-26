@@ -5,8 +5,12 @@
 	</h2>
 </div>
 
+<<<<<<< HEAD
 <div class='grid-100'>
 <div ng-repeat='entry in listings' class='listing-entry grid-33' ng-click='viewEntry(entry._id)'>
+=======
+<div ng-repeat='entry in listings' class='listing-entry grid-33'>
+>>>>>>> a119ac9145eb8dbdba87722d1e03a3084fe06c45
 	<div class='business-card'>
 		<a href='#/view/{{entry._id}}'><img src='{{entry.imageUrl}}' /></a>
 		<button class="btn btn-large btn-success" ng-show='unclaimed' ng-click='claim(entry._id)'>this is my company</button>

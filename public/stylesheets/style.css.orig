@@ -1,3 +1,70 @@
+<<<<<<< HEAD
+.page-header {
+  border-bottom-color: #f05133 !important;
+}
+legend {
+  border-bottom-color: #333 !important;
+}
+.hiring {
+  margin: 0 0.3em;
+}
+.input-group:first-of-type {
+  border-bottom: 0;
+  border-radius: 4px 4px 0 0 !important;
+}
+.input-group {
+  border-radius: 0 !important;
+}
+.input-group:last-of-type {
+  border-top: 0;
+  border-radius: 0 0 4px 4px !important;
+}
+.list-item-header:first-of-type {
+  margin-top: 0;
+}
+.list-item-header {
+  margin-top: 1.0em;
+}
+ul > .indented {
+  margin-left: 1.0em;
+}
+.company-phrase {
+  font-size: 0.5em;
+  font-style: italic;
+}
+.listing-entry {
+  cursor: pointer;
+  float: left;
+}
+.listing-entry h3 {
+  margin: 0;
+  color: #2d2d2d;
+}
+.listing-entry .lead {
+  margin: 0;
+  color: #000000;
+}
+.listing-entry:hover h3 {
+  color: #353535;
+}
+.listing-entry:hover .lead {
+  color: #020202;
+}
+.business-card {
+  text-align: center;
+}
+.business-card img {
+  max-width: 100%;
+  border: 1px solid #222;
+  padding: 0.5em;
+  margin: 0.8em;
+  background-color: #fff;
+}
+.business-card-image {
+  border: 1px solid #222;
+}
+=======
+>>>>>>> a119ac9145eb8dbdba87722d1e03a3084fe06c45
 /*!
  * Bootstrap v2.3.2
  *
@@ -6386,7 +6453,6 @@ ul > .indented {
 }
 .listing-entry {
   cursor: pointer;
-  float: left;
 }
 .listing-entry h3 {
   margin: 0;
@@ -6406,11 +6472,9 @@ ul > .indented {
   text-align: center;
 }
 .business-card img {
-  max-width: 100%;
+  max-width: 350px;
   border: 1px solid #222;
-  padding: 0.5em;
   margin: 0.8em;
-  background-color: #fff;
 }
 .business-card-image {
   border: 1px solid #222;
