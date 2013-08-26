@@ -33,6 +33,7 @@ ul > .indented {
 }
 .listing-entry {
   cursor: pointer;
+  float: left;
 }
 .listing-entry h3 {
   margin: 0;
@@ -52,9 +53,11 @@ ul > .indented {
   text-align: center;
 }
 .business-card img {
-  max-width: 350px;
+  max-width: 100%;
   border: 1px solid #222;
+  padding: 0.5em;
   margin: 0.8em;
+  background-color: #fff;
 }
 .business-card-image {
   border: 1px solid #222;

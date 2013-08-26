@@ -5,8 +5,10 @@
 	</h2>
 </div>
 
+<div class='grid-100'>
 <div ng-repeat='entry in listings' class='listing-entry grid-33' ng-click='viewEntry(entry._id)'>
 	<div class='business-card'>
 		<a href='#/view/{{entry._id}}'><img src='{{entry.imageUrl}}' /></a>
 	</div>
+</div>
 </div>

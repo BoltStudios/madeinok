@@ -15,13 +15,14 @@ module.exports = function(app) {
 
 		cloudinary.uploader.upload(req.files.uploader.path, function(result) {
 			res.send(200, {image: result.url})
-		}, {crop: 'limit', width:350, height:200})
+		}, {crop: 'pad', gravity: 'center', width:350, height:200})
 	})
 	
 	/* Returns all the listings */
 	app.get('/api/listings', function(req, res) {
 		Listing.find(function(err, listings) {
-			res.send(listings)
+			var sorted = _.sortBy(listings, function(o) { return o.companyName })
+			res.send(sorted)
 		})
 	})
 
