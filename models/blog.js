@@ -5,6 +5,7 @@ var BlogSchema = new mongoose.Schema({
 	  name: 		{ type: String }
     , creatorId: 	{ type: ObjectId }
 	, title:   		{ type: String }
+	, shortTitle:   { type: String }
 	, body:  		{ type: String }
 	, imageUrl: 	{ type: String }
 	, date: 		{ type: Date   }

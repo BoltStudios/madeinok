@@ -43,6 +43,18 @@
 	</div>
 
 	<div class='control-group'>
+		<label class='control-label' for='shortTitle'>
+			When it is displayed on the homepage, what should it say?
+		</label>
+		<div class='controls'>
+			<input class="span12" type="text" name='shortTitle' maxlengthlimit='14' ng-model='formData.shortTitle' autocorrect='off' required />
+			<div ng-show='blogEditor.shortTitle.$dirty && blogEditor.shortTitle.$invalid' class='alert alert-error'>
+          		<span ng-show='blogEditor.shortTitle.$error.required'>You must enter a shortTitle.</span>
+        	</div>
+		</div>
+	</div>
+
+	<div class='control-group'>
 		<label class='control-label' for='imageUrl'>Blog Header Image</label>
 		<div class='alert alert-info'>
 			<button type="button" class="close" data-dismiss="alert">&times;</button>	

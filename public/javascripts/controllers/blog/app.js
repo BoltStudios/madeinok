@@ -104,3 +104,22 @@ app.directive('imageUploader', [function() {
 		
 	}
 }])
+
+app.directive('maxlengthlimit', function() {
+		return {
+			require: 'ngModel',
+			link: function(scope, element, attrs, ngModelCtrl) {
+				var maxLength = Number(attrs.maxlengthlimit)
+				function fromUser(text) {
+					if(text && text.length > maxLength) {
+						var transformedInput = text.substring(0, maxLength)
+						ngModelCtrl.$setViewValue(transformedInput);
+	            		ngModelCtrl.$render();
+	            		return transformedInput;
+					}
+					return text
+				}
+				ngModelCtrl.$parsers.push(fromUser)
+			}
+		}
+	})
