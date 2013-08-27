@@ -65,7 +65,7 @@ var BlogEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Blog', fu
 	 	return path
 	 }
 
-	 $scope.acknowledgeSaved = function(){
+	 $scope.acknowledgeSave = function(){
 	 	$scope.saved = false;
 	 }
  }]
