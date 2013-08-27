@@ -23,7 +23,7 @@ var ListingUnclaimedCtrl = ['$window', '$scope', '$http', '$location', 'Listing'
 			.success(function(response) {
 				var listing = response
 				if(listing.creatorId){
-					$window.location.href = "listing/#/view/" + listing._id
+					$window.location.href = "/listing/#/view/" + listing._id
 				}
 			})
 	}
