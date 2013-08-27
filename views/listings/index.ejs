@@ -9,10 +9,7 @@
 <div ng-repeat='entry in listings' class='listing-entry grid-33' ng-click='viewEntry(entry._id)'>
 	<div class='business-card'>
 		<a href='#/view/{{entry._id}}'><img src='{{entry.imageUrl}}' /></a>
-		<button class="btn btn-large btn-success" ng-show='unclaimed' ng-click='claim(entry._id)'>this is my company</button>
-		<!-- live version
 		<button class="btn btn-large btn-success" ng-show='!entry.creatorId && unclaimed' ng-click='claim(entry._id)'>this is my company</button>
-		-->
 	</div>
 </div>
 </div>
