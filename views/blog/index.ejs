@@ -9,14 +9,11 @@
 
 		<div class="span12 blog-post" ng-repeat="blog in blogs" onclick='location.href="#/view/{{blog._id}}"'>
 		  <div ng-show="blog.imageUrl" class="blog-image" style="background-image: url({{blog.imageUrl}})"></div> 
-		  <div class="blog-header">
-  		  	<h2 class="blog-title">	{{blog.title}}	</h2>
-  		  	<h5 class="writer-name">{{blog.name}}	</h5>
-		  	<p 	class="blog-date">	{{blog.date | date:"d MMMM, yyyy"}}	</p>
-		  </div>
-
-		  <p class="blog-body" ng-bind-html-unsafe=blog.body></p>
-
+		  <div class="blog-header" style="height: 5px;"></div>
+		  <div class="blog-body">
+  		  	<h2 class="blog-title">{{blog.title}}</h2>
+  		  	<h5 class="writer-name">{{blog.name}} {{blog.date | date:"d MMMM, yyyy"}}</h5>
+		  	<p class="blog-body" ng-bind-html-unsafe=blog.body></p>
 		</div>
 
 	</div>

@@ -78,14 +78,13 @@
 	<div class="preview-wrapper" ng-show=!blogEditor.$invalid>
 		<h3> This is how it will look once you submit it </h3>
 		<div class="span12 blog-post">
-		  <div ng-show="formData.imageUrl" class="blog-image" style="background-image: url('{{formData.imageUrl}}')"></div> 
-		  <div class="blog-header">
-  		  	<h2 class="blog-title">	{{formData.title}}	</h2>
-  		  	<h5 class="writer-name">{{formData.name}}	</h5>
-		  	<p 	class="blog-date">	{{formData.date | date:"d MMMM, yyyy"}} </p>
-		  </div>
-		  <p class="blog-body" ng-bind-html-unsafe=formData.body></p>
-	  	</div>
+		  <div ng-show="formData.imageUrl" class="blog-image" style="background-image: url({{formData.imageUrl}})"></div> 
+		  <div class="blog-header" style="height: 5px;"></div>
+		  <div class="blog-body">
+  		  	<h2 class="blog-title">{{formData.title}}</h2>
+  		  	<h5 class="writer-name">{{formData.name}} {{formData.date | date:"d MMMM, yyyy"}}</h5>
+		  	<p class="blog-body" ng-bind-html-unsafe=formData.body></p>
+		</div>
 	</div>
 
 </form>
