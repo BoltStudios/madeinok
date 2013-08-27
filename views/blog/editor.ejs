@@ -18,6 +18,11 @@
 		Below is the exact markup that will appear on the page after you publish your blog post.
 	</div>
 
+	<div class="alert" ng-show=saved>
+		<button type="button" class="close" data-dismiss="alert">&times;</button>		
+		Below is the exact markup that will appear on the page after you publish your blog post.
+	</div>
+
 	<div class='control-group'>
 		<label class='control-label' for='name'>
 			Who is writing this post?
@@ -44,12 +49,12 @@
 
 	<div class='control-group'>
 		<label class='control-label' for='shortTitle'>
-			When it is displayed on the homepage, what should it say?
+			When it is displayed on the homepage, what should it say (18 characters)?
 		</label>
 		<div class='controls'>
-			<input class="span12" type="text" name='shortTitle' maxlengthlimit='14' ng-model='formData.shortTitle' autocorrect='off' required />
+			<input class="span12" type="text" name='shortTitle' maxlengthlimit='18' ng-model='formData.shortTitle' autocorrect='off' required />
 			<div ng-show='blogEditor.shortTitle.$dirty && blogEditor.shortTitle.$invalid' class='alert alert-error'>
-          		<span ng-show='blogEditor.shortTitle.$error.required'>You must enter a shortTitle.</span>
+          		<span ng-show='blogEditor.shortTitle.$error.required'>You must enter a short title.</span>
         	</div>
 		</div>
 	</div>

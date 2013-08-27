@@ -30,6 +30,7 @@ var BlogEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Blog', fu
 	/* Saves the form data to the database. */
 	$scope.save = function() {
 		//here we decide whether we're creating or editing a blog post
+		$scope.saved = true;
 		!$scope.blogId ? httpCreate() : httpEdit()
 	}
 
@@ -53,6 +54,7 @@ var BlogEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Blog', fu
 	/* Edits a blog post. */
 	var httpDelete = function() {
 		Blog.delete({id: $scope.blogId})
+		window.location.href = "/blog"
 	}
 	/* Since this controller is only going to be used on an edit or create page,
 	 * I'm making the assumption that the path to those pages will be something containing 
