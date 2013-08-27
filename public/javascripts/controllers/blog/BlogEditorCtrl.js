@@ -64,4 +64,8 @@ var BlogEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Blog', fu
 	 	var path = $location.path().match(/\bcreate/) != null ? '/create/' : ('/edit/' + $scope.blogId + '/')
 	 	return path
 	 }
+
+	 $scope.acknowledgeSaved = function(){
+	 	$scope.saved = false;
+	 }
  }]
