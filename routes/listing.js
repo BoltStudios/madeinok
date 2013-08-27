@@ -74,7 +74,7 @@ module.exports = function(app) {
 	app.post('/api/listings/:id', filters.isLoggedIn, function(req, res) {
 		var id = req.params.id || 0
 		var structure = req.body
-		structure.creator = req.signedCookies.user
+		//structure.creator = req.signedCookies.user
 
 		Listing.findById(id, function(err, listing) {
 			_(listing).extend(structure)
