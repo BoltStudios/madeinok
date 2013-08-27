@@ -36,6 +36,7 @@ var EventEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Event', 
 	/* Saves the form data to the database. */
 	$scope.save = function() {
 		//here we decide whether we're creating or editing a event post
+		$scope.saved = true
 		$scope.formData.date = $scope.getDate()
 		!$scope.eventId ? httpCreate() : httpEdit()
 	}
@@ -111,5 +112,9 @@ var EventEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Event', 
 		$scope.formData.minute = newDate.getMinutes()
 		$scope.formData.ampm = hours < 12 ? "AM" : "PM" 
 	}
+
+	$scope.acknowledgeSave = function(){
+	 	$scope.saved = false;
+	 }
 
  }]

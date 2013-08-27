@@ -20,6 +20,11 @@
 			Below is the exact markup that will appear on the page after you publish your event.
 		</div>
 
+		<div class="alert alert-success" ng-show=saved>
+			<button type="button" class="close" ng-click=acknowledgeSave()>&times;</button>		
+			Your event has been saved.
+		</div>
+
 		<div class='control-group'>
 			<label class='control-label' for='organization'>
 				Who is hosting this event?
