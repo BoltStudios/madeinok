@@ -6,13 +6,10 @@
 
 		<div class="span12 blog-post">
 		  <div ng-show="viewData.imageUrl" class="blog-image" style="background-image: url({{viewData.imageUrl}})"></div> 
-		  <div class="blog-header">
+		  <div class="blog-body">
   		  	<h2 class="blog-title">{{viewData.title}}</h2>
-  		  	<h5 class="writer-name">{{viewData.name}}</h5>
-		  	<p class="blog-date">{{viewData.date | date:"d MMMM, yyyy"}}</p>
-		  </div>
-		  
-		  <p class="blog-body" ng-bind-html-unsafe=viewData.body></p>
+  		  	<h5 class="writer-name">{{viewData.name}} {{viewData.date | date:"d MMMM, yyyy"}}</h5>
+		  	<p class="blog-body" ng-bind-html-unsafe=viewData.body></p>
 		</div>
 	</div>
 
