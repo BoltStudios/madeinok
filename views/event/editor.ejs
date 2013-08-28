@@ -4,7 +4,7 @@
 
 	<div class="container">
 	  	<button ng-show=eventId class="btn btn-danger btn-large pull-right" ng-click=delete()>delete this event</button>
-	  	<a class='btn btn-large btn-primary pull-right' ng-click='save()'>save changes</a>
+	  	<button class='btn btn-large btn-primary pull-right' ng-click='save()'>save changes</button>
 	  	<br/>
 	  	<br/>
 	  	<br/>
@@ -141,7 +141,7 @@
 			</div>
 		</div>
 
-		<div ng-show=formData.description&&formData.title&&formData.organization>
+		<div ng-show=!eventEditor.$invalid>
 			<h3> This is how it will look once you submit it </h3>
 			<div class="event">
 				<div style="float:left;">
