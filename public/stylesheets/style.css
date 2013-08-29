@@ -6354,6 +6354,9 @@ body {
   font-size: 21px;
   line-height: 30px;
 }
+dt {
+  line-height: 30px;
+}
 .page-header {
   border-bottom-color: #f05133 !important;
 }
@@ -6419,10 +6422,16 @@ ul > .indented {
 }
 .business-card-image {
   border: 1px solid #222;
-  width: 330px;
+  max-width: 330px;
   background-color: #fff;
   padding: 0.5em;
   margin: 0.8em;
+}
+.business-card-image-view {
+  max-width: 90%;
+  border: 1px solid #222;
+  padding: 0.5em;
+  background-color: #fff;
 }
 .event-left,
 event-right {
