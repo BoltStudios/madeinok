@@ -3127,7 +3127,7 @@ input[type="submit"].btn.btn-mini {
 }
 .alert .close {
   position: relative;
-  top: -2px;
+  top: 5px;
   right: -21px;
   line-height: 20px;
 }
@@ -3766,7 +3766,7 @@ input[type="submit"].btn.btn-mini {
   padding: 7px 10px;
   margin-left: 5px;
   margin-right: 5px;
-  background-color: #007dc3;
+  background-color: #2d2d2d;
 }
 .navbar .btn-navbar:hover {
   background-color: #006daa;
@@ -6350,6 +6350,13 @@ input[type="submit"].tile::-moz-focus-inner {
   *zoom: 1;
   float: left;
 }
+body {
+  font-size: 21px;
+  line-height: 30px;
+}
+dt {
+  line-height: 30px;
+}
 .page-header {
   border-bottom-color: #f05133 !important;
 }
@@ -6597,7 +6604,8 @@ event-right {
   margin-left: 15px;
   margin-right: 15px;
   color: #555555;
-  font-size: 18px;
+  font-size: 21px;
+  line-height: 30px;
   font-weight: 200;
 }
 .blog-image {
