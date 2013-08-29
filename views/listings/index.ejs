@@ -5,11 +5,10 @@
 	</h2>
 </div>
 
-<div class='grid-100'>
-<div ng-repeat='entry in listings' class='listing-entry grid-33' ng-click='viewEntry(entry._id)'>
+<div ng-repeat='entry in listings' class='listing-entry ' ng-click='viewEntry(entry._id)'>
 	<div class='business-card'>
-		<a href='#/view/{{entry._id}}'><img src='{{entry.imageUrl}}' /></a>
+		<img ng-show='entry.isHiring' class='business-card-hiring' src='/images/hiring.png'/>
+		<a href='#/view/{{entry._id}}'><img  class='business-card-image' src='{{entry.imageUrl}}' /></a>
 		<button class="btn btn-large btn-success" ng-show='!entry.creatorId && unclaimed' ng-click='claim(entry._id)'>this is my company</button>
 	</div>
-</div>
 </div>

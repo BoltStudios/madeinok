@@ -33,7 +33,8 @@ GLOBAL.cake = require('bund-cake')(app)
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
-  mongoose.connect('mongodb://localhost/OKStartups')
+  //mongoose.connect('mongodb://localhost/OKStartups')
+  mongoose.connect(GLOBAL.mongolab.URI)
 } else {
 	mongoose.connect(GLOBAL.mongolab.URI)
 }
