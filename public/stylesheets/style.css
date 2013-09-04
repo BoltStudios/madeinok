@@ -6354,6 +6354,9 @@ body {
   font-size: 21px;
   line-height: 30px;
 }
+dt {
+  line-height: 30px;
+}
 .page-header {
   border-bottom-color: #f05133 !important;
 }
