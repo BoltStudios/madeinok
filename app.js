@@ -47,3 +47,11 @@ require('./dataload/dataload')(app)
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+
+// lol heroku
+// make a request every 55 minutes to kep the site awake
+function poller() {
+  http.request('http://madeinok.co/', function() {})
+}
+setInterval(poller, 1000*60*55)
