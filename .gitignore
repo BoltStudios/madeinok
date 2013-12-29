@@ -17,3 +17,4 @@ npm-debug.log
 #Other useful stuff
 node_modules
 .DS_STORE
+keys.js
