@@ -18,4 +18,5 @@ npm-debug.log
 node_modules
 .DS_STORE
 
-keys.js
+#These are ignore on github
+#keys.js
