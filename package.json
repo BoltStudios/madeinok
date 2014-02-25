@@ -15,6 +15,7 @@
     "bund-cake": "0.0.3",
     "async": "~0.2.9",
     "passport-twitter": "~1.0.2",
-    "passport-facebook": "~1.0.2"
+    "passport-facebook": "~1.0.2",
+    "passport": "~0.2.0"
   }
 }
