@@ -19,4 +19,4 @@ node_modules
 .DS_STORE
 
 #These are ignore on github
-#keys.js
+keys.js
