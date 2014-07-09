@@ -18,8 +18,7 @@
 			<li ng-show='item.companyName && item.foundingYear' class='muted list-item-header'>
 			About {{ item.companyName }}
 			</li>
-			<li ng-show='item.phrase' class="company-phrase">
-				{{item.companyName}} is developing {{ item.phrase.developing }} to help {{item.phrase.helping}} {{item.phrase.why}}
+			<li ng-show='item.phrase' class="company-phrase" ng-bind-html-unsafe=item.phrase>
 			</li>
 				<dl>
 					<dt ng-show='item.foundingYear && item.companyName'> Founded </dt>
@@ -114,6 +113,7 @@
 		<li class='muted list-item-header'>For Jobs</li>
 		<li class='indented' ng-show='item.hiringUrl'><i class='icon-globe'></i> <a href='{{ item.hiringUrl }}'>{{ item.hiringUrl }}</a></li>
 		<li class='indented' ng-show='item.hiringEmail'><i class='icon-envelope'></i> {{ item.hiringEmail }}</li>
+		<li class='indented' ng-show='item.hiringPhone'><i class='icon-phone'></i> {{ item.hiringPhone }}</li>
 	</ul>
 </fieldset>
 </div>

@@ -18,9 +18,7 @@ var ListingSchema = new mongoose.Schema({
 	linkedInUrl: 		{type: String},
 	angellistUrl: 		{type: String},
 
-	phrase:   	    	{developing:{type:String}, helping:{type:String}, why:{type:String}},
-	changeTheWorld: 	{type: String}, 
-	somethingAwesome: 	{type: String},
+	phrase:   	    	{type:String},
 
 	foundingYear: 		{type: Number},
 	companyType: 		{type: String},
@@ -40,6 +38,7 @@ var ListingSchema = new mongoose.Schema({
 	founders: 			[Founder],
 	hiringUrl:      	{type: String},
 	hiringEmail: 		{type: String, lowercase: true},
+	hiringPhone: 		{type: String},
 	isHiring: 			{type: Boolean, default: false},
 	hasInternships: 	{type: Boolean, default: false}
 })

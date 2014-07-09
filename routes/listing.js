@@ -47,11 +47,18 @@ module.exports = function(app) {
 	/* Returns all the listings */
 	app.get('/api/listings', function(req, res) {
 		Listing.find(function(err, listings) {
-			var sorted = _.sortBy(listings, function(o) { return o.companyName })
+			var sorted = _.sortBy(listings, function(o) { return o._id.getTimestamp() })
 			res.send(sorted)
 		})
 	})
-
+	
+	
+	app.get('/api/new-listings', function(req, res) {
+		Listing.find({}).sort('-date').limit(1).exec(function(err, posts){
+			res.send(posts)
+		})
+	})
+	
 	/* Return a specific listing */
 	app.get('/api/listings/:id', function(req, res) {
 		var id = req.params.id || 0
@@ -88,7 +95,7 @@ module.exports = function(app) {
 	})
 
 	/* Delete a listing */
-	app.delete('/api/listings/:id', filters.isAdmin, function(req, res) {
+	app.delete('/api/listings/:id', filters.isLoggedIn, function(req, res) {
 		var id = req.params.id || 0
 		Listing.findByIdAndRemove(id, function(err, listing) {
 			if(!err)

@@ -34,7 +34,9 @@ var HomeIndexCtrl = ['$scope', '$location', '$http', '$routeParams', '$anchorScr
 			success.sort(function(a,b){
 			  a = new Date(a.date);
 			  b = new Date(b.date);
-			  return a<b?-1:a>b?1:0;
+			  if (a > b) return -1;
+			  if (a < b) return 1;
+			  return 0;
 			})
 			$scope.listings = success
 		}, function(error) {

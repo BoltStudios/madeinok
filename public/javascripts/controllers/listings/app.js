@@ -16,6 +16,7 @@ var app = angular.module('ListApp', ['ngResource', 'ngCookies', 'authentication-
 			.otherwise({ redirectTo: '/' })
 	}])
 
+	
 
 	/* Does not allow users to input any more characters than the 
 	   limit defined by the attribute maxlengthlimit
@@ -66,6 +67,10 @@ var app = angular.module('ListApp', ['ngResource', 'ngCookies', 'authentication-
 			})
 		}
 	}])
+	
+	
+	
+
 
 	.directive('companyUploader', [function() {
 		return function(scope, element, attrs) {
@@ -113,3 +118,25 @@ var app = angular.module('ListApp', ['ngResource', 'ngCookies', 'authentication-
 			
 		}
 	}])
+	
+	app.directive('ckEditor', function () {
+    return {
+        require: '?ngModel',
+        link: function (scope, elm, attr, ngModel) {
+
+            var ck = CKEDITOR.replace(elm[0]);
+
+            if (!ngModel) return;
+
+            ck.on('pasteState', function () {
+                scope.$apply(function () {
+                    ngModel.$setViewValue(ck.getData());
+                });
+            });
+
+            ngModel.$render = function (value) {
+                ck.setData(ngModel.$viewValue);
+            };
+        }
+    }
+})

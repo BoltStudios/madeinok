@@ -22,9 +22,11 @@
 					<h4>{{event.date | date:"EEE MMM dd"}}</h4>
 					<span class="label label-info">{{event.date | date:"h:mm a"}}</span>
 				</div>
+									<div><img src="/images/map-marker.png" alt="map marker">{{event.location}}</div>
+									<div>Hosted by : {{event.organization}}</div>
+
 			</div>
-			<div class="event-description">
-				{{event.description}}
+			<div class="event-description" ng-bind-html-unsafe=event.description>
 			</div>
 		</fieldset>
 

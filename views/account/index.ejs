@@ -12,7 +12,7 @@
 		<h3>{{ listing.companyName }}</h3>
 		<a href='/listing/#/view/{{listing._id}}' class='btn btn-info'>View</a>
 		<a href='/listing/#/edit/{{listing._id}}' class='btn btn-primary'>Edit</a>
-
+		<button class="btn btn-danger" ng-click="delete(listing._id)">delete this company</button>
 	</li>
 </ul>
 </fieldset>

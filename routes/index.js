@@ -7,6 +7,7 @@ module.exports = function(app) {
 	require('./home')(app)
 	require('./blog')(app)
 	require('./event')(app)
+	require('./search')(app)
 
 	app.get('/', function(req, res) {
 		res.render('index', { title: 'Made in OK - Home', appName: 'HomeApp' })
