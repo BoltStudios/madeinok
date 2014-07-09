@@ -8,6 +8,8 @@ var EventSchema = new mongoose.Schema({
 	, description:  { type: String }
 	, imageUrl:		{ type: String }
 	, date: 		{ type: Date   }
+	, location: 	{ type: String }
+	, recurring_period:	{ type: Number, default: 0 }
 })
 
 module.exports = mongoose.model('Events', EventSchema)

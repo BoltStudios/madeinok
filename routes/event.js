@@ -19,9 +19,47 @@ module.exports = function(app) {
 	/* Returns all the listings */
 	app.get('/api/events', function(req, res) {
 		Events.find(function(err, events) {
+			for(var i in events)
+			{
+				// months
+				if (events[i].recurring_period == 1)
+				{
+					if (monthDiff(events[i].date, new Date()) > 0)
+					{
+						Events.findById(events[i].id, function(err, event) {
+							event.date = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay(), events[i].date.getHours(), events[i].date.getMinutes());
+							console.log(event.date)
+							event.save(function(err) {
+								events[i].date = event.date
+							})
+						})
+					}
+				}
+				else if (events[i].recurring_period == 2) // Weekly
+				{
+					if (Math.round(Math.abs((events[i].date.getTime() - new Date().getTime())/(24*60*60*1000))) > 6)
+					{
+						Events.findById(events[i].id, function(err, event) {
+							event.date = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay(), events[i].date.getHours(), events[i].date.getMinutes());
+							console.log(event.date)
+							event.save(function(err) {
+								events[i].date = event.date
+							})
+						})
+					}
+				}
+			}
 			res.send(events)
 		})
 	})
+	
+	function monthDiff(d1, d2) {
+		var months;
+		months = (d2.getFullYear() - d1.getFullYear()) * 12;
+		months -= d1.getMonth() + 1;
+		months += d2.getMonth();
+		return months <= 0 ? 0 : months;
+	}
 
 	/* Return a specific listing */
 	app.get('/api/events/:id', function(req, res) {
@@ -52,7 +90,7 @@ module.exports = function(app) {
 		Events.findById(id, function(err, event) {
 			_(event).extend(structure)
 			console.log(event)
-
+							
 			event.save(function(err) {
 				 if(!err)
 				 	res.send(event)

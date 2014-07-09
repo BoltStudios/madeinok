@@ -49,10 +49,10 @@
 
 	<div class='control-group'>
 		<label class='control-label' for='shortTitle'>
-			When it is displayed on the homepage, what should it say (18 characters)?
+			When it is displayed on the homepage, what should it say (50 characters)?
 		</label>
 		<div class='controls'>
-			<input class="span12" type="text" name='shortTitle' maxlengthlimit='18' ng-model='formData.shortTitle' autocorrect='off' required />
+			<input class="span12" type="text" name='shortTitle' maxlengthlimit='50' ng-model='formData.shortTitle' autocorrect='off' required />
 			<div ng-show='blogEditor.shortTitle.$dirty && blogEditor.shortTitle.$invalid' class='alert alert-error'>
           		<span ng-show='blogEditor.shortTitle.$error.required'>You must enter a short title.</span>
         	</div>
@@ -70,10 +70,10 @@
 			<button ng-show="blogEditor.imageUrl.$invalid" class="btn btn-primary btn-large" click-hacker target='uploader'>Upload Image</button>
 			<button ng-show="!blogEditor.imageUrl.$invalid" class="btn btn-primary btn-large" click-hacker target='uploader'>Upload Different Image</button>
 			<input type='file' image-uploader action='/api/blogs/image' name='uploader' id='uploader' style='display:none;' />
-			<input type='hidden' name="imageUrl" ng-model='formData.imageUrl' required/>
+			<input type='hidden' name="imageUrl" ng-model='formData.imageUrl' ng-init='formData.imageUrl="/images/default_blog_image.png"'/>
 			<span ng-show='progress' class='text text-info'><strong>Progress</strong>: {{ progress }}%</span>
 			<div ng-show='blogEditor.imageUrl.$invalid && !blogEditor.title.$invalid && !blogEditor.name.$invalid && !blogEditor.body.$invalid' class='alert alert-error'>
-          		<span ng-show='blogEditor.imageUrl.$invalid'>You must upload an image for your blog post.</span>
+          		<span ng-show='blogEditor.imageUrl.$invalid'>You must upload a valid image for your blog post.</span>
         	</div>
 		</div>
 	</div>

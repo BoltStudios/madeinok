@@ -130,49 +130,13 @@
 
 		<div class='grid-50'>
 			<div class='control-group'>
-				<label class='control-label' for='phrase'>Describe your company in one phrase <span class='text-error'>*</span></label>
+				<label class='control-label' for='phrase'>Tell us about your company and your goals for the future <span class='text-error'>*</span></label>
 				<div class='controls'>
-					What are you developing?<br/>
-					<textarea rows='2' name='developing' ng-model='phrase.developing' required></textarea><br/>
-					<div ng-show='listCreate.developing.$dirty && listCreate.developing.$invalid' class='alert alert-error'>
-						<span ng-show='listCreate.developing.$error.required'>This is required.</span>
+					<textarea name='phrase' type="text" ng-model='formData.phrase' ck-editor required ng-bind-html-unsafe=formData.phrase></textarea><br/>
+					<div ng-show='listCreate.phrase.$dirty && listCreate.phrase.$invalid' class='alert alert-error'>
+						<span ng-show='listCreate.phrase.$error.required'>This is required.</span>
 					</div>
 
-					Who are you helping?<br/>
-					<textarea rows='2' name='helping' ng-model='phrase.helping' required></textarea><br/>
-					<div ng-show='listCreate.helping.$dirty && listCreate.helping.$invalid' class='alert alert-error'>
-						<span ng-show='listCreate.helping.$error.required'>This is required.</span>
-					</div>
-
-					For what?<br/>
-					<textarea rows='2' name='why' ng-model='phrase.why' required></textarea>
-					<div ng-show='listCreate.why.$dirty && listCreate.why.$invalid' class='alert alert-error'>
-						<span ng-show='listCreate.why.$error.required'>This is required.</span>
-					</div>
-				</div>
-			</div>
-
-			<div class='control-group'>
-				<label class='control-label' for='changeTheWorld'>How you'll change the world <span class='text-error'>*</span></label>
-				<div class='controls'>
-					<textarea maxlengthlimit='{{ maxBlurbLength }}' rows='5' name='changeTheWorld' ng-model='formData.changeTheWorld' placeholder='{{ maxBlurbLength }} characters' required></textarea><br/>
-					<span ng-bind='maxBlurbLength - changeTheWorld.length'></span>
-					<ng-pluralize count='maxBlurbLength - changeTheWorld.length'
-					  when="{'1': 'character', 'other': 'characters'}"></ng-pluralize> remaining
-
-					<div ng-show='listCreate.changeTheWorld.$dirty && listCreate.changeTheWorld.$invalid' class='alert alert-error'>
-						<span ng-show='listCreate.changeTheWorld.$error.required'>This is required.</span>
-					</div>
-				</div>
-			</div>
-
-			<div class='control-group'>
-				<label class='control-label' for='somethingAwesome'>Something awesome about you</label>
-				<div class='controls'>
-					<textarea maxlengthlimit='{{ maxBlurbLength }}' rows='5' name='somethingAwesome' ng-model='formData.somethingAwesome' placeholder='{{ maxBlurbLength }} characters'></textarea><br/>
-					<span ng-bind='maxBlurbLength - somethingAwesome.length'></span>
-					<ng-pluralize count='maxBlurbLength - somethingAwesome.length'
-					  when="{'1': 'character', 'other': 'characters'}"></ng-pluralize> remaining
 				</div>
 			</div>
 
@@ -180,8 +144,8 @@
 				<div class='controls'>
 					<button class='btn' ng-click='previousPage()'>&larr; Previous</button>
 					<button class='btn btn-primary' ng-click='save()'>Save</button>
-					<button class='btn' ng-disabled='listCreate.phrase.$invalid || listCreate.changeTheWorld.$invalid' ng-click='nextPage()'>Next &rarr;</button>
-					<div ng-show='listCreate.phrase.$invalid || listCreate.changeTheWorld.$invalid' class='alert alert-warning'>
+					<button class='btn' ng-disabled='listCreate.phrase.$invalid' ng-click='nextPage()'>Next &rarr;</button>
+					<div ng-show='listCreate.phrase.$invalid' class='alert alert-warning'>
 					Make sure you tell us how you'll <strong>change the world</strong>.
 					</div>
 				</div>
@@ -192,14 +156,12 @@
 
 			<strong class='alert-info'>Company phrase example:</strong>
 			<div class='alert alert-info'>
-				<abbr title='Company Name' ng-model='previewCompanyName'>Built In OK</abbr>, is developing <abbr title='What are you developing?' >a crowd sourced and curated web community</abbr> to help <abbr title='Who are you helping?'>Oklahoma innovators, makers, founders and creatives</abbr> <abbr title='What are you helping them do?'>have a central place to find local networking events, keep up to date on what's happening in the community, and connect with talent.</abbr>
+				<abbr title='Company Name' ng-model='previewCompanyName'>Made In OK</abbr>, is developing <abbr title='What are you developing?' >a crowd sourced and curated web community</abbr> to help <abbr title='Who are you helping?'>Oklahoma innovators, makers, founders and creatives</abbr> <abbr title='What are you helping them do?'>have a central place to find local networking events, keep up to date on what's happening in the community, and connect with talent.</abbr>
 			</div>
 
-			<span ng-show='phrase.developing'>
+			<span ng-show='formData.phrase'>
 				<strong class='alert-info'>Company phrase preview:</strong>
-				<div class='alert alert-info'>
-					{{ formData.companyName }} <span ng-show='phrase.developing'>is developing {{ phrase.developing }}</span> <span ng-show='phrase.helping'>to help {{ phrase.helping }}</span> <span ng-show='phrase.why'>{{ phrase.why }}.</span>
-				</div>
+				<div class='alert alert-info' ng-bind-html-unsafe=formData.phrase></div>
 			</span>
 		</div>
 	</fieldset>
@@ -304,8 +266,8 @@
 			<label class='control-label' for='milestone'>Your latest traction milestone</label>
 			<div class='controls'>
 				<textarea maxlengthlimit='{{ maxBlurbLength }}' rows='5' name='milestone' ng-model='formData.milestone' placeholder='{{ maxBlurbLength }} characters'></textarea><br/>
-				<span ng-bind='maxBlurbLength - milestone.length'></span>
-				<ng-pluralize count='maxBlurbLength - milestone.length'
+				<span >{{ maxBlurbLength - formData.milestone.length }}</span>
+				<ng-pluralize count='maxBlurbLength - formData.milestone.length'
 				  when="{'1': 'character', 'other': 'characters'}"></ng-pluralize> remaining
 			</div>
 		</div>
@@ -421,6 +383,17 @@
 			</div>
 		</div>
 
+		<div class='control-group'>
+			<label class='control-label' for='hiringPhone'>Contact Number</label>
+			<div class='controls'>
+				<input type='text' name='hiringPhone' ng-model='formData.hiringPhone' placeholder='Your Hiring Contact Phone' autocorrect='off' />
+
+				<div ng-show='listCreate.hiringPhone.$dirty && listCreate.hiringPhone.$invalid' class='alert alert-error'>
+					<span ng-show='listCreate.hiringPhone.$error.phone'>This is not a valid phone number.'</span>
+				</div>
+			</div>
+		</div>
+		
 		<div class='control-group'>
 			<label class='control-label' for='isHiring'>Hiring?</label>
 			<div class='controls'>

@@ -37,6 +37,10 @@ module.exports = function(app) {
 		var newBlog = req.body
 		newBlog.creatorId = req.user.guid
 
+		if (typeof req.body.imageUrl == 'undefined')
+		{
+			newBlog.imageUrl = '/images/default_blog_image.png';
+		}
 		new Blogs(newBlog).save(function(err, blog, count) {
 			res.send(blog)
 		})

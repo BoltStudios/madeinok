@@ -12,7 +12,7 @@ var keys = require('./keys')
 
 // all environments
 app.use(express.favicon(__dirname + '/public/images/favicon.png')); 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 80);
 app.set('view engine', 'ejs');
 //app.use(express.favicon());
 app.use(express.logger('dev'));
@@ -25,7 +25,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.enable('strict routing'); //has to go above app.use(app.router); this will prevent domain.com/whatever and domain.com/whatever/ from acting like they are the same. Another solution is to use https://github.com/ericf/express-slash, but I don't care to.
 app.use(app.router);
-app.use(require('less-middleware')({ src: __dirname + '/public' }));
+//app.use(require('less-middleware')({ src: __dirname + '/public' }));
+app.use(require('less-middleware')(__dirname + '/public')); // New usage by amal
 app.use(express.static(path.join(__dirname, 'public')));
 
 GLOBAL.cake = require('bund-cake')(app)

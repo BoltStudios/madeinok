@@ -49,6 +49,20 @@
 			</div>
 		</div>
 
+		
+		<div class='control-group'>
+			<label class='control-label' for='title'>
+				What is the location of this event?
+			</label>
+			<div class='controls'>
+				<input class="span12" type="text" name='title' ng-model='formData.location' autocorrect='off' required />
+				<div ng-show='eventEditor.location.$dirty && eventEditor.location.$invalid' class='alert alert-error'>
+	          		<span ng-show='eventEditor.location.$error.required'>You must enter a location.</span>
+	        	</div>
+			</div>
+		</div>
+		
+		
 		<div class='control-group'>
 			<label class='control-label' for='imageUrl'>Event Image</label>
 			<div class='alert alert-info'>
@@ -71,7 +85,39 @@
 					day
 				</label>
 				<div class='controls'>
-					<input type="text" name='day' ng-model='formData.day' autocorrect='off' required />
+					<select name='day' ng-model='formData.day' ng-init="formData.day=1">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+					<option value="16">16</option>
+					<option value="17">17</option>
+					<option value="18">18</option>
+					<option value="19">19</option>
+					<option value="20">20</option>
+					<option value="21">21</option>
+					<option value="22">22</option>
+					<option value="23">23</option>
+					<option value="24">24</option>
+					<option value="25">25</option>
+					<option value="26">26</option>
+					<option value="27">27</option>
+					<option value="28">28</option>
+					<option value="29">29</option>
+					<option value="30">30</option>
+					<option value="31">31</option>
+					</select>
 					<div ng-show='eventEditor.day.$dirty && eventEditor.day.$invalid' class='alert alert-error'>
 		          		<span ng-show='eventEditor.day.$error.required'>You must enter a day.</span>
 		        	</div>
@@ -82,7 +128,23 @@
 					month
 				</label>
 				<div class='controls'>
-					<input type="text" name='month' ng-model='formData.month' autocorrect='off' required />
+					
+					<select name='month' ng-model='formData.month' ng-init='formData.month=1'>
+					<option value="1">Jan</option>
+					<option value="2">Feb</option>
+					<option value="3">Mar</option>
+					<option value="4">Apr</option>
+					<option value="5">May</option>
+					<option value="6">Jun</option>
+					<option value="7">Jul</option>
+					<option value="8">Aug</option>
+					<option value="9">Sep</option>
+					<option value="10">Oct</option>
+					<option value="11">Nov</option>
+					<option value="12">Dec</option>
+					
+					</select>
+					
 					<div ng-show='eventEditor.month.$dirty && eventEditor.month.$invalid' class='alert alert-error'>
 		          		<span ng-show='eventEditor.month.$error.required'>You must enter a month.</span>
 		        	</div>
@@ -131,16 +193,30 @@
 
 		<div class='control-group'>
 			<label class='control-label' for='description'>
+				Is this event recurring?
+			</label>
+			<div class='controls'>
+				<input type="checkbox" ng-checked="formData.recurring_period > 0" name="recurring" ng-model='formData.recurring'>
+				<select ng-hide="!formData.recurring" name="recurring_period" ng-show="formData.recurring > 0 || formData.recurring_period > 0" ng-model='formData.recurring_period'>
+					<option value="1" ng-selected="formData.recurring_period  == 1">monthly</option>
+					<option value="2" ng-selected="formData.recurring_period  == 2">weekly</option>
+				</select>
+			</div>
+		</div>
+		
+		<div class='control-group'>
+			<label class='control-label' for='description'>
 				Tell us a little more about the event.
 			</label>
 			<div class='controls'>
-				<textarea class="span12" type="text" name='description' ng-model='formData.description' required></textarea>
+				<textarea class="span12" type="text" name='description' ng-model='formData.description' ck-editor required></textarea>
 				<div ng-show='eventEditor.description.$dirty&&eventEditor.description.$invalid' class='alert alert-error'>
 	          		<span ng-show='eventEditor.description.$error.required'>You must enter a title.</span>
 	        	</div>
 			</div>
 		</div>
 
+		
 		<div ng-show=!eventEditor.$invalid>
 			<h3> This is how it will look once you submit it </h3>
 			<div class="event">
@@ -154,9 +230,10 @@
 						<span class="label label-info">{{getDate() | date:"h:mm a"}}</span>
 					</div>
 				</div>
-				<div class="event-description">
-					{{formData.description}}
+				<div class="event-description" ng-bind-html-unsafe=formData.description>
 				</div>
+									<div style="clear:both;"><img src="/images/map-marker.png" alt="map marker">{{formData.location}}</div>
+					<div>Hosted by : {{formData.organization}}</div>
 			</div>
 		</div>
 

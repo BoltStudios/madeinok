@@ -38,6 +38,10 @@ var EventEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Event', 
 		//here we decide whether we're creating or editing a event post
 		$scope.saved = true
 		$scope.formData.date = $scope.getDate()
+		
+		if ($scope.formData.recurring == 0)
+			$scope.formData.recurring_period = 0
+			
 		!$scope.eventId ? httpCreate() : httpEdit()
 	}
 

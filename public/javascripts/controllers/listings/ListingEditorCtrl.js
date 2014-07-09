@@ -7,7 +7,7 @@ var ListingEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Authen
 	// Fields will be stored here as a JSON object
 	// TODO clean this up
 	$scope.formData = {}
-	$scope.phrase = {}
+	$scope.phrase = ''
 	$scope.formData.isHiring = false;
 	$scope.formData.hasInternships = false;
 
@@ -181,10 +181,6 @@ var ListingEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Authen
 	}
 
 	$scope.savePhrase = function() {
-		$scope.formData.phrase = {}
-		$scope.formData.phrase.developing = $scope.phrase.developing
-		$scope.formData.phrase.helping = $scope.phrase.helping
-		$scope.formData.phrase.why = $scope.phrase.why
 	}
 
 	$scope.uploadImage = function(action) {
@@ -196,7 +192,7 @@ var ListingEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Authen
 	}
 
 	$scope.loadPhrase = function(entry) {
-		_.assign($scope.phrase, entry.phrase)
+		_.assign($scope.formData.phrase, entry.phrase)
 	}
 
 
@@ -257,5 +253,4 @@ var ListingEditorCtrl = ['$scope', '$location', '$http', '$routeParams', 'Authen
 		}
 		this.save(decrement)
 	}
-
 }]

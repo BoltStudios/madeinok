@@ -1,4 +1,4 @@
-var AccountIndexCtrl = ['$scope', '$http', '$location', 'AuthenticationService', function($scope, $http, $location, AuthenticationService) {
+var AccountIndexCtrl = ['$scope', '$http', '$location', 'AuthenticationService', 'Listing', function($scope, $http, $location, AuthenticationService, Listing) {
 	$scope.title = 'Your Account'
 
 	$http.get('/api/users/current').success(function(response) {
@@ -53,6 +53,10 @@ var AccountIndexCtrl = ['$scope', '$http', '$location', 'AuthenticationService',
 
 	$scope.logout = function() {
 		AuthenticationService.logOut()
+	}
+	
+	$scope.delete = function(idp) {
+		Listing.delete({id: idp})(window.location.reload())
 	}
 
 }]

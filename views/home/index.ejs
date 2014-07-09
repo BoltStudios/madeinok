@@ -1,14 +1,16 @@
 <div class="homepage-top grid-100 grid-container">
 			<div class="grid-60 grid-parent">
-				<div class="grid-100">
-				 	<div class="blog featured-blog" style="background-image: url('{{blogs[0].imageUrl || '/images/default_blog_image.png'}}');" 
-					onclick='location.href="/blog/#/view/{{blogs[0]._id}}"'>
+			
+			<div class="grid-100" ng-hide="blogs.length">No Blogs to list</div>
+				<div class="grid-100" ng-show="blogs.length">
+				 	<div class="blog featured-blog" style="background-image: url('{{blogs[blogs.length-1].imageUrl || '/images/default_blog_image.png'}}');" 
+					onclick='location.href="/blog/#/view/{{blogs[blogs.length-1]._id}}"'>
 						<div class="blog-text">
-							<h3 class="blog-title">{{blogs[0].title}}</h3>
+							<h3 class="blog-title">{{blogs[blogs.length-1].title}}</h3>
 						</div>		
 					</div>				
 				</div>
-				<div class="grid-50 hide-on-mobile" ng-repeat="n in [1,4] | makeRange">
+				<div ng-show="blogs.length > 1" class="grid-50 hide-on-mobile" ng-repeat="n in [0,3] | makeRange">
 					<div class="blog" style="background-image: url('{{blogs[n].imageUrl || '/images/default_blog_image.png'}}');" 
 					onclick='location.href="/blog/#/view/{{blogs[n]._id}}"'>
 						<div class="blog-text">
@@ -16,13 +18,16 @@
 						</div>	
 					</div>
 				</div>
+				
 			</div>
 
 			<div class="grid-40">
 				<fieldset>
 					<legend>upcoming events</legend>
-					<div ng-repeat="n in [3] | makeRange" class="event" onclick='location.href="/event/#/view/{{events[n]._id}}"'>
-						<div class="event-left"> 
+					<div class="grid-100" ng-hide="events.length">No events to list</div>
+					
+					<div ng-show="events.length" ng-repeat="n in [3] | makeRange" class="event" onclick='location.href="/event/#/view/{{events[n]._id}}"'>
+						<div ng-show="events[n].title" class="event-left"> 
 							<img class="event-image" src="{{events[n].imageUrl || '/images/MadeInOK100x100.png' }}">								
 						</div>
 						<div class="event-right">
@@ -32,9 +37,9 @@
 						</div>
 					</div>
 				</fieldset>
-					<div class="listing" onclick='location.href="/listing/#/view/{{listings[0]._id}}"'>
+					<div class="listing" onclick='location.href="/listing/#/view/{{listings[listings.length-1]._id}}"'>
 						<span class="listing-text" style="position: absolute; left: 10px; color: #007dc3;">newest company</span>
-						<img class="listing-image" src={{listings[0].imageUrl}} alt={{listings[0].companyName}}/>
+						<img class="listing-image" src={{listings[listings.length-1].imageUrl}} alt={{listings[listings.length-1].companyName}}/>
 					</div>
 				</div>
 			</div>

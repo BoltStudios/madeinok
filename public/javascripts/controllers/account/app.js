@@ -1,4 +1,4 @@
-var app = angular.module('AccountApp', ['ngResource', 'authentication-service', 'user-factory'])
+var app = angular.module('AccountApp', ['ngResource', 'authentication-service', 'user-factory',  'listing-factory'])
 	
 	.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 		$routeProvider

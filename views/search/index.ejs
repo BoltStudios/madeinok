@@ -117,17 +117,43 @@
 
     <!-- we put all of the angular views inside of the page-wrapper class -->
     <div class="page-wrapper">
-    	<div ng-app="<%= appName %>">
-      <% if(appName != "HomeApp"){ %>
-        <div class="container">
-          <div ng-view>
-          </div>    
-        </div>    
-      <% } else { %>
-        <div ng-view>
-        </div>  
-      <% } %>
-	    </div>
+    		  <div class="col-md-8 section" id="search-results" style="display: block;padding: 30px;">
+	
+	<h2>Companies matching <%= query %></h2>
+			<% for(var i in res['listing']) { %>
+				<div class="listing-entry">
+					<div class='business-card'>
+						<a href='/listing/#/view/<%= res['listing'][i]['id'] %>'><img  class='business-card-image' src='<%= res['listing'][i]['imageUrl'] %>' /></a>
+					</div>
+				</div>
+			<% } %>
+			
+			
+			
+			<br><br>
+			<h2 style="clear: both;">Events matching <%= query %></h2>
+			<% for(var i in res['events']) { %>
+				<div class="events-entry">
+					<div>
+						<img src='<%= res['events'][i]['imageUrl'] %>' /> <a href='/event/#/view/<%= res['events'][i]['id'] %>'><%= res['events'][i]['title'] %></a>
+					</div>
+				</div>
+			<% } %>
+			
+			
+			<br><br>
+			<h2 style="clear: both;">News matching <%= query %></h2>
+			<% for(var i in res['news']) { %>
+				<div class="news-entry">
+					<div>
+						<img src='<%= res['news'][i]['imageUrl'] %>' /> <a href='/blog/#/view/<%= res['news'][i]['id'] %>'><%= res['news'][i]['title'] %></a>
+					</div>
+				</div>
+			<% } %>
+			
+			
+			
+		</div>
     </div>
 </body>
 
